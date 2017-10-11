@@ -354,10 +354,15 @@ $(document).ready(function() {
 						<label class="col-md-3 control-label" for="textinput">Ownership</label>
 						<div class="col-md-9">
 							<select id="department" ng-model="new_department.ownership_id" ng-change="validateSaveAndEdit()" class="form-control" required>
-								<option value="" selected>Select Ownership</option> {% for ownership in ownerships %}
-								<option value="{{ ownership.id }}">{{ ownership.ownership_name }}</option> {% endfor %} </select> <span style="color:red;" ng-show="submitted && form_ogs_add_firm.new_department.ownership_id.$error.required">
+								<option value="" selected>Select Ownership</option>
+								{% for ownership in ownerships %}
+								<option value="{{ ownership.id }}">{{ ownership.ownership_name }}</option>
+								{% endfor %}
+							</select>
+							<span style="color:red;" ng-show="submitted && form_ogs_add_firm.new_department.ownership_id.$error.required">
                                 Please select Department or Office
-                            </span> </div>
+                            </span>
+						</div>
 					</div>
 				</div>
 				<br>
@@ -369,28 +374,84 @@ $(document).ready(function() {
 			</div>
 		</div>
 	</div>
-	<!--- Edit -->
+	<!---Old Edit -->
+	<!--<div class="modal fade" id="modal-container-218020" role="dialog" style="width:50%;margin:0 auto;" aria-hidden="true">-->
+		<!--<div class="modal-dialog" style="width:50%;" ng-form name="form_ogs_edit_firm">-->
+			<!--<div class="modal-content">-->
+				<!--<div class="modal-header">-->
+					<!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true"> × </button>-->
+					<!--<h5 class="modal-title">-->
+                        <!--Edit Name of Department or Office-->
+                    <!--</h5> </div>-->
+				<!--<div class="modal-body">-->
+					<!--&lt;!&ndash; Text input&ndash;&gt;-->
+					<!--<div class="form-group">-->
+						<!--<label class="col-md-3 control-label" for="textinput">Name</label>-->
+						<!--<div class="col-md-9">-->
+							<!--<input id="textinput" ng-model="new_department.name" name="textinput" type="text" placeholder="" -->
+								   <!--class="form-control input-md">-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+				<!--<br>-->
+				<!--<br>-->
+				<!--<div class="modal-footer">-->
+					<!--<button type="button" class="btn btn-default" data-dismiss="modal"> Close </button>-->
+					<!--<button ng-click="editDepartment(form_ogs_edit_firm)" type="button" class="btn btn-success">-->
+						<!--Save Edit-->
+					<!--</button>-->
+				<!--</div>-->
+			<!--</div>-->
+		<!--</div>-->
+	<!--</div>-->
+	<!--New Edit-->
 	<div class="modal fade" id="modal-container-218020" role="dialog" style="width:50%;margin:0 auto;" aria-hidden="true">
-		<div class="modal-dialog" style="width:50%;" ng-form name="form_ogs_edit_firm">
+		<div class="modal-dialog" style="width:50%;" ng-form name="form_ogs_edit_firm1">
 			<div class="modal-content">
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true"> × </button>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+						×
+					</button>
 					<h5 class="modal-title">
-                        Edit Name of Department or Office
-                    </h5> </div>
+						Edit Department
+					</h5>
+				</div>
 				<div class="modal-body">
 					<!-- Text input-->
 					<div class="form-group">
-						<label class="col-md-3 control-label" for="textinput">Name</label>
-						<div class="col-md-9">
-							<input id="textinput" ng-model="new_department.name" name="textinput" type="text" placeholder="" class="form-control input-md"> </div>
+						<label class="col-md-4 control-label" for="textinput">Select Company</label>
+						<div class="col-md-8">
+							<select ng-options="department as department.name for department in departments track by department.id"
+									ng-change="fetchOwnership()" id="ccyear" ng-model="new_department" class="form-control" required>
+								<option value="" selected>Select Department</option>
+							</select>
+						</div>
 					</div>
+					<div class="clearfix"></div>
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="textinput">Edit Name</label>
+						<div class="col-md-8">
+							<input id="textinput" name="textinput" ng-model="new_department.name" type="text" placeholder=""
+								   class="form-control input-md">
+						</div>
+					</div>
+					<div class="clearfix"></div>
+					<div class="form-group" style="margin-top:5px;">
+						<label class="col-md-4 control-label" for="textinput">Ownership</label>
+						<div class="col-md-8">
+							<span style="margin-left:15px;color:#000;" ng-bind="ownership"></span>
+						</div>
+					</div>
+					<span ng-bind="new_department.ownership_id"></span>
 				</div>
-				<br>
-				<br>
+				<br><br>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal"> Close </button>
-					<button ng-click="editDepartment(form_ogs_edit_firm)" type="button" class="btn btn-success"> Save Edit </button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">
+						Close
+					</button>
+					<button type="button" class="btn btn-primary" ng-click="editDepartment(form_ogs_edit_firm1)">
+						Save
+					</button>
 				</div>
 			</div>
 		</div>

@@ -453,6 +453,7 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
                 }),
             }).success(function(data) {
                 var edit_data_not_found = false;
+                console.log(data);
                 if(data != null) {
                     angular.forEach(data.transport_land.Table_4, function(value, index) {
                         console.log(value);

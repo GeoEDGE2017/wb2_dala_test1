@@ -478,12 +478,12 @@ app.controller('bsPubRodsBridsUsrController', ['$scope', '$http', function($scop
             dataType: 'json',
         }).then(function successCallback(response) {
             console.log(response);
-            if(response.data == 'False') {
-                alert('False');
-            }
-            else {
-                alert('True');
-            }
+//            if(response.data == 'False') {
+//                alert('False');
+//            }
+//            else {
+//                alert('True');
+//            }
         }, function errorCallback(response) {
 
         });

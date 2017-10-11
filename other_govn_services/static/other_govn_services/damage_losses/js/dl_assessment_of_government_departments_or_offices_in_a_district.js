@@ -408,11 +408,12 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function($sco
 	}
 
 	$scope.cancelEdit = function() {
-			$scope.is_edit = false;
-			$scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys = init_data;
-			location.reload();
-		}
-		//Calculate Public Total
+        $scope.is_edit = false;
+        $scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys = init_data;
+        location.reload();
+    }
+
+    //Calculate Public Total
 	$scope.calTotal = function(arr) {
 		var finaltotal = 0;
 		angular.forEach(arr, function(value, key) {
@@ -504,17 +505,13 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function($sco
 					'sector': 'other_govn_services'
 				}),
 			}).success(function(data) {
-
-                    $scope.departments.push($scope.new_department);
-					$("#modal-container-218029").modal('hide');
-    				$("#modal-container-218020").modal('hide');
-					$scope.is_edit_model = false;
-
+                $scope.departments.push($scope.new_department);
+                $("#modal-container-218029").modal('hide');
+                $("#modal-container-218020").modal('hide');
+                $scope.is_edit_model = false;
 			})
 		}
-
 	}
-
 
 	$scope.test = function(){
 		console.log($scope.ownership);
@@ -544,7 +541,8 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function($sco
 						$scope.departments.push($scope.new_department);
 					}
 					$scope.new_department.id = data;
-				} else {
+				}
+				else {
 					var department = $filter('filter')($scope.departments, {
 						id: data
 					})[0];
@@ -570,6 +568,7 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function($sco
 	$scope.openEditDepartment = function(form) {
 		$scope.submitted = true;
 		is_edit_model = true;
+		console.log('openEditDepartment', $scope.new_department.name);
 		if(form.$valid) {
 			$("#modal-container-218020").modal('show');
 		}
@@ -638,7 +637,8 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function($sco
 	$scope.test = function() {
 	    console.log($scope.user);
 	}
-		//Clear Function
+
+    //Clear Function
 	$scope.clear = function() {
 		console.log("clear")
 		$scope.is_edit = false;

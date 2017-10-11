@@ -186,7 +186,8 @@ app.controller('dlGovnAdmnAsetsController', function($scope, $http, $parse, _) {
 					console.log('baseline table or tables are empty');
 					console.log($scope.bs_data);
 					$scope.currentBaselineDate = null;
-				} else {
+				}
+				else {
 					console.log($scope.dlGovnAdmnAsets);
 					$http({
 						method: 'POST',
@@ -202,21 +203,21 @@ app.controller('dlGovnAdmnAsetsController', function($scope, $http, $parse, _) {
 							'sector': 'transport_land'
 						}),
 						dataType: 'json',
-						 }).then(function successCallback(response) {
-                  console.log('response', response.data.bs_created_date);
-                var result = response.data;
-                if(result.bs_date == null) {
-                    $("#modal-container-239458").modal('show');
-                }
-                else {
-                    var bs_date = result.bs_date.replace(/^"(.*)"$/, '$1');
-                    $scope.currentBaselineDate = "Latest baseline data as at " + bs_date;
-                    $scope.bsCreatedeDate = result.bs_created_date;
-                    console.log('bs_date', result.bs_date);
-                    console.log('bsCreatedeDate', result.bs_created_date);
-                    generateRefencedData();
-                    $scope.calTotal();
-                 }
+                    }).then(function successCallback(response) {
+                        console.log('response', response.data.bs_created_date);
+                        var result = response.data;
+                        if(result.bs_date == null) {
+                            $("#modal-container-239458").modal('show');
+                        }
+                        else {
+                            var bs_date = result.bs_date.replace(/^"(.*)"$/, '$1');
+                            $scope.currentBaselineDate = "Latest baseline data as at " + bs_date;
+                            $scope.bsCreatedDate = result.bs_created_date;
+                            console.log('bs_date', result.bs_date);
+                            console.log('bsCreatedDate', result.bs_created_date);
+                            generateRefencedData();
+                            $scope.calTotal();
+                         }
                     });
 				}
 			}, function errorCallback(response) {
@@ -254,7 +255,6 @@ app.controller('dlGovnAdmnAsetsController', function($scope, $http, $parse, _) {
 					num_part_damaged: null,
 					damages: null,
 				};
-				console.log(value);
 				if(model_name == 'BiaGacLandOequipment') {
 					$scope.dlGovnAdmnAsets.transport_land.Table_6[dl_model1].push(obj1);
 				}
@@ -264,7 +264,6 @@ app.controller('dlGovnAdmnAsetsController', function($scope, $http, $parse, _) {
 			});
 			$scope.dlGovnAdmnAsets.transport_land.Table_6[dl_model1].push(obj1);
 		});
-		console.log(dl_model1);
 	}
 
 	$scope.saveDlData = function(form) {
@@ -345,8 +344,6 @@ app.controller('dlGovnAdmnAsetsController', function($scope, $http, $parse, _) {
 		document.getElementById("clearbtn").disabled = true;
 		document.getElementById("editbtn").disabled = true;
 		document.getElementById("subbtn").disabled = true;
-		console.log("test", $scope.district);
-		console.log("test", $scope.bs_date);
 		$scope.is_search = true;
 		if(form.$valid) {
 			$http({
@@ -365,7 +362,6 @@ app.controller('dlGovnAdmnAsetsController', function($scope, $http, $parse, _) {
 				var edit_data_not_found = false;
 				if(data != null) {
 					angular.forEach(data.transport_land.Table_6, function(value, index) {
-						console.log(value);
 						if(value.length == 0) {
 							edit_data_not_found = true;
 						}
@@ -384,20 +380,20 @@ app.controller('dlGovnAdmnAsetsController', function($scope, $http, $parse, _) {
 			})
 		}
 	}
+
 	$scope.cancelEdit = function() {
 		$scope.is_edit = false;
 		$scope.dlGovnAdmnAsets = init_data;
 		location.reload();
 	}
+
 	$scope.calTotal = function(arr) {
 		var finaltotal = 0;
-		console.log(arr);
 		angular.forEach(arr, function(value, key) {
 			if(value.assets != 'Total') {
 				finaltotal = finaltotal + value.damages;
 			}
 		})
-		console.log(finaltotal);
 		return finaltotal;
 	}
 
@@ -432,7 +428,6 @@ app.controller('dlGovnAdmnAsetsController', function($scope, $http, $parse, _) {
 			}
 		})
 		grantot = finaltotal1 + finaltotal2 + finaltotal3 + finaltotal4;
-		console.log('test', finaltotal1, finaltotal2, finaltotal3, finaltotal4)
 		return grantot;
 	}
 

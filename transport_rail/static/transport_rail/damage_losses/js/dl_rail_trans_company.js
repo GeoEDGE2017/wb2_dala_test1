@@ -8,6 +8,7 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
 	$scope.bs_data = {};
 	var total = 0;
 	$scope.baselineDate;
+	$scope.bsCreatedDate;
 	$scope.DlMovingAstLoss_tot_damages = null;
 	$scope.is_edit = false;
 	$scope.is_valid_data = true;
@@ -223,9 +224,9 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
                 else {
                     var bs_date = result.bs_date.replace(/^"(.*)"$/, '$1');
                     $scope.currentBaselineDate = "Latest baseline data as at " + bs_date;
-                    $scope.bsCreatedeDate = result.bs_created_date;
+                    $scope.bsCreatedDate = result.bs_created_date;
                     console.log('bs_date', result.bs_date);
-                    console.log('bsCreatedeDate', result.bs_created_date);
+                    console.log('bsCreatedDate', result.bs_created_date);
                     generateRefencedData();
                     $scope.calTotal();
                  }
@@ -356,6 +357,7 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
 							'company_id': $scope.company.id,
 							'user_id': $scope.user_id
 						},
+
 						'bs_date': $scope.bsCreatedDate,
                         'is_edit': $scope.is_edit,
                         'sector': 'transport_rail'

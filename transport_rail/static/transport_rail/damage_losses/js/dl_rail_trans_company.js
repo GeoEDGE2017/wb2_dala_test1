@@ -315,6 +315,7 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
 
                 if(model_name == 'BsMovingAst') {
                    $scope.dlIncomeRailCompany.transport_rail.Table_2[dl_model1].push(obj1);
+                   console.log("print",obj1);
                 }
                 if(model_name == 'BsEquipMachineryAst') {
                    $scope.dlIncomeRailCompany.transport_rail.Table_2[dl_model2].push(obj2);
@@ -324,6 +325,16 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
                 }
 
             });
+            if(model_name == 'BsMovingAst') {
+               $scope.dlIncomeRailCompany.transport_rail.Table_2[dl_model1].push(obj1);
+               console.log("print",obj1);
+            }
+            if(model_name == 'BsEquipMachineryAst') {
+               $scope.dlIncomeRailCompany.transport_rail.Table_2[dl_model2].push(obj2);
+            }
+            if(model_name == 'BsMatSuppliesAst') {
+               $scope.dlIncomeRailCompany.transport_rail.Table_2[dl_model3].push(obj3);
+            }
         });
     }
 

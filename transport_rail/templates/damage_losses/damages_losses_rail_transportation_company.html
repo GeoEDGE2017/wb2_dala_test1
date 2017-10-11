@@ -13,28 +13,48 @@ $(document).ready(function() {
 <main class="main" ng-app="dlIncomeRailCompanyApp" ng-controller="dlIncomeRailCompanyController">
 	<!-- Breadcrumb -->
 	<ol class="breadcrumb">
-		<li class="breadcrumb-item"> <a href="{% url 'dashboard:index' %}">Dashboard</a> </li>
-		<li class="breadcrumb-item"> <a href="{% url 'dashboard:transport_rail_main' %}">Transport Rail Sector</a> </li>
-		<li class="breadcrumb-item active"> <span class="label label-success" style="font-size:14px;">
+		<li class="breadcrumb-item">
+			<a href="{% url 'dashboard:index' %}">Dashboard</a>
+		</li>
+		<li class="breadcrumb-item">
+			<a href="{% url 'dashboard:transport_rail_main' %}">Transport Rail Sector</a>
+		</li>
+		<li class="breadcrumb-item active">
+			<span class="label label-success" style="font-size:14px;">
                 Table 2. Damages and Losses to the Rail Transportation Company in a District
-            </span> </li> <span style="margin-left:15px;color:#000;" ng-bind="currentBaselineDate"></span>
+            </span>
+		</li>
+		<span style="margin-left:15px;color:#000;" ng-bind="currentBaselineDate"></span>
 		<li style="float:right;">
-			<a href="{% static 'dashboard/doc/1D-Rail_Transportation-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document"></a>
+			<a href="{% static 'dashboard/doc/1D-Rail_Transportation-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;"
+			   class="icon-info" data-toggle="tooltip" title="Veiw Document"></a>
 		</li>
 	</ol>
 	<div class="container-fluid">
 		<ul class='nav nav-wizard'>
-			<li id="li1" class="active"> <a href='#step1' data-toggle="tab">1 - Type of Assets</a> </li>
-			<li id="li2"> <a href='#step2' data-toggle="tab">2 - Buildings</a> </li>
+			<li id="li1" class="active">
+				<a href='#step1' data-toggle="tab">1 - Type of Assets</a>
+			</li>
+			<li id="li2">
+				<a href='#step2' data-toggle="tab">2 - Buildings</a>
+			</li>
 		</ul>
 		<div id="myTabContent" class="tab-content" ng-form name="form_dl_rail_trans_cmpny">
 			<div class="tab-pane active" id="step1">
-				<td style="width:100px;"> <span ng-if="!check_search">
-									<button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
-					</span> <span ng-if="check_search">
-									<button ng-click="searchDlData(form_dl_rail_trans_cmpny)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
+				<td style="width:100px;">
+					<span ng-if="!check_search">
+						<button ng-if="!is_search" class="btn btn-info" disabled>
+							<span class="fa fa-search"></span>
+						</button>
 					</span>
-					<button ng-click="clear()" ng-if="is_search" class="btn  btn-warning">Cancel Search</button>
+					<span ng-if="check_search">
+						<button ng-click="searchDlData(form_dl_rail_trans_cmpny)" ng-if="!is_search" class="btn btn-info">
+							<span class="fa fa-search"></span>
+						</button>
+					</span>
+					<button ng-click="clear()" ng-if="is_search" class="btn  btn-warning">
+						Cancel Search
+					</button>
 				</td>
 				<table class="table table-bordered">
 					<colgroup>
@@ -43,17 +63,21 @@ $(document).ready(function() {
 						<col width="130" />
 						<col width="125" />
 						<col width="112" />
-						<col width="85" span="3" /> </colgroup>
+						<col width="85" span="3" />
+					</colgroup>
 					<tbody>
 						<tr style="background:#fff;border:1px solid #fff;text-align:center;">
-							<td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;"> </td>
-							<td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;"> <span class="arrow_box" ng-show="submitted && form_dl_rail_trans_cmpny.incident.$error.required">
+							<td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;"></td>
+							<td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+								<span class="arrow_box" ng-show="submitted && form_dl_rail_trans_cmpny.incident.$error.required">
                                 Please Select Incident
                             </span> </td>
-							<td colspan="" style="background:#fff;border:1px solid #fff;text-align:center;"> </td>
-							<td colspan="4s" style="background:#fff;border:1px solid #fff;text-align:center;"> <span class="arrow_box" ng-show="submitted && form_dl_rail_trans_cmpny.district.$error.required">
+							<td colspan="" style="background:#fff;border:1px solid #fff;text-align:center;"></td>
+							<td colspan="4s" style="background:#fff;border:1px solid #fff;text-align:center;">
+								<span class="arrow_box" ng-show="submitted && form_dl_rail_trans_cmpny.district.$error.required">
                                 Please Select District
-                            </span> </td>
+                            </span>
+							</td>
 						</tr>
 						<tr>
 							<td class="trhead1" width="156"> Incident </td>
@@ -105,16 +129,17 @@ $(document).ready(function() {
 							<td width="85" style="width:20%;"> </td>
 						</tr>
 						<tr height="20" ng-repeat="dlMovingAstLoss in dlIncomeRailCompany.transport_rail.Table_2.DlMovingAstLoss" ng-if="dlMovingAstLoss.asset !='Total'">
-							<td class="tdpa" width="281" height="20" ng-bind="dlMovingAstLoss.asset"> </td>
+							<td class="tdpa" width="281" height="20" ng-bind="dlMovingAstLoss.asset">
+							</td>
 							<td colspan="3">
-								<input ng-model="dlMovingAstLoss.no_of_tot_destroyed" id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<input ng-model="dlMovingAstLoss.no_of_tot_destroyed" id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md"></td>
 							<td colspan="3">
-								<input ng-model="dlMovingAstLoss.no_of_partially_damaged" id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<input ng-model="dlMovingAstLoss.no_of_partially_damaged" id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md"></td>
 							<td class="right" width="85" ng-model="dlMovingAstLoss.tot_damages" ng-bind="dlMovingAstLoss.tot_damages = dlMovingAstLoss.no_of_tot_destroyed * bs_data['BsMovingAst'][$index].fields.avg_replace_cost +
-                                          dlMovingAstLoss.no_of_partially_damaged * bs_data['BsMovingAst'][$index].fields.avg_repair_cost"> </td>
+                                          dlMovingAstLoss.no_of_partially_damaged * bs_data['BsMovingAst'][$index].fields.avg_repair_cost"></td>
 						</tr>
 						<tr height="20" ng-repeat="dlMovingAstLoss in dlIncomeRailCompany.transport_rail.Table_2.DlMovingAstLoss" ng-if="dlMovingAstLoss.asset =='Total'">
-							<td class="tdpa" width="281" height="20" ng-bind="dlMovingAstLoss.asset"> </td>
+							<td class="tdpa" width="281" height="20" ng-bind="dlMovingAstLoss.asset"></td>
 							<td class="tdpa" colspan="3"> </td>
 							<td class="tdpa" colspan="3"> </td>
 							<td class="right" width="85" ng-model="dlMovingAstLoss.tot_damages" ng-bind="dlMovingAstLoss.tot_damages = calTotal($parent.dlIncomeRailCompany.transport_rail.Table_2.DlMovingAstLoss)"> </td>

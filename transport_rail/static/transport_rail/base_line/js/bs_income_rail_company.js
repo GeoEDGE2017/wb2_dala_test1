@@ -123,55 +123,59 @@ app.controller('BsIncomeRailCompanyController', function($scope, $http, $parse, 
 		}
 	}
 	$scope.bsIncomeRailCompany = angular.copy(init_data);
+
 	//disable Edit Button
 	$scope.changeDis = function changeDis() {
-			if($scope.district && $scope.baselineDate) {
-				$scope.is_edit_disable = true;
-				$scope.check_search = true;
-			} else {
-				$scope.is_edit_disable = false;
-				$scope.check_search = false;
-			}
-		}
-		//save data
+        if($scope.district && $scope.baselineDate) {
+            $scope.is_edit_disable = true;
+            $scope.check_search = true;
+        }
+        else {
+            $scope.is_edit_disable = false;
+            $scope.check_search = false;
+        }
+    }
+
+    //save data
 	$scope.saveBsData = function(form) {
-			$scope.submitted = true;
-			$scope.is_submit = true;
-			if(form.$valid) {
-				var array = $scope.bsIncomeRailCompany.transport_rail.Table_1;
-				var details = _.map(array, function(model_array) {
-					_.map(model_array, function(model) {
-						model.company_id = parseInt($scope.selectedCompany.id);
-					});
-				});
-				$http({
-					method: 'POST',
-					url: '/bs_save_data',
-					contentType: 'application/json; charset=utf-8',
-					data: angular.toJson({
-						'table_data': $scope.bsIncomeRailCompany,
-						'com_data': {
-							'district': $scope.district,
-							'bs_date': $scope.baselineDate,
-							'user_id': $scope.user_id
-						},
-						'is_edit': $scope.is_edit
-					}),
-					dataType: 'json',
-				}).then(function successCallback(response) {
-					console.log(response);
-					if(response.data == 'False') {
-						$("#modal-container-239454").modal('show');
-						$scope.is_valid_data = false;
-					} else {
-						$("#modal-container-239453").modal('show');
-					}
-				}, function errorCallback(response) {
-					console.log(response);
-				});
-			}
-			$scope.is_submit = false;
-		}
+        $scope.submitted = true;
+        $scope.is_submit = true;
+        if(form.$valid) {
+            var array = $scope.bsIncomeRailCompany.transport_rail.Table_1;
+            var details = _.map(array, function(model_array) {
+                _.map(model_array, function(model) {
+                    model.company_id = parseInt($scope.selectedCompany.id);
+                });
+            });
+            $http({
+                method: 'POST',
+                url: '/bs_save_data',
+                contentType: 'application/json; charset=utf-8',
+                data: angular.toJson({
+                    'table_data': $scope.bsIncomeRailCompany,
+                    'com_data': {
+                        'district': $scope.district,
+                        'bs_date': $scope.baselineDate,
+                        'user_id': $scope.user_id
+                    },
+                    'is_edit': $scope.is_edit
+                }),
+                dataType: 'json',
+            }).then(function successCallback(response) {
+                console.log(response);
+                if(response.data == 'False') {
+                    $("#modal-container-239454").modal('show');
+                    $scope.is_valid_data = false;
+                }
+                else {
+                    $("#modal-container-239453").modal('show');
+                }
+            }, function errorCallback(response) {
+                console.log(response);
+            });
+        }
+        $scope.is_submit = false;
+    }
 
 	//Add Enumerate Fileds
     $scope.insertAssets = function(table) {
@@ -197,8 +201,8 @@ app.controller('BsIncomeRailCompanyController', function($scope, $http, $parse, 
                 avg_repair_cost : null,
             }
         }
-         console.log('row',new_row);
 
+        console.log('row',new_row);
         $scope.bsIncomeRailCompany.transport_rail.Table_1[table].push(new_row);
     }
 
@@ -213,7 +217,6 @@ app.controller('BsIncomeRailCompanyController', function($scope, $http, $parse, 
         else if(table == 'BsMatSuppliesAst') {
              $scope.bsIncomeRailCompany.transport_rail.Table_1.BsMatSuppliesAst.splice(index, 1);
         }
-
     }
 
 		//save company
@@ -301,10 +304,12 @@ app.controller('BsIncomeRailCompanyController', function($scope, $http, $parse, 
 					})
 					if(edit_data_not_found != true) {
 						$scope.bsIncomeRailCompany = data;
-					} else {
+					}
+					else {
 						$("#modal-container-239456").modal('show');
 					}
-				} else {
+				}
+				else {
 					$("#modal-container-239456").modal('show');
 				}
 			})
@@ -315,8 +320,7 @@ app.controller('BsIncomeRailCompanyController', function($scope, $http, $parse, 
 		document.getElementById("clearbtn").disabled = true;
 		document.getElementById("editbtn").disabled = true;
 		document.getElementById("subbtn").disabled = true;
-		console.log("test", $scope.district);
-		console.log("test", $scope.bs_date);
+
 		$scope.is_search = true;
 		if(form.$valid) {
 			$http({
@@ -343,21 +347,25 @@ app.controller('BsIncomeRailCompanyController', function($scope, $http, $parse, 
 					})
 					if(edit_data_not_found != true) {
 						$scope.bsIncomeRailCompany = data;
-					} else {
+					}
+					else {
 						$("#modal-container-239456").modal('show');
 					}
-				} else {
+				}
+				else {
 					$("#modal-container-239456").modal('show');
 				}
 			})
 		}
 	}
+
 	$scope.cancelEdit = function() {
-			$scope.is_edit = false;
-			$scope.bsIncomeRailCompany = init_data;
-			location.reload();
-		}
-		//Clear Function
+        $scope.is_edit = false;
+        $scope.bsIncomeRailCompany = init_data;
+        location.reload();
+    }
+
+    //Clear Function
 	$scope.clear = function() {
 		console.log("clear")
 		$scope.is_edit = false;

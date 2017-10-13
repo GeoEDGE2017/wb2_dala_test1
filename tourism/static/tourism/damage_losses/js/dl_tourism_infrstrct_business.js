@@ -130,7 +130,7 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
                 }],
 //                'DlInfLosses':[
 //                    {
-//                    'los_type':'Cleaning up of debris',
+//                    'los_type':'Cleaning costs',
 //                    'val_los_year1':null,
 //                    'val_los_year2':null,
 //                    'tol_losses':null,

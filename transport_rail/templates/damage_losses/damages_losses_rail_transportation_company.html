@@ -173,32 +173,51 @@ $(document).ready(function() {
 							<td width="85"> </td>
 						</tr>
 						<tr height="20" ng-repeat="dlMatSuppliesAstLoss in dlIncomeRailCompany.transport_rail.Table_2.DlMatSuppliesAstLoss" ng-if="dlMatSuppliesAstLoss.asset !='Total'">
-							<td class="tdpa" width="281" height="20" ng-bind="dlMatSuppliesAstLoss.asset"> </td>
+							<td class="tdpa" width="281" height="20" ng-bind="dlMatSuppliesAstLoss.asset">
+							</td>
 							<td colspan="3">
-								<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="dlMatSuppliesAstLoss.no_of_tot_destroyed"> </td>
-							<td colspan="3" ng-if="dlMatSuppliesAstLoss.asset !='Fuel (Liters)'">
-								<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="dlMatSuppliesAstLoss.no_of_partially_damaged"> </td>
-							<td colspan="3" ng-if="dlMatSuppliesAstLoss.asset =='Fuel (Liters)'" class="tdpa"> </td>
-							<td class="right" width="85" ng-model="dlMatSuppliesAstLoss.tot_damages" ng-if="$parent.dlMatSuppliesAstLoss.asset =='Fuel (Liters)'" ng-bind="dlMatSuppliesAstLoss.tot_damages =
-                                    dlMatSuppliesAstLoss.no_of_tot_destroyed * bs_data['BsMatSuppliesAst'][$index].fields.avg_replace_cost"> </td>
+								<input id="textinput" name="textinput" type="number" placeholder=""
+									   class="form-control input-md" ng-model="dlMatSuppliesAstLoss.no_of_tot_destroyed">
+							</td>
+							<td colspan="3" ng-if="dlMatSuppliesAstLoss.asset != 'Fuel (per Liter)'">
+								<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md"
+									   ng-model="dlMatSuppliesAstLoss.no_of_partially_damaged">
+							</td>
+							<td colspan="3" ng-if="dlMatSuppliesAstLoss.asset =='Fuel (per Liter)'" class="tdpa">
+							</td>
+							<td class="right" width="85" ng-model="dlMatSuppliesAstLoss.tot_damages"
+								ng-if="$parent.dlMatSuppliesAstLoss.asset =='Fuel (Liters)'" ng-bind="dlMatSuppliesAstLoss.tot_damages =
+                                    dlMatSuppliesAstLoss.no_of_tot_destroyed * bs_data['BsMatSuppliesAst'][$index].fields.avg_replace_cost">
+							</td>
 							<td class="right" width="85" ng-model="dlMatSuppliesAstLoss.tot_damages" ng-if="$parent.dlMatSuppliesAstLoss.asset !='Fuel (Liters)'" ng-bind="dlMatSuppliesAstLoss.tot_damages =
                                     dlMatSuppliesAstLoss.no_of_tot_destroyed * bs_data['BsMatSuppliesAst'][$index].fields.avg_replace_cost +
-                                    dlMatSuppliesAstLoss.no_of_partially_damaged * bs_data['BsMatSuppliesAst'][$index].fields.avg_repair_cost"> </td>
+                                    dlMatSuppliesAstLoss.no_of_partially_damaged * bs_data['BsMatSuppliesAst'][$index].fields.avg_repair_cost">
+							</td>
 						</tr>
 						<tr height="20" ng-repeat="dlMatSuppliesAstLoss in dlIncomeRailCompany.transport_rail.Table_2.DlMatSuppliesAstLoss" ng-if="dlMatSuppliesAstLoss.asset =='Total'">
-							<td class="tdpa" width="281" height="20" ng-bind="dlMatSuppliesAstLoss.asset"> </td>
-							<td class="tdpa" colspan="3"> </td>
-							<td class="tdpa" colspan="3"> </td>
-							<td class="right" width="85" ng-model="dlMatSuppliesAstLoss.tot_damages" ng-bind="dlMatSuppliesAstLoss.tot_damages = calTotal($parent.dlIncomeRailCompany.transport_rail.Table_2.DlMatSuppliesAstLoss)"> </td>
+							<td class="tdpa" width="281" height="20" ng-bind="dlMatSuppliesAstLoss.asset">
+							</td>
+							<td class="tdpa" colspan="3">
+							</td>
+							<td class="tdpa" colspan="3">
+							</td>
+							<td class="right" width="85" ng-model="dlMatSuppliesAstLoss.tot_damages"
+								ng-bind="dlMatSuppliesAstLoss.tot_damages = calTotal($parent.dlIncomeRailCompany.transport_rail.Table_2.DlMatSuppliesAstLoss)">
+							</td>
 						</tr>
 						<tr class="trheadc" height="20">
-							<td width="281" height="20"> Structures (in meters) </td>
-							<td colspan="3"> </td>
-							<td colspan="3"> </td>
-							<td width="85"> </td>
+							<td width="281" height="20">
+								Structures (in meters)
+							</td>
+							<td colspan="3">
+							</td>
+							<td colspan="3">
+							</td>
+							<td width="85">
+							</td>
 						</tr>
 						<tr height="20" ng-repeat="dlStructuresAstLoss in dlIncomeRailCompany.transport_rail.Table_2.DlStructuresAstLoss" ng-if="dlStructuresAstLoss.asset !='Total'">
-							<td class="tdpa" width="281" height="20" ng-bind="dlStructuresAstLoss.asset"> </td>
+							<td class="tdpa" width="281" height="20" ng-bind="dlStructuresAstLoss.asset"></td>
 							<td colspan="3">
 								<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="dlStructuresAstLoss.no_of_tot_destroyed"> </td>
 							<td colspan="3">
@@ -208,17 +227,24 @@ $(document).ready(function() {
                                           dlStructuresAstLoss.no_of_partially_damaged * bs_data['BsStructuresAst'][$index].fields.avg_repair_cost"> </td>
 						</tr>
 						<tr height="20" ng-repeat="dlStructuresAstLoss in dlIncomeRailCompany.transport_rail.Table_2.DlStructuresAstLoss" ng-if="dlStructuresAstLoss.asset =='Total'">
-							<td class="tdpa" width="281" height="20" ng-bind="dlStructuresAstLoss.asset"> </td>
-							<td class="tdpa" colspan="3"> </td>
-							<td class="tdpa" colspan="3"> </td>
+							<td class="tdpa" width="281" height="20" ng-bind="dlStructuresAstLoss.asset">
+							</td>
+							<td class="tdpa" colspan="3">
+							</td>
+							<td class="tdpa" colspan="3">
+							</td>
 							<td class="right" width="85" ng-model="dlStructuresAstLoss.tot_damages" ng-bind="dlStructuresAstLoss.tot_damages = calTotal($parent.dlIncomeRailCompany.transport_rail.Table_2.DlStructuresAstLoss)"> </td>
 						</tr>
 						</tbody>
 					</table>
 				</div>
-				<br> <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
-                        class="glyphicon glyphicon-arrow-right"></span> Fill Buildings Informations</a>
-				<br> </div>
+				<br>
+				<a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab">
+					<span class="glyphicon glyphicon-arrow-right"></span>
+					Fill Buildings Informations
+				</a>
+				<br>
+			</div>
 			<div class="tab-pane fade" id="step2">
 				<table class="table table-bordered">
 					<tr class="trheadc1" height="20">
@@ -300,7 +326,8 @@ $(document).ready(function() {
 				</div>
 				<br>
 				<br>
-				<br> </div>
+				<br>
+			</div>
 		</div>
 	</div>
 	<!-- add model -->

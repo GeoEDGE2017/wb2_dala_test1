@@ -5,18 +5,31 @@
 <main class="main" ng-app="dlTypeLossRailApp" ng-controller="DlTypeLossRailController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:index' %}">
+                Dashboard
+            </a>
         </li>
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:transport_rail_main' %}">Transport Rail Sector</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:transport_rail_main' %}">
+                Transport Rail Sector
+            </a>
         </li>
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 4. Summary of Damages and Losses in the Rail Transportation Nationwide / Types of Losses</span>
+        <li class="breadcrumb-item active">
+            <span class="label label-success" style="font-size:14px;">
+                Table 4. Summary of Damages and Losses in the Rail Transportation Nationwide / Types of Losses
+            </span>
         </li>
-        <li style="float:right;"> <a href="{% static 'dashboard/doc/1D-Rail_Transportation-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
+        <li style="float:right;">
+            <a href="{% static 'dashboard/doc/1D-Rail_Transportation-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;"
+                class="icon-info" data-toggle="tooltip" title="Veiw Document">
+            </a>
+        </li>
     </ol>
     <div class="container-fluid">
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
-                <table class="table table-bordered">
+                <table class="table table-bordered" ng-form name="form_type_of_losses">
                     <colgroup>
                         <col width="281"/>
                         <col width="170"/>
@@ -24,21 +37,31 @@
                         <col width="125"/>
                     </colgroup>
                     <tbody>
+                    <tr style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td style="background:#fff;border:1px solid #fff;text-align:center;" border="0">
+                        </td>
+                        <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+                        </td>
+                        <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+                        </td>
+                        <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <span class="arrow_box" ng-show="submitted && form_type_of_losses.incident.$error.required">
+                                Please Select Incident
+                            </span>
+                        </td>
+                    </tr>
                     <tr class="trhead1">
                         <td colspan="2" style="padding-left:5px;">
                             Incident
                         </td>
                         <td colspan="5" style="">
                             <select id="select" name="incident" ng-model="incident"
-                                    class="form-control"
-                                    style="width:100%;font-weight:400;"
-                                    ng-change="changedValue(incident)" required>
-
-                                <option value="" selected="true">Select an Incident</option>
+                                    class="form-control" style="width:100%;font-weight:400;" required>
+                                <option value="" selected="true">
+                                    Select an Incident
+                                </option>
                                 {% for incident in incidents %}
                                 <option value={{incident.id}}>
-                                    <!--{{incident.disaster_type.name}}-->
-                                    <!--{{incident.reported_date_time}}-->
                                     {{incident.incident_name}}
                                 </option>
                                 {% endfor %}
@@ -63,82 +86,59 @@
                     <tr height="20" ng-repeat="dlTypeLos in dlTypeLossRail.transport_rail.Table_5.DlTypeLos"
                         ng-if="dlTypeLos.loss_type != 'TOTAL LOSSES'">
                         <td class="tdpa" width="281" height="20" ng-bind="dlTypeLos.loss_type">
-
                         </td>
                         <td width="170">
                             <input id="textinput" name="textinput" type="number" placeholder=""
-                                   ng-model="dlTypeLos.year_1" ng-change="getTotal('year_1')"
-                                   class="form-control input-md">
+                                   ng-model="dlTypeLos.year_1" ng-change="getTotal('year_1')" class="form-control input-md">
                         </td>
                         <td width="130">
                             <input id="textinput" name="textinput" type="number" placeholder=""
-                                   ng-model="dlTypeLos.year_2" ng-change="getTotal('year_2')"
-                                   class="form-control input-md">
+                                   ng-model="dlTypeLos.year_2" ng-change="getTotal('year_2')" class="form-control input-md">
                         </td>
                         <td class="right" width="125" ng-model="dlTypeLos.tot_los"
                             ng-bind="dlTypeLos.tot_los = dlTypeLos.year_1 + dlTypeLos.year_2">
                         </td>
                     </tr>
-
                     <tr height="20" ng-repeat="dlTypeLos in dlTypeLossRail.transport_rail.Table_5.DlTypeLos"
                         ng-if="dlTypeLos.loss_type == 'TOTAL LOSSES'">
-
                         <td class="boldash tdpa" width="281" height="20" ng-bind="dlTypeLos.loss_type">
-
                         </td>
-
                         <td class="right" width="170" ng-model="dlTypeLos.year_1" ng-bind="dlTypeLos.year_1 =
-                    dlTypeLossRail.transport_rail.Table_5.DlTypeLos[0].year_1 +
-                    dlTypeLossRail.transport_rail.Table_5.DlTypeLos[1].year_1 +
-                    dlTypeLossRail.transport_rail.Table_5.DlTypeLos[2].year_1 +
-                    dlTypeLossRail.transport_rail.Table_5.DlTypeLos[3].year_1">
-
+                            dlTypeLossRail.transport_rail.Table_5.DlTypeLos[0].year_1 +
+                            dlTypeLossRail.transport_rail.Table_5.DlTypeLos[1].year_1 +
+                            dlTypeLossRail.transport_rail.Table_5.DlTypeLos[2].year_1 +
+                            dlTypeLossRail.transport_rail.Table_5.DlTypeLos[3].year_1">
                         </td>
                         <td class="right" width="170" ng-model="dlTypeLos.year_2" ng-bind="dlTypeLos.year_2 =
-                    dlTypeLossRail.transport_rail.Table_5.DlTypeLos[0].year_2 +
-                    dlTypeLossRail.transport_rail.Table_5.DlTypeLos[1].year_2 +
-                    dlTypeLossRail.transport_rail.Table_5.DlTypeLos[2].year_2 +
-                    dlTypeLossRail.transport_rail.Table_5.DlTypeLos[3].year_2">
-
+                            dlTypeLossRail.transport_rail.Table_5.DlTypeLos[0].year_2 +
+                            dlTypeLossRail.transport_rail.Table_5.DlTypeLos[1].year_2 +
+                            dlTypeLossRail.transport_rail.Table_5.DlTypeLos[2].year_2 +
+                            dlTypeLossRail.transport_rail.Table_5.DlTypeLos[3].year_2">
                         </td>
                         <td class="right" width="125" ng-model="dlTypeLos.tot_los"
                             ng-bind="dlTypeLos.tot_los = dlTypeLos.year_1 + dlTypeLos.year_2 ">
-
-
                         </td>
                     </tr>
                     </tbody>
                 </table>
-
-
                 <div class="pull-right">
                     <br>
-                    <button type="button" class="btn btn-info">Clear</button>
-                    <button type="button" ng-click="dlDataEdit()" ng-if="!is_edit" class="btn btn-success">
+                    <button type="button" class="btn btn-info">
+                        Clear
+                    </button>
+                    <button type="button" ng-click="dlDataEdit(form_type_of_losses)" ng-if="!is_edit" class="btn btn-success">
                         Edit
                     </button>
-                    <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
-                        Edit
+                    <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
+                        Cancel Edit
                     </button>
-                    <button type="button" ng-disabled="form_pop_lat_census.$invalid"
-                            ng-click="saveDlData()"
+                    <button type="button" ng-disabled="form_pop_lat_census.$invalid" ng-click="saveDlData(form_type_of_losses)"
                             class="btn btn-success">Submit
                     </button>
                 </div>
-
-
             </div>
-
-
             <br><br><br>
-
         </div>
-
-
-    </div>
-    </div>
-
-
     </div>
     <!-- add model -->
     <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
@@ -146,7 +146,6 @@
         <div class="modal-dialog" style="width:50%;">
             <div class="modal-content">
                 <div class="modal-header">
-
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                         ×
                     </button>
@@ -161,13 +160,11 @@
                         <div class="col-md-10">
                             <input id="textinput" name="textinput" type="text" placeholder=""
                                    class="form-control input-md">
-
                         </div>
                     </div>
                 </div>
                 <br><br>
                 <div class="modal-footer">
-
                     <button type="button" class="btn btn-default" data-dismiss="modal">
                         Close
                     </button>
@@ -176,9 +173,7 @@
                     </button>
                 </div>
             </div>
-
         </div>
-
     </div>
     <!-- edit model -->
     <div class="modal fade" id="modal-container-218028" role="dialog" style="width:50%;margin:0 auto;"
@@ -186,7 +181,6 @@
         <div class="modal-dialog" style="width:50%;">
             <div class="modal-content">
                 <div class="modal-header">
-
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                         ×
                     </button>
@@ -201,13 +195,11 @@
                         <div class="col-md-10">
                             <input id="textinput" name="textinput" type="text" placeholder=""
                                    class="form-control input-md">
-
                         </div>
                     </div>
                 </div>
                 <br><br>
                 <div class="modal-footer">
-
                     <button type="button" class="btn btn-default" data-dismiss="modal">
                         Close
                     </button>
@@ -216,12 +208,8 @@
                     </button>
                 </div>
             </div>
-
         </div>
-
     </div>
     <!-- /.conainer-fluid -->
 </main>
-
-
 {% endblock content %}

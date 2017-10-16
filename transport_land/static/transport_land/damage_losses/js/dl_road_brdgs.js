@@ -445,7 +445,7 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
                 method: "POST",
                 url: '/dl_fetch_edit_data',
                 data: angular.toJson({
-                    'table_name':  'Table_4',
+                    'table_name': 'Table_4',
                     'sector':'transport_land',
                     'com_data': {
                         'district':  $scope.district.district__id,
@@ -455,17 +455,17 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
                 }),
             }).success(function(data) {
                 var edit_data_not_found = false;
-                console.log(data);
+                console.log('data ', data);
                 if(data != null) {
                     angular.forEach(data.transport_land.Table_4, function(value, index) {
-                        console.log(value);
+//                        console.log(value);
                         if(value.length == 0) {
                             edit_data_not_found = true;
                         }
                     })
                     if(edit_data_not_found != true) {
                         $scope.dlRoadBrdgs = data;
-                        console.log($scope.dlRoadBrdgs);
+                        console.log('dlDataEdit ', $scope.dlRoadBrdgs);
                     }
                     else {
                         $("#modal-container-239456").modal('show');
@@ -501,14 +501,12 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
 				var edit_data_not_found = false;
 				if(data != null) {
 					angular.forEach(data.transport_land.Table_4, function(value, index) {
-						console.log(value);
 						if(value.length == 0) {
 							edit_data_not_found = true;
 						}
 					})
 					if(edit_data_not_found != true) {
 						$scope.dlRoadBrdgs = data;
-						console.log($scope.dlRoadBrdgs);
 					}
 					else {
 						$("#modal-container-239456").modal('show');
@@ -529,15 +527,12 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
 
     $scope.calTotal = function(arr) {
         var finaltotal = 0;
-        console.log(arr);
         angular.forEach(arr, function(value, key) {
             if((value.type_bridges != 'Total') && (value.type_culverts != 'Total') && (value.type_retain_walls != 'Total') &&
                     (value.type_drains !='Total') && (value.type_drains !='TOTAL DAMAGES')) {
-                console.log(value);
                 finaltotal = finaltotal + value.damages ;
             }
         })
-        console.log(finaltotal);
         return finaltotal;
     }
 

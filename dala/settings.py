@@ -161,7 +161,7 @@ DATABASES = {
         #     'options': '-c search_path=industry_services'
         # },
 
-        'NAME': 'dala_10_13',
+        'NAME': 'dala_10_16',
         'USER': 'postgres',
     },
 }
@@ -1572,12 +1572,12 @@ TABLE_PROPERTY_MAPPER = {
                  'damages',
                  'type_drains',
                  'id'],
-            'DlOtherDmgsPvehicles':
-                ['num_tot_dest_pvt',
-                 'num_part_dest_pvt',
-                 'tot_damages_pvt',
-                 'private_vehicles',
-                 'id'],
+            # 'DlOtherDmgsPvehicles':
+            #     ['num_tot_dest_pvt',
+            #      'num_part_dest_pvt',
+            #      'tot_damages_pvt',
+            #      'private_vehicles',
+            #      'id'],
             'DlRbdRclassification':
                 ['tot_dest_concrete',
                  'tot_dest_asphalt',

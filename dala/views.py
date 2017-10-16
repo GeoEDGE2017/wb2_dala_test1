@@ -1464,6 +1464,7 @@ def dl_fetch_edit_data(request):
                                                          filter(**filter_fields).
                                                          values(*table_fields).order_by('id'))
 
+        print '----------**|'
         print dl_mtable_data
 
     return HttpResponse(

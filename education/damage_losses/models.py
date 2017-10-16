@@ -821,6 +821,7 @@ class DpefBefUnvNational(models.Model):
 
 
 class DpefNafNational(models.Model):
+    edu_facilities = models.CharField(max_length=255, blank=True, null=True)
     num_edu_facilities = models.BigIntegerField(blank=True, null=True)
     male = models.BigIntegerField(blank=True, null=True)
     female = models.BigIntegerField(blank=True, null=True)

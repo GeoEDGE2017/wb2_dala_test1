@@ -1157,6 +1157,7 @@ TABLE_PROPERTY_MAPPER = {
                 'tot_los',
             ],
             'DpefNafNational': [
+                'edu_facilities',
                 'num_edu_facilities',
                 'male',
                 'female',

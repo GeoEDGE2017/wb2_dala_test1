@@ -238,9 +238,11 @@ bsHealthStatusApp.controller('DlEduNationController', function DlEduProvinceCont
                 angular.forEach(value, function(value_in, key) {
                     if(value_in.length > 0) {
                         if(key == 'DpefNafNational') {
+                            console.log('DpefNafNational', value_in, key);
                             angular.forEach(value_in, function(pvt_school, pvt_school_index) {
-                                if(pvt_school.edu_facilities != 'Total') {
+                                if(pvt_school.edu_facilities == 'Total' || pvt_school.edu_facilities == 'TOTAL') {
                                     tot_number_affected = tot_number_affected + parseInt(pvt_school.num_edu_facilities);
+                                    console.log(pvt_school.num_edu_facilities);
                                 }
                             })
                         }
@@ -259,7 +261,7 @@ bsHealthStatusApp.controller('DlEduNationController', function DlEduProvinceCont
                     if(value_in.length > 0) {
                         if(key == 'DpefNafNational') {
                             angular.forEach(value_in, function(pvt_school, pvt_school_index) {
-                                if(pvt_school.edu_facilities != 'Total') {
+                                if(pvt_school.edu_facilities == 'Total' || pvt_school.edu_facilities == 'TOTAL') {
                                     tot_male = tot_male + parseInt(pvt_school.male);
                                 }
                             })
@@ -279,7 +281,7 @@ bsHealthStatusApp.controller('DlEduNationController', function DlEduProvinceCont
                     if(value_in.length > 0) {
                         if(key == 'DpefNafNational') {
                             angular.forEach(value_in, function(pvt_school, pvt_school_index) {
-                                if(pvt_school.edu_facilities != 'Total') {
+                                if(pvt_school.edu_facilities == 'Total' || pvt_school.edu_facilities == 'TOTAL') {
                                     tot_female = tot_female + parseInt(pvt_school.female);
                                 }
                             })

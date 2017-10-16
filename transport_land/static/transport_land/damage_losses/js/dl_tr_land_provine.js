@@ -115,4 +115,134 @@ app.controller("DlSummeryTLProController", ['$scope','$http',function ($scope,$h
 
          $scope.finaltotalprivate =$scope.totaldpvt + $scope.totalyear1pvt + $scope.totalyear2pvt;
     }
+
+    $scope.sumFunc2 = function(val1=0, val2=0) {
+        if(val1 == null) {
+            val1=0;
+        }
+        if(val2 == null) {
+            val2=0;
+        }
+        return parseInt(val1) + parseInt(val2);
+    }
+
+    $scope.totDamagesPub = function() {
+        if(!angular.isUndefined($scope.dlLandTransSumPro)) {
+            var tot_damages = 0;
+            angular.forEach($scope.dlLandTransSumPro.transport_land.Table_8, function(value, index) {
+                angular.forEach(value, function(value_in, key) {
+                    if(key == 'DlGacPubProvince') {
+                        tot_damages = tot_damages + $scope.sumFunc2(value_in[0].damages, 0);
+                    }
+                })
+            })
+            return tot_damages;
+        }
+    }
+
+    $scope.totDamagesPvt = function() {
+        if(!angular.isUndefined($scope.dlLandTransSumPro)) {
+            var tot_damages = 0;
+            angular.forEach($scope.dlLandTransSumPro.transport_land.Table_8, function(value, index) {
+                angular.forEach(value, function(value_in, key) {
+                    if(key == 'DlGacPvtProvince') {
+                        tot_damages = tot_damages + $scope.sumFunc2(value_in[0].tot_damages_pvt, 0);
+                    }
+                })
+            })
+            return tot_damages;
+        }
+    }
+
+    $scope.totYear1LossesPub = function() {
+        if(!angular.isUndefined($scope.dlLandTransSumPro)) {
+            var year_1 = 0;
+            angular.forEach($scope.dlLandTransSumPro.transport_land.Table_8, function(value, index) {
+                angular.forEach(value, function(value_in, key) {
+                    if(key == 'DlYearsPubProvince') {
+                        year_1 = year_1 + $scope.sumFunc2(value_in[0].year_1, 0);
+                    }
+                })
+            })
+            return year_1;
+        }
+    }
+
+    $scope.totYear1LossesPvt = function() {
+        if(!angular.isUndefined($scope.dlLandTransSumPro)) {
+            var year_1_pvt = 0;
+            angular.forEach($scope.dlLandTransSumPro.transport_land.Table_8, function(value, index) {
+                angular.forEach(value, function(value_in, key) {
+                    if(key == 'DlOtherLosPvtDistrict') {
+                        year_1_pvt = year_1_pvt + $scope.sumFunc2(value_in[0].year_1_pvt, 0);
+                    }
+                })
+            })
+            return year_1_pvt;
+        }
+    }
+
+    $scope.totYear2LossesPub = function() {
+        if(!angular.isUndefined($scope.dlLandTransSumPro)) {
+            var year_2 = 0;
+            angular.forEach($scope.dlLandTransSumPro.transport_land.Table_8, function(value, index) {
+                angular.forEach(value, function(value_in, key) {
+                    if(key == 'DlYearsPubProvince') {
+                        year_2 = year_2 + $scope.sumFunc2(value_in[0].year_2, 0);
+                    }
+                })
+            })
+            return year_2;
+        }
+    }
+
+    $scope.totYear2LossesPvt = function() {
+        if(!angular.isUndefined($scope.dlLandTransSumPro)) {
+            var year_2_pub = 0;
+            angular.forEach($scope.dlLandTransSumPro.transport_land.Table_8, function(value, index) {
+                angular.forEach(value, function(value_in, key) {
+                    if(key == 'DlOtherLosPvtDistrict') {
+                        year_2_pub = year_2_pub + $scope.sumFunc2(value_in[0].year_2_pub, 0);
+                    }
+                })
+            })
+            return year_2_pub;
+        }
+    }
+
+    $scope.totTotalPub = function() {
+        if(!angular.isUndefined($scope.dlLandTransSumPro)) {
+            var totTotalPub = 0;
+            angular.forEach($scope.dlLandTransSumPro.transport_land.Table_8, function(value, index) {
+                angular.forEach(value, function(value_in, key) {
+                    if(key == 'DlGacPubProvince') {
+                        totTotalPub = totTotalPub + $scope.sumFunc2(value_in[0].damages, 0);
+                    }
+                    else if(key == 'DlYearsPubProvince') {
+                        totTotalPub = totTotalPub + $scope.sumFunc2(value_in[0].year_1, 0);
+                        totTotalPub = totTotalPub + $scope.sumFunc2(value_in[0].year_2, 0);
+                    }
+                })
+            })
+            return totTotalPub;
+        }
+    }
+
+    $scope.totTotalPvt = function() {
+        if(!angular.isUndefined($scope.dlLandTransSumPro)) {
+            var totTotalPvt = 0;
+            angular.forEach($scope.dlLandTransSumPro.transport_land.Table_8, function(value, index) {
+                angular.forEach(value, function(value_in, key) {
+                    if(key == 'DlGacPvtProvince') {
+                        totTotalPvt = totTotalPvt + $scope.sumFunc2(value_in[0].tot_damages_pvt, 0);
+                    }
+                    else if(key == 'DlOtherLosPvtDistrict') {
+                        totTotalPvt = totTotalPvt + $scope.sumFunc2(value_in[0].year_1_pvt, 0);
+                        totTotalPvt = totTotalPvt + $scope.sumFunc2(value_in[0].year_2_pub, 0);
+                    }
+                })
+            })
+            return totTotalPvt;
+        }
+    }
  }])

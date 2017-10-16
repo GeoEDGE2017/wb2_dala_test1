@@ -42,7 +42,6 @@
         </ul>
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
-              
                 <table class="table table-bordered">
                     <colgroup>
                         <col width="307"/>
@@ -381,15 +380,15 @@
                                 Year 2
                             </td>
                         </tr>
-                        <tr  height="17" >
+                        <tr  height="17" ng-repeat="dpefNaf in data.education.Table_5.DpefNaf" ng-if="dpefNaf.edu_facilities == 'Pre-school'">
                             <td class="tdpa" width="307" height="17">
                                 Pre-schools
                             </td>
-                            <td class="right" width="110" ng-bind="data.education.Table_5.DpefNaf[0].num_edu_facilities">
+                            <td class="right" width="110" ng-bind="dpefNaf.num_edu_facilities">
                             </td>
-                            <td class="right" width="110" ng-bind="data.education.Table_5.DpefNaf[0].male">
+                            <td class="right" width="110" ng-bind="dpefNaf.male">
                             </td>
-                            <td class="right" width="110" ng-bind="data.education.Table_5.DpefNaf[0].female">
+                            <td class="right" width="110" ng-bind="dpefNaf.female">
                             </td>
                             <td class="right" width="110" ng-bind="data.education.Table_5.DpefBefPreDistrict[0].tot_damages">
                             </td>
@@ -401,15 +400,15 @@
                                     data.education.Table_5.DpefBefPreDistrict[0].est_los_year_2">
                             </td>
                         </tr>
-                        <tr  height="17">
+                        <tr height="17" ng-repeat="dpefNaf in data.education.Table_5.DpefNaf" ng-if="dpefNaf.edu_facilities == 'Primary School'">
                             <td class="tdpa" width="307" height="17">
                                 Primary Schools
                             </td>
-                            <td class="right" width="110" ng-bind="data.education.Table_5.DpefNaf[1].num_edu_facilities">
+                            <td class="right" width="110" ng-bind="dpefNaf.num_edu_facilities">
                             </td>
-                            <td class="right" width="110" ng-bind="data.education.Table_5.DpefNaf[1].male">
+                            <td class="right" width="110" ng-bind="dpefNaf.male">
                             </td>
-                            <td class="right" width="110" ng-bind="data.education.Table_5.DpefNaf[1].female">
+                            <td class="right" width="110" ng-bind="dpefNaf.female">
                             </td>
                             <td class="right" width="110" ng-bind="data.education.Table_5.DpefBefPrimaryDistrict[0].tot_damages">
                             </td>
@@ -421,15 +420,15 @@
                                     data.education.Table_5.DpefBefPrimaryDistrict[0].est_los_year_2">
                             </td>
                         </tr>
-                        <tr  height="17">
+                        <tr height="17" ng-repeat="dpefNaf in data.education.Table_5.DpefNaf" ng-if="dpefNaf.edu_facilities == 'Secondary School'">
                             <td class="tdpa" width="307" height="17">
                                 Secondary Schools
                             </td>
-                            <td class="right" width="110" ng-bind="data.education.Table_5.DpefNaf[2].num_edu_facilities">
+                            <td class="right" width="110" ng-bind="dpefNaf.num_edu_facilities">
                             </td>
-                            <td class="right" width="110" ng-bind="data.education.Table_5.DpefNaf[2].male">
+                            <td class="right" width="110" ng-bind="dpefNaf.male">
                             </td>
-                            <td class="right" width="110" ng-bind="data.education.Table_5.DpefNaf[2].female">
+                            <td class="right" width="110" ng-bind="dpefNaf.female">
                             </td>
                             <td class="right" width="110" ng-bind="data.education.Table_5.DpefBefSecondaryDistrict[0].tot_damages">
                             </td>
@@ -441,15 +440,15 @@
                                     data.education.Table_5.DpefBefSecondaryDistrict[0].est_los_year_2">
                             </td>
                         </tr>
-                        <tr  height="17">
+                        <tr  height="17" ng-repeat="dpefNaf in data.education.Table_5.DpefNaf" ng-if="dpefNaf.edu_facilities == 'University'">
                             <td class="tdpa" width="307" height="17">
                                 Universities
                             </td>
-                            <td class="right" width="110" ng-bind="data.education.Table_5.DpefNaf[3].num_edu_facilities">
+                            <td class="right" width="110" ng-bind="dpefNaf.num_edu_facilities">
                             </td>
-                            <td class="right" width="110" ng-bind="data.education.Table_5.DpefNaf[3].male">
+                            <td class="right" width="110" ng-bind="dpefNaf.male">
                             </td>
-                            <td class="right" width="110" ng-bind="data.education.Table_5.DpefNaf[3].female">
+                            <td class="right" width="110" ng-bind="dpefNaf.female">
                             </td>
                             <td class="right" width="110" ng-bind="data.education.Table_5.DpefBefUnvDistrict[0].tot_damages">
                             </td>
@@ -461,15 +460,15 @@
                                 data.education.Table_5.DpefBefUnvDistrict[0].est_los_year_2">
                             </td>
                         </tr>
-                        <tr  height="17">
+                        <tr height="17" ng-repeat="dpefNaf in data.education.Table_5.DpefNaf" ng-if="dpefNaf.edu_facilities == 'Technical Institutes'">
                             <td class="tdpa" width="307" height="17">
                                 Technical Institutes
                             </td>
-                            <td class="right" width="110" ng-bind="data.education.Table_5.DpefNaf[4].num_edu_facilities">
+                            <td class="right" width="110" ng-bind="dpefNaf.num_edu_facilities">
                             </td>
-                            <td class="right" width="110" ng-bind="data.education.Table_5.DpefNaf[4].male">
+                            <td class="right" width="110" ng-bind="dpefNaf.male">
                             </td>
-                            <td class="right" width="110" ng-bind="data.education.Table_5.DpefNaf[4].female">
+                            <td class="right" width="110" ng-bind="dpefNaf.female">
                             </td>
                             <td class="right" width="110" ng-bind="data.education.Table_5.DpefBefTechDistrict[0].tot_damages">
                             </td>
@@ -481,15 +480,15 @@
                                 data.education.Table_5.DpefBefTechDistrict[0].est_los_year_2">
                             </td>
                         </tr>
-                        <tr  height="17">
+                        <tr  height="17" ng-repeat="dpefNaf in data.education.Table_5.DpefNaf" ng-if="dpefNaf.edu_facilities == 'Others'">
                             <td class="tdpa" width="307" height="17">
                                 Others
                             </td>
-                            <td width="110" class="right" ng-bind="data.education.Table_5.DpefNaf[5].num_edu_facilities">
+                            <td width="110" class="right" ng-bind="dpefNaf.num_edu_facilities">
                             </td>
-                            <td width="110" class="right" ng-bind="data.education.Table_5.DpefNaf[5].male">
+                            <td width="110" class="right" ng-bind="dpefNaf.male">
                             </td>
-                            <td width="110" class="right" ng-bind="data.education.Table_5.DpefNaf[5].female">
+                            <td width="110" class="right" ng-bind="dpefNaf.female">
                             </td>
                             <td width="110" class="right" ng-bind="data.education.Table_5.DpefBefOtherDistrict[0].tot_damages">
                             </td>
@@ -501,67 +500,52 @@
                                 data.education.Table_5.DpefBefOtherDistrict[0].est_los_year_2">
                             </td>
                         </tr>
-                        <tr  height="17">
-                        <td class="tdpa" width="307" height="17">
-                            Total
-                        </td>
-                        <td class="right" width="110" ng-bind="data.education.Table_5.DpefNaf[0].num_edu_facilities +
-                            data.education.Table_5.DpefNaf[1].num_edu_facilities +
-                            data.education.Table_5.DpefNaf[2].num_edu_facilities +
-                            data.education.Table_5.DpefNaf[3].num_edu_facilities +
-                            data.education.Table_5.DpefNaf[4].num_edu_facilities +
-                            data.education.Table_5.DpefNaf[5].num_edu_facilities">
-                        </td>
-                        <td class="right" width="110" ng-bind="data.education.Table_5.DpefNaf[0].male +
-                            data.education.Table_5.DpefNaf[1].male +
-                            data.education.Table_5.DpefNaf[2].male +
-                            data.education.Table_5.DpefNaf[3].male +
-                            data.education.Table_5.DpefNaf[4].male +
-                            data.education.Table_5.DpefNaf[5].male">
-                        </td>
-                        <td class="right" width="110" ng-bind="data.education.Table_5.DpefNaf[0].female +
-                            data.education.Table_5.DpefNaf[1].female +
-                            data.education.Table_5.DpefNaf[2].female +
-                            data.education.Table_5.DpefNaf[3].female +
-                            data.education.Table_5.DpefNaf[4].female +
-                            data.education.Table_5.DpefNaf[5].female">
-                        </td>
-                        <td class="right" width="110" ng-bind="data.education.Table_5.DpefBefPreDistrict[0].tot_damages +
-                            data.education.Table_5.DpefBefPrimaryDistrict[0].tot_damages +
-                            data.education.Table_5.DpefBefSecondaryDistrict[0].tot_damages +
-                            data.education.Table_5.DpefBefUnvDistrict[0].tot_damages +
-                            data.education.Table_5.DpefBefTechDistrict[0].tot_damages +
-                            data.education.Table_5.DpefBefOtherDistrict[0].tot_damages">
-                        </td>
-                        <td class="right" width="110" ng-bind="data.education.Table_5.DpefBefPreDistrict[0].est_los_year_1 +
-                            data.education.Table_5.DpefBefPrimaryDistrict[0].est_los_year_1 +
-                            data.education.Table_5.DpefBefSecondaryDistrict[0].est_los_year_1 +
-                            data.education.Table_5.DpefBefUnvDistrict[0].est_los_year_1 +
-                            data.education.Table_5.DpefBefTechDistrict[0].est_los_year_1 +
-                            data.education.Table_5.DpefBefOtherDistrict[0].est_los_year_1">
-                        </td>
-                        <td class="right" width="110" ng-bind="data.education.Table_5.DpefBefPreDistrict[0].est_los_year_2 +
-                            data.education.Table_5.DpefBefPrimaryDistrict[0].est_los_year_2 +
-                            data.education.Table_5.DpefBefSecondaryDistrict[0].est_los_year_2 +
-                            data.education.Table_5.DpefBefUnvDistrict[0].est_los_year_2 +
-                            data.education.Table_5.DpefBefTechDistrict[0].est_los_year_2 +
-                            data.education.Table_5.DpefBefOtherDistrict[0].est_los_year_2">
-                        </td>
-                        <td class="right" width="110"
-                            ng-bind="sumFunc6(data.education.Table_5.DpefBefPreDistrict[0].est_los_year_1 +
-                                data.education.Table_5.DpefBefPreDistrict[0].est_los_year_2,
+                        <tr  height="17" ng-repeat="dpefNaf in data.education.Table_5.DpefNaf" ng-if="dpefNaf.edu_facilities == 'TOTAL'">
+                            <td class="tdpa" width="307" height="17">
+                                Total
+                            </td>
+                            <td class="right" width="110" ng-bind="dpefNaf.num_edu_facilities">
+                            </td>
+                            <td class="right" width="110" ng-bind="dpefNaf.male">
+                            </td>
+                            <td class="right" width="110" ng-bind="dpefNaf.female">
+                            </td>
+                            <td class="right" width="110" ng-bind="data.education.Table_5.DpefBefPreDistrict[0].tot_damages +
+                                data.education.Table_5.DpefBefPrimaryDistrict[0].tot_damages +
+                                data.education.Table_5.DpefBefSecondaryDistrict[0].tot_damages +
+                                data.education.Table_5.DpefBefUnvDistrict[0].tot_damages +
+                                data.education.Table_5.DpefBefTechDistrict[0].tot_damages +
+                                data.education.Table_5.DpefBefOtherDistrict[0].tot_damages">
+                            </td>
+                            <td class="right" width="110" ng-bind="data.education.Table_5.DpefBefPreDistrict[0].est_los_year_1 +
                                 data.education.Table_5.DpefBefPrimaryDistrict[0].est_los_year_1 +
-                                data.education.Table_5.DpefBefPrimaryDistrict[0].est_los_year_2,
                                 data.education.Table_5.DpefBefSecondaryDistrict[0].est_los_year_1 +
-                                data.education.Table_5.DpefBefSecondaryDistrict[0].est_los_year_2,
                                 data.education.Table_5.DpefBefUnvDistrict[0].est_los_year_1 +
-                                data.education.Table_5.DpefBefUnvDistrict[0].est_los_year_2,
                                 data.education.Table_5.DpefBefTechDistrict[0].est_los_year_1 +
-                                data.education.Table_5.DpefBefTechDistrict[0].est_los_year_2,
-                                data.education.Table_5.DpefBefOtherDistrict[0].est_los_year_1 +
-                                data.education.Table_5.DpefBefOtherDistrict[0].est_los_year_2)">
-                        </td>
-                    </tr>
+                                data.education.Table_5.DpefBefOtherDistrict[0].est_los_year_1">
+                            </td>
+                            <td class="right" width="110" ng-bind="data.education.Table_5.DpefBefPreDistrict[0].est_los_year_2 +
+                                data.education.Table_5.DpefBefPrimaryDistrict[0].est_los_year_2 +
+                                data.education.Table_5.DpefBefSecondaryDistrict[0].est_los_year_2 +
+                                data.education.Table_5.DpefBefUnvDistrict[0].est_los_year_2 +
+                                data.education.Table_5.DpefBefTechDistrict[0].est_los_year_2 +
+                                data.education.Table_5.DpefBefOtherDistrict[0].est_los_year_2">
+                            </td>
+                            <td class="right" width="110"
+                                ng-bind="sumFunc6(data.education.Table_5.DpefBefPreDistrict[0].est_los_year_1 +
+                                    data.education.Table_5.DpefBefPreDistrict[0].est_los_year_2,
+                                    data.education.Table_5.DpefBefPrimaryDistrict[0].est_los_year_1 +
+                                    data.education.Table_5.DpefBefPrimaryDistrict[0].est_los_year_2,
+                                    data.education.Table_5.DpefBefSecondaryDistrict[0].est_los_year_1 +
+                                    data.education.Table_5.DpefBefSecondaryDistrict[0].est_los_year_2,
+                                    data.education.Table_5.DpefBefUnvDistrict[0].est_los_year_1 +
+                                    data.education.Table_5.DpefBefUnvDistrict[0].est_los_year_2,
+                                    data.education.Table_5.DpefBefTechDistrict[0].est_los_year_1 +
+                                    data.education.Table_5.DpefBefTechDistrict[0].est_los_year_2,
+                                    data.education.Table_5.DpefBefOtherDistrict[0].est_los_year_1 +
+                                    data.education.Table_5.DpefBefOtherDistrict[0].est_los_year_2)">
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
                 <br>

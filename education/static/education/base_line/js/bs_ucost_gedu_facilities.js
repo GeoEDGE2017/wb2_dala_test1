@@ -495,10 +495,12 @@ bsHealthStatusApp.controller('BsUcostGeduFacilitiesController', function BsUcost
 					})
 					if(edit_data_not_found != true) {
 						$scope.bsUcostGeduFacilities = data;
-					} else {
+					}
+					else {
 						$("#modal-container-239456").modal('show');
 					}
-				} else {
+				}
+				else {
 					$("#modal-container-239456").modal('show');
 				}
 			})
@@ -695,12 +697,12 @@ bsHealthStatusApp.controller('BsUcostGeduFacilitiesController', function BsUcost
             dataType: 'json',
         }).then(function successCallback(response) {
             console.log(response);
-            if(response.data == 'False') {
-                alert('False');
-            }
-            else {
-                alert('True');
-            }
+//            if(response.data == 'False') {
+//                alert('False');
+//            }
+//            else {
+//                alert('True');
+//            }
         }, function errorCallback(response) {
 
         });

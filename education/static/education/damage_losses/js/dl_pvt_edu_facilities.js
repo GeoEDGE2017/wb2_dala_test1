@@ -87,7 +87,7 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
 					male: null,
 					female: null
 				}, {
-					edu_facilities: 'Other',
+					edu_facilities: 'Others',
 					num_edu_facilities: null,
 					male: null,
 					female: null

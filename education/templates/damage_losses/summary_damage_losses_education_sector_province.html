@@ -134,7 +134,6 @@
                         </td>
                     </tr>
                     </tbody>
-              
                         <tbody ng-repeat="(key, value) in dlEduProvince.education.Table_6" id="boxscroll1" style="max-height:800px;overflow:auto;">
                             <tr height="20" class="trheadc">
                                 <td ng-bind="key" width="202" height="20">
@@ -328,7 +327,8 @@
                                     <span ng-bind="$parent.sumFunc8(value['DpefBefDistrict'][1].ab1_1c, value['DpefBefDistrict'][1].type_2, value['DpefBefDistrict'][1].type_3, value['DpefBefDistrict'][1].pirivena, value['DpefBefDistrict'][1].training_institutes, value['DpefBefDistrict'][1].training_colleges, value['DpefBefDistrict'][1].tc_crc_resc, value['DpefBefDistrict'][1].min_pzd_offices)"></span>
                                 </td>
                             </tr>
-                        
+                        </tbody>
+                        <tbody>
                             <tr height="17" class="boldash">
                                 <td class="tdpa" width="307" height="17">
                                     TOTAL
@@ -350,7 +350,6 @@
                             </tr>
                         </tbody>
                     </table>
-               
                 <br>
                 <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab">
                     <span class="glyphicon glyphicon-arrow-right"></span>
@@ -529,7 +528,8 @@
                                         </td>
                                     </tr>
                                 </tbody>
-                                <tr class="boldash" height="17" ng-repeat="dpefNafDistrict in value.DpefNafDistrict" ng-if="dpefNafDistrict.edu_facilities == 'TOTAL'">
+                                <tr class="boldash" height="17" ng-repeat="dpefNafDistrict in value.DpefNafDistrict"
+                                    ng-if="dpefNafDistrict.edu_facilities == 'TOTAL'">
                                     <td class="tdpa" width="307" height="17">
                                         Total
                                     </td>
@@ -561,27 +561,29 @@
                                         </span>
                                     </td>
                                 </tr>
-                           
-                                <tr class="boldash">
-                                    <td class="tdpa" width="307" height="17">
-                                        TOTAL
-                                    </td>
-                                    <td class="right" width="110" ng-bind="totNumberAffectedPvt()">
-                                    </td>
-                                    <td class="right" width="110" ng-bind="totNoOfPatientsAffectedMalePvt()">
-                                    </td>
-                                    <td class="right" width="110" ng-bind="totNoOfPatientsAffectedFemalePvt()">
-                                    </td>
-                                    <td class="right" width="110" ng-bind="totDamagesPvt()">
-                                    </td>
-                                    <td class="right" width="110" ng-bind="totLossesYear1Pvt()">
-                                    </td>
-                                    <td class="right" width="110" ng-bind="totLossesYear2Pvt()">
-                                    </td>
-                                    <td class="right" width="110" ng-bind="totLossesYear1Pvt() + totLossesYear2Pvt()">
-                                    </td>
-                                </tr>
                             </tbody>
+
+                        </table>
+                        <table class="table table-bordered">
+                            <tr class="boldash">
+                                <td class="tdpa" width="307" height="17">
+                                    TOTAL
+                                </td>
+                                <td class="right" width="110" ng-bind="totNumberAffectedPvt()">
+                                </td>
+                                <td class="right" width="110" ng-bind="totNoOfPatientsAffectedMalePvt()">
+                                </td>
+                                <td class="right" width="110" ng-bind="totNoOfPatientsAffectedFemalePvt()">
+                                </td>
+                                <td class="right" width="110" ng-bind="totDamagesPvt()">
+                                </td>
+                                <td class="right" width="110" ng-bind="totLossesYear1Pvt()">
+                                </td>
+                                <td class="right" width="110" ng-bind="totLossesYear2Pvt()">
+                                </td>
+                                <td class="right" width="110" ng-bind="totLossesYear1Pvt() + totLossesYear2Pvt()">
+                                </td>
+                            </tr>
                         </table>
                         <br>
                             <a href="#step3" id="s2" class="btn btn-sm btn-info pull-right" data-toggle="tab">

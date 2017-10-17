@@ -148,7 +148,7 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
             }),
         }).success(function(data) {
             $scope.privateClinics = data;
-            console.log('#', data);
+            console.log('privateClinics ', data);
             $http({
                 //this table does not get any data from baseline tables,
                 //but we pass baseline table 3, for get baseline data only
@@ -166,8 +166,9 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {
-                if(response.data == 'null') {
-                    $scope.currentBaselineDate = "Baseline data not available in  Table 3: Baseline Information of Unit Cost of the Ministry Health System in a District";
+                console.log('response ', response);
+                if(response.data == 'null' || response.data == null) {
+                    $("#modal-container-239458").modal('show');
                 }
                 else {
                     var result = response.data;
@@ -265,12 +266,18 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
                     'is_edit': $scope.is_edit
                 }),
             }).success(function(data) {
+                console.log('editDlData ', data);
                 var edit_data_not_found = false;
                 if(data != null) {
                     angular.forEach(data.health.Table_7, function(value, index) {
-                        if(value.length == 0) {
-                            edit_data_not_found = true;
-                        }
+//                        console.log('key ', key);
+//                        console.log('value ', value);
+                        angular.forEach(value, function(value_in, index_in, key) {
+                            console.log('key ', key);
+                            if(value_in.length == 0 && key != 'DapBefPc') {
+                                edit_data_not_found = true;
+                            }
+                        })
                     })
                     if(edit_data_not_found != true) {
                         $scope.dlHealthDamagelostPrivateSys = data;

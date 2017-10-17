@@ -663,17 +663,17 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
                         dataType: 'json',
                     }).then(function successCallback(response) {
                         console.log('response', response);
-							var result = response.data;
-							if(result.bs_date == null) {
-								$("#modal-container-239458").modal('show');
-							}
-							else {
-								var bs_date = result.bs_date.replace(/^"(.*)"$/, '$1');
-								$scope.currentBaselineDate = "Latest baseline data as at " + bs_date;
-								$scope.bsCreatedeDate = result.bs_created_date;
-								console.log('bs_date', result.bs_date);
-								console.log('bsCreatedeDate', result.bs_created_date);
-							}
+                        var result = response.data;
+                        if(result.bs_date == null) {
+                            $("#modal-container-239458").modal('show');
+                        }
+                        else {
+                            var bs_date = result.bs_date.replace(/^"(.*)"$/, '$1');
+                            $scope.currentBaselineDate = "Latest baseline data as at " + bs_date;
+                            $scope.bsCreatedeDate = result.bs_created_date;
+                            console.log('bs_date', result.bs_date);
+                            console.log('bsCreatedeDate', result.bs_created_date);
+                        }
                     });
                 }
             }, function errorCallback(response) {

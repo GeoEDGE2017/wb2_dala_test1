@@ -87,7 +87,7 @@ bsHealthStatusApp.controller('BsEduFacilitiesController', function($scope, $http
 					total_number: null,
 					avg_male: null,
 					avg_female: null,
-				}, {
+				},{
 					type_facilities: 'TOTAL NUMBER OF STUDENTS',
 					total_number: null,
 					avg_male: null,
@@ -115,6 +115,11 @@ bsHealthStatusApp.controller('BsEduFacilitiesController', function($scope, $http
 					avg_female: null,
 				}, {
 					type_facilities: 'Technical Institutes',
+					total_number: null,
+					avg_male: null,
+					avg_female: null,
+				}, {
+					type_facilities: 'Others',
 					total_number: null,
 					avg_male: null,
 					avg_female: null,

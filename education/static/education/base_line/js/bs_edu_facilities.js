@@ -167,22 +167,20 @@ bsHealthStatusApp.controller('BsEduFacilitiesController', function($scope, $http
                 console.log(data);
                 var edit_data_not_found = false;
                 if(data != null) {
-                    console.log('----if');
                     angular.forEach(data.education.Table_1, function(value, index) {
-                        console.log('----forEach');
                         console.log(value);
                         if(value.length == 0) {
-                            console.log('----');
                             edit_data_not_found = true;
                         }
                     })
                     if(edit_data_not_found != true) {
                         $scope.bsEduFacilities = data;
-                    } else {
+                    }
+                    else {
                         $("#modal-container-239456").modal('show');
                     }
-                } else {
-                    console.log('----else');
+                }
+                else {
                     $("#modal-container-239456").modal('show');
                 }
             })
@@ -194,8 +192,7 @@ bsHealthStatusApp.controller('BsEduFacilitiesController', function($scope, $http
         document.getElementById("clearbtn").disabled = true;
         document.getElementById("editbtn").disabled = true;
         document.getElementById("subbtn").disabled = true;
-        console.log("test", $scope.district);
-        console.log("test", $scope.bs_date);
+
         $scope.is_search = true;
         $scope.submitted = true;
         if(form.$valid) {
@@ -215,22 +212,20 @@ bsHealthStatusApp.controller('BsEduFacilitiesController', function($scope, $http
                 console.log(data);
                 var edit_data_not_found = false;
                 if(data != null) {
-                    console.log('----if');
                     angular.forEach(data.education.Table_1, function(value, index) {
-                        console.log('----forEach');
                         console.log(value);
                         if(value.length == 0) {
-                            console.log('----');
                             edit_data_not_found = true;
                         }
                     })
                     if(edit_data_not_found != true) {
                         $scope.bsEduFacilities = data;
-                    } else {
+                    }
+                    else {
                         $("#modal-container-239456").modal('show');
                     }
-                } else {
-                    console.log('----else');
+                }
+                else {
                     $("#modal-container-239456").modal('show');
                 }
             })
@@ -263,7 +258,8 @@ bsHealthStatusApp.controller('BsEduFacilitiesController', function($scope, $http
                 if(response.data == 'False') {
                     $("#modal-container-239454").modal('show');
                     $scope.is_valid_data = false;
-                } else {
+                }
+                else {
                     $("#modal-container-239453").modal('show');
                 }
             }, function errorCallback(response) {

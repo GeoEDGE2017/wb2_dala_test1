@@ -211,6 +211,7 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
                     private_clinic.name = $scope.private_clinic.name;
                 }
                 $scope.is_edit_model = false;
+                location.reload();
             })
         }
     }

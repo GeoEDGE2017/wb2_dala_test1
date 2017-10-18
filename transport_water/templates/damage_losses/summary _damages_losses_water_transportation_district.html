@@ -243,69 +243,42 @@
                             Private
                         </td>
                     </tr>
-                    <tr height="19">
+                    <tr height="19" ng-repeat="dlWaterLosFi in data.transport_water.Table_3.DlWaterLosFi"
+                            ng-if="dlWaterLosFi.type_los == 'Income of companies'">
                         <td class="tdpa" width="253" height="19">
                             Foregone Income of Companies
                         </td>
-                        <td class="right" width="147" ng-bind="data.transport_water.Table_3.DlWaterLosFi[0].year_1_pub">
+                        <td class="right" width="147" ng-bind="dlWaterLosFi.year_1_pub">
                         </td>
-                        <td class="right" width="151" ng-bind="data.transport_water.Table_3.DlWaterLosFi[0].year_1_pvt">
+                        <td class="right" width="151" ng-bind="dlWaterLosFi.year_1_pvt">
                         </td>
-                        <td class="right" width="165" ng-bind="data.transport_water.Table_3.DlWaterLosFi[0].year_2_pub">
+                        <td class="right" width="165" ng-bind="dlWaterLosFi.year_2_pub">
                         </td>
-                        <td class="right" width="170" ng-bind="data.transport_water.Table_3.DlWaterLosFi[0].year_2_pvt">
+                        <td class="right" width="170" ng-bind="dlWaterLosFi.year_2_pvt">
                         </td>
-                        <td class="right" width="135"
-                            ng-bind="data.transport_water.Table_3.DlWaterLosFi[0].year_1_pub +
-                         data.transport_water.Table_3.DlWaterLosFi[0].year_2_pub">
+                        <td class="right" width="135" ng-bind="dlWaterLosFi.year_1_pub + dlWaterLosFi.year_2_pub">
                         </td>
-                        <td class="right" width="133"
-                            ng-bind="data.transport_water.Table_3.DlWaterLosFi[0].year_1_pvt +
-                         data.transport_water.Table_3.DlWaterLosFi[0].year_2_pvt">
+                        <td class="right" width="133" ng-bind="dlWaterLosFi.year_1_pvt + dlWaterLosFi.year_2_pvt">
                         </td>
                     </tr>
-                    <tr height="19">
+                    <tr height="19" ng-repeat="dlWaterLosFi in data.transport_water.Table_3.DlWaterLosFi"
+                            ng-if="dlWaterLosFi.type_los == 'Income of ports'">
                         <td class="tdpa" width="253" height="19">
                             Foregone Income of Ports
                         </td>
-                        <td class="right" width="147" ng-bind="data.transport_water.Table_3.DlWaterLosFi[1].year_1_pub">
+                        <td class="right" width="147" ng-bind="dlWaterLosFi.year_1_pub">
                         </td>
-                        <td class="right" width="151" ng-bind="data.transport_water.Table_3.DlWaterLosFi[1].year_1_pvt">
+                        <td class="right" width="151" ng-bind="dlWaterLosFi.year_1_pvt">
                         </td>
-                        <td class="right" width="165" ng-bind="data.transport_water.Table_3.DlWaterLosFi[1].year_2_pub">
+                        <td class="right" width="165" ng-bind="dlWaterLosFi.year_2_pub">
                         </td>
-                        <td class="right" width="170" ng-bind="data.transport_water.Table_3.DlWaterLosFi[1].year_2_pvt">
+                        <td class="right" width="170" ng-bind="dlWaterLosFi.year_2_pvt">
                         </td>
-                        <td class="right" width="135"
-                            ng-bind="data.transport_water.Table_3.DlWaterLosFi[1].year_1_pub +
-                         data.transport_water.Table_3.DlWaterLosFi[1].year_2_pub">
+                        <td class="right" width="135" ng-bind="dlWaterLosFi.year_1_pub + dlWaterLosFi.year_2_pub">
                         </td>
-                        <td class="right" width="133"
-                            ng-bind="data.transport_water.Table_3.DlWaterLosFi[1].year_1_pvt +
-                         data.transport_water.Table_3.DlWaterLosFi[1].year_2_pvt">
+                        <td class="right" width="133" ng-bind="dlWaterLosFi.year_1_pvt + dlWaterLosFi.year_2_pvt">
                         </td>
                     </tr>
-                    <!--<tr height="19">-->
-                        <!--<td class="tdpa" width="253" height="19">-->
-                            <!--Cleaning costs-->
-                        <!--</td>-->
-                        <!--<td class="right" width="147" ng-bind="data.transport_water.Table_3.DlWaterLosOther[0].year_1_pub">-->
-                        <!--</td>-->
-                        <!--<td class="right" width="151" ng-bind="data.transport_water.Table_3.DlWaterLosOther[0].year_1_pvt">-->
-                        <!--</td>-->
-                        <!--<td class="right" width="165" ng-bind="data.transport_water.Table_3.DlWaterLosOther[0].year_2_pub">-->
-                        <!--</td>-->
-                        <!--<td class="right" width="170" ng-bind="data.transport_water.Table_3.DlWaterLosOther[0].year_2_pvt">-->
-                        <!--</td>-->
-                        <!--<td class="right" width="135"-->
-                            <!--ng-bind="data.transport_water.Table_3.DlWaterLosOther[0].year_1_pub +-->
-                         <!--data.transport_water.Table_3.DlWaterLosOther[0].year_2_pub">-->
-                        <!--</td>-->
-                        <!--<td class="right" width="133"-->
-                            <!--ng-bind="data.transport_water.Table_3.DlWaterLosOther[0].year_1_pvt +-->
-                            <!--data.transport_water.Table_3.DlWaterLosOther[0].year_2_pvt">-->
-                        <!--</td>-->
-                    <!--</tr>-->
                     <tr height="19" ng-repeat="dlWaterLosOther in data.transport_water.Table_3.DlWaterLosOther"
                         ng-if="dlWaterLosOther.type_los == 'Cleaning costs'">
                         <td class="tdpa" width="253" height="19" ng-bind="dlWaterLosOther.type_los">

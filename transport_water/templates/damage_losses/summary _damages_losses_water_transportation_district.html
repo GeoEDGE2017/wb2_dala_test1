@@ -41,16 +41,16 @@
                         <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
                         </td>
                         <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-                <span class="arrow_box" ng-show="isLoded && form_dlsum_trans_water_dst.incident.$error.required">
-                    Please Select Incident
-                </span>
+                            <span class="arrow_box" ng-show="isLoded && form_dlsum_trans_water_dst.incident.$error.required">
+                                Please Select Incident
+                            </span>
                         </td>
                         <td colspan="" style="background:#fff;border:1px solid #fff;text-align:center;">
                         </td>
                         <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-                <span class="arrow_box" ng-show="isLoded && form_dlsum_trans_water_dst.district.$error.required">
-                    Please Select District
-                </span>
+                            <span class="arrow_box" ng-show="isLoded && form_dlsum_trans_water_dst.district.$error.required">
+                                Please Select District
+                            </span>
                         </td>
                     </tr>
                     <tr class="trhead1" height="20">
@@ -64,8 +64,6 @@
                                 <option value="" selected="true">Select an Incident</option>
                                 {% for incident in incidents %}
                                 <option value={{incident.id}}>
-                                    <!--{{incident.disaster_type.name}}-->
-                                    <!--{{incident.reported_date_time}}-->
                                     {{incident.incident_name}}
                                 </option>
                                 {% endfor %}
@@ -77,8 +75,7 @@
                         <td lass="trhead1" colspan="3" width="463">
                             <select ng-options="district as district.district__name for district in districts track by district.district__id"
                                     name="district" id="ccyear" ng-change="loadData(form_dlsum_trans_water_dst);" ng-model="district" ng-value="district.district__id"
-                                    style="font-weight:400;"
-                                    class="form-control" required>
+                                    style="font-weight:400;" class="form-control" required>
                                 <option value="" selected>Select District</option>
                             </select>
                         </td>
@@ -115,7 +112,7 @@
                         </td>
                         <td class="right" colspan="2" width="268"
                             ng-bind="data.transport_water.Table_3.DlAstWaterWcraftsDistrict[0].tot_dmg_private +
-                         data.transport_water.Table_3.DlAstWaterWcraftsDistrict[0].tot_dmg_public">
+                            data.transport_water.Table_3.DlAstWaterWcraftsDistrict[0].tot_dmg_public">
                         </td>
                     </tr>
                     <tr height="19">
@@ -130,7 +127,7 @@
                         </td>
                         <td class="right" colspan="2" width="268"
                             ng-bind="data.transport_water.Table_3.DlWaterDmgEquipmentDistrict[0].tot_dmg_private +
-                         data.transport_water.Table_3.DlWaterDmgEquipmentDistrict[0].tot_dmg_public">
+                            data.transport_water.Table_3.DlWaterDmgEquipmentDistrict[0].tot_dmg_public">
                         </td>
                     </tr>
                     <tr height="19">
@@ -145,8 +142,7 @@
                         </td>
                         <td class="right" colspan="2" width="268"
                             ng-bind="data.transport_water.Table_3.DlWaterDmgMaterialsDistrict[0].tot_dmg_private +
-                         data.transport_water.Table_3.DlWaterDmgMaterialsDistrict[0].tot_dmg_public">
-
+                            data.transport_water.Table_3.DlWaterDmgMaterialsDistrict[0].tot_dmg_public">
                         </td>
                     </tr>
                     <tr height="19">
@@ -181,25 +177,25 @@
                         </td>
                         <td class="right" colspan="2" width="298"
                             ng-bind="data.transport_water.Table_3.DlAstWaterWcraftsDistrict[0].tot_dmg_public +
-                         data.transport_water.Table_3.DlWaterDmgEquipmentDistrict[0].tot_dmg_public +
-                         data.transport_water.Table_3.DlWaterDmgMaterialsDistrict[0].tot_dmg_public +
-                         data.transport_water.Table_3.DlWaterDmgStructuresDistrict[0].tot_damages +
-                         data.transport_water.Table_3.DlWaterDmgBuildingsDistrict[0].tot_damages">
+                            data.transport_water.Table_3.DlWaterDmgEquipmentDistrict[0].tot_dmg_public +
+                            data.transport_water.Table_3.DlWaterDmgMaterialsDistrict[0].tot_dmg_public +
+                            data.transport_water.Table_3.DlWaterDmgStructuresDistrict[0].tot_damages +
+                            data.transport_water.Table_3.DlWaterDmgBuildingsDistrict[0].tot_damages">
                         </td>
                         <td class="right" colspan="2" width="335"
                             ng-bind="data.transport_water.Table_3.DlAstWaterWcraftsDistrict[0].tot_dmg_private +
-                         data.transport_water.Table_3.DlWaterDmgEquipmentDistrict[0].tot_dmg_private +
-                         data.transport_water.Table_3.DlWaterDmgMaterialsDistrict[0].tot_dmg_private">
+                            data.transport_water.Table_3.DlWaterDmgEquipmentDistrict[0].tot_dmg_private +
+                            data.transport_water.Table_3.DlWaterDmgMaterialsDistrict[0].tot_dmg_private">
                         </td>
                         <td class="right" colspan="2" width="268"
                             ng-bind="(data.transport_water.Table_3.DlAstWaterWcraftsDistrict[0].tot_dmg_private +
-                         data.transport_water.Table_3.DlAstWaterWcraftsDistrict[0].tot_dmg_public) +
-                         (data.transport_water.Table_3.DlWaterDmgEquipmentDistrict[0].tot_dmg_private +
-                         data.transport_water.Table_3.DlWaterDmgEquipmentDistrict[0].tot_dmg_public) +
-                         (data.transport_water.Table_3.DlWaterDmgMaterialsDistrict[0].tot_dmg_private +
-                         data.transport_water.Table_3.DlWaterDmgMaterialsDistrict[0].tot_dmg_public) +
-                         (data.transport_water.Table_3.DlWaterDmgStructuresDistrict[0].tot_damages) +
-                         (data.transport_water.Table_3.DlWaterDmgBuildingsDistrict[0].tot_damages)">
+                            data.transport_water.Table_3.DlAstWaterWcraftsDistrict[0].tot_dmg_public) +
+                            (data.transport_water.Table_3.DlWaterDmgEquipmentDistrict[0].tot_dmg_private +
+                            data.transport_water.Table_3.DlWaterDmgEquipmentDistrict[0].tot_dmg_public) +
+                            (data.transport_water.Table_3.DlWaterDmgMaterialsDistrict[0].tot_dmg_private +
+                            data.transport_water.Table_3.DlWaterDmgMaterialsDistrict[0].tot_dmg_public) +
+                            (data.transport_water.Table_3.DlWaterDmgStructuresDistrict[0].tot_damages) +
+                            (data.transport_water.Table_3.DlWaterDmgBuildingsDistrict[0].tot_damages)">
                         </td>
                     </tr>
                     <tr class="trheadc1" height="19">

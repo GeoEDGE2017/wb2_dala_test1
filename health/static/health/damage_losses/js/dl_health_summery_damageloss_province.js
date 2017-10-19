@@ -335,6 +335,7 @@ app.controller("dlHealthSummeryDamageLossProvinceAppController", ['$scope','$htt
 
     $scope.totLossesYear1Pub = function() {
         if(!angular.isUndefined($scope.dlhealthsummarydamageprovince)) {
+//            console.log('totLossesYear1Pub', $scope.dlhealthsummarydamageprovince.health.Table_8);
             var tot_losses_year1 = 0;
             angular.forEach($scope.dlhealthsummarydamageprovince.health.Table_8, function(value, index) {
                 angular.forEach(value, function(value_in, key) {

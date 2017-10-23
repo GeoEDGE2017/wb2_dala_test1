@@ -41,21 +41,7 @@ $(document).ready(function() {
 		</ul>
 		<div id="myTabContent" class="tab-content" ng-form name="form_dl_rail_trans_cmpny">
 			<div class="tab-pane active" id="step1">
-				<td style="width:100px;">
-					<span ng-if="!check_search">
-						<button ng-if="!is_search" class="btn btn-info" disabled>
-							<span class="fa fa-search"></span>
-						</button>
-					</span>
-					<span ng-if="check_search">
-						<button ng-click="searchDlData(form_dl_rail_trans_cmpny)" ng-if="!is_search" class="btn btn-info">
-							<span class="fa fa-search"></span>
-						</button>
-					</span>
-					<button ng-click="clear()" ng-if="is_search" class="btn  btn-warning">
-						Cancel Search
-					</button>
-				</td>
+				
 				<table class="table table-bordered">
 					<colgroup>
 						<col width="281" />
@@ -89,11 +75,28 @@ $(document).ready(function() {
 										<!--{{incident.reported_date_time}}-->{{incident.incident_name}} </option> {% endfor %} </select>
 							</td>
 							<td class="trhead1" width="120"> District </td>
-							<td class="trhead1" colspan="4" width="343">
+							<td class="trhead1" colspan="3" width="343">
 								<select ng-options="district as district.district__name for district in districts track by district.district__id" name="district" id="ccyear" ng-model="district" ng-value="district.district__id" class="form-control" ng-change="changedValue(false)" required>
 									<option value="" selected>Select District</option>
 								</select>
-							</td> <span ng-bind="user_id={{user.id}}" style="display:none;"></span> </tr>
+							</td> 
+
+							<td class="trhead1" style="width:100px;">
+					<span ng-if="!check_search">
+						<button ng-if="!is_search" class="btn btn-info" disabled>
+							<span class="fa fa-search"></span>
+						</button>
+					</span>
+					<span ng-if="check_search">
+						<button ng-click="searchDlData(form_dl_rail_trans_cmpny)" ng-if="!is_search" class="btn btn-info">
+							<span class="fa fa-search"></span>
+						</button>
+					</span>
+					<button ng-click="clear()" ng-if="is_search" class="btn  btn-warning">
+						<span class="fa fa-times" aria-hidden="true"></span>
+					</button>
+				</td>
+							<span ng-bind="user_id={{user.id}}" style="display:none;"></span> </tr>
 						<tr height="20">
 							<td class="trhead1" width="281" height="20"> Company </td>
 							<td colspan="7" class="trhead1" width="300">

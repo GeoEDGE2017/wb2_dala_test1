@@ -1,6 +1,11 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
 {% load static %}
+<style type="text/css">
+td {
+   width: 18em!important;
+}
+</style>
 <!-- Main content -->
   <main class="main" ng-app="dlRailTransSumNatApp" ng-controller="dlRailTransSumNatController">
 
@@ -61,7 +66,7 @@
                     </table>
             <!--<table  class="table table-bordered" ng-if="!checkIfNull()">-->
             <table  class="table table-bordered" ng-if="!checkIfNull()">
-                        <tbody>
+                      
                         <tr class="trheadc1" height="20">
                         <td colspan="2" width="281" height="20" style="width:41%;">
                             Name of Province
@@ -79,20 +84,17 @@
                         </tr>
 
 
-                    </tbody>
+                    
                 <tr height="20">
-                        <td class="boldash tdpa" width="281" height="20">
+                        <td class="boldash tdpa" colspan="2" width="281" height="20">
                             TOTAL
                         </td>
-                        <td class="right" width="425" colspan="3" >
+                        <td class="right" width="425" colspan="2" >
                             <span ng-bind="total"></span>
                         </td>
 
                     </tr>
-                </table>
-                <!-- New Part-->
-                <table class="table table-bordered">
-                    <tbody>
+               
 
                   <tr class="trheadc1" height="20">
                         <td width="281" height="20">

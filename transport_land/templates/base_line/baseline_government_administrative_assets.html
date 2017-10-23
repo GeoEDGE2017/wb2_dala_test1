@@ -25,18 +25,7 @@
 	<div class="container-fluid">
 		<div id="myTabContent" class="tab-content" ng-form name="form_bs_gov_admin_aset">
 			<div class="tab-pane active" id="step1">
-				<td style="width:100px;">
-					<span ng-if="!check_search">
-						<button ng-if="!is_search" class="btn btn-info" disabled>
-							<span class="fa fa-search"></span>
-						</button>
-					</span>
-					<span ng-if="check_search">
-						<button ng-click="searchBsData(form_bs_gov_admin_aset)" ng-if="!is_search" class="btn btn-info">
-							<span class="fa fa-search"></span></button>
-					</span>
-					<button ng-click="clear()" ng-if="is_search" class="btn btn-warning">Cancel Search</button>
-				</td>
+				
 				<table class="table table-bordered">
 					<colgroup>
 						<col width="156"/>
@@ -56,16 +45,29 @@
                                 Please Select Date
                             </span> </td>
 						</tr>
-						<tr class="trhead1" height="43">
-							<td height="43" width="156" style="padding:5px;"> District </td>
-							<td colspan="2" height="43" width="63">
+						<tr class="trhead1">
+							<td  width="156" style=""> District </td>
+							<td colspan=""  width="63">
 								<select id="selectbasic" name="district" class="form-control" ng-change="changeDis()" ng-model="district" style="width:100%;font-weight:400;" required>
 									<option value="" selected="true">Select a District</option> {% for district in districts %}
 									<option value={{ district.id }}>{{ district.name }}</option> {% endfor %} </select>
 							</td>
-							<td height="43" width="240" style="padding:5px;"> Year/Month </td>
-							<td height="43" width="145">
-								<input name="baselineDate" style="font-weight:normal;" type="text" placeholder="mm/yy" ng-change="changeDis()" id="datepicker" ng-model="bs_date" class="form-control input-md" required> </td> <span ng-bind="user_id={{user.id}}" style="display:none;"></span> </tr>
+							<td  width="250" style=""> Year/Month </td>
+							<td  width="300">
+								<input name="baselineDate" style="font-weight:normal;" type="text" placeholder="mm/yy" ng-change="changeDis()" id="datepicker" ng-model="bs_date" class="form-control input-md" required> </td> <span ng-bind="user_id={{user.id}}" style="display:none;"></span> 
+								<td width="100">
+					<span ng-if="!check_search">
+						<button ng-if="!is_search" class="btn btn-info" disabled>
+							<span class="fa fa-search"></span>
+						</button>
+					</span>
+					<span ng-if="check_search">
+						<button ng-click="searchBsData(form_bs_gov_admin_aset)" ng-if="!is_search" class="btn btn-info">
+							<span class="fa fa-search"></span></button>
+					</span>
+					<button ng-click="clear()" ng-if="is_search" class="btn btn-warning"><span class="fa fa-times" aria-hidden="true"></span></button>
+				</td>
+								</tr>
 						<tr class="trheadc1" height="19">
 							<td height="19" width="156"> Asset </td>
 							<td colspan="4" height="19" width="345"> Average Replacement Cost Per Square Meter (LKR/sqm) </td>

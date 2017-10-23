@@ -1,6 +1,7 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
 {% load static %}
+
 <!-- Main content -->
 <main class="main" ng-app="dlSummeryTWNatApp" ng-controller="DlSummeryTWNatController">
     <!-- Breadcrumb -->
@@ -25,7 +26,7 @@
 
         <div id="myTabContent" class="tab-content" ng-form name="form_dl_summary_trans_water_nat">
             <div class="tab-pane active" id="step1">
-                <table class="table table-bordered">
+                <table class="table table-bordered" style="table-layout:fixed;">
                     <colgroup>
                         <col width="253"/>
                         <col width="147"/>
@@ -49,7 +50,7 @@
                         </td>
                     </tr>
                     <tr height="19" class="trhead1">
-                        <td colspan="2" style="padding-left:5px;">
+                        <td colspan="3" style="padding-left:5px;">
                             Incident
                         </td>
                         <td colspan="6" style="">
@@ -75,12 +76,9 @@
                         </td>
                         <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
                     </tr>
-                    </tbody>
-                </table>
-
-                <table class="table table-bordered" ng-if="!checkIfNull()">
-                    <tbody>
-                    <tr class="trheadc1" height="19">
+                   
+                   
+                    <tr class="trheadc1" height="19" ng-if="!checkIfNull()">
                         <td rowspan="2" width="253" height="38">
                             Provinces
                         </td>
@@ -94,7 +92,7 @@
                             Total (LKR)
                         </td>
                     </tr>
-                    <tr class="trheadc1" height="19">
+                    <tr class="trheadc1" height="19" ng-if="!checkIfNull()">
                         <td colspan="2" width="298" height="19">
                             Damages (LKR)
                         </td>
@@ -105,7 +103,7 @@
                             Losses (LKR)
                         </td>
                     </tr>
-                    <tr class="trsubc" height="19">
+                    <tr class="trsubc" height="19" ng-if="!checkIfNull()">
                         <td width="253" height="19">
                         </td>
                         <td width="147">
@@ -134,10 +132,10 @@
                         </td>
                     </tr>
                     </tbody>
-                </table>
-                <table class="table table-bordered" ng-if="!checkIfNull()"
+             
+              
+                    <tbody ng-if="!checkIfNull()"
                        ng-repeat="(key, value) in dlWaterTransSumNat.transport_water.Table_5">
-                    <tbody>
                     <tr height="20" ng-init="getTotal($index,key);">
 
                         <td ng-bind="key" class="tdpa" width="253" height="19">
@@ -172,9 +170,9 @@
 
                     </tr>
                     </tbody>
-                </table>
-                <table class="table table-bordered" ng-if="!checkIfNull()">
-                    <tr height="19">
+              
+             
+                    <tr height="19" ng-if="!checkIfNull()">
                         <td class="boldash tdpa" width="253" height="19">
                             TOTAL
                         </td>

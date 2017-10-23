@@ -20,13 +20,7 @@
 			</ul>
 			<div id="myTabContent" class="tab-content" ng-form name="form_pub_rod_brg_use">
 				<div class="tab-pane active" id="step1">
-					<td style="width:100px;"> <span ng-if="!check_search">
-									<button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
-						</span> <span ng-if="check_search">
-									<button ng-click="searchBsData(form_pub_rod_brg_use)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
-						</span>
-						<button ng-click="clear()" ng-if="is_search" class="btn btn-warning">Cancel Search</button>
-					</td>
+					
 					<table class="table table-bordered">
 						<colgroup>
 							<col width="156" />
@@ -45,9 +39,10 @@
                                     Please select District
                                 </span> </td>
 								<td colspan="" style="background:#fff;border:1px solid #fff;text-align:center;"> </td>
-								<td colspan="3" style="background:#fff;border:1px solid #fff;text-align:center;"> <span class="arrow_box" ng-show="submitted && form_pub_rod_brg_use.baselineDate.$error.required">
+								<td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;"> <span class="arrow_box" ng-show="submitted && form_pub_rod_brg_use.baselineDate.$error.required">
                                     Please select Date
                                 </span> </td>
+
 							</tr>
 							<tr height="19" colspan="3" class="trhead1">
 								<td style="padding-left:5px;" height="19" width="171"> District </td>
@@ -57,8 +52,17 @@
 										<option value={{ district.id }}>{{ district.name }}</option> {% endfor %} </select>
 								</td>
 								<td class="trhead1" width="240" height="19"> Year/Month </td>
-								<td colspan="3" height="19" style="font-weight:normal;" width="427">
-									<input name="baselineDate" type="text" placeholder="mm/yy" ng-change="changeDis()" id="datepicker" ng-model="bs_date" class="form-control input-md" required> </td> <span ng-bind="user_id={{user.id}}" style="display:none;"></span> </tr>
+								<td colspan="2" height="19" style="font-weight:normal;" width="427">
+									<input name="baselineDate" type="text" placeholder="mm/yy" ng-change="changeDis()" id="datepicker" ng-model="bs_date" class="form-control input-md" required> </td> 
+
+									 <td> <span ng-if="!check_search">
+									<button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
+						</span> <span ng-if="check_search">
+									<button ng-click="searchBsData(form_pub_rod_brg_use)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
+						</span>
+						<button ng-click="clear()" ng-if="is_search" class="btn btn-warning"><span class="fa fa-times" aria-hidden="true"></span></button>
+					</td>
+									<span ng-bind="user_id={{user.id}}" style="display:none;"></span> </tr>
 							<tr class="trheadc1" height="71">
 								<td rowspan="2" width="156" height="90"> Road Classification </td>
 								<td colspan="4" width="345" height="71" style="width:40%;"> Average Replacement Cost per km (LKR/km) </td>
@@ -242,7 +246,7 @@
 						<button id="subbtn" type="button" ng-disabled="form_pop_lat_census.$invalid" ng-click="saveBsData(form_pub_rod_brg_use)" class="btn btn-success">Submit </button>
 					</div>
 					<br>
-					<br> </div>
+					<br><br> </div>
 			</div>
 		</div>
 	</div>

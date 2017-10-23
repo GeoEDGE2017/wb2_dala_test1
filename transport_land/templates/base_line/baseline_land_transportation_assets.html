@@ -25,13 +25,7 @@ $(document).ready(function() {
 	<div class="container-fluid" ng-form name="form_bs_land_trns_aset">
 		<div id="myTabContent" class="tab-content">
 			<div class="tab-pane active" id="step1">
-				<td style="width:100px;"> <span ng-if="!check_search">
-									<button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
-					</span> <span ng-if="check_search">
-									<button ng-click="searchBsData(form_bs_land_trns_aset)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
-					</span>
-					<button ng-click="clear()" ng-if="is_search" class="btn btn-warning">Cancel Search</button>
-				</td>
+				
 				<table class="table table-bordered">
 					<colgroup>
 						<col width="156" />
@@ -42,24 +36,34 @@ $(document).ready(function() {
 					<tbody>
 						<tr style="background:#fff;border:1px solid #fff;text-align:center;">
 							<td style="background:#fff;border:1px solid #fff;text-align:center;" border="0"> </td>
-							<td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;"> <span class="arrow_box" ng-show="submitted && form_bs_land_trns_aset.district.$error.required">
+							<td colspan="" style="background:#fff;border:1px solid #fff;text-align:center;"> <span class="arrow_box" ng-show="submitted && form_bs_land_trns_aset.district.$error.required">
                                 Please Select District
                             </span> </td>
 							<td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;"> </td>
 							<td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;"> <span class="arrow_box" ng-show="submitted && form_bs_land_trns_aset.baselineDate.$error.required">
                                 Please Select Date
                             </span> </td>
+                            <td style="background:#fff;border:1px solid #fff;text-align:center;"></td>
 						</tr>
 						<tr class="trhead1" height="">
-							<td class="trhead1" height="43" width="156"> District </td>
-							<td colspan="2" height="" width="63">
+							<td class=""  width="156"> District </td>
+							<td colspan="" height="" width="63">
 								<select id="selectbasic" name="district" class="form-control" ng-model="district" ng-change="changeDis()" style="width:100%;font-weight:400;" required>
 									<option value="" selected="true">Select a District</option> {% for district in districts %}
 									<option value={{ district.id }}>{{ district.name }}</option> {% endfor %} </select>
 							</td>
-							<td class="trhead1" height="" width="240"> Year/Month </td>
+							<td class="" height="" width="240"> Year/Month </td>
 							<td height="" width="145">
-								<input name="baselineDate" type="text" style="font-weight:normal;" placeholder="mm/yy" id="datepicker" ng-change="changeDis()" ng-model="bs_date" class="form-control input-md" required> </td> <span ng-bind="user_id={{user.id}}" style="display:none;"></span> </tr>
+								<input name="baselineDate" type="text" style="font-weight:normal;" placeholder="mm/yy" id="datepicker" ng-change="changeDis()" ng-model="bs_date" class="form-control input-md" required> </td> <span ng-bind="user_id={{user.id}}" style="display:none;"></span> 
+								<td> <span ng-if="!check_search">
+									<button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
+					</span> <span ng-if="check_search">
+									<button ng-click="searchBsData(form_bs_land_trns_aset)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
+					</span>
+					<button ng-click="clear()" ng-if="is_search" class="btn btn-warning"><span class="fa fa-times" aria-hidden="true"></span></button>
+				</td>
+
+								</tr>
 						<tr class="trheadc1" height="51">
 							<td rowspan="2" height="70" width="156" style="width:27%;"> Land Transportation </td>
 							<td colspan="2" height="51" width="126"> Number </td>

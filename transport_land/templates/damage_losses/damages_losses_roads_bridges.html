@@ -9,6 +9,11 @@ $(document).ready(function() {
 	});
 });
 </script>
+<style type="text/css">
+td {
+   width: 15em!important;
+}
+</style>
 <!-- Main content -->
 <main class="main" ng-app="dlRoadBrdgsApp" ng-controller="dlRoadBrdgsController">
     <!-- Breadcrumb -->
@@ -50,13 +55,7 @@ $(document).ready(function() {
             </ul>
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane active" id="step1">
-                <td style="width:100px;"> <span ng-if="!check_search">
-                                <button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
-                    </span> <span ng-if="check_search">
-                                <button ng-click="searchDlData(form_dl_road_brdgs)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
-                    </span>
-                    <button ng-click="clear()" ng-if="is_search" class="btn  btn-warning">Cancel Search</button>
-                </td>
+               
                 <table class="table table-bordered">
                     <colgroup>
                         <col width="156"/>
@@ -86,7 +85,7 @@ $(document).ready(function() {
                                 </td>
 							</tr>
 							<tr>
-								<td class="trhead1" colspan="1" width="156"> Incident </td>
+								<td class="trhead1" colspan="1" width=""> Incident </td>
 								<td class="trhead1" colspan="2" width="63">
 									<select id="selectbasic" name="incident" ng-model="incident" class="form-control" ng-change="changedValue(true)" style="width:100%;font-weight:400;" required>
 										<option value="" selected="true">Select an Incident</option> {% for incident in incidents %}
@@ -98,16 +97,25 @@ $(document).ready(function() {
                                     </select>
 								</td>
 								<td class="trhead1" colspan="2" width="120"> District </td>
-								<td class="trhead1" colspan="5" width="680">
+								<td class="trhead1" colspan="3" width="680">
 									<select ng-options="district as district.district__name for district in districts track by district.district__id" name="district" id="ccyear" ng-model="district" ng-value="district.district__id" class="form-control" ng-change="changedValue(false)" required>
 										<option value="" selected>Select District</option>
 									</select>
-								</td> <span ng-bind="user_id={{user.id}}" style="display:none;"></span> </tr>
-							<tr class="trheadc1" height="19">
+								</td>
+								 <td class="trhead1" colspan="2" style="width:100px;"> <span ng-if="!check_search">
+                                <button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
+                    </span> <span ng-if="check_search">
+                                <button ng-click="searchDlData(form_dl_road_brdgs)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
+                    </span>
+                    <button ng-click="clear()" ng-if="is_search" class="btn  btn-warning"><span class="fa fa-times" aria-hidden="true"></span></button>
+                </td>
+
+								 <span ng-bind="user_id={{user.id}}" style="display:none;"></span> </tr>
+							<tr class="trheadc1" height="19" style="width:10%;">
 								<td rowspan="2" height="38" width="156"> Road Classification </td>
 								<td colspan="4" height="19" width="345" style="width:30%;"> Totally Destroyed (km) </td>
 								<td colspan="4" height="19" width="422" style="width:30%;"> Partially Damaged (km) </td>
-								<td rowspan="2" height="38" width="63"> Damages (LKR) </td>
+								<td rowspan="2" height="38" width="63" style="width:10%;"> Damages (LKR) </td>
 							</tr>
 							<tr class="trsubc" height="19">
 								<td height="19" width="63" style="width:8%;"> Concrete </td>
@@ -115,9 +123,9 @@ $(document).ready(function() {
 								<td height="19" width="99" style="width:7%;"> Gravel </td>
 								<td height="19" width="145" style="width:8%;"> Earth </td>
 								<td height="19" width="148" style="width:8%;"> Concrete </td>
-								<td height="19" width="63"> Asphalt </td>
-								<td height="19" width="63"> Gravel </td>
-								<td height="19" width="63"> Earth </td>
+								<td height="19" width="63" style="width:8%;"> Asphalt </td>
+								<td height="19" width="63" style="width:8%;"> Gravel </td>
+								<td height="19" width="63" style="width:8%;"> Earth </td>
 							</tr>
 							<tr height="19" ng-repeat="dlRbdRclassification in dlRoadBrdgs.transport_land.Table_4.DlRbdRclassification" ng-if="dlRbdRclassification.road_classification != 'Total'">
 								<td class="tdpa" height="19" width="156" ng-bind="dlRbdRclassification.road_classification"> </td>
@@ -187,16 +195,16 @@ $(document).ready(function() {
 							<col width="63" /> </colgroup>
 						<tbody>
 							<tr class="trheadc1" height="19">
-								<td rowspan="2" height="38" width="156" style="width:16.3%;"> Types of Bridges </td>
-								<td colspan="4" height="19" width="345"> Totally Destroyed (m) </td>
-								<td colspan="4" height="19" width="422"> Partially Damaged (m) </td>
-								<td rowspan="2" height="38" width="63"> Damages (LKR) </td>
+								<td rowspan="2" height="38" width="156" style="width:25%;"> Types of Bridges </td>
+								<td colspan="4" height="19" width="345" style="width:25%;"> Totally Destroyed (m) </td>
+								<td colspan="4" height="19" width="422" style="width:25%;"> Partially Damaged (m) </td>
+								<td rowspan="2" height="38" width="63" style="width:20%;"> Damages (LKR) </td>
 							</tr>
 							<tr class="trsubc" height="19">
-								<td colspan="2" height="19" width="126" style="width:18%;"> 2 lanes </td>
-								<td colspan="2" height="19" width="198" style="width:18%;"> Multi-lanes </td>
-								<td colspan="2" height="19" width="296" style="width:18%;"> 2 lanes </td>
-								<td colspan="2" height="19" width="126" style="width:18%;"> Multi-lanes </td>
+								<td colspan="2" height="19" width="126" style="width:10%;"> 2 lanes </td>
+								<td colspan="2" height="19" width="198" style="width:10%;"> Multi-lanes </td>
+								<td colspan="2" height="19" width="296" style="width:10%;"> 2 lanes </td>
+								<td colspan="2" height="19" width="126" style="width:10%;"> Multi-lanes </td>
 							</tr>
 						</tbody>
 					</table>
@@ -204,16 +212,16 @@ $(document).ready(function() {
 						<table class="table table-bordered">
 							<tbody>
 								<tr height="19" ng-repeat="dlRbdTbridges in dlRoadBrdgs.transport_land.Table_4.DlRbdTbridges" ng-if="dlRbdTbridges.type_bridges != 'Total'">
-									<td class="tdpa" height="19" width="156" ng-bind="dlRbdTbridges.type_bridges" style="width:16.3%;"> </td>
-									<td colspan="2" height="19" width="126" style="width:18%;">
+									<td class="tdpa" height="19" width="156" ng-bind="dlRbdTbridges.type_bridges" style="width:25%;"> </td>
+									<td colspan="2" height="19" width="126" style="width:10%;">
 										<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="dlRbdTbridges.tot_dest_2_lanes"> </td>
-									<td style="width:18%;" colspan="2" height="19" width="198">
+									<td style="width:10%;" colspan="2" height="19" width="198">
 										<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="dlRbdTbridges.tot_dest_multi_lanes"> </td>
-									<td colspan="2" height="19" width="296" style="width:18%;">
+									<td colspan="2" height="19" width="296" style="width:10%;">
 										<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="dlRbdTbridges.part_dest_2_lanes"> </td>
-									<td colspan="2" height="19" width="126" style="width:18%;">
+									<td colspan="2" height="19" width="126" style="width:10%;">
 										<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="dlRbdTbridges.part_dest_multi_lanes"> </td>
-									<td class="right" height="19" width="63" ng-model="dlRbdTbridges.damages" ng-bind="dlRbdTbridges.damages =
+									<td class="right" height="19" width="63" style="width:10%;" ng-model="dlRbdTbridges.damages" ng-bind="dlRbdTbridges.damages =
                                           dlRbdTbridges.tot_dest_2_lanes * bs_data['BsRbuTbridges'][$index].fields.avg_replace_2_lanes +
                                           dlRbdTbridges.tot_dest_multi_lanes * bs_data['BsRbuTbridges'][$index].fields.avg_replace_multi_lanes +
                                           dlRbdTbridges.part_dest_2_lanes * bs_data['BsRbuTbridges'][$index].fields.avg_repair_2_lanes +

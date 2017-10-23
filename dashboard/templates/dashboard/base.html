@@ -434,7 +434,19 @@ td[comma-value] input{
 }
 .card-inverse {height:130px;}
 .btnright {float:right;}
+
+table{
+   table-layout:auto!important;
+   width: 100%;
+    
+}
+
+
 </style>
+
+
+
+
 <script>
 $(document).ready(function(){
 $.fn.digits = function(){ 
@@ -443,7 +455,10 @@ $.fn.digits = function(){
     })
 }
 
-
+var num = $("table#first tr:first-child > td").length;
+    var width = (100 / num) + "%";
+    
+    $("td").css("width", width);
 
 });
 </script>
@@ -971,7 +986,8 @@ $("body").bind("DOMNodeInserted", function() {
    // $(this).parent().addClass('btnright');
 //}
 $("button span.fa-search").parent().addClass('btnright');
-$(":contains('Cancel Search')").closest('button').addClass("btnright");
+$("button span.fa-times").parent().addClass('btnright');
+//$(":contains('Cancel Search')").closest('button').addClass("btnright");
 });
 
 

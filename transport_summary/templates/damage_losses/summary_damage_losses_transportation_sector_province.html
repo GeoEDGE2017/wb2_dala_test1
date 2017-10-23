@@ -1,6 +1,11 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
 {% load static %}
+<style type="text/css">
+td {
+   width: 20sem!important;
+}
+</style>
 <!-- Main content -->
 <main class="main" ng-app="dlSummeryTSProApp" ng-controller="DlSummeryTSProController">
     <!-- Breadcrumb -->
@@ -136,9 +141,8 @@
                             Private
                         </td>
                     </tr>
-                    </tbody>
-                </table>
-                <table class="table table-bordered" ng-if="!checkIfNull()">
+                    
+                
                     <tbody ng-repeat="(key1, value1) in dlTransSumPro.transport_land.Table_8">
                     <tr class="trhead" height="17" ng-init="getTotal(key1)">
                         <td ng-bind="key1" class="trhead" width="253" height="19">

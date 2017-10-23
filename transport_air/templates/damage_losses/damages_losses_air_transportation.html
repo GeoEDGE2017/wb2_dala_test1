@@ -7,6 +7,7 @@
    var nicesx = $("#boxscroll1").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8}); 
   });
 </script>
+
 <!-- Main content -->
 <main class="main" ng-app="dlAirTrnspotationApp" ng-controller="DlAirTrnspotationController">
     <!-- Breadcrumb -->
@@ -42,13 +43,7 @@
         </ul>
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
-            <td style="width:100px;"> <span ng-if="!check_search">
-									<button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
-									</span> <span ng-if="check_search">
-									<button ng-click="searchDlData(form_dl_air_trnspotation)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
-									</span>
-									<button ng-click="clear()" ng-if="is_search" class="btn  btn-warning">Cancel Search</button>
-								</td>
+           
                 <table class="table table-bordered">
                     <colgroup>
                         <col width="218"/>
@@ -83,7 +78,7 @@
                             <td class="trhead1" width="218" height="19">
                                 Incident:
                             </td>
-                            <td colspan="3" width="567" height="19">
+                            <td colspan="2" width="567" height="19">
                                 <select id="selectbasic" name="incident" ng-model="incident"
                                     class="form-control" ng-change="changedValue(true)" style="width:100%;font-weight:400;" required>
                                     <option value="" selected="true">Select an Incident</option>
@@ -99,14 +94,25 @@
                             <td class="trhead1" colspan="2s">
                                 Name of District:
                             </td>
-                            <td colspan="5">
+                            <td colspan="3">
                                 <select ng-options="district as district.district__name for district in districts track by district.district__id"
                                     name="district" id="ccyear" ng-model="district" ng-value="district.district__id" class="form-control" ng-change="changedValue(false)" style="font-weight:normal;" required>
                                     <option value="" selected>Select District</option>
                                 </select>
                             </td>
+                             <td style="width:100px;"> <span ng-if="!check_search">
+                                    <button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
+                                    </span> <span ng-if="check_search">
+                                    <button ng-click="searchDlData(form_dl_air_trnspotation)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
+                                    </span>
+                                    <button ng-click="clear()" ng-if="is_search" class="btn  btn-warning"><span class="fa fa-times" aria-hidden="true"></span></button>
+                                </td>
                             <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
                         </tr>
+                        </tbody>
+                        </table>
+                         <table class="table table-bordered">
+                         <tbody>
                         <tr class="trheadc1" height="19">
                             <td rowspan="2" width="218" height="38" style="width:27.8%;">
                                 Assets
@@ -454,6 +460,10 @@
                                     <br/>
                                 </td>
                             </tr>
+                            </tbody>
+                            </table>
+                             <table class="table table-bordered">
+                             <tbody>
                             <tr class="trheadc" height="19">
                                 <td width="218" height="19">
                                     Government Structures

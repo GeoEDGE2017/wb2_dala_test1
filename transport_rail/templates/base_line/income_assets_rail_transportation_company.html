@@ -9,6 +9,11 @@ $(document).ready(function() {
 	});
 });
 </script>
+<style type="text/css">
+td {
+   width: 18em!important;
+}
+</style>
 <!-- Main content -->
 <main class="main" ng-app="bsIncomeRailCompanyApp" ng-controller="BsIncomeRailCompanyController">
 	<!-- Breadcrumb -->
@@ -29,13 +34,7 @@ $(document).ready(function() {
 		</ul>
 		<div id="myTabContent" class="tab-content" ng-form name="form_income_rail_trns_company">
 			<div class="tab-pane active" id="step1">
-				<td style="width:100px;"> <span ng-if="!check_search">
-									<button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
-					</span> <span ng-if="check_search">
-									<button ng-click="searchBsData(form_income_rail_trns_company)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
-					</span>
-					<button ng-click="clear()" ng-if="is_search" class="btn  btn-warning">Cancel Search</button>
-				</td>
+				
 				<table class="table table-bordered">
 					<colgroup>
 						<col width="281" />
@@ -68,7 +67,21 @@ $(document).ready(function() {
 							</td>
 							<td style="padding-left:5px;" height="19" width="171"> Year/Month </td>
 							<td colspan="3" height="19" style="background:#EFEFEF;font-weight:normal;" width="427">
-								<input name="baselineDate" type="text" placeholder="mm/yy" ng-change="changeDis()" id="datepicker" ng-model="baselineDate" class="form-control input-md" required> </td> <span ng-bind="user_id={{user.id}}" style="display:none;"></span> </tr>
+								<input name="baselineDate" type="text" placeholder="mm/yy" ng-change="changeDis()" id="datepicker" ng-model="baselineDate" class="form-control input-md" required> </td> 
+								<td style="width:100px;"> <span ng-if="!check_search">
+									<button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
+					</span> <span ng-if="check_search">
+									<button ng-click="searchBsData(form_income_rail_trns_company)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
+					</span>
+					<button ng-click="clear()" ng-if="is_search" class="btn  btn-warning"><span class="fa fa-times" aria-hidden="true"></span></button>
+				</td>
+								<span ng-bind="user_id={{user.id}}" style="display:none;"></span> </tr>
+
+								</tbody>
+								</table>
+
+								<table class="table table-bordered">
+								<tbody>
 						<tr class="trhead1" height="20">
 							<td class="trhead1" width="281" height="20"> Name of Railroad Company </td>
 							<td class="trhead1" colspan="3" width="622">
@@ -104,6 +117,9 @@ $(document).ready(function() {
 								<input id="textinput" ng-model="bsIncomeRailCompany.transport_rail.Table_1.BsTotEmpRailCompny[0].no_of_female" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
 							<td class="right" colspan="3" width="322" ng-bind="bsIncomeRailCompany.transport_rail.Table_1.BsTotEmpRailCompny[0].total_emp" ng-value="bsIncomeRailCompany.transport_rail.Table_1.BsTotEmpRailCompny[0].total_emp = bsIncomeRailCompany.transport_rail.Table_1.BsTotEmpRailCompny[0].no_of_male + bsIncomeRailCompany.transport_rail.Table_1.BsTotEmpRailCompny[0].no_of_female"> </td>
 						</tr>
+						</tbody>
+						</table>
+						<table class="table table-bordered">
 						<tr class="trheadc1" height="20">
 							<td width="281" height="20"> Rail Transportation Assets </td>
 							<td colspan="2" width="300"> Average Replacement Cost (LKR/Unit) </td>
@@ -113,6 +129,7 @@ $(document).ready(function() {
 				</table>
 				<div id="boxscroll1" style="height:400px;overflow:auto;cursor:auto;">
 					<table class="table table-bordered">
+					<tbody>
 						<tr class="trheadc" height="20">
 							<td width="320" height="20" style="width:23.7%;"> Moving Assets </td>
 							<td colspan="2"> </td>
@@ -274,9 +291,9 @@ $(document).ready(function() {
 			<div class="tab-pane fade" id="step2">
 				<table class="table table-bordered">
 					<tr class="trheadc1" height="20">
-						<td rowspan="2" width="281" height="40"> Buildings </td>
-						<td colspan="2" rowspan="2" width="300"> Average Replacement Cost (LKR/sqm) </td>
-						<td colspan="3" width="322"> Average Repair Cost (LKR/sqm) </td>
+						<td rowspan="2" width="" height="40"> Buildings </td>
+						<td colspan="3" rowspan="2" width="300" style="width:20%;"> Average Replacement Cost (LKR/sqm) </td>
+						<td colspan="3" width=""> Average Repair Cost (LKR/sqm) </td>
 					</tr>
 					<tr class="trsubc" height="20">
 						<td width="125" height="20"> Roof </td>
@@ -285,7 +302,7 @@ $(document).ready(function() {
 					</tr>
 					<tr height="20" ng-repeat="bsBuildingAst in bsIncomeRailCompany.transport_rail.Table_1.BsBuildingAst">
 						<td class="tdpa" width="281" height="20" ng-bind="bsBuildingAst.asset"> </td>
-						<td colspan="2">
+						<td colspan="3">
 							<input ng-model="bsBuildingAst.avg_replace_cost" id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
 						<td width="125">
 							<input ng-model="bsBuildingAst.avg_repair_cost_roof" id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>

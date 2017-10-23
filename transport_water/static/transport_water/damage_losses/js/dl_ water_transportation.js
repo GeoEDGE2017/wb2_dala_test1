@@ -487,66 +487,126 @@ app.controller("DlWaterTransController", function($scope, $http, $parse, _) {
 		return finaltotal;
 	}
 
+	$scope.sumFunc2 = function(val1=0, val2=0) {
+        if(val1 == null) {
+            val1=0;
+        }
+        if(val2 == null) {
+            val2=0;
+        }
+        return parseInt(val1) + parseInt(val2);
+    }
+
 	$scope.calGrandTotalPub = function() {
-		var finaltotal1 = 0;
-		var finaltotal2 = 0;
-		var finaltotal3 = 0;
-		var finaltotal4 = 0;
-		var finaltotal5 = 0;
-		var grantot = 0;
-		var array1 = $scope.dlWaterTransportation.transport_water.Table_2.DlWaterDmgWcrafts;
-		var array2 = $scope.dlWaterTransportation.transport_water.Table_2.DlWaterDmgEquipment;
-		var array3 = $scope.dlWaterTransportation.transport_water.Table_2.DlWaterDmgMaterials;
-		var array4 = $scope.dlWaterTransportation.transport_water.Table_2.DlWaterDmgStructures;
-		var array5 = $scope.dlWaterTransportation.transport_water.Table_2.DlWaterDmgBuildings;
-		angular.forEach(array1, function(value, key) {
-			finaltotal1 = finaltotal1 + value.tot_dmg_public;
-		})
-		angular.forEach(array2, function(value, key) {
-			finaltotal2 = finaltotal2 + value.tot_dmg_public;
-		})
-		angular.forEach(array3, function(value, key) {
-			finaltotal3 = finaltotal3 + value.tot_dmg_public;
-		})
-		angular.forEach(array4, function(value, key) {
-			finaltotal4 = finaltotal4 + value.tot_damages;
-		})
-		angular.forEach(array5, function(value, key) {
-			finaltotal5 = finaltotal5 + value.tot_damages;
-		})
-		grantot = finaltotal1 + finaltotal2 + finaltotal3 + finaltotal5;
-		return grantot;
+//		var finaltotal1 = 0;
+//		var finaltotal2 = 0;
+//		var finaltotal3 = 0;
+//		var finaltotal4 = 0;
+//		var finaltotal5 = 0;
+//		var grantot = 0;
+//		var array1 = $scope.dlWaterTransportation.transport_water.Table_2.DlWaterDmgWcrafts;
+//		var array2 = $scope.dlWaterTransportation.transport_water.Table_2.DlWaterDmgEquipment;
+//		var array3 = $scope.dlWaterTransportation.transport_water.Table_2.DlWaterDmgMaterials;
+//		var array4 = $scope.dlWaterTransportation.transport_water.Table_2.DlWaterDmgStructures;
+//		var array5 = $scope.dlWaterTransportation.transport_water.Table_2.DlWaterDmgBuildings;
+//		angular.forEach(array1, function(value, key) {
+//			finaltotal1 = finaltotal1 + value.tot_dmg_public;
+//		})
+//		angular.forEach(array2, function(value, key) {
+//			finaltotal2 = finaltotal2 + value.tot_dmg_public;
+//		})
+//		angular.forEach(array3, function(value, key) {
+//			finaltotal3 = finaltotal3 + value.tot_dmg_public;
+//		})
+//		angular.forEach(array4, function(value, key) {
+//			finaltotal4 = finaltotal4 + value.tot_damages;
+//		})
+//		angular.forEach(array5, function(value, key) {
+//			finaltotal5 = finaltotal5 + value.tot_damages;
+//		})
+//		grantot = finaltotal1 + finaltotal2 + finaltotal3 + finaltotal5;
+
+//        var grantot =
+//        $scope.calculateTotal($parent.dlWaterTransportation.transport_water.Table_2.DlWaterDmgWcrafts,'tot_dmg_public') +
+//        $scope.calculateTotal($parent.dlWaterTransportation.transport_water.Table_2.DlWaterDmgEquipment,'tot_dmg_public') +
+//        $scope.calculateTotal($parent.dlWaterTransportation.transport_water.Table_2.DlWaterDmgMaterials,'tot_dmg_public') +
+//        $scope.calculateTotal($parent.dlWaterTransportation.transport_water.Table_2.DlWaterDmgStructures,'tot_damages') +
+//        $scope.calculateTotal($parent.dlWaterTransportation.transport_water.Table_2.DlWaterDmgBuildings,'tot_damages')
+
+        console.log('calGrandTotalPub');
+        var tot_dmg_public = 0;
+        if(!angular.isUndefined($scope.dlWaterTransportation)) {
+
+            angular.forEach($scope.dlWaterTransportation.transport_water.Table_2, function(value, key, index) {
+                console.log(key);
+                if(key == 'DlWaterDmgWcrafts' || key == 'DlWaterDmgEquipment' || key == 'DlWaterDmgMaterials') {
+                    angular.forEach(value, function(value_in, key_in) {
+                        if(value_in.assets == 'Total') {
+                            console.log(value_in);
+                            tot_dmg_public = tot_dmg_public + $scope.sumFunc2(value_in.tot_dmg_public, 0);
+                        }
+                    })
+                }
+                else if(key == 'DlWaterDmgBuildings' || key == 'DlWaterDmgStructures') {
+                    angular.forEach(value, function(value_in, key_in) {
+                        if(value_in.assets == 'Total') {
+                            console.log(value_in);
+                            tot_dmg_public = tot_dmg_public + $scope.sumFunc2(value_in.tot_damages, 0);
+                        }
+                    })
+                }
+            })
+        }
+
+		return tot_dmg_public;
 	}
 
 	$scope.calGrandTotalPvt = function() {
-		var finaltotal1 = 0;
-		var finaltotal2 = 0;
-		var finaltotal3 = 0;
-		var grantot = 0;
-		var array1 = $scope.dlWaterTransportation.transport_water.Table_2.DlWaterDmgWcrafts;
-		var array2 = $scope.dlWaterTransportation.transport_water.Table_2.DlWaterDmgEquipment;
-		var array3 = $scope.dlWaterTransportation.transport_water.Table_2.DlWaterDmgMaterials;
-		angular.forEach(array1, function(value, key) {
-			finaltotal1 = finaltotal1 + value.tot_dmg_private;
-		})
-		angular.forEach(array2, function(value, key) {
-			finaltotal2 = finaltotal2 + value.tot_dmg_private;
-		})
-		angular.forEach(array3, function(value, key) {
-			finaltotal3 = finaltotal3 + value.tot_dmg_private;
-		})
-		grantot = finaltotal1 + finaltotal2 + finaltotal3;
-		return grantot;
+//		var finaltotal1 = 0;
+//		var finaltotal2 = 0;
+//		var finaltotal3 = 0;
+//		var grantot = 0;
+//		var array1 = $scope.dlWaterTransportation.transport_water.Table_2.DlWaterDmgWcrafts;
+//		var array2 = $scope.dlWaterTransportation.transport_water.Table_2.DlWaterDmgEquipment;
+//		var array3 = $scope.dlWaterTransportation.transport_water.Table_2.DlWaterDmgMaterials;
+//		angular.forEach(array1, function(value, key) {
+//			finaltotal1 = finaltotal1 + value.tot_dmg_private;
+//		})
+//		angular.forEach(array2, function(value, key) {
+//			finaltotal2 = finaltotal2 + value.tot_dmg_private;
+//		})
+//		angular.forEach(array3, function(value, key) {
+//			finaltotal3 = finaltotal3 + value.tot_dmg_private;
+//		})
+//		grantot = finaltotal1 + finaltotal2 + finaltotal3;
+//		return grantot;
+
+        console.log('calGrandTotalPvt');
+        var tot_dmg_private = 0;
+        if(!angular.isUndefined($scope.dlWaterTransportation)) {
+
+            angular.forEach($scope.dlWaterTransportation.transport_water.Table_2, function(value, key, index) {
+                console.log(key);
+                if(key == 'DlWaterDmgWcrafts' || key == 'DlWaterDmgEquipment' || key == 'DlWaterDmgMaterials') {
+                    angular.forEach(value, function(value_in, key_in) {
+                        if(value_in.assets == 'Total') {
+                            console.log(value_in);
+                            tot_dmg_private = tot_dmg_private + $scope.sumFunc2(value_in.tot_dmg_private, 0);
+                        }
+                    })
+                }
+            })
+        }
+
+		return tot_dmg_private;
 	}
 
 	$scope.getTotal = function(model, property) {
         var array = $scope.dlWaterTransportation.transport_water.Table_2[model];
-        console.log(array);
         var cumulative = null;
         var sums = _.map(array, function(obj) {
             if(obj.type_los != 'Total') {
                 cumulative += obj[property];
-                console.log(obj);
                 return cumulative;
             }
         });
@@ -585,8 +645,6 @@ app.controller("DlWaterTransController", function($scope, $http, $parse, _) {
         document.getElementById("clearbtn").disabled = true;
         document.getElementById("editbtn").disabled = true;
         document.getElementById("subbtn").disabled = true;
-        console.log("test", $scope.district);
-        console.log("test", $scope.bs_date);
         $scope.is_search = true;
         if(form.$valid) {
             $http({
@@ -625,7 +683,6 @@ app.controller("DlWaterTransController", function($scope, $http, $parse, _) {
 				finaltotal2 += value[property];
 			}
 		})
-		console.log('value', finaltotal1, finaltotal2)
 		grantot = finaltotal1 + finaltotal2;
 		return grantot;
 	}

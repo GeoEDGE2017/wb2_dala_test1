@@ -123,21 +123,21 @@ app.controller("DlSummeryTWProController", ['$scope','$http',function ($scope,$h
         }
     }
 
- $scope.totDmgPrivate = function() {
+    $scope.totDmgPrivate = function() {
         if(!angular.isUndefined($scope.dlWaterTransSumPro)) {
             var totDmg = 0;
             angular.forEach($scope.dlWaterTransSumPro.transport_water.Table_4, function(value, index) {
-            angular.forEach(value, function(value_in, key) {
+                angular.forEach(value, function(value_in, key) {
                     if(key == 'DlWaterDmgPvtProvince') {
                           totDmg = totDmg + value_in[0].tot_dmg_private;
                     }
-                    })
                 })
+            })
             return totDmg;
         }
     }
 
- $scope.totLosY1Public = function() {
+    $scope.totLosY1Public = function() {
         if(!angular.isUndefined($scope.dlWaterTransSumPro)) {
             var totLos = 0;
             angular.forEach($scope.dlWaterTransSumPro.transport_water.Table_4, function(value, index) {
@@ -165,35 +165,38 @@ app.controller("DlSummeryTWProController", ['$scope','$http',function ($scope,$h
         }
     }
 
- $scope.totLosY2Public = function() {
+    $scope.totLosY2Public = function() {
         if(!angular.isUndefined($scope.dlWaterTransSumPro)) {
             var totLos = 0;
             angular.forEach($scope.dlWaterTransSumPro.transport_water.Table_4, function(value, index) {
-            angular.forEach(value, function(value_in, key) {
+                angular.forEach(value, function(value_in, key) {
                     if(key == 'DlWaterLosProvince') {
                           totLos = totLos + value_in[0].year_2_pub;
                     }
-                    })
                 })
+            })
             return totLos;
         }
     }
 
- $scope.totLosY2Private = function() {
+    $scope.totLosY2Private = function() {
         if(!angular.isUndefined($scope.dlWaterTransSumPro)) {
             var totLos = 0;
             angular.forEach($scope.dlWaterTransSumPro.transport_water.Table_4, function(value, index) {
-            angular.forEach(value, function(value_in, key) {
+                angular.forEach(value, function(value_in, key) {
                     if(key == 'DlWaterLosProvince') {
                           totLos = totLos + value_in[0].year_2_pvt;
                     }
-                    })
                 })
+            })
             return totLos;
         }
     }
 
-
-
-
+    $scope.test = function() {
+        console.log('test');
+        console.log('totDmgPrivate ', $scope.totDmgPrivate());
+        console.log('totLosY2Private ', $scope.totLosY2Private());
+        console.log('totLosY2Private ', $scope.totLosY2Private());
+    }
  }])

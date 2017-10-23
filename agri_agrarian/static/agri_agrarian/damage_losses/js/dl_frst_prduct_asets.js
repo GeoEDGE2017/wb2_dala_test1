@@ -642,32 +642,31 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
     }
 
     //Edit Data
-    $scope.dlDataEdit = function(form){
-       $scope.is_edit = true;
-       $scope.submitted = true;
-       document.getElementById("clearbtn").disabled = true;
+    $scope.dlDataEdit = function(form) {
+        $scope.is_edit = true;
+        $scope.submitted = true;
+        document.getElementById("clearbtn").disabled = true;
         if(form.$valid){
             $http({
-            method: "POST",
-            url: '/dl_fetch_edit_data',
-            data: angular.toJson({
-            'table_name':  'Table_4',
-            'sector':'agri_agrarian',
-            'com_data': {
-                   'district':  $scope.district.district__id,
-                    'incident': $scope.incident,
-                  },
+                method: "POST",
+                url: '/dl_fetch_edit_data',
+                data: angular.toJson({
+                    'table_name': 'Table_4',
+                    'sector': 'agri_agrarian',
+                    'com_data': {
+                        'district': $scope.district.district__id,
+                        'incident': $scope.incident,
+                    },
                    'is_edit':$scope.is_edit
-                   }),
+               }),
             }).success(function(data) {
-
-            $scope.dlFrstPrductAsets = data;
+                $scope.dlFrstPrductAsets = data;
             })
         }
-}
+    }
 
     //Search Data
-    $scope.searchDlData = function(form){
+    $scope.searchDlData = function(form) {
         document.getElementById("clearbtn").disabled = true;
 		document.getElementById("editbtn").disabled = true;
 		document.getElementById("subbtn").disabled = true;
@@ -676,23 +675,23 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
 		$scope.is_search = true;
         if(form.$valid){
             $http({
-            method: "POST",
-            url: '/dl_fetch_edit_data',
-            data: angular.toJson({
-            'table_name':  'Table_4',
-            'sector':'agri_agrarian',
-            'com_data': {
-                   'district':  $scope.district.district__id,
-                    'incident': $scope.incident,
-                  },
-                   'is_edit':$scope.is_edit
-                   }),
+                method: "POST",
+                url: '/dl_fetch_edit_data',
+                data: angular.toJson({
+                    'table_name': 'Table_4',
+                    'sector': 'agri_agrarian',
+                    'com_data': {
+                        'district': $scope.district.district__id,
+                        'incident': $scope.incident,
+                    },
+                    'is_edit': $scope.is_edit
+                }),
             }).success(function(data) {
-
-            $scope.dlFrstPrductAsets = data;
+                $scope.dlFrstPrductAsets = data;
+                console.log("searchDlData ", $scope.dlFrstPrductAsets);
             })
         }
-}
+    }
 
     //Cancel Edit
     $scope.cancelEdit = function() {
@@ -702,23 +701,23 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
     }
 
     //Calculate Public Total
-    $scope.calPubTotal=function(arr) {
-    var finaltotal = 0;
-    angular.forEach(arr, function(value, key) {
-    if(value.assets !="Total"){
-         finaltotal = finaltotal + value.dmg_pub ;
-         }
-    })
-    return finaltotal;
+    $scope.calPubTotal = function(arr) {
+        var finaltotal = 0;
+        angular.forEach(arr, function(value, key) {
+            if(value.assets != "Total") {
+                finaltotal = finaltotal + $scope.convertToInt(value.dmg_pub);
+            }
+        })
+        return finaltotal;
     }
 
     //Calculate Private Total
     $scope.calPvtTotal = function(arr) {
         var finaltotal = 0;
         angular.forEach(arr, function(value, key) {
-        if(value.assets !="Total"){
-             finaltotal = finaltotal + value.dmg_pvt ;
-             }
+            if(value.assets != "Total") {
+                finaltotal = finaltotal + $scope.convertToInt(value.dmg_pvt);
+            }
         })
         return finaltotal;
     }
@@ -737,75 +736,84 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
         var finaltotal10 = 0;
         var grantot = 0;
 
-        var array1=$scope.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfFarmEquipment;
-        var array2 =$scope.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfSeasonalCrops;
-        var array3 =$scope.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfPlantnCrops;
-        var array4 =$scope.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfExportCrops;
-        var array5 =$scope.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfForestry;
-        var array6 =$scope.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfOther;
-        var array7 =$scope.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfStocks;
-        var array8 =$scope.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfRePlantnCrops;
-        var array9 =$scope.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfReExportCrops;
-        var array10 =$scope.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfReForestry;
+        var array1 = $scope.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfFarmEquipment;
+        var array2 = $scope.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfSeasonalCrops;
+        var array3 = $scope.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfPlantnCrops;
+        var array4 = $scope.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfExportCrops;
+        var array5 = $scope.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfForestry;
+        var array6 = $scope.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfOther;
+        var array7 = $scope.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfStocks;
+        var array8 = $scope.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfRePlantnCrops;
+        var array9 = $scope.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfReExportCrops;
+        var array10 = $scope.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfReForestry;
 
         angular.forEach(array1, function(value, key) {
-            if(value.assets !="Total"){
-            finaltotal1 = finaltotal1 + value.dmg_pub ;
+            if(value.assets !="Total") {
+                finaltotal1 = finaltotal1 + $scope.convertToInt(value.dmg_pub);
             }
         })
 
         angular.forEach(array2, function(value, key) {
-        if(value.assets !="Total"){
-            finaltotal2 = finaltotal2 + value.dmg_pub ;
+            if(value.assets !="Total"){
+                finaltotal2 = finaltotal2 + $scope.convertToInt(value.dmg_pub);
             }
         })
 
         angular.forEach(array3, function(value, key) {
-        if(value.assets !="Total"){
-            finaltotal3 = finaltotal3 + value.dmg_pub ;
+            if(value.assets !="Total"){
+                finaltotal3 = finaltotal3 + $scope.convertToInt(value.dmg_pub);
             }
         })
 
         angular.forEach(array4, function(value, key) {
-        if(value.assets !="Total"){
-         finaltotal4 = finaltotal4 + value.dmg_pub ;
-         }
+            if(value.assets != "Total") {
+                finaltotal4 = finaltotal4 + $scope.convertToInt(value.dmg_pub);
+            }
         })
+
         angular.forEach(array5, function(value, key) {
-        if(value.assets !="Total"){
-         finaltotal5 = finaltotal5 + value.dmg_pub ;
-         }
+            if(value.assets != "Total") {
+                finaltotal5 = finaltotal5 + $scope.convertToInt(value.dmg_pub);
+            }
         })
+
         angular.forEach(array6, function(value, key) {
-        if(value.assets !="Total"){
-         finaltotal6 = finaltotal6 + value.dmg_pub ;
-         }
+            if(value.assets != "Total") {
+                finaltotal6 = finaltotal6 + $scope.convertToInt(value.dmg_pub);
+            }
         })
+
         angular.forEach(array7, function(value, key) {
-        if(value.assets !="Total"){
-         finaltotal7 = finaltotal7 + value.dmg_pub ;
-         }
+            if(value.assets != "Total") {
+                finaltotal7 = finaltotal7 + $scope.convertToInt(value.dmg_pub);
+            }
         })
+
         angular.forEach(array8, function(value, key) {
-        if(value.assets !="Total"){
-         finaltotal8 = finaltotal8 + value.dmg_pub ;
-         }
+            if(value.assets != "Total") {
+                finaltotal8 = finaltotal8 + $scope.convertToInt(value.dmg_pub);
+            }
         })
+
         angular.forEach(array9, function(value, key) {
-        if(value.assets !="Total"){
-         finaltotal9 = finaltotal9 + value.dmg_pub ;
-         }
+            if(value.assets != "Total") {
+                finaltotal9 = finaltotal9 + $scope.convertToInt(value.dmg_pub);
+            }
         })
+
         angular.forEach(array10, function(value, key) {
-        if(value.assets !="Total"){
-         finaltotal10 = finaltotal10 + value.dmg_pub ;
-         }
+            if(value.assets != "Total") {
+                finaltotal10 = finaltotal10 + value.dmg_pub ;
+            }
         })
-        grantot = grantot +finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4 + finaltotal5+ finaltotal6 + finaltotal7 + finaltotal8 + finaltotal9 + finaltotal10;
+
+        grantot = grantot +finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4 + finaltotal5+
+            finaltotal6 + finaltotal7 + finaltotal8 + finaltotal9 + finaltotal10;
+
         return grantot;
     }
 
-//Calculate Grand Private Total
+    //Calculate Grand Private Total
     $scope.calGrandPvtTotal = function() {
         var finaltotal1 = 0;
         var finaltotal2 = 0;
@@ -831,56 +839,68 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
         var array10 =$scope.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfReForestry;
 
         angular.forEach(array1, function(value, key) {
-        if(value.assets !="Total"){
-         finaltotal1 = finaltotal1 + value.dmg_pvt ;
-         }
+            if(value.assets != "Total"){
+                finaltotal1 = finaltotal1 + value.dmg_pvt ;
+            }
         })
+
         angular.forEach(array2, function(value, key) {
-        if(value.assets !="Total"){
-         finaltotal2 = finaltotal2 + value.dmg_pvt ;
-         }
+            if(value.assets != "Total"){
+                finaltotal2 = finaltotal2 + value.dmg_pvt ;
+            }
         })
+
         angular.forEach(array3, function(value, key) {
-        if(value.assets !="Total"){
-         finaltotal3 = finaltotal3 + value.dmg_pvt ;
-         }
+            if(value.assets != "Total"){
+                finaltotal3 = finaltotal3 + value.dmg_pvt ;
+            }
         })
+
         angular.forEach(array4, function(value, key) {
-        if(value.assets !="Total"){
-         finaltotal4 = finaltotal4 + value.dmg_pvt ;
-         }
+            if(value.assets != "Total"){
+                finaltotal4 = finaltotal4 + value.dmg_pvt ;
+            }
         })
+
         angular.forEach(array5, function(value, key) {
-        if(value.assets !="Total"){
-         finaltotal5 = finaltotal5 + value.dmg_pvt ;
-         }
+            if(value.assets !="Total"){
+                finaltotal5 = finaltotal5 + value.dmg_pvt ;
+            }
         })
+
         angular.forEach(array6, function(value, key) {
-        if(value.assets !="Total"){
-         finaltotal6 = finaltotal6 + value.dmg_pvt ;
-         }
+            if(value.assets != "Total"){
+                finaltotal6 = finaltotal6 + value.dmg_pvt ;
+            }
         })
+
         angular.forEach(array7, function(value, key) {
-        if(value.assets !="Total"){
-         finaltotal7 = finaltotal7 + value.dmg_pvt ;
-         }
+            if(value.assets != "Total"){
+                finaltotal7 = finaltotal7 + value.dmg_pvt ;
+            }
         })
+
         angular.forEach(array8, function(value, key) {
-        if(value.assets !="Total"){
-         finaltotal8 = finaltotal8 + value.dmg_pvt ;
-         }
+            if(value.assets != "Total"){
+                finaltotal8 = finaltotal8 + value.dmg_pvt ;
+            }
         })
+
         angular.forEach(array9, function(value, key) {
-        if(value.assets !="Total"){
-         finaltotal9 = finaltotal9 + value.dmg_pvt ;
-         }
+            if(value.assets != "Total"){
+                finaltotal9 = finaltotal9 + value.dmg_pvt ;
+            }
         })
+
         angular.forEach(array10, function(value, key) {
-        if(value.assets !="Total"){
-         finaltotal10 = finaltotal10 + value.dmg_pvt ;
-         }
+            if(value.assets != "Total"){
+                finaltotal10 = finaltotal10 + value.dmg_pvt ;
+            }
         })
-        grantot = grantot  + finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4 + finaltotal5+ finaltotal6 + finaltotal7 + finaltotal8 + finaltotal9  + finaltotal10;
+
+        grantot = grantot  + finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4 +
+            finaltotal5+ finaltotal6 + finaltotal7 + finaltotal8 + finaltotal9  + finaltotal10;
+
         return grantot;
     }
 
@@ -890,5 +910,15 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
         $scope.is_edit = false;
         $scope.dlFrstPrductAsets = angular.copy(init_data);
         location.reload();
+    }
+
+    $scope.convertToInt = function(val) {
+        var total = 0;
+        if(val == null) {
+            val=0;
+        }
+
+        total = parseInt(val);
+        return total;
     }
 }]);

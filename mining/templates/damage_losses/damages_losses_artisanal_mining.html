@@ -13,26 +13,44 @@ $(document).ready(function() {
 <main class="main" ng-app="mnDLArtisanalMinApp" ng-controller="mnDLArtisanalMinController">
 	<!-- Breadcrumb -->
 	<ol class="breadcrumb">
-		<li class="breadcrumb-item"> <a href="{% url 'dashboard:index' %}">Dashboard</a> </li>
-		<li class="breadcrumb-item"> <a href="{% url 'dashboard:mining_main' %}">Mining Sector</a> </li>
-		<li class="breadcrumb-item active"> <span class="label label-success" style="font-size:14px;">
+		<li class="breadcrumb-item">
+			<a href="{% url 'dashboard:index' %}">Dashboard</a>
+		</li>
+		<li class="breadcrumb-item">
+			<a href="{% url 'dashboard:mining_main' %}">Mining Sector</a>
+		</li>
+		<li class="breadcrumb-item active">
+			<span class="label label-success" style="font-size:14px;">
                 Table 4: Damages and Losses in Artisanal Mining
-            </span> </li> <span style="margin-left:15px;color:#000;" ng-bind="currentBaselineDate"></span>
+            </span>
+		</li>
+		<span style="margin-left:15px;color:#000;" ng-bind="currentBaselineDate"></span>
 		<li style="float:right;">
-			<a href="{% static 'dashboard/doc/Mining.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document"></a>
+			<a href="{% static 'dashboard/doc/Mining.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info"
+			   data-toggle="tooltip" title="Veiw Document"></a>
 		</li>
 	</ol>
 	<div class="container-fluid">
 		<ul class='nav nav-wizard'>
-			<li id="li1" class="active"> <a href='#step1' data-toggle="tab">1 - Damages</a> </li>
-			<li id="li2"> <a href='#step2' data-toggle="tab">2 - Losses</a> </li>
+			<li id="li1" class="active">
+				<a href='#step1' data-toggle="tab">1 - Damages</a>
+			</li>
+			<li id="li2">
+				<a href='#step2' data-toggle="tab">2 - Losses</a>
+			</li>
 		</ul>
 		<div id="myTabContent" class="tab-content" ng-form name="form_mining_artisanal_dl">
 			<div class="tab-pane active" id="step1">
-				<td style="width:100px;"> <span ng-if="!check_search">
-									<button ng-if="!is_search" class="btn  btn-info" disabled><span class="fa fa-search"></span></button>
-					</span> <span ng-if="check_search">
-									<button ng-click="searchDlData(form_mining_artisanal_dl)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
+				<td style="width:100px;">
+					<span ng-if="!check_search">
+						<button ng-if="!is_search" class="btn  btn-info" disabled>
+							<span class="fa fa-search"></span>
+						</button>
+					</span>
+					<span ng-if="check_search">
+						<button ng-click="searchDlData(form_mining_artisanal_dl)" ng-if="!is_search" class="btn btn-info">
+							<span class="fa fa-search"></span>
+						</button>
 					</span>
 					<button ng-click="clear()" ng-if="is_search" class="btn  btn-warning">Cancel Search</button>
 				</td>
@@ -43,14 +61,18 @@ $(document).ready(function() {
 						<col width="120" /> </colgroup>
 					<tbody>
 						<tr style="background:#fff;border:1px solid #fff;text-align:center;">
-							<td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;"> </td>
-							<td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;"> <span class="arrow_box" ng-show="submitted && form_mining_artisanal_dl.incident.$error.required">
-                                Please Select Incident
-                            </span> </td>
-							<td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;"> </td>
-							<td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;"> <span class="arrow_box" ng-show="submitted && form_mining_artisanal_dl.district.$error.required">
-                                Please Select District
-                            </span> </td>
+							<td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;"></td>
+							<td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+								<span class="arrow_box" ng-show="submitted && form_mining_artisanal_dl.incident.$error.required">
+                                	Please Select Incident
+                            	</span>
+							</td>
+							<td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;"></td>
+							<td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+								<span class="arrow_box" ng-show="submitted && form_mining_artisanal_dl.district.$error.required">
+                                	Please Select District
+                            	</span>
+							</td>
 						</tr>
 						<tr class="trhead1">
 							<td colspan="2" style="padding-left:5px;"> Incident </td>
@@ -175,9 +197,10 @@ $(document).ready(function() {
 								<td colspan="2" width="238"> </td>
 								<td colspan="2" width="239"> </td>
 							</tr>
-							<tr ng-repeat="dlaDmgStocks in mnDLArtisanalMin.mining.Table_4.DlaDmgStocks" height="20" ng-if="dlaDmgStocks.assets !='Total' && dlaDmgStocks.assets !='GRAND TOTAL'">
+							<tr ng-repeat="dlaDmgStocks in mnDLArtisanalMin.mining.Table_4.DlaDmgStocks" height="20" ng-if="dlaDmgStocks.assets != 'Total' && dlaDmgStocks.assets != 'GRAND TOTAL'">
 								<!-- Fixed rows -->
-								<td ng-bind="dlaDmgStocks.assets" height="20" width="264" class="tdpa"></td>
+								<td ng-bind="dlaDmgStocks.assets" height="20" width="264" class="tdpa">
+								</td>
 								<td colspan="2" width="98">
 									<input ng-model="dlaDmgStocks.rep_tot_dassets" ng-change="getTotal('DlaDmgStocks','rep_tot_dassets');getColumnTotal('DlaDmgStocks','rep_tot_dassets');" id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
 								<!--<td colspan="2" width="98">-->
@@ -192,26 +215,36 @@ $(document).ready(function() {
 							</tr>
 							<tr ng-repeat="dlaDmgStocks in mnDLArtisanalMin.mining.Table_4.DlaDmgStocks" ng-if="dlaDmgStocks.assets=='Total'" height="20">
 								<!-- Fixed rows -->
-								<td ng-bind="dlaDmgStocks.assets" height="20" width="264" class="boldash"> </td>
-								<td class="right" width="98" colspan="2" ng-model="dlaDmgStocks.rep_tot_dassets " ng-bind="dlaDmgStocks.rep_tot_dassets = totalFunc('DlaDmgStocks','rep_tot_dassets')"></td>
-								<td class="right" width="98" colspan="2" class="tdpa"> </td>
-								<td class="right" width="98" colspan="2" ng-moddel="dlaDmgStocks.tot_damages" ng-bind="dlaDmgStocks.tot_damages = totalFunc('DlaDmgStocks','tot_damages')"> </td>
+								<td ng-bind="dlaDmgStocks.assets" height="20" width="264" class="tdpa"></td>
+								<td class="right" width="98" colspan="2" ng-model="dlaDmgStocks.rep_tot_dassets"
+									ng-bind="dlaDmgStocks.rep_tot_dassets = totalFunc('DlaDmgStocks','rep_tot_dassets')"></td>
+								<td width="98" colspan="2" class="tdpa">
+								</td>
+								<td class="right" width="98" colspan="2" ng-moddel="dlaDmgStocks.tot_damages"
+									ng-bind="dlaDmgStocks.tot_damages = totalFunc('DlaDmgStocks','tot_damages')">
+								</td>
 							</tr>
 							<tr height="20">
+								<td height="20" width="264" class="tdpa">
+									GRAND TOTAL
+								</td>
 								<td class="right" width="98" colspan="2" ng-bind="totalFunc('DlaDmgStructures','rep_tot_dassets')  +
-                                totalFunc('DlaDmgEquipment','rep_tot_dassets') +
-                                totalFunc('DlaDmgMachinery','rep_tot_dassets') +
-                                totalFunc('DlaDmgVehicles','rep_tot_dassets') +
-                                totalFunc('DlaDmgStocks','rep_tot_dassets')">
-									<td class="right" width="98" colspan="2" ng-bind="totalFunc('DlaDmgStructures','repair_pdmg_assets')  +
-                                totalFunc('DlaDmgEquipment','repair_pdmg_assets') +
-                                totalFunc('DlaDmgMachinery','repair_pdmg_assets') +
-                                totalFunc('DlaDmgVehicles','repair_pdmg_assets')">
-										<td class="right" width="98" colspan="2" ng-bind="totalFunc('DlaDmgStructures','tot_damages')  +
-                                totalFunc('DlaDmgEquipment','tot_damages') +
-                                totalFunc('DlaDmgMachinery','tot_damages') +
-                                totalFunc('DlaDmgVehicles','tot_damages') +
-                                totalFunc('DlaDmgStocks','tot_damages')"> </td>
+									totalFunc('DlaDmgEquipment','rep_tot_dassets') +
+									totalFunc('DlaDmgMachinery','rep_tot_dassets') +
+									totalFunc('DlaDmgVehicles','rep_tot_dassets') +
+									totalFunc('DlaDmgStocks','rep_tot_dassets')">
+								</td>
+								<td class="right" width="98" colspan="2" ng-bind="totalFunc('DlaDmgStructures','repair_pdmg_assets')  +
+									totalFunc('DlaDmgEquipment','repair_pdmg_assets') +
+									totalFunc('DlaDmgMachinery','repair_pdmg_assets') +
+									totalFunc('DlaDmgVehicles','repair_pdmg_assets')">
+								</td>
+								<td class="right" width="98" colspan="2" ng-bind="totalFunc('DlaDmgStructures','tot_damages')  +
+									totalFunc('DlaDmgEquipment','tot_damages') +
+									totalFunc('DlaDmgMachinery','tot_damages') +
+									totalFunc('DlaDmgVehicles','tot_damages') +
+									totalFunc('DlaDmgStocks','tot_damages')">
+								</td>
 							</tr>
 						</tbody>
 					</table>

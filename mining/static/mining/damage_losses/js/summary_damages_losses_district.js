@@ -55,7 +55,8 @@ app.controller("DmLosOfMinFirmsDisController", function($scope,$http,$parse, _) 
                     'is_edit':$scope.is_edit
                 }),
             }).success(function(data) {
-                $scope.data=data;
+                $scope.data = data;
+                console.log($scope.data);
                 var arrayArti =  $scope.data.mining.Table_5.DlaDmgDistrict[0];
                 var arrayLosArti = $scope.data.mining.Table_5.DlaLosDistrict[0];
                 $scope.dPvtTot = arrayArti.tot_damages;

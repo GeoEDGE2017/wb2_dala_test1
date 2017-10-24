@@ -173,7 +173,8 @@ $(document).ready(function() {
                                 <td colspan="2" height="19" width="126"> </td>
                                 <td colspan="2" height="19" width="126"> </td>
                             </tr>
-                            <tr ng-repeat="dloDmgMachinery in dmLosOfMinFirms.mining.Table_3.DloDmgMachinery" height="20" ng-if="dloDmgMachinery.assets !='Total'">
+                            <tr ng-repeat="dloDmgMachinery in dmLosOfMinFirms.mining.Table_3.DloDmgMachinery" height="20"
+                                ng-if="dloDmgMachinery.assets !='Total'">
                                 <td ng-bind="dloDmgMachinery.assets" height="20" width="174" class="tdpa" ng-if="$index < 1"> </td>
                                 <td colspan="" width="98" ng-if="$index > 0"> {% verbatim %}
                                     <button id="delete" ng-click="removeItem('DloDmgMachinery', $index)" class="btn btn-sm btn-danger btn-circle"><i class="fa fa-minus"></i></button>
@@ -187,15 +188,17 @@ $(document).ready(function() {
                             </tr>
                             <tr height="20">
                                 <td colspan="6" class="tdpa" height="19" width="171"> Others
-                                    <button ng-click="insertFirm('DloDmgMachinery')" class="btn btn-sm btn-info btn-circle" id="insert"><span class="fa fa-plus"></span> </button>
+                                    <button ng-click="insertFirm('DloDmgMachinery')" class="btn btn-sm btn-info btn-circle" id="insert">
+                                        <span class="fa fa-plus"></span>
+                                    </button>
                                 </td>
                             </tr>
-                            <tr ng-repeat="dloDmgMachinery in dmLosOfMinFirms.mining.Table_3.DloDmgMachinery" ng-if="dloDmgMachinery.assets=='Total'" height="20">
+                            <tr ng-repeat="dloDmgMachinery in dmLosOfMinFirms.mining.Table_3.DloDmgMachinery" ng-if="dloDmgMachinery.assets == 'Total'" height="20">
                                 <!-- Fixed rows -->
-                                <td ng-bind="dloDmgMachinery.assets" height="20" width="264" class="tdpa"> </td>
-                                <td width="98" class="right" colspan="2" ng-model="dloDmgMachinery.rep_tot_dassets" ng-bind=" dloDmgMachinery.rep_tot_dassets =  totalFunc('DloDmgMachinery','rep_tot_dassets')">
-                                    <td width="98" class="right" colspan="2" ng-model="dloDmgMachinery.repair_pdmg_assets" ng-bind="dloDmgMachinery.repair_pdmg_assets = totalFunc('DloDmgMachinery','repair_pdmg_assets')">
-                                        <td width="98" class="right" colspan="2" ng-model="dloDmgMachinery.tot_damage" ng-bind="dloDmgMachinery.tot_damage = totalFunc('DloDmgMachinery','tot_damages')">
+                                <td ng-bind="dloDmgMachinery.assets" height="20" width="264" class="tdpa"></td>
+                                <td width="98" class="right" colspan="2" ng-model="dloDmgMachinery.rep_tot_dassets" ng-bind=" dloDmgMachinery.rep_tot_dassets =  totalFunc('DloDmgMachinery','rep_tot_dassets')"></td>
+                                <td width="98" class="right" colspan="2" ng-model="dloDmgMachinery.repair_pdmg_assets" ng-bind="dloDmgMachinery.repair_pdmg_assets = totalFunc('DloDmgMachinery','repair_pdmg_assets')"></td>
+                                <td width="98" class="right" colspan="2" ng-model="dloDmgMachinery.tot_damages" ng-bind="dloDmgMachinery.tot_damages = totalFunc('DloDmgMachinery','tot_damages')"></td>
                             </tr>
                             <tr class="trheadc" height="19">
                                 <td height="19" width="171"> Vehicles </td>
@@ -369,26 +372,33 @@ $(document).ready(function() {
                 <br>
                 <div class="pull-right">
                     <br>
-                    <button id="clearbtn" type="button" class="btn btn-info" ng-click="clear()">Clear</button> <span ng-if="is_edit_disable">
+                    <button id="clearbtn" type="button" class="btn btn-info" ng-click="clear()">Clear</button>
+                    <span ng-if="is_edit_disable">
                         <button id="editbtn" type="button" ng-click="dlDataEdit(form_damagelost_mining_firm)" ng-if="!is_edit"
                                 class="btn btn-success">
                             Edit
                         </button>
-                    </span> <span ng-if="!is_edit_disable">
+                    </span>
+                    <span ng-if="!is_edit_disable">
                         <button id="editbtn" type="button" ng-else="!is_edit" class="btn btn-success" disabled>
                             Edit
                         </button>
                     </span>
-                    <button id="editbtn" type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning"> Cancel Edit </button>
-                    <button id="subbtn" type="button" ng-click="saveDlData(form_damagelost_mining_firm)" class="btn btn-success"> Submit </button>
+                    <button id="editbtn" type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
+                        Cancel Edit
+                    </button>
+                    <button id="subbtn" type="button" ng-click="saveDlData(form_damagelost_mining_firm)" class="btn btn-success">
+                        Submit
+                    </button>
+                    <button id="subbtn" type="button" ng-click="test()" class="btn btn-success">
+                        Submit
+                    </button>
                 </div>
                 <br>
                 <br>
-                <br> </div>
+                <br>
+            </div>
         </div>
-    </div>
-    </div>
-    </div>
     </div>
     <!-- /.conainer-fluid -->
     <!-- update the baseline Model -->

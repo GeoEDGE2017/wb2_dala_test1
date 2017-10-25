@@ -576,20 +576,19 @@ app.controller('dlPrdctnLosController', ['$scope', '$http', function($scope, $ht
     }
 
     //Calculate Total
-    $scope.CalTot=function(arr,property) {
+    $scope.CalTot = function(arr,property) {
         var finaltotal = 0;
         angular.forEach(arr, function(value, key) {
-            if(value.seasonal_crops != 'Total' && value.plantn_crops != 'Total' && value.export_crops !='Total' &&
-            value.forestry !='Total' && value.other_products!='Total'){
-                console.log('Test',value[property]);
+            if(value.seasonal_crops != 'Total' && value.plantn_crops != 'Total' && value.export_crops != 'Total' &&
+                    value.forestry != 'Total' && value.other_products != 'Total') {
                  finaltotal = finaltotal + value[property] ;
-             }
+            }
         })
         return finaltotal;
     }
 
     //Edit Data
-   $scope.editDlData = function(form){
+    $scope.editDlData = function(form){
        $scope.is_edit = true;
        $scope.submitted = true;
         document.getElementById("clearbtn").disabled = true;
@@ -601,20 +600,20 @@ app.controller('dlPrdctnLosController', ['$scope', '$http', function($scope, $ht
                     'table_name':  'Table_7',
                     'sector':'agri_agrarian',
                     'com_data': {
-                       'district':  $scope.district.district__id,
+                        'district':  $scope.district.district__id,
                         'incident': $scope.incident,
                     },
-                     'is_edit':$scope.is_edit
+                    'is_edit':$scope.is_edit
                 }),
             }).success(function(data) {
-            console.log(data);
-            $scope.dlPrdctnLos = data;
+                console.log(data);
+                $scope.dlPrdctnLos = data;
             })
         }
     }
 
     //search Data
-   $scope.searchDlData = function(form){
+    $scope.searchDlData = function(form){
        document.getElementById("clearbtn").disabled = true;
 		document.getElementById("editbtn").disabled = true;
 		document.getElementById("subbtn").disabled = true;
@@ -642,13 +641,13 @@ app.controller('dlPrdctnLosController', ['$scope', '$http', function($scope, $ht
     }
 
     //Cancel Edit
-   $scope.cancelEdit = function(){
-     $scope.is_edit = false;
-     $scope.dlPrdctnLos = init_data;
-     location.reload();
+    $scope.cancelEdit = function(){
+        $scope.is_edit = false;
+        $scope.dlPrdctnLos = init_data;
+        location.reload();
     }
 
-    $scope.calTotal=function(property) {
+    $scope.calTotal = function(property) {
         var finaltotal1 = 0;
         var finaltotal2 = 0;
         var finaltotal3 = 0;
@@ -689,11 +688,9 @@ app.controller('dlPrdctnLosController', ['$scope', '$http', function($scope, $ht
             }
         })
 
-        grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4+ finaltotal5;
+        grantot = grantot + finaltotal1 + finaltotal2 + finaltotal3 + finaltotal4 + finaltotal5;
         return grantot;
     }
-
-
 
     //Clear Function
     $scope.clear = function() {
@@ -703,4 +700,13 @@ app.controller('dlPrdctnLosController', ['$scope', '$http', function($scope, $ht
         location.reload();
     }
 
+    $scope.convertToFloat = function(val) {
+        var total = 0;
+        if(val == null || isNaN(val)) {
+            val=0;
+        }
+
+        total = parseFloat(val);
+        return total;
+    }
 }]);

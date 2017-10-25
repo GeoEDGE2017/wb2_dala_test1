@@ -237,27 +237,27 @@
                             </td>
                             <td class="right" width="112" ng-model="pldySeasonalCrops.prod_year_1_pub"
                                 ng-bind="pldySeasonalCrops.prod_year_1_pub =
-                            pldySeasonalCrops.redctn_year_1_pub/100 * bs_data['BacfSeasonalCrops'][$index].fields.productn_pub">
+                                convertToFloat(pldySeasonalCrops.redctn_year_1_pub/100) * convertToFloat(bs_data['BacfSeasonalCrops'][$index].fields.productn_pub)">
                             </td>
                             <td class="right" width="99" ng-model="pldySeasonalCrops.prod_year_1_pvt"
                                 ng-bind="pldySeasonalCrops.prod_year_1_pvt =
-                        pldySeasonalCrops.redctn_year_1_pvt/100 * bs_data['BacfSeasonalCrops'][$index].fields.productn_pvt">
+                                convertToFloat(pldySeasonalCrops.redctn_year_1_pvt/100) * convertToFloat(bs_data['BacfSeasonalCrops'][$index].fields.productn_pvt)">
                             </td>
                             <td class="right" width="85" ng-model="pldySeasonalCrops.prod_year_2_pub"
                                 ng-bind="pldySeasonalCrops.prod_year_2_pub =
-                        pldySeasonalCrops.redctn_year_2_pub/100 * bs_data['BacfSeasonalCrops'][$index].fields.productn_pub">
+                                convertToFloat(pldySeasonalCrops.redctn_year_2_pub/100) * convertToFloat(bs_data['BacfSeasonalCrops'][$index].fields.productn_pub)">
                             </td>
                             <td class="right" width="85" ng-model="pldySeasonalCrops.prod_year_2_pvt"
                                 ng-bind="pldySeasonalCrops.prod_year_2_pvt =
-                            pldySeasonalCrops.redctn_year_2_pvt/100 * bs_data['BacfSeasonalCrops'][$index].fields.productn_pvt">
+                                convertToFloat(pldySeasonalCrops.redctn_year_2_pvt/100) * convertToFloat(bs_data['BacfSeasonalCrops'][$index].fields.productn_pvt)">
                             </td>
                             <td class="right" class="right" width="85" ng-model="pldySeasonalCrops.tot_prod_pub"
                                 ng-bind="pldySeasonalCrops.tot_prod_pub =
-                            pldySeasonalCrops.prod_year_1_pub + pldySeasonalCrops.prod_year_2_pub">
+                                convertToFloat(pldySeasonalCrops.prod_year_1_pub) + convertToFloat(pldySeasonalCrops.prod_year_2_pub)">
                             </td>
                             <td class="right" width="85" ng-model="pldySeasonalCrops.tot_prod_pvt"
                                 ng-bind="pldySeasonalCrops.tot_prod_pvt =
-                            pldySeasonalCrops.prod_year_1_pvt + pldySeasonalCrops.prod_year_2_pvt">
+                                convertToFloat(pldySeasonalCrops.prod_year_1_pvt) + convertToFloat(pldySeasonalCrops.prod_year_2_pvt)">
                             </td>
                         </tr>
                         <!--Total-->
@@ -341,31 +341,30 @@
                             </td>
                             <td class="right" width="112" ng-model="pldyPlantnCrops.prod_year_1_pub"
                                 ng-bind="pldyPlantnCrops.prod_year_1_pub =
-                        (pldyPlantnCrops.redctn_year_1_pub/100) * bs_data['BacfPlantnCrops'][$index].fields.productn_pub">
+                                    convertToFloat(pldyPlantnCrops.redctn_year_1_pub/100) * convertToFloat(bs_data['BacfPlantnCrops'][$index].fields.productn_pub)">
 
                             </td>
                             <td class="right" width="99" ng-model="pldyPlantnCrops.prod_year_1_pvt"
-                                ng-bind="pldyPlantnCrops.prod_year_1_pvt =
-                        pldyPlantnCrops.redctn_year_1_pvt/100 * bs_data['BacfPlantnCrops'][$index].fields.productn_pvt">
+                                ng-bind="pldyPlantnCrops.prod_year_1_pvt = convertToFloat(pldyPlantnCrops.redctn_year_1_pvt/100) *
+                                    convertToFloat(bs_data['BacfPlantnCrops'][$index].fields.productn_pvt)">
 
                             </td>
                             <td class="right" width="85" ng-model="pldyPlantnCrops.prod_year_2_pub"
-                                ng-bind="pldyPlantnCrops.prod_year_2_pub =
-                        pldyPlantnCrops.redctn_year_2_pub/100 * bs_data['BacfPlantnCrops'][$index].fields.productn_pub">
+                                ng-bind="pldyPlantnCrops.prod_year_2_pub = convertToFloat(pldyPlantnCrops.redctn_year_2_pub/100) *
+                                    convertToFloat(bs_data['BacfPlantnCrops'][$index].fields.productn_pub)">
                             </td>
 
                             <td class="right" width="85" ng-model="pldyPlantnCrops.prod_year_2_pvt"
-                                ng-bind="pldyPlantnCrops.prod_year_2_pvt =
-                        pldyPlantnCrops.redctn_year_2_pvt/100 * bs_data['BacfPlantnCrops'][$index].fields.productn_pvt">
+                                ng-bind="pldyPlantnCrops.prod_year_2_pvt = convertToFloat(pldyPlantnCrops.redctn_year_2_pvt/100) *
+                                    convertToFloat(bs_data['BacfPlantnCrops'][$index].fields.productn_pvt)">
                             </td>
                             <td class="right" width="85" ng-model="pldyPlantnCrops.tot_prod_pub"
-                                ng-bind="pldyPlantnCrops.tot_prod_pub =
-                            pldyPlantnCrops.prod_year_1_pub + pldyPlantnCrops.prod_year_2_pub">
-
+                                ng-bind="pldyPlantnCrops.tot_prod_pub = convertToFloat(pldyPlantnCrops.prod_year_1_pub) +
+                                    convertToFloat(pldyPlantnCrops.prod_year_2_pub)">
                             </td>
                             <td class="right" width="85" ng-model="pldyPlantnCrops.tot_prod_pvt"
-                                ng-bind="pldyPlantnCrops.tot_prod_pvt =
-                            pldyPlantnCrops.prod_year_1_pvt + pldyPlantnCrops.prod_year_2_pvt">
+                                ng-bind="pldyPlantnCrops.tot_prod_pvt = convertToFloat(pldyPlantnCrops.prod_year_1_pvt) +
+                                    convertToFloat(pldyPlantnCrops.prod_year_2_pvt)">
                             </td>
                         </tr>
                         <!--Total-->
@@ -448,23 +447,22 @@
                             </td>
                             <td class="right" width="112" ng-model="pldyExportCrops.prod_year_1_pub"
                                 ng-bind="pldyExportCrops.prod_year_1_pub =
-                                (pldyExportCrops.redctn_year_1_pub/100) * bs_data['BacfExportCrops'][$index].fields.productn_pub">
+                                convertToFloat(pldyExportCrops.redctn_year_1_pub/100) * convertToFloat(bs_data['BacfExportCrops'][$index].fields.productn_pub)">
                             </td>
                             <td class="right" width="99" ng-model="pldyExportCrops.prod_year_1_pvt"
                                 ng-bind="pldyExportCrops.prod_year_1_pvt =
-                                pldyExportCrops.redctn_year_1_pvt/100 * bs_data['BacfExportCrops'][$index].fields.productn_pvt">
+                                convertToFloat(pldyExportCrops.redctn_year_1_pvt/100) * convertToFloat(bs_data['BacfExportCrops'][$index].fields.productn_pvt)">
                             </td>
                             <td class="right" width="85" ng-model="pldyExportCrops.prod_year_2_pub"
                                 ng-bind="pldyExportCrops.prod_year_2_pub =
-                                pldyExportCrops.redctn_year_2_pub/100 * bs_data['BacfExportCrops'][$index].fields.productn_pub">
+                                convertToFloat(pldyExportCrops.redctn_year_2_pub/100) * convertToFloat(bs_data['BacfExportCrops'][$index].fields.productn_pub)">
                             </td>
                             <td class="right" width="85" ng-model="pldyExportCrops.prod_year_2_pvt"
                                 ng-bind="pldyExportCrops.prod_year_2_pvt =
-                                pldyExportCrops.redctn_year_2_pvt/100 * bs_data['BacfExportCrops'][$index].fields.productn_pvt">
+                                convertToFloat(pldyExportCrops.redctn_year_2_pvt/100) * convertToFloat(bs_data['BacfExportCrops'][$index].fields.productn_pvt)">
                             </td>
                             <td class="right" width="85" ng-model="pldyExportCrops.tot_prod_pub"
                                 ng-bind="pldyExportCrops.tot_prod_pub = pldyExportCrops.prod_year_1_pub + pldyExportCrops.prod_year_2_pub">
-                                <!--ng-bind="pldyExportCrops.tot_prod_pub = pldyExportCrops.prod_year_1_pub + BacfExportCrops.prod_year_2_pub">-->
                             </td>
                             <td class="right" width="85" ng-model="pldyExportCrops.tot_prod_pvt"
                                 ng-bind="pldyExportCrops.tot_prod_pvt = pldyExportCrops.prod_year_1_pvt + pldyExportCrops.prod_year_2_pvt">
@@ -550,19 +548,19 @@
                                        class="form-control input-md" ng-model="pldyForestry.redctn_year_2_pvt">
                             </td>
                             <td class="right" width="112" ng-model="pldyForestry.prod_year_1_pub"
-                                ng-bind="pldyForestry.prod_year_1_pub = pldyForestry.redctn_year_1_pub/100 * bs_data['BacfForestry'][$index].fields.productn_pub">
+                                ng-bind="pldyForestry.prod_year_1_pub = convertToFloat(pldyForestry.redctn_year_1_pub/100) * convertToFloat(bs_data['BacfForestry'][$index].fields.productn_pub)">
                             </td>
                             <td class="right" width="99" ng-model="pldyForestry.prod_year_1_pvt"
-                                ng-bind="pldyForestry.prod_year_1_pvt = pldyForestry.redctn_year_1_pvt/100 * bs_data['BacfForestry'][$index].fields.productn_pvt">
+                                ng-bind="pldyForestry.prod_year_1_pvt = convertToFloat(pldyForestry.redctn_year_1_pvt/100) * convertToFloat(bs_data['BacfForestry'][$index].fields.productn_pvt)">
                             </td>
                             <td class="right" width="85" ng-model="pldyForestry.prod_year_2_pub"
-                                ng-bind="pldyForestry.prod_year_2_pub = pldyForestry.redctn_year_2_pub/100 * bs_data['BacfForestry'][$index].fields.productn_pub">
+                                ng-bind="pldyForestry.prod_year_2_pub = convertToFloat(pldyForestry.redctn_year_2_pub/100) * convertToFloat(bs_data['BacfForestry'][$index].fields.productn_pub)">
                             </td>
                             <td class="right" width="85" ng-model="pldyForestry.prod_year_2_pvt"
-                                ng-bind="pldyForestry.prod_year_2_pvt = pldyForestry.redctn_year_2_pvt/100 * bs_data['BacfForestry'][$index].fields.productn_pvt">
+                                ng-bind="pldyForestry.prod_year_2_pvt = convertToFloat(pldyForestry.redctn_year_2_pvt/100) * convertToFloat(bs_data['BacfForestry'][$index].fields.productn_pvt)">
                             </td>
                             <td class="right" width="85" ng-model="pldyForestry.tot_prod_pub"
-                                ng-bind="pldyForestry.tot_prod_pub = pldyForestry.prod_year_1_pub + pldyForestry.prod_year_2_pub">
+                                ng-bind="pldyForestry.tot_prod_pub = convertToFloat(pldyForestry.prod_year_1_pub) + convertToFloat(pldyForestry.prod_year_2_pub)">
                             </td>
                             <td class="right" width="85" ng-model="pldyForestry.tot_prod_pvt"
                                 ng-bind="pldyForestry.tot_prod_pvt = pldyForestry.prod_year_1_pvt + pldyForestry.prod_year_2_pvt">
@@ -645,34 +643,29 @@
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="pldyOther.redctn_year_2_pvt">
                             </td>
-
                             <td class="right" width="112" ng-model="pldyOther.prod_year_1_pub"
                                 ng-bind="pldyOther.prod_year_1_pub =
-                        pldyOther.redctn_year_1_pub/100 * bs_data['BacfOther'][$index].fields.productn_pub">
-
+                                    convertToFloat(pldyOther.redctn_year_1_pub/100) * convertToFloat(bs_data['BacfOther'][$index].fields.productn_pub)">
                             </td>
                             <td class="right" width="99" ng-model="pldyOther.prod_year_1_pvt"
                                 ng-bind="pldyOther.prod_year_1_pvt =
-                        pldyOther.redctn_year_1_pvt/100 * bs_data['BacfOther'][$index].fields.productn_pvt">
-
+                                    convertToFloat(pldyOther.redctn_year_1_pvt/100) * convertToFloat(bs_data['BacfOther'][$index].fields.productn_pvt)">
                             </td>
                             <td class="right" width="85" ng-model="pldyOther.prod_year_2_pub"
                                 ng-bind="pldyOther.prod_year_2_pub =
-                        pldyOther.redctn_year_2_pub/100 * bs_data['BacfOther'][$index].fields.productn_pub">
+                                    convertToFloat(pldyOther.redctn_year_2_pub/100) * convertToFloat(bs_data['BacfOther'][$index].fields.productn_pub)">
                             </td>
-
                             <td class="right" width="85" ng-model="pldyOther.prod_year_2_pvt"
                                 ng-bind="pldyOther.prod_year_2_pvt =
-                        pldyOther.redctn_year_2_pvt/100 * bs_data['BacfOther'][$index].fields.productn_pvt">
+                                    convertToFloat(pldyOther.redctn_year_2_pvt/100) * convertToFloat(bs_data['BacfOther'][$index].fields.productn_pvt)">
                             </td>
                             <td class="right" width="85" ng-model="pldyOther.tot_prod_pub"
                                 ng-bind="pldyOther.tot_prod_pub =
-                            pldyOther.prod_year_1_pub + pldyOther.prod_year_2_pub">
-
+                                    convertToFloat(pldyOther.prod_year_1_pub) + convertToFloat(pldyOther.prod_year_2_pub)">
                             </td>
                             <td class="right" width="85" ng-model="pldyOther.tot_prod_pvt"
                                 ng-bind="pldyOther.tot_prod_pvt =
-                            pldyOther.prod_year_1_pvt + pldyOther.prod_year_2_pvt">
+                                    convertToFloat(pldyOther.prod_year_1_pvt) + convertToFloat(pldyOther.prod_year_2_pvt)">
                             </td>
                         </tr>
                         <!--Total-->

@@ -229,58 +229,57 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
                 dataType: 'json',
 
             }).then(function successCallback(response) {
+                var data = response.data;
+                console.log('*', response);
+                angular.forEach(data, function(value, key) {
+                    $scope.bs_data[key] = JSON.parse(value);
+                });
 
-                    var data = response.data;
-                    console.log('*', response);
-                    angular.forEach(data, function(value, key) {
-                        $scope.bs_data[key] = JSON.parse(value);
-                    });
+                console.log('*', $scope.bs_data);
+                var is_null = false;
+                angular.forEach($scope.bs_data, function(value, index) {
+                    if(value == null) {
+                        is_null = true;
+                    }
+                })
 
-                    console.log('*', $scope.bs_data);
-                    var is_null = false;
-                    angular.forEach($scope.bs_data, function(value, index) {
-                        if(value == null) {
-                            is_null = true;
+                if(is_null == true) {
+                    $("#modal-container-239458").modal('show');
+                    console.log('baseline table or tables are empty');
+                    console.log($scope.bs_data);
+                    $scope.currentBaselineDate = null;
+                }
+                else {
+                    $http({
+                        method: 'POST',
+                        url: '/get_latest_bs_date',
+                        contentType: 'application/json; charset=utf-8',
+                        data: angular.toJson({
+                            'com_data': {
+                                'district': $scope.district.district__id,
+                                'incident': $scope.incident,
+                            },
+                            'table_name': 'Table_2',
+                            'sector': 'agri_agrarian'
+                        }),
+                        dataType: 'json',
+                    }).then(function successCallback(response) {
+                        console.log('response', response);
+                        var result = response.data;
+                        if(result.bs_date == null) {
+                            $("#modal-container-239458").modal('show');
                         }
-                    })
-
-                    if(is_null == true) {
-                        $("#modal-container-239458").modal('show');
-                        console.log('baseline table or tables are empty');
-                        console.log($scope.bs_data);
-                        $scope.currentBaselineDate = null;
-                    }
-                    else {
-                        $http({
-                            method: 'POST',
-                            url: '/get_latest_bs_date',
-                            contentType: 'application/json; charset=utf-8',
-                            data: angular.toJson({
-                                'com_data': {
-                                    'district': $scope.district.district__id,
-                                    'incident': $scope.incident,
-                                },
-                                'table_name': 'Table_2',
-                                'sector': 'agri_agrarian'
-                            }),
-                            dataType: 'json',
-                        }).then(function successCallback(response) {
-                            console.log('response', response);
-							var result = response.data;
-							if(result.bs_date == null) {
-								$("#modal-container-239458").modal('show');
-							}
-							else {
-								var bs_date = result.bs_date.replace(/^"(.*)"$/, '$1');
-								$scope.currentBaselineDate = "Latest baseline data as at " + bs_date;
-								$scope.bsCreatedeDate = result.bs_created_date;
-								console.log('bs_date', result.bs_date);
-								console.log('bsCreatedeDate', result.bs_created_date);
-								generateRefencedData()
-							}
-                        });
-                    }
-                }, function errorCallback(response) {
+                        else {
+                            var bs_date = result.bs_date.replace(/^"(.*)"$/, '$1');
+                            $scope.currentBaselineDate = "Latest baseline data as at " + bs_date;
+                            $scope.bsCreatedeDate = result.bs_created_date;
+                            console.log('bs_date', result.bs_date);
+                            console.log('bsCreatedeDate', result.bs_created_date);
+                            generateRefencedData()
+                        }
+                    });
+                }
+            }, function errorCallback(response) {
 
             });
         }
@@ -525,30 +524,44 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
     }
 
     //Calculate Public Total
-    $scope.calPubTotal=function(arr) {
+    $scope.calPubTotal = function(arr) {
         var finaltotal = 0;
         angular.forEach(arr, function(value, key) {
-            if(value.seasonal_crops !='Total' && value.plantn_crops !='Total' && value.export_crops !='Total' && value.forestry !='Total'){
-                finaltotal = finaltotal + value.invest_los_pub ;
+            if(value.seasonal_crops != 'Total' && value.plantn_crops != 'Total' && value.export_crops != 'Total' && value.forestry != 'Total'){
+//                finaltotal = finaltotal + value.invest_los_pub ;
+
+                if(!isNaN(value.invest_los_pub)) {
+                    finaltotal = finaltotal + $scope.convertToInt(value.invest_los_pub);
+                }
+                else {
+                    finaltotal = finaltotal + 0;
+                }
             }
         })
         return finaltotal;
     }
 
     //Calculate Private Total
-    $scope.calPvtTotal=function(arr) {
+    $scope.calPvtTotal = function(arr) {
         var finaltotal = 0;
-        console.log(arr);
+//        console.log(arr);
         angular.forEach(arr, function(value, key) {
-            if(value.seasonal_crops !='Total' && value.plantn_crops !='Total' && value.export_crops !='Total' && value.forestry !='Total'){
-                finaltotal = finaltotal + value.invest_los_pvt ;
+            if(value.seasonal_crops != 'Total' && value.plantn_crops != 'Total' && value.export_crops != 'Total' && value.forestry != 'Total'){
+//                finaltotal = finaltotal + value.invest_los_pvt;
+
+                if(!isNaN(value.invest_los_pvt)) {
+                    finaltotal = finaltotal + $scope.convertToInt(value.invest_los_pvt);
+                }
+                else {
+                    finaltotal = finaltotal + 0;
+                }
             }
         })
         return finaltotal;
     }
 
     //Calculate Grand Public Total
-    $scope.calGrandPubTotal=function() {
+    $scope.calGrandPubTotal = function() {
         var finaltotal1 = 0;
         var finaltotal2 = 0;
         var finaltotal3 = 0;
@@ -590,7 +603,7 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
     }
 
     //Calculate Gardn Private Total
-    $scope.calGrandPvtTotal=function() {
+    $scope.calGrandPvtTotal = function() {
         var finaltotal1 = 0;
         var finaltotal2 = 0;
         var finaltotal3 = 0;
@@ -634,5 +647,15 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
         $scope.is_edit = false;
         $scope.dlInvsmntLos = angular.copy(init_data);
         location.reload();
+    }
+
+    $scope.convertToInt = function(val) {
+        var total = 0;
+        if(val == null || isNaN(val)) {
+            val=0;
+        }
+
+        total = parseInt(val);
+        return total;
     }
 }]);

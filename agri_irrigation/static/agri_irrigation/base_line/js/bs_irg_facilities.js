@@ -121,7 +121,6 @@ app.controller('bsIrgFacilitiesController', function($scope, $http,_) {
         }
     }
 
-
     //Add Enumerate Fileds
     $scope.insertAsset = function(table) {
         console.log($scope.bsIrgFacilities.agri_irrigation.Table_1[table]);
@@ -227,7 +226,7 @@ app.controller('bsIrgFacilitiesController', function($scope, $http,_) {
     }
 
     //Edit Data
-    $scope.bsHsDataEdit = function(){
+    $scope.editBsData = function(){
         $scope.submitted = true;
         $scope.is_edit = true;
         document.getElementById("clearbtn").disabled = true;

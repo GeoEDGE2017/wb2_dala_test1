@@ -463,7 +463,7 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
     $scope.dlMinistryHealthSys = angular.copy(init_data);
 
     //Save Data
-    $scope.dlSaveData = function(form) {
+    $scope.saveDlData = function(form) {
         $scope.submitted = true;
         $scope.is_submit = true;
         if(form.$valid){

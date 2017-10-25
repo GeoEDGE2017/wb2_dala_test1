@@ -102,6 +102,7 @@ app.controller("BsPubMedicalFacilitiesController", ['$scope', '$http', function(
 			}
 		}
 	}
+
 	$scope.bsDataMedicalFacilities = angular.copy(init_data);
 
 	//disable Edit Button

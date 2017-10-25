@@ -199,7 +199,6 @@ bsHealthStatusApp.controller('BsHealthStatusController', function BsHealthStatus
                 }),
             }).success(function(data) {
                 console.log(data);
-                //                $scope.dataHealthStatus = data;
                 var edit_data_not_found = false;
                 if(data != null) {
                     angular.forEach(data.health.Table_1, function(value, index) {

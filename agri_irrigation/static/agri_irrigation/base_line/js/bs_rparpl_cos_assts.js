@@ -402,7 +402,7 @@ app.controller('bsRparplCosAsstsController',function($scope, $http) {
     }
 
     //Edit data
-    $scope.bsHsDataEdit = function(form){
+    $scope.editBsData = function(form){
         $scope.submitted = true;
         $scope.is_edit = true;
         document.getElementById("clearbtn").disabled = true;

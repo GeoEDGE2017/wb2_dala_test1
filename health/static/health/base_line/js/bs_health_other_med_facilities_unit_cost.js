@@ -325,8 +325,6 @@ app.controller("BsOtherMedFaciUnitCostController", ['$scope', '$http', function(
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {
-                //                $scope.bsDataOtherMedicalFacilities = init_data;
-                //                $scope.is_edit = false;
                 console.log(response);
                 console.log(response.data);
                 if (response.data == 'False') {

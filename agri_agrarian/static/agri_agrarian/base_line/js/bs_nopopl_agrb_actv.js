@@ -238,7 +238,7 @@ app.controller('bsNopoplAgrbActvController', ['$scope', '$http', function($scope
     }
 
     //Edit Data
-    $scope.bsHsDataEdit = function(form){
+    $scope.editBsData = function(form){
         $scope.submitted = true;
         $scope.is_edit = true;
         if (form.$valid) {

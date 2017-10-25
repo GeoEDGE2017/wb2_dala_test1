@@ -181,7 +181,7 @@ bsAstTransWaterApp.controller('BsAstTransWaterController', function BsAstTransWa
 			$scope.bsInfoAsetTrans = init_data;
 		})
 	}
-	$scope.bsHsDataEdit = function() {
+	$scope.editBsData = function() {
 		$scope.submitted = true;
 		$scope.is_edit = true;
 		document.getElementById("clearbtn").disabled = true;

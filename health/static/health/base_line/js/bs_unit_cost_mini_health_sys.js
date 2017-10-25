@@ -209,6 +209,7 @@ app.controller('unitCostMiniHealthSysController', ['$scope', '$http', function($
 			}
 		}
 	}
+
 	$scope.bsUnitCostMiniHealthSys = angular.copy(init_data);
 
 	//disable Edit Button

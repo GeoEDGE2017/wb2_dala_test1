@@ -84,7 +84,7 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
                     harvest_stage_pvt : null,
                     invest_los_pub : null,
                     invest_los_pvt : null,
-                },{
+                }, {
                     plantn_crops : 'Tea',
                     new_plant_pub : null,
                     new_plant_pvt : null,
@@ -94,7 +94,7 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
                     harvest_stage_pvt : null,
                     invest_los_pub : null,
                     invest_los_pvt : null,
-                },{
+                }, {
                     plantn_crops : 'Rubber',
                     new_plant_pub : null,
                     new_plant_pvt : null,
@@ -104,7 +104,7 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
                     harvest_stage_pvt : null,
                     invest_los_pub : null,
                     invest_los_pvt : null,
-                },{
+                }, {
                     plantn_crops : 'Total',
                     new_plant_pub : null,
                     new_plant_pvt : null,
@@ -125,7 +125,7 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
                     harvest_stage_pvt : null,
                     invest_los_pub : null,
                     invest_los_pvt : null,
-                },{
+                }, {
                     export_crops : 'Fruit trees',
                     new_plant_pub : null,
                     new_plant_pvt : null,
@@ -135,7 +135,7 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
                     harvest_stage_pvt : null,
                     invest_los_pub : null,
                     invest_los_pvt : null,
-                },{
+                }, {
                     export_crops : 'Cinnamon',
                     new_plant_pub : null,
                     new_plant_pvt : null,
@@ -145,7 +145,7 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
                     harvest_stage_pvt : null,
                     invest_los_pub : null,
                     invest_los_pvt : null,
-                },{
+                }, {
                     export_crops : 'Total',
                     new_plant_pub : null,
                     new_plant_pvt : null,
@@ -166,7 +166,7 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
                     harvest_stage_pvt : null,
                     invest_los_pub : null,
                     invest_los_pvt : null,
-                },{
+                }, {
                     forestry : 'Total',
                     new_plant_pub : null,
                     new_plant_pvt : null,
@@ -176,7 +176,7 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
                     harvest_stage_pvt : null,
                     invest_los_pub : null,
                     invest_los_pvt : null,
-                },{
+                }, {
                     forestry : 'GRAND TOTAL',
                     new_plant_pub : null,
                     new_plant_pvt : null,
@@ -467,7 +467,7 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
     }
 
     //Edit data
-    $scope.editDlData = function(form){
+    $scope.editDlData = function(form) {
         document.getElementById("clearbtn").disabled = true;
         $scope.is_edit = true;
         $scope.submitted = true;
@@ -492,55 +492,53 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
 }
 
     //Search data
-    $scope.searchDlData = function(form){
+    $scope.searchDlData = function(form) {
         document.getElementById("clearbtn").disabled = true;
 		document.getElementById("editbtn").disabled = true;
 		document.getElementById("subbtn").disabled = true;
-		console.log("test", $scope.district);
-		console.log("test", $scope.bs_date);
 		$scope.is_search = true;
-    if(form.$valid){
-        $http({
-        method: "POST",
-        url: '/dl_fetch_edit_data',
-        data: angular.toJson({
-        'table_name':  'Table_6',
-        'sector':'agri_agrarian',
-        'com_data': {
-               'district':  $scope.district.district__id,
-                'incident': $scope.incident,
-              },
-               'is_edit':$scope.is_edit
-               }),
-        }).success(function(data) {
-            console.log(data);
-            $scope.dlInvsmntLos = data;
-        })
+        if(form.$valid){
+            $http({
+                method: "POST",
+                url: '/dl_fetch_edit_data',
+                data: angular.toJson({
+                    'table_name':  'Table_6',
+                    'sector':'agri_agrarian',
+                    'com_data': {
+                        'district':  $scope.district.district__id,
+                        'incident': $scope.incident,
+                    },
+                    'is_edit':$scope.is_edit
+                }),
+            }).success(function(data) {
+                console.log(data);
+                $scope.dlInvsmntLos = data;
+            })
+        }
     }
-}
 
     //Cancel Data
-    $scope.cancelEdit = function(){
-     $scope.is_edit = false;
-     $scope.dlInvsmntLos = init_data;
-     location.reload();
-}
+    $scope.cancelEdit = function() {
+        $scope.is_edit = false;
+        $scope.dlInvsmntLos = init_data;
+        location.reload();
+    }
 
     //Calculate Public Total
-    $scope.calPubTotal=function(arr){
+    $scope.calPubTotal=function(arr) {
         var finaltotal = 0;
         angular.forEach(arr, function(value, key) {
             if(value.seasonal_crops !='Total' && value.plantn_crops !='Total' && value.export_crops !='Total' && value.forestry !='Total'){
                 finaltotal = finaltotal + value.invest_los_pub ;
-             }
+            }
         })
         return finaltotal;
     }
 
     //Calculate Private Total
-    $scope.calPvtTotal=function(arr){
+    $scope.calPvtTotal=function(arr) {
         var finaltotal = 0;
-         console.log(arr);
+        console.log(arr);
         angular.forEach(arr, function(value, key) {
             if(value.seasonal_crops !='Total' && value.plantn_crops !='Total' && value.export_crops !='Total' && value.forestry !='Total'){
                 finaltotal = finaltotal + value.invest_los_pvt ;
@@ -550,7 +548,7 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
     }
 
     //Calculate Grand Public Total
-    $scope.calGrandPubTotal=function(){
+    $scope.calGrandPubTotal=function() {
         var finaltotal1 = 0;
         var finaltotal2 = 0;
         var finaltotal3 = 0;
@@ -564,28 +562,27 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
 
 
         angular.forEach(array1, function(value, key) {
-        if(value.seasonal_crops !='Total'){
-         finaltotal1 = finaltotal1 + value.invest_los_pub ;
-         }
-
+            if(value.seasonal_crops !='Total'){
+                finaltotal1 = finaltotal1 + value.invest_los_pub ;
+            }
         })
+
         angular.forEach(array2, function(value, key) {
-        if(value.forestry !='Total'){
-         finaltotal2 = finaltotal2 + value.invest_los_pub ;
-         }
-
+            if(value.forestry !='Total'){
+                finaltotal2 = finaltotal2 + value.invest_los_pub ;
+            }
         })
+
         angular.forEach(array3, function(value, key) {
-         if(value.plantn_crops !='Total'){
-         finaltotal3 = finaltotal3 + value.invest_los_pub ;
-         }
-
+            if(value.plantn_crops !='Total'){
+                finaltotal3 = finaltotal3 + value.invest_los_pub ;
+            }
         })
-        angular.forEach(array4, function(value, key) {
-        if(value.export_crops !='Total'){
-         finaltotal4 = finaltotal4 + value.invest_los_pub ;
-         }
 
+        angular.forEach(array4, function(value, key) {
+            if(value.export_crops !='Total'){
+                finaltotal4 = finaltotal4 + value.invest_los_pub ;
+            }
         })
 
         grantot = finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4 ;
@@ -593,7 +590,7 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
     }
 
     //Calculate Gardn Private Total
-    $scope.calGrandPvtTotal=function(){
+    $scope.calGrandPvtTotal=function() {
         var finaltotal1 = 0;
         var finaltotal2 = 0;
         var finaltotal3 = 0;
@@ -604,30 +601,28 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
         var array3 =$scope.dlInvsmntLos.agri_agrarian.Table_6.DildPlantnCrops;
         var array4 =$scope.dlInvsmntLos.agri_agrarian.Table_6.DildExportCrops;
 
-
         angular.forEach(array1, function(value, key) {
-        if(value.seasonal_crops !='Total'){
-         finaltotal1 = finaltotal1 + value.invest_los_pvt ;
-         }
-
+            if(value.seasonal_crops !='Total') {
+                finaltotal1 = finaltotal1 + value.invest_los_pvt ;
+            }
         })
+
         angular.forEach(array2, function(value, key) {
-        if(value.forestry !='Total'){
-         finaltotal2 = finaltotal2 + value.invest_los_pvt ;
-         }
-
+            if(value.forestry !='Total') {
+                finaltotal2 = finaltotal2 + value.invest_los_pvt ;
+            }
         })
+
         angular.forEach(array3, function(value, key) {
-        if(value.plantn_crops !='Total'){
-         finaltotal3 = finaltotal3 + value.invest_los_pvt ;
-         }
-
+            if(value.plantn_crops !='Total') {
+                finaltotal3 = finaltotal3 + value.invest_los_pvt ;
+            }
         })
-        angular.forEach(array4, function(value, key) {
-        if(value.export_crops !='Total'){
-         finaltotal4 = finaltotal4 + value.invest_los_pvt ;
-         }
 
+        angular.forEach(array4, function(value, key) {
+            if(value.export_crops !='Total') {
+                finaltotal4 = finaltotal4 + value.invest_los_pvt ;
+            }
         })
 
         grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4 ;

@@ -42,9 +42,8 @@ app.controller('bsindustryServicesInfoInformalController', ['$scope', '$http', f
         if($scope.district && $scope.bs_date){
             $scope.is_edit_disable = true;
             $scope.check_search = true;
-
         }
-        else{
+        else {
             $scope.is_edit_disable = false;
             $scope.check_search = false;
         }
@@ -164,11 +163,10 @@ app.controller('bsindustryServicesInfoInformalController', ['$scope', '$http', f
     }
 
     $scope.searchBsData = function(form) {
-       document.getElementById("clearbtn").disabled = true;
+        document.getElementById("clearbtn").disabled = true;
 		document.getElementById("editbtn").disabled = true;
 		document.getElementById("subbtn").disabled = true;
-		console.log("test", $scope.district);
-		console.log("test", $scope.bs_date);
+
 		$scope.is_search = true;
         if (form.$valid) {
             $http({

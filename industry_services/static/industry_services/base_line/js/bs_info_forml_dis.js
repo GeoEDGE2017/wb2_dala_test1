@@ -216,7 +216,8 @@ app.controller('bsindustryServicesInfoFormalController', ['$scope', '$http', fun
     $scope.editBsData = function(form) {
         $scope.is_edit = true;
         $scope.submitted = true;
-         document.getElementById("clearbtn").disabled = true;
+        document.getElementById("clearbtn").disabled = true;
+
         if (form.$valid) {
             $http({
                 method: "POST",
@@ -258,8 +259,7 @@ app.controller('bsindustryServicesInfoFormalController', ['$scope', '$http', fun
         document.getElementById("clearbtn").disabled = true;
 		document.getElementById("editbtn").disabled = true;
 		document.getElementById("subbtn").disabled = true;
-		console.log("test", $scope.district);
-		console.log("test", $scope.bs_date);
+
 		$scope.is_search = true;
         if (form.$valid) {
             $http({
@@ -306,6 +306,6 @@ app.controller('bsindustryServicesInfoFormalController', ['$scope', '$http', fun
     $scope.cancelEdit = function() {
         $scope.is_edit = false;
         $scope.clear();
-         location.reload();
+        location.reload();
     }
 }]);

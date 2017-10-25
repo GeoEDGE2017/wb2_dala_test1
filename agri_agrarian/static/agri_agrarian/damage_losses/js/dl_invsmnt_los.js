@@ -528,8 +528,6 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
         var finaltotal = 0;
         angular.forEach(arr, function(value, key) {
             if(value.seasonal_crops != 'Total' && value.plantn_crops != 'Total' && value.export_crops != 'Total' && value.forestry != 'Total'){
-//                finaltotal = finaltotal + value.invest_los_pub ;
-
                 if(!isNaN(value.invest_los_pub)) {
                     finaltotal = finaltotal + $scope.convertToInt(value.invest_los_pub);
                 }
@@ -544,11 +542,8 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
     //Calculate Private Total
     $scope.calPvtTotal = function(arr) {
         var finaltotal = 0;
-//        console.log(arr);
         angular.forEach(arr, function(value, key) {
             if(value.seasonal_crops != 'Total' && value.plantn_crops != 'Total' && value.export_crops != 'Total' && value.forestry != 'Total'){
-//                finaltotal = finaltotal + value.invest_los_pvt;
-
                 if(!isNaN(value.invest_los_pvt)) {
                     finaltotal = finaltotal + $scope.convertToInt(value.invest_los_pvt);
                 }
@@ -655,7 +650,7 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
             val=0;
         }
 
-        total = parseInt(val);
+        total = parseFloat(val);
         return total;
     }
 }]);

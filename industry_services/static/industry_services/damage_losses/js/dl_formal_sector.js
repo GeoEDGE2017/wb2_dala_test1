@@ -3,7 +3,6 @@
 var app = angular.module('dlindustryServicesFormalSecApp', [])
 
 app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', function($scope, $http) {
-
     $scope.district;
     $scope.selectedDistrict;
     $scope.incident;
@@ -225,7 +224,7 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
         console.log("seltd Firm", $scope.selectedFirm);
     }
 
-    $scope.loadBusinessClassification = function(){
+    $scope.loadBusinessClassification = function() {
         $http({
             method: "POST",
             url: "/fetch_entities_plain",
@@ -238,7 +237,7 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
         })
     }
 
-    $scope.loadFirms = function(){
+    $scope.loadFirms = function() {
         $http({
             method: "POST",
             url: "/fetch_entities_all",
@@ -252,14 +251,14 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
         })
     }
 
-    $scope.getSum2 = function(val1, val2){
+    $scope.getSum2 = function(val1, val2) {
         var final_val = 0;
         if(!isNaN(val1)) final_val += val1;
         if(!isNaN(val2)) final_val += val2;
         return final_val;
     }
 
-    $scope.getSum3 = function(val1, val2, val3){
+    $scope.getSum3 = function(val1, val2, val3) {
         var final_val = 0;
         if(!isNaN(val1)) final_val += val1;
         if(!isNaN(val2)) final_val += val2;
@@ -267,19 +266,19 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
         return final_val;
     }
 
-    $scope.getMultiply2 = function(val1, val2){
+    $scope.getMultiply2 = function(val1, val2) {
         if(isNaN(val1)) return 0;
         if(isNaN(val2)) return 0;
         return val1 * val2 * 0.01;
     }
 
-    $scope.getMulitiplyedYearLoss =function(value, percentage){
+    $scope.getMulitiplyedYearLoss =function(value, percentage) {
         if(isNaN(value)) return 0;
         if(isNaN(percentage)) return 0;
         return value * percentage * 0.01;
     }
 
-    $scope.getTotalCol = function(subTable, column, total_object){
+    $scope.getTotalCol = function(subTable, column, total_object) {
         var table = $scope.dl_dmg_loss_foml_sec.industry_services.Table_3;
         var final_total = 0;
         total_object[column] = 0;
@@ -306,7 +305,7 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
         return final_total;
     }
 
-    $scope.insertRow = function(table){
+    $scope.insertRow = function(table) {
         var new_row;
         if((table == 'DmgAstStructures') || (table == 'DmgAstEquipment') || (table == 'DmgAstMachinery') ||
             (table == 'DmgAstVehicles') || (table == 'DmgAstStocks')) {
@@ -357,13 +356,13 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
              $scope.saveFirm(form);
         }
         else {
-            console.log("firmdata", $scope.district )
-            console.log($scope.selectedFirm.firm_name )
-            console.log($scope.selected_formal_type )
-            console.log($scope.selectedFirm.ownership )
-            console.log($scope.selectedFirm.description )
-            console.log($scope.selectedFirm.classification_id )
-            console.log($scope.selectedFirm.sector )
+            console.log("firmdata", $scope.district)
+            console.log($scope.selectedFirm.firm_name)
+            console.log($scope.selected_formal_type)
+            console.log($scope.selectedFirm.ownership)
+            console.log($scope.selectedFirm.description)
+            console.log($scope.selectedFirm.classification_id)
+            console.log($scope.selectedFirm.sector)
         }
     }
 
@@ -388,7 +387,7 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
                     $scope.is_edit_model = false;
                     $scope.saveDlData(form);
                 }
-            }).error(function(){
+            }).error(function() {
 
             })
         }
@@ -494,7 +493,6 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
                     (data.industry_services.Table_3.DmgAstStructures.length == 0) ||
                     (data.industry_services.Table_3.LosTypeLossses.length == 0) ||
                     (data.industry_services.Table_3.DmgAstVehicles.length == 0)) {
-
                     $scope.is_edit = false;
                 }
                 else {
@@ -511,11 +509,10 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
         $("#modal-container-218029").modal('hide');
         if($scope.district && $scope.incident && $scope.selectedFirm.id) {
             document.getElementById("clearbtn").disabled = true;
-		document.getElementById("editbtn").disabled = true;
-		document.getElementById("subbtn").disabled = true;
-		console.log("test", $scope.district);
-		console.log("test", $scope.bs_date);
-		$scope.is_search = true;
+            document.getElementById("editbtn").disabled = true;
+            document.getElementById("subbtn").disabled = true;
+
+            $scope.is_search = true;
             $http({
                 method: "POST",
                 url: '/dl_fetch_edit_data',
@@ -607,7 +604,6 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
             if(!$scope.selectedFirm) {
                 console.log("no firm")
             }
-           // alert("District, Incident needed ! ")
         }
     }
 

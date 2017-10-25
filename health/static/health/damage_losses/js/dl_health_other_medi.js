@@ -694,7 +694,8 @@ app.controller("DsHealthDamagelostOtherMediController", ['$scope', '$http', func
                     console.log('baseline table or tables are empty');
                     console.log($scope.bs_data);
                     $scope.currentBaselineDate = null;
-                } else {
+                }
+                else {
                     $http({
                         method: 'POST',
                         url: '/get_latest_bs_date',
@@ -733,7 +734,7 @@ app.controller("DsHealthDamagelostOtherMediController", ['$scope', '$http', func
     }
 
     //Edit data
-    $scope.dlDataEdit = function(form) {
+    $scope.editDlData = function(form) {
         document.getElementById("clearbtn").disabled = true;
         $scope.is_edit = true;
         $scope.submitted = true;

@@ -436,7 +436,7 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
         }
     }
 
-    $scope.dlDataEdit = function(form) {
+    $scope.editDlData = function(form) {
         $scope.is_edit = true;
         $scope.submitted = true;
 
@@ -465,7 +465,7 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
                     })
                     if(edit_data_not_found != true) {
                         $scope.dlRoadBrdgs = data;
-                        console.log('dlDataEdit ', $scope.dlRoadBrdgs);
+                        console.log('editDlData ', $scope.dlRoadBrdgs);
                     }
                     else {
                         $("#modal-container-239456").modal('show');

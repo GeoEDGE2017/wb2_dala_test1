@@ -127,7 +127,7 @@ app.controller('DlTypeLossRailController', function($scope, $http, $parse, _) {
         }
     }
 
-    $scope.dlDataEdit = function(form) {
+    $scope.editDlData = function(form) {
         if(form.$valid) {
             $scope.is_edit = true;
             $scope.submitted = true;

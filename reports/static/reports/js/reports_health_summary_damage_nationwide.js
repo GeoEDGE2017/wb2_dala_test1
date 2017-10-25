@@ -19,7 +19,7 @@ app.controller("reportHealthSummaryDamageNationwideController", ['$scope','$http
 
     }
 
-    $scope.dlDataEdit = function(form){
+    $scope.editDlData = function(form){
        $scope.is_edit = true;
        $scope.submitted = true;
         if(form.$valid){

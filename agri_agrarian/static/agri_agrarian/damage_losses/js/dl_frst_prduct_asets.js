@@ -642,7 +642,7 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
     }
 
     //Edit Data
-    $scope.dlDataEdit = function(form) {
+    $scope.editDlData = function(form) {
         $scope.is_edit = true;
         $scope.submitted = true;
         document.getElementById("clearbtn").disabled = true;
@@ -705,7 +705,12 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
         var finaltotal = 0;
         angular.forEach(arr, function(value, key) {
             if(value.assets != "Total") {
-                finaltotal = finaltotal + $scope.convertToInt(value.dmg_pub);
+                if(!isNaN(value.dmg_pub)) {
+                    finaltotal = finaltotal + $scope.convertToInt(value.dmg_pub);
+                }
+                else {
+                    finaltotal = finaltotal + 0;
+                }
             }
         })
         return finaltotal;
@@ -716,7 +721,12 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
         var finaltotal = 0;
         angular.forEach(arr, function(value, key) {
             if(value.assets != "Total") {
-                finaltotal = finaltotal + $scope.convertToInt(value.dmg_pvt);
+                if(!isNaN(value.dmg_pvt)) {
+                    finaltotal = finaltotal + $scope.convertToInt(value.dmg_pvt);
+                }
+                else {
+                    finaltotal = finaltotal + 0;
+                }
             }
         })
         return finaltotal;
@@ -914,7 +924,7 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
 
     $scope.convertToInt = function(val) {
         var total = 0;
-        if(val == null) {
+        if(val == null || isNaN(val)) {
             val=0;
         }
 

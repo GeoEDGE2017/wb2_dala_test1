@@ -467,7 +467,7 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
     }
 
     //Edit data
-    $scope.dlDataEdit = function(form){
+    $scope.editDlData = function(form){
         document.getElementById("clearbtn").disabled = true;
         $scope.is_edit = true;
         $scope.submitted = true;

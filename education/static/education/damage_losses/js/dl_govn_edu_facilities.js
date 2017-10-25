@@ -718,7 +718,7 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
 		$scope.is_submit = false;
 	}
 
-	$scope.dlDataEdit = function(form) {
+	$scope.editDlData = function(form) {
 		$scope.is_edit = true;
 		$scope.submitted = true;
 		document.getElementById("clearbtn").disabled = true;

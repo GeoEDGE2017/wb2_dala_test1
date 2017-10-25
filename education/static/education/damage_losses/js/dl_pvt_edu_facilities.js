@@ -1121,9 +1121,9 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
 	}
 
 	$scope.test = function() {
-			console.log('preSchool', $scope.preSchool);
-			console.log('prmSchool', $scope.prmSchool);
-		}
+        console.log('preSchool', $scope.preSchool);
+        console.log('prmSchool', $scope.prmSchool);
+    }
 
     //Clear Function
 	$scope.clear = function() {
@@ -1154,14 +1154,14 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
 	}
 
 	$scope.totDpefNaf_Female = function() {
-			var tot = 0;
-			angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefNaf, function(value, index) {
-				if(value.edu_facilities != 'TOTAL') {
-					tot = tot + value.female;
-				}
-			})
-			return tot;
-		}
+        var tot = 0;
+        angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefNaf, function(value, index) {
+            if(value.edu_facilities != 'TOTAL') {
+                tot = tot + value.female;
+            }
+        })
+        return tot;
+    }
 
     //DpefBefPreSchool Totals
 	$scope.totDpefBefPreSchool_EstRepCost = function() {

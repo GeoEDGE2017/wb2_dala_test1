@@ -560,7 +560,7 @@ app.controller('DlAirTrnspotationController', ['$scope', '$http', function($scop
     }
 
     //edit data
-	$scope.dlDataEdit = function(form) {
+	$scope.editDlData = function(form) {
         $scope.is_edit = true;
         $scope.submitted = true;
         document.getElementById("clearbtn").disabled = true;

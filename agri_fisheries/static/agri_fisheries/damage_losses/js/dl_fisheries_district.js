@@ -846,7 +846,7 @@ app.controller('dlFisheriesDistrictController', function($scope, $http, $parse, 
     }
 
     //Edit Data
-    $scope.dlDataEdit = function(form){
+    $scope.editDlData = function(form){
         $scope.is_edit = true;
         $scope.submitted = true;
          document.getElementById("clearbtn").disabled = true;

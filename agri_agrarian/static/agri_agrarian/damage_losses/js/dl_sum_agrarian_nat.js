@@ -19,9 +19,8 @@ app.controller("DlAgriAgrarianNatController", ['$scope','$http',function ($scope
     $scope.total_num_affected = 0;
     $scope.user_id;
 
-
-    $scope.fetchDlData = function(){
-        if($scope.incident){
+    $scope.fetchDlData = function() {
+        if($scope.incident) {
             $scope.is_edit = true;
             $scope.submitted = true;
             $http({
@@ -31,7 +30,7 @@ app.controller("DlAgriAgrarianNatController", ['$scope','$http',function ($scope
                     'table_name':'Table_10',
                     'sector': 'agri_agrarian',
                     'com_data': {
-                            'incident': $scope.incident,
+                        'incident': $scope.incident,
                     },
                 }),
             }).success(function(data) {
@@ -41,7 +40,7 @@ app.controller("DlAgriAgrarianNatController", ['$scope','$http',function ($scope
         }
     }
 
-     $scope.getTotal = function($index,key) {
+    $scope.getTotal = function($index, key) {
          $scope.totaldpub = $scope.totaldpub  + ($scope.dlAgriAgrarianSumNat.agri_agrarian.Table_10[key].DsorDmgPubNational[0] ? (
                          $scope.dlAgriAgrarianSumNat.agri_agrarian.Table_10[key].DsorDmgPubNational[0].sum ?
                          $scope.dlAgriAgrarianSumNat.agri_agrarian.Table_10[key].DsorDmgPubNational[0].sum : 0 ): 0) ;
@@ -71,11 +70,10 @@ app.controller("DlAgriAgrarianNatController", ['$scope','$http',function ($scope
 
          $scope.finaltotalprivate =  $scope.totaldpvt + $scope.totalyear1pvt + $scope.totalyear2pvt;
 
-        }
+    }
 
-     $scope.checkIfNull = function() {
+    $scope.checkIfNull = function() {
         var isNull = $scope.dlAgriAgrarianSumNat ? angular.equals({}, $scope.dlAgriAgrarianSumNat.agri_agrarian.Table_10) : true;
         return isNull;
     }
-
  }])

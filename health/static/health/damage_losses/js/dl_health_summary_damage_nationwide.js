@@ -1,7 +1,7 @@
 //Table 10
 var app = angular.module('dlHealthSummaryDamageNationwideApp', []);
 
-app.controller("DlHealthSummaryDamageNationwideController", ['$scope','$http',function ($scope,$http) {
+app.controller("DlHealthSummaryDamageNationwideController", ['$scope', '$http', function ($scope,$http) {
     $scope.incident;
     $scope.dl_data={};
     $scope.is_edit = false;
@@ -18,7 +18,7 @@ app.controller("DlHealthSummaryDamageNationwideController", ['$scope','$http',fu
                 method: "POST",
                 url: '/dl_fetch_district_disagtn',
                 data: angular.toJson({
-                    'table_name':  'Table_10',
+                    'table_name': 'Table_10',
                     'sector': 'health',
                     'com_data': {
                         'incident': $scope.incident,

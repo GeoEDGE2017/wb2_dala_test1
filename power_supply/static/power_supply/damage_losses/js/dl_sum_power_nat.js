@@ -22,7 +22,7 @@ app.controller("DlPowerSupplyNatController", function ($scope,$http,$parse, _) {
     $scope.user_id;
 
     $scope.fetchDlData = function() {
-        if($scope.incident){
+        if($scope.incident) {
             $scope.is_edit = true;
             $scope.submitted = true;
 
@@ -30,16 +30,16 @@ app.controller("DlPowerSupplyNatController", function ($scope,$http,$parse, _) {
                 method: "POST",
                 url: '/dl_fetch_district_disagtn',
                 data: angular.toJson({
-                    'table_name':'Table_6',
+                    'table_name': 'Table_6',
                     'sector': 'power_supply',
                     'com_data': {
                         'incident': $scope.incident,
                     },
                 }),
             }).success(function(data) {
-                console.log('load ', data);
                 $scope.data= data;
                 $scope.dlPowerSupplySumNat = data;
+                console.log($scope.dlPowerSupplySumNat);
             })
         }
     }
@@ -49,140 +49,138 @@ app.controller("DlPowerSupplyNatController", function ($scope,$http,$parse, _) {
         return isNull;
     }
 
-     $scope.convertTotal = function(val1,val2,val3,val4){
-            var sum = 0;
-            sum = parseInt(val1) + parseInt(val2) + parseInt(val3) + parseInt(val4) ;
-            return sum;
-        }
+    $scope.convertTotal = function(val1, val2, val3, val4){
+        var sum = 0;
+        sum = parseInt(val1) + parseInt(val2) + parseInt(val3) + parseInt(val4) ;
+        return sum;
+    }
 
-     $scope.totDmg = function() {
+    $scope.totDmg = function() {
         if(!angular.isUndefined($scope.dlPowerSupplySumNat)) {
             var totDmg = 0;
             var totDmgOne = 0;
             var totDmgTwo = 0;
             var totDmgThree = 0;
             angular.forEach($scope.dlPowerSupplySumNat.power_supply.Table_6, function(value, index) {
-              angular.forEach(value,function(value_in, key) {
-                   console.log('print',key);
+                angular.forEach(value,function(value_in, key) {
                     if(key == 'TotDmgCebNational') {
-                          totDmgOne = totDmgOne + value_in[0].tot_dmg;
+                        totDmgOne = totDmgOne + value_in[0].tot_dmg;
                     }
                     if(key == 'TotDmgPvtNational') {
-                          totDmgTwo = totDmgTwo + value_in[1].tot_dmg;
+                        totDmgTwo = totDmgTwo + value_in[1].tot_dmg;
                     }
                     if(key == 'TotDmgPvtNational') {
-                          totDmgThree = totDmgThree + value_in[0].tot_dmg;
+                        totDmgThree = totDmgThree + value_in[0].tot_dmg;
                     }
-                totDmg = totDmgOne + totDmgTwo + totDmgThree;
+                    totDmg = totDmgOne + totDmgTwo + totDmgThree;
                 })
-                })
+            })
             return totDmg;
         }
     }
-     $scope.totLossY1 = function() {
+
+    $scope.totLossY1 = function() {
         if(!angular.isUndefined($scope.dlPowerSupplySumNat)) {
             var totLoss = 0;
             var totLossOne = 0;
             var totLossTwo = 0;
             var totLossThree = 0;
             angular.forEach($scope.dlPowerSupplySumNat.power_supply.Table_6, function(value, index) {
-              angular.forEach(value,function(value_in, key) {
-                   console.log('print',value_in);
+                angular.forEach(value,function(value_in, key) {
                     if(key == 'TotLosCebNational') {
-                          totLossOne = totLossOne + value_in[0].losses_y1;
+                        totLossOne = totLossOne + value_in[0].losses_y1;
                     }
                     if(key == 'TotLossesPvtNational') {
-                          totLossTwo = totLossTwo + value_in[1].los_year1;
+                        totLossTwo = totLossTwo + value_in[1].los_year1;
                     }
                     if(key == 'TotLossesPvtNational') {
-                          totLossThree = totLossThree + value_in[0].los_year1;
+                        totLossThree = totLossThree + value_in[0].los_year1;
                     }
-                totLoss = totLossOne +totLossTwo +totLossThree ;
+                    totLoss = totLossOne + totLossTwo + totLossThree ;
                 })
-                })
-            return totLoss;
-        }
-        }
-     $scope.totLossY2= function() {
-        if(!angular.isUndefined($scope.dlPowerSupplySumNat)) {
-            var totLoss = 0;
-            var totLossOne = 0;
-            var totLossTwo = 0;
-            var totLossThree = 0;
-            angular.forEach($scope.dlPowerSupplySumNat.power_supply.Table_6, function(value, index) {
-              angular.forEach(value,function(value_in, key) {
-                   console.log('print',key);
-                    if(key == 'TotLosCebNational') {
-                          totLossOne = totLossOne + value_in[0].losses_y2;
-                    }
-                    if(key == 'TotLossesPvtNational') {
-                          totLossTwo = totLossTwo + value_in[1].los_year2;
-                    }
-                    if(key == 'TotLossesPvtNational') {
-                          totLossThree = totLossThree + value_in[0].los_year2;
-                    }
-                totLoss = totLossOne + totLossTwo + totLossThree;
-                })
-                })
+            })
             return totLoss;
         }
     }
 
-     $scope.totNumAffDom = function() {
+    $scope.totLossY2= function() {
+        if(!angular.isUndefined($scope.dlPowerSupplySumNat)) {
+            var totLoss = 0;
+            var totLossOne = 0;
+            var totLossTwo = 0;
+            var totLossThree = 0;
+            angular.forEach($scope.dlPowerSupplySumNat.power_supply.Table_6, function(value, index) {
+                angular.forEach(value,function(value_in, key) {
+                    if(key == 'TotLosCebNational') {
+                        totLossOne = totLossOne + value_in[0].losses_y2;
+                    }
+                    if(key == 'TotLossesPvtNational') {
+                        totLossTwo = totLossTwo + value_in[1].los_year2;
+                    }
+                    if(key == 'TotLossesPvtNational') {
+                        totLossThree = totLossThree + value_in[0].los_year2;
+                    }
+                    totLoss = totLossOne + totLossTwo + totLossThree;
+                })
+            })
+            return totLoss;
+        }
+    }
+
+    $scope.totNumAffDom = function() {
+        var tot = 0;
+        if(!angular.isUndefined($scope.dlPowerSupplySumNat)) {
+            angular.forEach($scope.dlPowerSupplySumNat.power_supply.Table_6, function(value, key, index) {
+//                console.log('------', key);
+                angular.forEach(value, function(value_in, key_in) {
+                    if(key_in == 'DlNumAffNational') {
+                        tot = tot + parseInt(value_in[0].domestic);
+                    }
+                })
+            })
+        }
+        return tot;
+    }
+
+    $scope.totNumAffInd = function() {
         if(!angular.isUndefined($scope.dlPowerSupplySumNat)) {
             var tot = 0;
             angular.forEach($scope.dlPowerSupplySumNat.power_supply.Table_6, function(value, index) {
-              angular.forEach(value,function(value_in, key) {
+                angular.forEach(value,function(value_in, key) {
                     if(key == 'DlNumAffNational') {
-                          console.log('printing',value_in[0].domestic);
-                          tot = parseInt(value_in[0].domestic);
+                        tot = tot + parseInt(value_in[0].industrial);
                     }
                 })
-                })
+            })
             return tot;
         }
-        }
-         $scope.totNumAffInd = function() {
+    }
+
+    $scope.totNumAffComm = function() {
         if(!angular.isUndefined($scope.dlPowerSupplySumNat)) {
             var tot = 0;
             angular.forEach($scope.dlPowerSupplySumNat.power_supply.Table_6, function(value, index) {
-              angular.forEach(value,function(value_in, key) {
+                angular.forEach(value,function(value_in, key) {
                     if(key == 'DlNumAffNational') {
-                          tot = parseInt(value_in[0].industrial);
+                        tot = tot + parseInt(value_in[0].commercial);
                     }
                 })
-                })
+            })
             return tot;
         }
-        }
+    }
 
-
-
-          $scope.totNumAffComm = function() {
+    $scope.totNumAffOther = function() {
         if(!angular.isUndefined($scope.dlPowerSupplySumNat)) {
             var tot = 0;
             angular.forEach($scope.dlPowerSupplySumNat.power_supply.Table_6, function(value, index) {
-              angular.forEach(value,function(value_in, key) {
+                angular.forEach(value,function(value_in, key) {
                     if(key == 'DlNumAffNational') {
-                          tot =  parseInt(value_in[0].commercial);
+                        tot = tot + parseInt(value_in[0].other);
                     }
                 })
-                })
+            })
             return tot;
         }
-        }
-
-         $scope.totNumAffOther = function() {
-        if(!angular.isUndefined($scope.dlPowerSupplySumNat)) {
-            var tot = 0;
-            angular.forEach($scope.dlPowerSupplySumNat.power_supply.Table_6, function(value, index) {
-              angular.forEach(value,function(value_in, key) {
-                    if(key == 'DlNumAffNational') {
-                          tot = parseInt(value_in[0].other);
-                    }
-                })
-                })
-            return tot;
-        }
-        }
+    }
  })

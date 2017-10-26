@@ -149,6 +149,11 @@ app.controller("BsPubMedicalFacilitiesController", ['$scope', '$http', function(
                 $scope.is_valid_data = false;
                 console.log(data);
             });
+
+
+//                console.log("time started");
+//                foo();
+//                console.log("time up");
         }
         $scope.is_submit = false;
     }

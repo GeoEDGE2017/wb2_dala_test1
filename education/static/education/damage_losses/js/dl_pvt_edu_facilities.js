@@ -603,7 +603,8 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
 					$scope.schools[$scope.schoolType].push($scope.new_school[$scope.schoolType]);
 					console.log($scope.schools[$scope.schoolType]);
 				}
-			} else {
+			}
+			else {
 				var school = $filter('filter')($scope.schools[$scope.schoolType], {
 					id: data
 				})[0];

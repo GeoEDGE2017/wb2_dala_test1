@@ -3,36 +3,56 @@
 <main class="main" ng-app="mnArtisanalFirmApp" ng-controller="MnArtisanalFirmController">
 	<!-- Breadcrumb -->
 	<ol class="breadcrumb">
-		<li class="breadcrumb-item"> <a href="{% url 'dashboard:index' %}">Dashboard</a> </li>
-		<li class="breadcrumb-item"> <a href="{% url 'dashboard:mining_main' %}">Mining Sector</a> </li>
-		<li class="breadcrumb-item active"> <span class="label label-success" style="font-size:14px;">
+		<li class="breadcrumb-item">
+			<a href="{% url 'dashboard:index' %}">Dashboard</a>
+		</li>
+		<li class="breadcrumb-item">
+			<a href="{% url 'dashboard:mining_main' %}">Mining Sector</a>
+		</li>
+		<li class="breadcrumb-item active">
+			<span class="label label-success" style="font-size:14px;">
                 Table 2: Baseline Information for Artisanal Mining
-            </span> </li>
+            </span>
+		</li>
 		<li style="float:right;">
-			<a href="{% static 'dashboard/doc/Mining.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document"></a>
+			<a href="{% static 'dashboard/doc/Mining.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;"
+			   class="icon-info" data-toggle="tooltip" title="Veiw Document">
+			</a>
 		</li>
 	</ol>
 	<div class="container-fluid">
 		<div id="myTabContent" class="tab-content" ng-form name="form_artisanal_mining">
 			<div class="tab-pane active" id="step1">
-				<td style="width:100px;"> <span ng-if="!check_search">
-									<button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
-					</span> <span ng-if="check_search">
-									<button ng-click="searchBsData(form_artisanal_mining)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
+				<td style="width:100px;">
+					<span ng-if="!check_search">
+						<button ng-if="!is_search" class="btn btn-info" disabled>
+							<span class="fa fa-search"></span>
+						</button>
 					</span>
-					<button ng-click="clear()" ng-if="is_search" class="btn btn-warning">Cancel Search</button>
+					<span ng-if="check_search">
+						<button ng-click="searchBsData(form_artisanal_mining)" ng-if="!is_search" class="btn btn-info">
+							<span class="fa fa-search"></span>
+						</button>
+					</span>
+					<button ng-click="clear()" ng-if="is_search" class="btn btn-warning">
+						Cancel Search
+					</button>
 				</td>
 				<table class="table table-bordered">
 					<tbody>
 						<tr style="background:#fff;border:1px solid #fff;text-align:center;">
-							<td style="background:#fff;border:1px solid #fff;text-align:center;" border="0"> </td>
-							<td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;"> <span class="arrow_box" ng-show="submitted && form_artisanal_mining.district.$error.required">
-                                Please Select District
-                            </span> </td>
-							<td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;"> </td>
-							<td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;"> <span class="arrow_box" ng-show="submitted && form_artisanal_mining.baselineDate.$error.required">
-                                Please Select Date
-                            </span> </td>
+							<td style="background:#fff;border:1px solid #fff;text-align:center;" border="0"></td>
+							<td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+								<span class="arrow_box" ng-show="submitted && form_artisanal_mining.district.$error.required">
+									Please Select District
+								</span>
+							</td>
+							<td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;"></td>
+							<td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+								<span class="arrow_box" ng-show="submitted && form_artisanal_mining.baselineDate.$error.required">
+									Please Select Date
+								</span>
+							</td>
 						</tr>
 						<tr class="trhead1">
 							<td style="padding-left:5px;"> Name of District</td>
@@ -43,7 +63,11 @@
 							</td>
 							<td colspan="1" style="padding-left:5px;"> Year/Month </td>
 							<td colspan="3" style="font-weight:normal;">
-								<input id="datepicker" type="text" placeholder="mm/yy" ng-change="changeDis()" ng-model="baselineDate" class="form-control input-md" name="baselineDate" required> </td> <span ng-bind="user_id={{user.id}}" style="display:none;"></span> </tr>
+								<input id="datepicker" type="text" placeholder="mm/yy" ng-change="changeDis()"
+									   ng-model="baselineDate" class="form-control input-md" name="baselineDate" required>
+							</td>
+							<span ng-bind="user_id={{user.id}}" style="display:none;"></span>
+						</tr>
 						<!--<tr>-->
 						<!--<td class="trhead">-->
 						<!--Firm Name-->
@@ -71,42 +95,64 @@
 						</tr>
 						<tr height="19" ng-repeat="bmaAmMinNum in mnArtisanalFirm.mining.Table_2.BmaAmMinNum">
 							<td colspan="2" height="19" width="126">
-								<input ng-model="bmaAmMinNum.male" id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<input ng-model="bmaAmMinNum.male" id="textinput" name="textinput" type="number" placeholder=""
+									   class="form-control input-md">
+							</td>
 							<td colspan="2" height="19" width="126">
-								<input ng-model="bmaAmMinNum.female" id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
-							<td class="trsub" height="19" width="63"> </td>
+								<input ng-model="bmaAmMinNum.female" id="textinput" name="textinput" type="number" placeholder=""
+									   class="form-control input-md">
+							</td>
+							<td class="trsub" height="19" width="63">
+							</td>
 						</tr>
 						<tr ng-repeat="bmaAmMin in mnArtisanalFirm.mining.Table_2.BmaAmMin" height="20">
 							<td ng-bind="bmaAmMin.minerals" ng-if="$index < 3" height="20" width="264" class="tdpa"> </td>
-							<td width="98" ng-if="$index > 2"> {% verbatim %}
-								<button id="delete" ng-click="removeItem('BmaAmMin', $index)" class="btn btn-sm btn-danger btn-circle"> <i class="fa fa-minus"></i> </button>
-								<input style="width:80%;float:right;" ng-model="bmaAmMin.minerals" popover="This field is required" required popover-toggle="form_pop_lat_census['bmaImFn_' + $index].$dirty && !form_pop_lat_census['bmaAmMin_' + $index].$valid" name="bmaAmMin_{{$index}}" type="text" placeholder="" class="form-control input-md"> {% endverbatim %} </td>
+							<td width="98" ng-if="$index > 2">
+								{% verbatim %}
+								<button id="delete" ng-click="removeItem('BmaAmMin', $index)" class="btn btn-sm btn-danger btn-circle">
+									<i class="fa fa-minus"></i>
+								</button>
+								<input style="width:80%;float:right;" ng-model="bmaAmMin.minerals" popover="This field is required" required
+									   popover-toggle="form_pop_lat_census['bmaImFn_' + $index].$dirty && !form_pop_lat_census['bmaAmMin_' + $index].$valid"
+									   name="bmaAmMin_{{$index}}" type="text" placeholder="" class="form-control input-md">
+								{% endverbatim %}
+							</td>
 							<td class="tdpa" colspan="2" width="98"> </td>
 							<td class="tdpa" colspan="2" width="98"> </td>
 							<td width="98">
-								<input ng-model="bmaAmMin.avg_per_year" id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<input ng-model="bmaAmMin.avg_per_year" id="textinput" name="textinput" type="number"
+									   placeholder="" class="form-control input-md">
+							</td>
 						</tr>
 						<tr height="19">
 							<td colspan="6" class="tdpa" height="19" width="171"> Others
-								<button ng-click="insertFirm('BmaAmMin')" class="btn btn-sm btn-info btn-circle" id="insert"><span class="fa fa-plus"></span> </button>
+								<button ng-click="insertFirm('BmaAmMin')" class="btn btn-sm btn-info btn-circle" id="insert">
+									<span class="fa fa-plus"></span>
+								</button>
 							</td>
 						</tr>
 					</tbody>
 				</table>
 				<div class="pull-right">
 					<br>
-					<button id="clearbtn" type="button" class="btn btn-info" ng-click="clear()">Clear</button> <span ng-if="is_edit_disable">
+					<button id="clearbtn" type="button" class="btn btn-info" ng-click="clear()">Clear</button>
+					<span ng-if="is_edit_disable">
                         <button id="editbtn" type="button" ng-click="editBsData(form_artisanal_mining)" ng-if="!is_edit"
                                 class="btn btn-success">
                             Edit
                         </button>
-                    </span> <span ng-if="!is_edit_disable">
+                    </span>
+					<span ng-if="!is_edit_disable">
                         <button id="editbtn" type="button" ng-else="!is_edit" class="btn btn-success" disabled>
                             Edit
                         </button>
                     </span>
-					<button id="editbtn" type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel Edit </button>
-					<button id="subbtn" type="button" ng-click="saveBsData(form_artisanal_mining)" class="btn btn-success">Submit </button>
+					<button id="editbtn" type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
+						Cancel Edit
+					</button>
+					<button id="subbtn" type="button" ng-click="saveBsData(form_artisanal_mining)" class="btn btn-success">
+						Submit
+					</button>
 				</div>
 				<br>
 				<br> </div>

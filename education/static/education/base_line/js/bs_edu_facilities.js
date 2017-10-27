@@ -132,6 +132,7 @@ bsHealthStatusApp.controller('BsEduFacilitiesController', function($scope, $http
 			}
 		}
 	}
+
 	$scope.bsEduFacilities = angular.copy(init_data);
 
 	//disable Edit Button

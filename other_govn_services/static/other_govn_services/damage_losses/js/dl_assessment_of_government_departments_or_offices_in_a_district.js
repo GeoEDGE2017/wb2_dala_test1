@@ -138,93 +138,95 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function($sco
 	$scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys = angular.copy(init_data);
 
 	$scope.changedValue = function getBsData(selectedValue) {
-			if($scope.incident && selectedValue) {
-				$http({
-					method: "POST",
-					url: "/fetch_incident_districts",
-					data: angular.toJson({
-						'incident': $scope.incident,
-						'user': $scope.user_id,
-					}),
-				}).success(function(data) {
-					$scope.districts = data;
-					$scope.selectedDistrict = "";
-					console.log('* ', data);
-				})
-			}
-			if($scope.incident && $scope.district) {
-				$http({
-					method: 'POST',
-					url: '/bs_get_data_mock',
-					contentType: 'application/json; charset=utf-8',
-					data: angular.toJson({
-						'db_tables': ['BcsStructure', 'BcsOfficeEquipment', 'BcsMachinery'],
-						'com_data': {
-							'district': $scope.district.district__id,
-							'incident': $scope.incident,
-						},
-						'table_name': 'Table_1',
-						'sector': 'other_govn_services',
-					}),
-					dataType: 'json',
-				}).then(function successCallback(response) {
-					var data = response.data;
-					console.log(response);
-					angular.forEach(data, function(value, key) {
-						$scope.bs_data[key] = JSON.parse(value);
-					});
-					console.log('*', $scope.bs_data);
-					var is_null = false;
-					angular.forEach($scope.bs_data, function(value, index) {
-						if(value == null) {
-							is_null = true;
-						}
-					})
-					if(is_null == true) {
-						$("#modal-container-239458").modal('show');
-						console.log('baseline table or tables are empty');
-						console.log($scope.bs_data);
-						$scope.currentBaselineDate = null;
-					} else {
-						generateRefencedData();
-						$http({
-							method: 'POST',
-							url: '/get_latest_bs_date',
-							contentType: 'application/json; charset=utf-8',
-							data: angular.toJson({
-								'com_data': {
-									'district': $scope.district.district__id,
-									'incident': $scope.incident,
-								},
-								'table_name': 'Table_1',
-								'sector': 'other_govn_services'
-							}),
-							dataType: 'json',
-						}).then(function successCallback(response) {
-							console.log('response', response);
-							var result = response.data;
-							if(result.bs_date == null) {
-								$("#modal-container-239458").modal('show');
-							}
-							else {
-								var bs_date = result.bs_date.replace(/^"(.*)"$/, '$1');
-								$scope.currentBaselineDate = "Latest baseline data as at " + bs_date;
-								$scope.bsCreatedeDate = result.bs_created_date;
-								console.log('bs_date', result.bs_date);
-								console.log('bsCreatedeDate', result.bs_created_date);
-							}
-						});
-					}
-				}, function errorCallback(response) {
-					console.log(response);
-				});
-			}
-			if($scope.incident && $scope.district && $scope.new_department) {
-				$scope.is_edit_disable = true;
-				$scope.check_search = true;
-			}
-		}
-		//Get Reference Data from Baseline
+        if($scope.incident && selectedValue) {
+            $http({
+                method: "POST",
+                url: "/fetch_incident_districts",
+                data: angular.toJson({
+                    'incident': $scope.incident,
+                    'user': $scope.user_id,
+                }),
+            }).success(function(data) {
+                $scope.districts = data;
+                $scope.selectedDistrict = "";
+                console.log('* ', data);
+            })
+        }
+        if($scope.incident && $scope.district) {
+            $http({
+                method: 'POST',
+                url: '/bs_get_data_mock',
+                contentType: 'application/json; charset=utf-8',
+                data: angular.toJson({
+                    'db_tables': ['BcsStructure', 'BcsOfficeEquipment', 'BcsMachinery'],
+                    'com_data': {
+                        'district': $scope.district.district__id,
+                        'incident': $scope.incident,
+                    },
+                    'table_name': 'Table_1',
+                    'sector': 'other_govn_services',
+                }),
+                dataType: 'json',
+            }).then(function successCallback(response) {
+                var data = response.data;
+                console.log(response);
+                angular.forEach(data, function(value, key) {
+                    $scope.bs_data[key] = JSON.parse(value);
+                });
+                console.log('*', $scope.bs_data);
+                var is_null = false;
+                angular.forEach($scope.bs_data, function(value, index) {
+                    if(value == null) {
+                        is_null = true;
+                    }
+                })
+                if(is_null == true) {
+                    $("#modal-container-239458").modal('show');
+                    console.log('baseline table or tables are empty');
+                    console.log($scope.bs_data);
+                    $scope.currentBaselineDate = null;
+                }
+                else {
+                    generateRefencedData();
+                    $http({
+                        method: 'POST',
+                        url: '/get_latest_bs_date',
+                        contentType: 'application/json; charset=utf-8',
+                        data: angular.toJson({
+                            'com_data': {
+                                'district': $scope.district.district__id,
+                                'incident': $scope.incident,
+                            },
+                            'table_name': 'Table_1',
+                            'sector': 'other_govn_services'
+                        }),
+                        dataType: 'json',
+                    }).then(function successCallback(response) {
+                        console.log('response', response);
+                        var result = response.data;
+                        if(result.bs_date == null) {
+                            $("#modal-container-239458").modal('show');
+                        }
+                        else {
+                            var bs_date = result.bs_date.replace(/^"(.*)"$/, '$1');
+                            $scope.currentBaselineDate = "Latest baseline data as at " + bs_date;
+                            $scope.bsCreatedeDate = result.bs_created_date;
+                            console.log('bs_date', result.bs_date);
+                            console.log('bsCreatedeDate', result.bs_created_date);
+                        }
+                    });
+                }
+            }, function errorCallback(response) {
+                console.log(response);
+            });
+        }
+        if($scope.incident && $scope.district && $scope.new_department) {
+            $scope.is_edit_disable = true;
+            $scope.check_search = true;
+        }
+    }
+
+    //Get Reference Data from Baseline
 	function generateRefencedData() {
 		data_array = ['BcsStructure', 'BcsOfficeEquipment', 'BcsMachinery'];
 		var dl_model1 = null;
@@ -232,8 +234,10 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function($sco
 		angular.forEach(data_array, function(value, key) {
 			obj_array = $scope.bs_data[value];
 			model_name = value;
+
 			var particular_value_1 = null;
 			var particular_value_2 = null;
+
 			if(model_name == 'BcsOfficeEquipment') {
 				dl_model1 = 'DlagdDmgOfficeEquipment';
 				particular_value_1 = 'Total';
@@ -309,12 +313,12 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function($sco
 				dataType: 'json',
 			}).then(function successCallback(response) {
 				if(response.data == 'False') {
-                        $scope.is_valid_data = false;
-                        $("#modal-container-239454").modal('show');
-                    }
-                    else {
-                        $("#modal-container-239453").modal('show');
-                    }
+                    $scope.is_valid_data = false;
+                    $("#modal-container-239454").modal('show');
+                }
+                else {
+                    $("#modal-container-239453").modal('show');
+                }
 			}, function errorCallback(response) {
 				$("#modal-container-239454").modal('show');
 				console.log(response);
@@ -353,10 +357,12 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function($sco
 					})
 					if(edit_data_not_found != true) {
 						$scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys = data;
-					} else {
+					}
+					else {
 						$("#modal-container-239456").modal('show');
 					}
-				} else {
+				}
+				else {
 					$("#modal-container-239456").modal('show');
 				}
 			})
@@ -368,8 +374,7 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function($sco
 		document.getElementById("clearbtn").disabled = true;
 		document.getElementById("editbtn").disabled = true;
 		document.getElementById("subbtn").disabled = true;
-		console.log("test", $scope.district);
-		console.log("test", $scope.bs_date);
+
 		$scope.is_search = true;
 		if(form.$valid) {
 			$http({
@@ -397,10 +402,12 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function($sco
 					})
 					if(edit_data_not_found != true) {
 						$scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys = data;
-					} else {
+					}
+					else {
 						$("#modal-container-239456").modal('show');
 					}
-				} else {
+				}
+				else {
 					$("#modal-container-239456").modal('show');
 				}
 			})
@@ -440,7 +447,8 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function($sco
 				$scope.departments = data;
 				console.log(data);
 			})
-		} else {
+		}
+		else {
 			$scope.departments = null;
 		}
 	}
@@ -491,7 +499,6 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function($sco
 //			console.log('***');
 //		}
 //	}
-
 
 	$scope.saveDepartment = function(form) {
 		if(!$scope.is_edit_model) {

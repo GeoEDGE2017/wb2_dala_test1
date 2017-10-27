@@ -120,7 +120,7 @@ app.controller("MnIndusMinFirmController", function($scope, $http, _) {
 				}
 				else {
 				    $scope.updateEnums();
-				     $scope.mnIndusMinFirm = init_data;
+                    $scope.mnIndusMinFirm = init_data;
 					$("#modal-container-239453").modal('show');
 				}
 			}, function errorCallback(response) {

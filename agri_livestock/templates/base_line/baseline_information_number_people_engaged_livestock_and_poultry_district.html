@@ -5,25 +5,42 @@
 <main class="main" ng-app="bsLivestockPoultryDstApp" ng-controller="bsLivestockPoultryDstController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:agri_livestock_main' %}">Agri Livestock Sector</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:agri_livestock_main' %}">
+                Agri Livestock Sector
+            </a>
         </li>
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 1. Baseline Information on the Number of People Engaged in Livestock and Poultry in a District</span>
+        <li class="breadcrumb-item active">
+            <span class="label label-success" style="font-size:14px;">
+                Table 1. Baseline Information on the Number of People Engaged in Livestock and Poultry in a District
+            </span>
         </li>
-        <li style="float:right;"><a href="{% static 'dashboard/doc/4B-Agriculture-Livestock-24Jan17.pdf' %}"
-                                    target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;"
-                                    class="icon-info" data-toggle="tooltip" title="Veiw Document"></a></li>
+        <li style="float:right;">
+            <a href="{% static 'dashboard/doc/4B-Agriculture-Livestock-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;"
+                class="icon-info" data-toggle="tooltip" title="Veiw Document">
+            </a>
+        </li>
     </ol>
     <div class="container-fluid" ng-form name="form_bs_livestock_poultry_dst">
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
-            <td style="width:100px;"> <span ng-if="!check_search">
-									<button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
-					</span> <span ng-if="check_search">
-									<button ng-click="searchBsData(form_bs_livestock_poultry_dst)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
+                <td style="width:100px;">
+                    <span ng-if="!check_search">
+                        <button ng-if="!is_search" class="btn btn-info" disabled>
+                            <span class="fa fa-search"></span>
+                        </button>
 					</span>
-					<button ng-click="clear()" ng-if="is_search" class="btn  btn-warning">Cancel Search</button>
+                    <span ng-if="check_search">
+                        <button ng-click="searchBsData(form_bs_livestock_poultry_dst)" ng-if="!is_search" class="btn btn-info">
+                            <span class="fa fa-search"></span>
+                        </button>
+					</span>
+					<button ng-click="clear()" ng-if="is_search" class="btn  btn-warning">
+                        Cancel Search
+                    </button>
 				</td>
                 <table class="table table-bordered">
                     <colgroup>
@@ -117,8 +134,7 @@
                             Female
                         </td>
                     </tr>
-                    <tr height="19"
-                        ng-repeat="belLivestock in bsLivestockPoultryDst.agri_livestock.Table_1.BelLivestock">
+                    <tr height="19" ng-repeat="belLivestock in bsLivestockPoultryDst.agri_livestock.Table_1.BelLivestock">
                         <td class="tdpa" width="113" height="19" ng-bind="belLivestock.livestock" ng-if="$index < 5">
                         </td>
                         <td width="98" ng-if="$index > 4">
@@ -285,7 +301,6 @@
                 </table>
                 <br>
                 <div class="pull-right">
-
                     <button id="clearbtn" type="button" ng-click="clear()" class="btn btn-info">Clear</button>
                     <span ng-if="is_edit_disable">
                         <button id="editbtn" type="button" ng-click="editBsData(form_bs_livestock_poultry_dst)" ng-if="!is_edit"
@@ -304,7 +319,8 @@
                         Submit
                     </button>
                 </div>
-                <br> <br>
+                <br>
+                <br>
             </div>
         </div>
     </div>
@@ -343,8 +359,6 @@
                 </div>
             </div>
         </div>
-    </div>
-    </div>
     </div>
     <!-- /.conainer-fluid -->
 </main>

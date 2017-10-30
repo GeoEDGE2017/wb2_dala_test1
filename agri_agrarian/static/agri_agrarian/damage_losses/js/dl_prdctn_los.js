@@ -606,8 +606,8 @@ app.controller('dlPrdctnLosController', ['$scope', '$http', function($scope, $ht
                     'is_edit':$scope.is_edit
                 }),
             }).success(function(data) {
-                console.log(data);
                 $scope.dlPrdctnLos = data;
+                console.log($scope.dlPrdctnLos);
             })
         }
     }

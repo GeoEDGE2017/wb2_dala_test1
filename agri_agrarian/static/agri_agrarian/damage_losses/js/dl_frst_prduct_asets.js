@@ -31,7 +31,7 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
                     num_dmg_pvt : null,
                     dmg_pub : null,
                     dmg_pvt : null,
-                },{
+                }, {
                     assets : 'Total',
                     num_dest_pub : null,
                     num_dest_pvt : null,
@@ -46,25 +46,25 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
                     num_dest_pvt : null,
                     dmg_pub : null,
                     dmg_pvt : null,
-                },{
+                }, {
                     assets : 'Maize',
                     num_dest_pub : null,
                     num_dest_pvt : null,
                     dmg_pub : null,
                     dmg_pvt : null,
-                },{
+                }, {
                     assets : 'Vegetables',
                     num_dest_pub : null,
                     num_dest_pvt : null,
                     dmg_pub : null,
                     dmg_pvt : null,
-                },{
+                }, {
                     assets : 'Floriculture crops',
                     num_dest_pub : null,
                     num_dest_pvt : null,
                     dmg_pub : null,
                     dmg_pvt : null,
-                },{
+                }, {
                     assets : 'Total',
                     num_dest_pub : null,
                     num_dest_pvt : null,
@@ -77,19 +77,19 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
                     num_dest_pvt : null,
                     dmg_pub : null,
                     dmg_pvt : null,
-                },{
+                }, {
                     assets : 'Tea',
                     num_dest_pub : null,
                     num_dest_pvt : null,
                     dmg_pub : null,
                     dmg_pvt : null,
-                },{
+                }, {
                     assets : 'Rubber',
                     num_dest_pub : null,
                     num_dest_pvt : null,
                     dmg_pub : null,
                     dmg_pvt : null,
-                },{
+                }, {
                     assets : 'Total',
                     num_dest_pub : null,
                     num_dest_pvt : null,
@@ -102,19 +102,19 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
                     num_dest_pvt : null,
                     dmg_pub : null,
                     dmg_pvt : null,
-                },{
+                }, {
                     assets : 'Fruit trees',
                     num_dest_pub : null,
                     num_dest_pvt : null,
                     dmg_pub : null,
                     dmg_pvt : null,
-                },{
+                }, {
                     assets : 'Cinnamon',
                     num_dest_pub : null,
                     num_dest_pvt : null,
                     dmg_pub : null,
                     dmg_pvt : null,
-                },{
+                }, {
                     assets : 'Total',
                     num_dest_pub : null,
                     num_dest_pvt : null,
@@ -127,7 +127,7 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
                     num_dest_pvt : null,
                     dmg_pub : null,
                     dmg_pvt : null,
-                },{
+                }, {
                     assets : 'Total',
                     num_dest_pub : null,
                     num_dest_pvt : null,
@@ -140,7 +140,7 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
                     num_dest_pvt : null,
                     dmg_pub : null,
                     dmg_pvt : null,
-                },{
+                }, {
                     assets : 'Total',
                     num_dest_pub : null,
                     num_dest_pvt : null,
@@ -153,19 +153,19 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
                     num_dest_pvt : null,
                     dmg_pub : null,
                     dmg_pvt : null,
-                },{
+                }, {
                     assets : 'Fertilizers',
                     num_dest_pub : null,
                     num_dest_pvt : null,
                     dmg_pub : null,
                     dmg_pvt : null,
-                },{
+                }, {
                     assets : 'Pesticides',
                     num_dest_pub : null,
                     num_dest_pvt : null,
                     dmg_pub : null,
                     dmg_pvt : null,
-                },{
+                }, {
                     assets : 'Total',
                     num_dest_pub : null,
                     num_dest_pvt : null,
@@ -178,20 +178,19 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
                     num_dest_pvt : null,
                     dmg_pub : null,
                     dmg_pvt : null,
-                },{
+                }, {
                     assets : 'Tea',
                     num_dest_pub : null,
                     num_dest_pvt : null,
                     dmg_pub : null,
                     dmg_pvt : null,
-                },{
+                }, {
                     assets : 'Rubber',
                     num_dest_pub : null,
                     num_dest_pvt : null,
                     dmg_pub : null,
                     dmg_pvt : null,
-                },
-                {
+                }, {
                     assets : 'Total',
                     num_dest_pub : null,
                     num_dest_pvt : null,
@@ -204,20 +203,19 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
                     num_dest_pvt : null,
                     dmg_pub : null,
                     dmg_pvt : null,
-                },{
+                }, {
                     assets : 'Fruit trees',
                     num_dest_pub : null,
                     num_dest_pvt : null,
                     dmg_pub : null,
                     dmg_pvt : null,
-                },{
+                }, {
                     assets : 'Cinnamon',
                     num_dest_pub : null,
                     num_dest_pvt : null,
                     dmg_pub : null,
                     dmg_pvt : null,
-                },
-                {
+                }, {
                     assets : 'Total',
                     num_dest_pub : null,
                     num_dest_pvt : null,
@@ -230,7 +228,7 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
                     num_dest_pvt : null,
                     dmg_pub : null,
                     dmg_pvt : null,
-                },{
+                }, {
                     assets : 'Total',
                     num_dest_pub : null,
                     num_dest_pvt : null,
@@ -268,17 +266,17 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
                 url: '/bs_get_data_mock',
                 contentType: 'application/json; charset=utf-8',
                 data: angular.toJson({
-                    'db_tables': ['BacfFarmEquipment','BacfSeasonalCrops', 'BacfPlantnCrops', 'BacfExportCrops', 'BacfForestry', 'BacfOther', 'BacfStocks','BacfAvgrePlantnCrops','BacfAvgreExportCrops','BacfAvgreForestry'],
+                    'db_tables': ['BacfFarmEquipment','BacfSeasonalCrops', 'BacfPlantnCrops', 'BacfExportCrops',
+                        'BacfForestry', 'BacfOther', 'BacfStocks','BacfAvgrePlantnCrops','BacfAvgreExportCrops','BacfAvgreForestry'],
                     'com_data': {
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
                     },
                     'table_name': 'Table_2',
-                    'sector':'agri_agrarian',
+                    'sector': 'agri_agrarian',
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {
-
                 var data = response.data;
                 console.log('*', response);
                 angular.forEach(data, function(value, key) {
@@ -313,18 +311,18 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
                         dataType: 'json',
                     }).then(function successCallback(response) {
                        console.log('response', response);
-							var result = response.data;
-							if(result.bs_date == null) {
-								$("#modal-container-239458").modal('show');
-							}
-							else {
-								var bs_date = result.bs_date.replace(/^"(.*)"$/, '$1');
-								$scope.currentBaselineDate = "Latest baseline data as at " + bs_date;
-								$scope.bsCreatedeDate = result.bs_created_date;
-								console.log('bs_date', result.bs_date);
-								console.log('bsCreatedeDate', result.bs_created_date);
-								generateRefencedData();
-							}
+                        var result = response.data;
+                        if(result.bs_date == null) {
+                            $("#modal-container-239458").modal('show');
+                        }
+                        else {
+                            var bs_date = result.bs_date.replace(/^"(.*)"$/, '$1');
+                            $scope.currentBaselineDate = "Latest baseline data as at " + bs_date;
+                            $scope.bsCreatedeDate = result.bs_created_date;
+                            console.log('bs_date', result.bs_date);
+                            console.log('bsCreatedeDate', result.bs_created_date);
+                            generateRefencedData();
+                        }
                     });
                 }
             }, function errorCallback(response) {
@@ -611,15 +609,15 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
     $scope.saveDlData = function(form) {
         $scope.submitted = true;
         $scope.is_submit = true;
-        if(form.$valid){
+        if(form.$valid) {
             $http({
                 method: 'POST',
                 url: '/dl_save_data',
-               contentType: 'application/json; charset=utf-8',
+                contentType: 'application/json; charset=utf-8',
                 data: angular.toJson({
                     'table_data': $scope.dlFrstPrductAsets,
                     'com_data': {
-                       'district_id': $scope.district.district__id,
+                        'district_id': $scope.district.district__id,
                         'incident_id' : $scope.incident,
                         'user_id' : $scope.user_id,
                     },
@@ -628,14 +626,16 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {
-                    if(response.data == 'False') {
-                        $scope.is_valid_data = false;
-                        $("#modal-container-239454").modal('show');
-                    }
-                    else {
-                        $("#modal-container-239453").modal('show');
-                    }
-                }, function errorCallback(response) {
+                if(response.data == 'False' || response.data == false) {
+                    $scope.is_valid_data = false;
+                    $("#modal-container-239454").modal('show');
+                }
+                else {
+                    $("#modal-container-239453").modal('show');
+                }
+            },
+            function errorCallback(response) {
+                $("#modal-container-239458").modal('show');
             });
         }
         $scope.is_submit = false;
@@ -660,9 +660,32 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
                    'is_edit':$scope.is_edit
                }),
             }).success(function(data) {
-                $scope.dlFrstPrductAsets = data;
+//                $scope.dlFrstPrductAsets = data;
+                console.log(data);
+                var edit_data_not_found = false;
+                if (data != null) {
+                    angular.forEach(data.agri_agrarian.Table_4, function(value, index) {
+                        console.log(value);
+                        if (value.length == 0) {
+                            edit_data_not_found = true;
+                        }
+                    })
+                    if (edit_data_not_found != true) {
+                        $scope.dlFrstPrductAsets = data;
+                    }
+                    else {
+                        $("#modal-container-239456").modal('show');
+                    }
+                }
+                else {
+                    $("#modal-container-239456").modal('show');
+                }
             })
         }
+    }
+
+    $scope.test = function(form) {
+        $("#modal-container-239458").modal('show');
     }
 
     //Search Data
@@ -670,8 +693,7 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
         document.getElementById("clearbtn").disabled = true;
 		document.getElementById("editbtn").disabled = true;
 		document.getElementById("subbtn").disabled = true;
-		console.log("test", $scope.district);
-		console.log("test", $scope.bs_date);
+
 		$scope.is_search = true;
         if(form.$valid){
             $http({
@@ -687,8 +709,27 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
                     'is_edit': $scope.is_edit
                 }),
             }).success(function(data) {
-                $scope.dlFrstPrductAsets = data;
-                console.log("searchDlData ", $scope.dlFrstPrductAsets);
+//                $scope.dlFrstPrductAsets = data;
+//                console.log("searchDlData ", $scope.dlFrstPrductAsets);
+                var edit_data_not_found = false;
+                if (data != null) {
+                    angular.forEach(data.agri_agrarian.Table_4, function(value, index) {
+                        console.log(value);
+                        if (value.length == 0) {
+                            edit_data_not_found = true;
+                        }
+                    })
+                    if (edit_data_not_found != true) {
+                        $scope.dlFrstPrductAsets = data;
+                        console.log("searchDlData ", $scope.dlFrstPrductAsets);
+                    }
+                    else {
+                        $("#modal-container-239456").modal('show');
+                    }
+                }
+                else {
+                    $("#modal-container-239456").modal('show');
+                }
             })
         }
     }

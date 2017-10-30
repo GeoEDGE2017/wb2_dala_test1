@@ -452,12 +452,12 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
                 dataType: 'json',
             }).then(function successCallback(response) {
                 if(response.data == 'False') {
-                        $scope.is_valid_data = false;
-                        $("#modal-container-239454").modal('show');
-                    }
-                    else {
-                        $("#modal-container-239453").modal('show');
-                    }
+                    $scope.is_valid_data = false;
+                    $("#modal-container-239454").modal('show');
+                }
+                else {
+                    $("#modal-container-239453").modal('show');
+                }
             }, function errorCallback(response) {
                 console.log(response);
             });
@@ -470,25 +470,25 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
         document.getElementById("clearbtn").disabled = true;
         $scope.is_edit = true;
         $scope.submitted = true;
-        if(form.$valid){
+        if(form.$valid) {
             $http({
-            method: "POST",
-            url: '/dl_fetch_edit_data',
-            data: angular.toJson({
-            'table_name':  'Table_6',
-            'sector':'agri_agrarian',
-            'com_data': {
-                   'district':  $scope.district.district__id,
-                    'incident': $scope.incident,
-                  },
-                   'is_edit':$scope.is_edit
-                   }),
+                method: "POST",
+                url: '/dl_fetch_edit_data',
+                data: angular.toJson({
+                    'table_name': 'Table_6',
+                    'sector': 'agri_agrarian',
+                    'com_data': {
+                        'district': $scope.district.district__id,
+                        'incident': $scope.incident,
+                    },
+                    'is_edit': $scope.is_edit
+                }),
             }).success(function(data) {
                 console.log(data);
                 $scope.dlInvsmntLos = data;
             })
         }
-}
+    }
 
     //Search data
     $scope.searchDlData = function(form) {
@@ -496,6 +496,7 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
 		document.getElementById("editbtn").disabled = true;
 		document.getElementById("subbtn").disabled = true;
 		$scope.is_search = true;
+
         if(form.$valid){
             $http({
                 method: "POST",
@@ -563,37 +564,37 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
         var finaltotal4 = 0;
         var grantot = 0;
 
-        var array1=$scope.dlInvsmntLos.agri_agrarian.Table_6.DildSeasonalCrops;
-        var array2 =$scope.dlInvsmntLos.agri_agrarian.Table_6.DildForestry;
-        var array3 =$scope.dlInvsmntLos.agri_agrarian.Table_6.DildPlantnCrops;
-        var array4 =$scope.dlInvsmntLos.agri_agrarian.Table_6.DildExportCrops;
+        var array1 = $scope.dlInvsmntLos.agri_agrarian.Table_6.DildSeasonalCrops;
+        var array2 = $scope.dlInvsmntLos.agri_agrarian.Table_6.DildForestry;
+        var array3 = $scope.dlInvsmntLos.agri_agrarian.Table_6.DildPlantnCrops;
+        var array4 = $scope.dlInvsmntLos.agri_agrarian.Table_6.DildExportCrops;
 
 
         angular.forEach(array1, function(value, key) {
-            if(value.seasonal_crops !='Total'){
-                finaltotal1 = finaltotal1 + value.invest_los_pub ;
+            if(value.seasonal_crops !='Total') {
+                finaltotal1 = finaltotal1 + value.invest_los_pub;
             }
         })
 
         angular.forEach(array2, function(value, key) {
-            if(value.forestry !='Total'){
-                finaltotal2 = finaltotal2 + value.invest_los_pub ;
+            if(value.forestry !='Total') {
+                finaltotal2 = finaltotal2 + value.invest_los_pub;
             }
         })
 
         angular.forEach(array3, function(value, key) {
-            if(value.plantn_crops !='Total'){
-                finaltotal3 = finaltotal3 + value.invest_los_pub ;
+            if(value.plantn_crops !='Total') {
+                finaltotal3 = finaltotal3 + value.invest_los_pub;
             }
         })
 
         angular.forEach(array4, function(value, key) {
-            if(value.export_crops !='Total'){
-                finaltotal4 = finaltotal4 + value.invest_los_pub ;
+            if(value.export_crops !='Total') {
+                finaltotal4 = finaltotal4 + value.invest_los_pub;
             }
         })
 
-        grantot = finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4 ;
+        grantot = finaltotal1 + finaltotal2 + finaltotal3 + finaltotal4;
         return grantot;
     }
 
@@ -610,30 +611,30 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
         var array4 =$scope.dlInvsmntLos.agri_agrarian.Table_6.DildExportCrops;
 
         angular.forEach(array1, function(value, key) {
-            if(value.seasonal_crops !='Total') {
-                finaltotal1 = finaltotal1 + value.invest_los_pvt ;
+            if(value.seasonal_crops != 'Total') {
+                finaltotal1 = finaltotal1 + value.invest_los_pvt;
             }
         })
 
         angular.forEach(array2, function(value, key) {
-            if(value.forestry !='Total') {
-                finaltotal2 = finaltotal2 + value.invest_los_pvt ;
+            if(value.forestry != 'Total') {
+                finaltotal2 = finaltotal2 + value.invest_los_pvt;
             }
         })
 
         angular.forEach(array3, function(value, key) {
-            if(value.plantn_crops !='Total') {
+            if(value.plantn_crops != 'Total') {
                 finaltotal3 = finaltotal3 + value.invest_los_pvt ;
             }
         })
 
         angular.forEach(array4, function(value, key) {
-            if(value.export_crops !='Total') {
+            if(value.export_crops != 'Total') {
                 finaltotal4 = finaltotal4 + value.invest_los_pvt ;
             }
         })
 
-        grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4 ;
+        grantot = grantot + finaltotal1 + finaltotal2 + finaltotal3 + finaltotal4;
         return grantot;
     }
 

@@ -300,8 +300,7 @@ app.controller('BsInfoAsetTransController', ['$scope', '$http', function($scope,
         document.getElementById("clearbtn").disabled = true;
         document.getElementById("editbtn").disabled = true;
         document.getElementById("subbtn").disabled = true;
-        console.log("test", $scope.district);
-        console.log("test", $scope.bs_date);
+
         $scope.is_search = true;
         if(form.$valid) {
             $http({
@@ -317,25 +316,23 @@ app.controller('BsInfoAsetTransController', ['$scope', '$http', function($scope,
                 }),
             }).success(function(data) {
                 console.log(data);
-                //                $scope.bsInfoAsetTrans = data;
+//                $scope.bsInfoAsetTrans = data;
                 var edit_data_not_found = false;
                 if(data != null) {
-                    console.log('----if');
                     angular.forEach(data.transport_air.Table_1, function(value, index) {
-                        console.log('----forEach');
                         console.log(value);
                         if(value.length == 0) {
-                            console.log('----');
                             edit_data_not_found = true;
                         }
                     })
                     if(edit_data_not_found != true) {
                         $scope.bsInfoAsetTrans = data;
-                    } else {
+                    }
+                    else {
                         $("#modal-container-239456").modal('show');
                     }
-                } else {
-                    console.log('----else');
+                }
+                else {
                     $("#modal-container-239456").modal('show');
                 }
             })
@@ -468,6 +465,7 @@ app.controller('BsInfoAsetTransController', ['$scope', '$http', function($scope,
         var bsAstAirEquipment_e_index = 0;
         var bsAstAirSupplies_e_index = 0;
         var bsAstAirStructures_e_index = 0;
+
         angular.forEach($scope.bsInfoAsetTrans.transport_air.Table_1.BsAstAirAircrafts, function(value, key) {
             if(value.assets != 'Airplanes' && value.assets != 'Helicopters') {
                 angular.forEach($scope.enum_data.transport_air.Table_1.BsAstAirAircrafts, function(each_enum, index, key_in) {
@@ -479,6 +477,7 @@ app.controller('BsInfoAsetTransController', ['$scope', '$http', function($scope,
                 bsAstAirAircrafts_e_index = bsAstAirAircrafts_e_index + 1;
             }
         })
+
         angular.forEach($scope.bsInfoAsetTrans.transport_air.Table_1.BsAstAirEquipment, function(value, key) {
             if(value.assets != 'Office equipment' && value.assets != 'Baggage handling system' &&
                 value.assets != 'Cargo handling system' && value.assets != 'Aero bridges' &&
@@ -492,6 +491,7 @@ app.controller('BsInfoAsetTransController', ['$scope', '$http', function($scope,
                 bsAstAirEquipment_e_index = bsAstAirEquipment_e_index + 1;
             }
         })
+
         angular.forEach($scope.bsInfoAsetTrans.transport_air.Table_1.BsAstAirSupplies, function(value, key) {
             if(value.assets != 'Fuel (per Liter)') {
                 angular.forEach($scope.enum_data.transport_air.Table_1.BsAstAirSupplies, function(each_enum, index, key_in) {
@@ -503,6 +503,7 @@ app.controller('BsInfoAsetTransController', ['$scope', '$http', function($scope,
                 bsAstAirSupplies_e_index = bsAstAirSupplies_e_index + 1;
             }
         })
+
         angular.forEach($scope.bsInfoAsetTrans.transport_air.Table_1.BsAstAirStructures, function(value, key) {
             if(value.assets != 'Airport Terminal buildings' &&
                 value.assets != 'Aircraft Hangars and associated buildings' &&
@@ -521,6 +522,7 @@ app.controller('BsInfoAsetTransController', ['$scope', '$http', function($scope,
                 bsAstAirStructures_e_index = bsAstAirStructures_e_index + 1;
             }
         })
+
         console.log('getEnumDataFromEnd - enum_data', $scope.enum_data);
     }
 

@@ -125,9 +125,29 @@ app.controller("MnArtisanalFirmController", ['$scope', '$http', function($scope,
 					}
 				}),
 			}).success(function(data) {
-				console.log(data);
-				$scope.mnArtisanalFirm = data;
-				$scope.getEnumDataFromStart();
+//				console.log(data);
+//				$scope.mnArtisanalFirm = data;
+//				$scope.getEnumDataFromStart();
+
+				var edit_data_not_found = false;
+                if(data != null) {
+                    angular.forEach(data.mining.Table_2, function(value, index) {
+                        if(value.length == 0) {
+                            edit_data_not_found = true;
+                        }
+                    })
+                    if(edit_data_not_found != true) {
+                        $scope.mnArtisanalFirm = data;
+                        console.log('editBsData - mnArtisanalFirm', $scope.mnArtisanalFirm);
+                        $scope.getEnumDataFromStart();
+                    }
+                    else {
+                        $("#modal-container-239456").modal('show');
+                    }
+                }
+                else {
+                    $("#modal-container-239456").modal('show');
+                }
 			})
 		}
 	}
@@ -136,8 +156,7 @@ app.controller("MnArtisanalFirmController", ['$scope', '$http', function($scope,
 		document.getElementById("clearbtn").disabled = true;
 		document.getElementById("editbtn").disabled = true;
 		document.getElementById("subbtn").disabled = true;
-		console.log("test", $scope.district);
-		console.log("test", $scope.bs_date);
+
 		$scope.is_search = true;
 		if(form.$valid) {
 			$http({
@@ -153,8 +172,28 @@ app.controller("MnArtisanalFirmController", ['$scope', '$http', function($scope,
 					}
 				}),
 			}).success(function(data) {
-				console.log(data);
-				$scope.mnArtisanalFirm = data;
+//				console.log(data);
+//				$scope.mnArtisanalFirm = data;
+
+				var edit_data_not_found = false;
+                if(data != null) {
+                    angular.forEach(data.mining.Table_2, function(value, index) {
+                        if(value.length == 0) {
+                            edit_data_not_found = true;
+                        }
+                    })
+                    if(edit_data_not_found != true) {
+                        $scope.mnArtisanalFirm = data;
+                        console.log('editBsData - mnArtisanalFirm', $scope.mnArtisanalFirm);
+                        $scope.getEnumDataFromStart();
+                    }
+                    else {
+                        $("#modal-container-239456").modal('show');
+                    }
+                }
+                else {
+                    $("#modal-container-239456").modal('show');
+                }
 			})
 		}
 	}

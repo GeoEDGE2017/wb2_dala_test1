@@ -763,10 +763,12 @@ app.controller("DsHealthDamagelostOtherMediController", ['$scope', '$http', func
                     })
                     if (edit_data_not_found != true) {
                         $scope.dlDataHealthDamagelostOtherMedicalFacilities = data;
-                    } else {
+                    }
+                    else {
                         $("#modal-container-239456").modal('show');
                     }
-                } else {
+                }
+                else {
                     $("#modal-container-239456").modal('show');
                 }
             })

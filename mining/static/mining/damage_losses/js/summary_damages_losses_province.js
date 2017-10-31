@@ -111,26 +111,18 @@ app.controller("DlminingProController", function ($scope,$http,$parse, _) {
             var totLosTwo = 0;
             var totLos = 0;
             angular.forEach($scope.dlMiningPro.mining.Table_7, function(value, key) {
-                console.log('*** ', key);
                 angular.forEach(value, function(value_in, key_in) {
-                    console.log(key_in, ' --- ', value_in);
                     if(key_in == 'DloDmgProvince') {
-                        console.log('DloDmgProvince ', value_in);
                         totLosOne = totLosOne + value_in[0].tot_damages;
                     }
                     if(key_in == 'DlaDmgProvince') {
-//                        console.log(value_in.length);
-//                        console.log(!angular.isUndefined(value_in));
-//                        console.log(value_in.length != 0);
                         if(value_in.length != 0) {
-                            console.log('DlaDmgProvince ', value_in);
                             totLosTwo = totLosTwo + value_in[0].tot_damages;
                         }
                     }
                 })
                 totLos = totLosOne + totLosTwo;
             })
-            console.log("------------");
             return totLos;
         }
     }

@@ -62,9 +62,9 @@ app.controller("DlminingProController", function ($scope,$http,$parse, _) {
                     },
                 }),
             }).success(function(data) {
-                console.log('load ', data);
                 $scope.data = data;
                 $scope.dlMiningPro = data;
+                console.log($scope.dlMiningPro);
             })
         }
     }
@@ -106,23 +106,31 @@ app.controller("DlminingProController", function ($scope,$http,$parse, _) {
     }
 
     $scope.totDmgPvt = function() {
-        if(!angular.isUndefined($scope.dlMiningPro)) {
+        if(!angular.isUndefined($scope.dlMiningPro.mining.Table_7)) {
             var totLosOne = 0;
             var totLosTwo = 0;
             var totLos = 0;
-            angular.forEach($scope.dlMiningPro.mining.Table_7, function(value, index) {
-            angular.forEach(value, function(value_in, key) {
-                    if(key == 'DloDmgProvince') {
-                          totLosOne = totLosOne + value_in[0].tot_damages;
+            angular.forEach($scope.dlMiningPro.mining.Table_7, function(value, key) {
+                console.log('*** ', key);
+                angular.forEach(value, function(value_in, key_in) {
+                    console.log(key_in, ' --- ', value_in);
+                    if(key_in == 'DloDmgProvince') {
+                        console.log('DloDmgProvince ', value_in);
+                        totLosOne = totLosOne + value_in[0].tot_damages;
                     }
-                    if(key == 'DlaDmgProvince') {
-                          totLosTwo = totLosTwo + value_in[0].tot_damages;
+                    if(key_in == 'DlaDmgProvince') {
+//                        console.log(value_in.length);
+//                        console.log(!angular.isUndefined(value_in));
+//                        console.log(value_in.length != 0);
+                        if(value_in.length != 0) {
+                            console.log('DlaDmgProvince ', value_in);
+                            totLosTwo = totLosTwo + value_in[0].tot_damages;
+                        }
                     }
-                    })
-
-                    totLos = totLosOne + totLosTwo;
-
                 })
+                totLos = totLosOne + totLosTwo;
+            })
+            console.log("------------");
             return totLos;
         }
     }
@@ -133,7 +141,7 @@ app.controller("DlminingProController", function ($scope,$http,$parse, _) {
             angular.forEach($scope.dlMiningPro.mining.Table_7, function(value, index) {
                 angular.forEach(value, function(value_in, key) {
                     if(key == 'DloLosProvince') {
-                          totDmg = totDmg + value_in[1].los_year1;
+                        totDmg = totDmg + value_in[1].los_year1;
                     }
                 })
             })
@@ -149,10 +157,10 @@ app.controller("DlminingProController", function ($scope,$http,$parse, _) {
             angular.forEach($scope.dlMiningPro.mining.Table_7, function(value, index) {
                 angular.forEach(value, function(value_in, key) {
                     if(key == 'DloLosProvince') {
-                          totLosOne = totLosOne + value_in[0].los_year1;
+                        totLosOne = totLosOne + value_in[0].los_year1;
                     }
                     if(key == 'DlaLosProvince') {
-                          totLosTwo = totLosTwo + value_in[0].los_year1;
+                        totLosTwo = totLosTwo + value_in[0].los_year1;
                     }
                 })
                 totLos = totLosOne + totLosTwo;
@@ -167,7 +175,7 @@ app.controller("DlminingProController", function ($scope,$http,$parse, _) {
             angular.forEach($scope.dlMiningPro.mining.Table_7, function(value, index) {
                 angular.forEach(value, function(value_in, key) {
                     if(key == 'DloLosProvince') {
-                          totDmg = totDmg + value_in[1].los_year2;
+                        totDmg = totDmg + value_in[1].los_year2;
                     }
                 })
             })

@@ -67,7 +67,8 @@ $(document).ready(function() {
                                 	Please Select Incident
                             	</span>
 							</td>
-							<td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;"></td>
+							<td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+							</td>
 							<td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
 								<span class="arrow_box" ng-show="submitted && form_mining_artisanal_dl.district.$error.required">
                                 	Please Select District
@@ -77,18 +78,26 @@ $(document).ready(function() {
 						<tr class="trhead1">
 							<td colspan="2" style="padding-left:5px;"> Incident </td>
 							<td colspan="3" style="">
-								<select id="select" name="incident" ng-model="incident" class="form-control" style="width:100%;font-weight:400;" ng-change="changedValue(true)" required>
-									<option value="" selected="true">Select an Incident</option> {% for incident in incidents %}
+								<select id="select" name="incident" ng-model="incident" class="form-control" style="width:100%;font-weight:400;"
+										ng-change="changedValue(true)" required>
+									<option value="" selected="true">Select an Incident</option>
+									{% for incident in incidents %}
 									<option value={{incident.id}}>
 										<!--{{incident.disaster_type.name}}-->
-										<!--{{incident.reported_date_time}}-->{{incident.incident_name}} </option> {% endfor %} </select>
+										<!--{{incident.reported_date_time}}-->
+										{{incident.incident_name}}
+									</option>
+									{% endfor %}
+								</select>
 							</td>
 							<td style="padding-left:5px;">District</td>
 							<td colspan="2" style="">
 								<select ng-options="district as district.district__name for district in districts track by district.district__id" name="district" id="ccyear" ng-model="district" ng-value="district.district__id" style="font-weight:400;" class="form-control" ng-change="changedValue(false);getbsData();" required>
 									<option value="" selected>Select District</option>
 								</select>
-							</td> <span ng-bind="user_id={{user.id}}" style="display:none;"></span> </tr>
+							</td>
+							<span ng-bind="user_id={{user.id}}" style="display:none;"></span>
+						</tr>
 						<tr class="trheadc1" height="34">
 							<td width="171" height="34" style="width:25%;"> Assets </td>
 							<td colspan="2" width="238"> Replacement Value of Totally Destroyed Assets (LKR) </td>
@@ -106,59 +115,112 @@ $(document).ready(function() {
 								<td colspan="2" width="238" style="width:26%;"> </td>
 								<td colspan="2" width="239"> </td>
 							</tr>
-							<tr ng-repeat="dlaDmgStructures in mnDLArtisanalMin.mining.Table_4.DlaDmgStructures" height="20" ng-if="dlaDmgStructures.assets !='Total'">
+							<tr ng-repeat="dlaDmgStructures in mnDLArtisanalMin.mining.Table_4.DlaDmgStructures" height="20"
+								ng-if="dlaDmgStructures.assets != 'Total'">
 								<td ng-bind="dlaDmgStructures.assets" height="20" width="174" class="tdpa" ng-if="$index < 1"> </td>
 								<td colspan="" width="98" ng-if="$index > 0 "> {% verbatim %}
-									<button id="delete" ng-click="removeItem('DlaDmgStructures', $index)" class="btn btn-sm btn-danger btn-circle"><i class="fa fa-minus"></i></button>
-									<input style="width:80%;float:right;" ng-model="dlaDmgStructures.assets" popover="This field is required" required popover-toggle="form_pop_lat_census['dlaDmgStructures' + $index].$dirty && !form_pop_lat_census['dlaDmgStructures_' + $index].$valid" name="dlaDmgStructures_{{$index}}" type="text" placeholder="" class="form-control input-md"> {% endverbatim %} </td>
+									<button id="delete" ng-click="removeItem('DlaDmgStructures', $index)" class="btn btn-sm btn-danger btn-circle">
+										<i class="fa fa-minus"></i>
+									</button>
+									<input style="width:80%;float:right;" ng-model="dlaDmgStructures.assets" popover="This field is required" required
+										   popover-toggle="form_pop_lat_census['dlaDmgStructures' + $index].$dirty && !form_pop_lat_census['dlaDmgStructures_' + $index].$valid"
+										   name="dlaDmgStructures_{{$index}}" type="text" placeholder="" class="form-control input-md">
+									{% endverbatim %}
+								</td>
 								<td colspan="2" width="98">
-									<input ng-model="dlaDmgStructures.rep_tot_dassets" ng-change="getTotal('DlaDmgStructures','rep_tot_dassets');getColumnTotal('DlaDmgStructures','rep_tot_dassets');" id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+									<input ng-model="dlaDmgStructures.rep_tot_dassets"
+										   ng-change="getTotal('DlaDmgStructures','rep_tot_dassets');getColumnTotal('DlaDmgStructures','rep_tot_dassets');"
+										   id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md">
+								</td>
 								<td colspan="2" width="98">
-									<input ng-model="dlaDmgStructures.repair_pdmg_assets" ng-change="getTotal('DlaDmgStructures','repair_pdmg_assets');getColumnTotal('DlaDmgStructures','repair_pdmg_assets');" id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+									<input ng-model="dlaDmgStructures.repair_pdmg_assets"
+										   ng-change="getTotal('DlaDmgStructures','repair_pdmg_assets');getColumnTotal('DlaDmgStructures','repair_pdmg_assets');"
+										   id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md">
+								</td>
 								<td colspan="2" width="98">
-									<input ng-model="dlaDmgStructures.tot_damages" id="textinput" name="textinput" onfocus="this.blur()" placeholder="" class="form-control input-md nborder right" ng-bind="dlaDmgStructures.tot_damages=dlaDmgStructures.rep_tot_dassets+ dlaDmgStructures.repair_pdmg_assets"> </td>
+									<input ng-model="dlaDmgStructures.tot_damages" id="textinput" name="textinput" onfocus="this.blur()"
+										   placeholder="" class="form-control input-md nborder right"
+										   ng-bind="dlaDmgStructures.tot_damages=dlaDmgStructures.rep_tot_dassets+ dlaDmgStructures.repair_pdmg_assets">
+								</td>
 							</tr>
 							<tr height="20">
 								<td colspan="8" class="tdpa" height="19" width="171"> Others
-									<button ng-click="insertFirm('DlaDmgStructures')" class="btn btn-sm btn-info btn-circle" id="insert"><span class="fa fa-plus"></span> </button>
+									<button ng-click="insertFirm('DlaDmgStructures')" class="btn btn-sm btn-info btn-circle" id="insert">
+										<span class="fa fa-plus"></span>
+									</button>
 								</td>
 							</tr>
-							<tr ng-repeat="dlaDmgStructures in mnDLArtisanalMin.mining.Table_4.DlaDmgStructures" ng-if="dlaDmgStructures.assets=='Total'" height="20">
+							<tr ng-repeat="dlaDmgStructures in mnDLArtisanalMin.mining.Table_4.DlaDmgStructures"
+								ng-if="dlaDmgStructures.assets == 'Total'" height="20">
 								<!-- Fixed rows -->
-								<td ng-bind="dlaDmgStructures.assets" height="20" width="264" class="boldash"> </td>
-								<td class="right" width="98" colspan="2" ng-model="dlaDmgStructures.rep_tot_dassets" ng-bind="dlaDmgStructures.rep_tot_dassets = totalFunc('DlaDmgStructures','rep_tot_dassets')">
-									<td class="right" width="98" colspan="2" ng-model="dlaDmgStructures.repair_pdmg_assets" ng-bind="dlaDmgStructures.repair_pdmg_assets=totalFunc('DlaDmgStructures','repair_pdmg_assets')">
-										<td class="right" width="98" colspan="2" ng-model="dlaDmgStructures.tot_damages" ng-bind="dlaDmgStructures.tot_damages = totalFunc('DlaDmgStructures','tot_damages')">
+								<td ng-bind="dlaDmgStructures.assets" height="20" width="264" class="tdpa">
+								</td>
+								<td class="right" width="98" colspan="2" ng-model="dlaDmgStructures.rep_tot_dassets"
+									ng-bind="dlaDmgStructures.rep_tot_dassets = totalFunc('DlaDmgStructures','rep_tot_dassets')">
+								</td>
+								<td class="right" width="98" colspan="2" ng-model="dlaDmgStructures.repair_pdmg_assets"
+									ng-bind="dlaDmgStructures.repair_pdmg_assets=totalFunc('DlaDmgStructures','repair_pdmg_assets')">
+								</td>
+								<td class="right" width="98" colspan="2" ng-model="dlaDmgStructures.tot_damages"
+									ng-bind="dlaDmgStructures.tot_damages = totalFunc('DlaDmgStructures','tot_damages')">
+								</td>
 							</tr>
 							<tr class="trheadc" height="20">
-								<td width="171" height="20"> Equipment </td>
+								<td width="171" height="20">
+									Equipment
+								</td>
 								<td colspan="2" width="238"> </td>
 								<td colspan="2" width="238"> </td>
 								<td colspan="2" width="239"> </td>
 							</tr>
-							<tr ng-repeat="dlaDmgEquipment in mnDLArtisanalMin.mining.Table_4.DlaDmgEquipment" height="20" ng-if="dlaDmgEquipment.assets !='Total'">
-								<td ng-bind="dlaDmgEquipment.assets" height="20" width="174" class="tdpa" ng-if="$index < 1"> </td>
-								<td colspan="" width="98" ng-if="$index > 0"> {% verbatim %}
-									<button id="delete" ng-click="removeItem('DlaDmgEquipment', $index)" class="btn btn-sm btn-danger btn-circle"><i class="fa fa-minus"></i></button>
-									<input style="width:80%;float:right;" ng-model="dlaDmgEquipment.assets" popover="This field is required" required popover-toggle="form_pop_lat_census['dlaDmgEquipment' + $index].$dirty && !form_pop_lat_census['dlaDmgEquipment_' + $index].$valid" name="dlaDmgStructures_{{$index}}" type="text" placeholder="" class="form-control input-md"> {% endverbatim %} </td>
+							<tr ng-repeat="dlaDmgEquipment in mnDLArtisanalMin.mining.Table_4.DlaDmgEquipment"
+								height="20" ng-if="dlaDmgEquipment.assets !='Total'">
+								<td ng-bind="dlaDmgEquipment.assets" height="20" width="174" class="tdpa" ng-if="$index < 1">
+								</td>
+								<td colspan="" width="98" ng-if="$index > 0">
+									{% verbatim %}
+									<button id="delete" ng-click="removeItem('DlaDmgEquipment', $index)" class="btn btn-sm btn-danger btn-circle">
+										<i class="fa fa-minus"></i>
+									</button>
+									<input style="width:80%;float:right;" ng-model="dlaDmgEquipment.assets" popover="This field is required" required
+										   popover-toggle="form_pop_lat_census['dlaDmgEquipment' + $index].$dirty && !form_pop_lat_census['dlaDmgEquipment_' + $index].$valid" name="dlaDmgStructures_{{$index}}" type="text" placeholder="" class="form-control input-md"> {% endverbatim %} </td>
 								<td colspan="2" width="98">
-									<input ng-model="dlaDmgEquipment.rep_tot_dassets" ng-change="getTotal('DlaDmgEquipment','rep_tot_dassets');getColumnTotal('DlaDmgEquipment','rep_tot_dassets');" id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+									<input ng-model="dlaDmgEquipment.rep_tot_dassets"
+										   ng-change="getTotal('DlaDmgEquipment','rep_tot_dassets');getColumnTotal('DlaDmgEquipment','rep_tot_dassets');"
+										   id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md">
+								</td>
 								<td colspan="2" width="98">
-									<input ng-model="dlaDmgEquipment.repair_pdmg_assets" ng-change="getTotal('DlaDmgEquipment','repair_pdmg_assets');getColumnTotal('DlaDmgEquipment','repair_pdmg_assets');" id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+									<input ng-model="dlaDmgEquipment.repair_pdmg_assets"
+										   ng-change="getTotal('DlaDmgEquipment','repair_pdmg_assets');getColumnTotal('DlaDmgEquipment','repair_pdmg_assets');"
+										   id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md">
+								</td>
 								<td colspan="2" width="98">
-									<input ng-model="dlaDmgEquipment.tot_damages" id="textinput" name="textinput" onfocus="this.blur()" placeholder="" class="form-control input-md nborder right" ng-bind="dlaDmgEquipment.tot_damages=dlaDmgEquipment.rep_tot_dassets+ dlaDmgEquipment.repair_pdmg_assets"> </td>
+									<input ng-model="dlaDmgEquipment.tot_damages" id="textinput" name="textinput"
+										   onfocus="this.blur()" placeholder="" class="form-control input-md nborder right"
+										   ng-bind="dlaDmgEquipment.tot_damages=dlaDmgEquipment.rep_tot_dassets+ dlaDmgEquipment.repair_pdmg_assets">
+								</td>
 							</tr>
 							<tr height="20">
 								<td colspan="6" class="tdpa" height="19" width="171"> Others
-									<button ng-click="insertFirm('DlaDmgEquipment')" class="btn btn-sm btn-info btn-circle" id="insert"><span class="fa fa-plus"></span> </button>
+									<button ng-click="insertFirm('DlaDmgEquipment')" class="btn btn-sm btn-info btn-circle" id="insert">
+										<span class="fa fa-plus"></span>
+									</button>
 								</td>
 							</tr>
-							<tr ng-repeat="dlaDmgEquipment in mnDLArtisanalMin.mining.Table_4.DlaDmgEquipment" ng-if="dlaDmgEquipment.assets=='Total'" height="20">
+							<tr ng-repeat="dlaDmgEquipment in mnDLArtisanalMin.mining.Table_4.DlaDmgEquipment"
+								ng-if="dlaDmgEquipment.assets == 'Total'" height="20">
 								<!-- Fixed rows -->
-								<td ng-bind="dlaDmgEquipment.assets" height="20" width="264" class="boldash"> </td>
-								<td class="right" width="98" colspan="2" ng-model="dlaDmgEquipment.rep_tot_dassets" ng-bind="dlaDmgEquipment.rep_tot_dassets = totalFunc('DlaDmgEquipment','rep_tot_dassets')">
-									<td class="right" width="98" colspan="2" ng-model="dlaDmgEquipment.repair_pdmg_assets" ng-bind=" dlaDmgEquipment.repair_pdmg_assets = totalFunc('DlaDmgEquipment','repair_pdmg_assets')">
-										<td class="right" width="98" colspan="2" ng-model="dlaDmgEquipment.tot_damages" ng-bind="dlaDmgEquipment.tot_damages = totalFunc('DlaDmgEquipment','tot_damages')">
+								<td ng-bind="dlaDmgEquipment.assets" height="20" width="264" class="tdpa">
+								</td>
+								<td class="right" width="98" colspan="2" ng-model="dlaDmgEquipment.rep_tot_dassets"
+									ng-bind="dlaDmgEquipment.rep_tot_dassets = totalFunc('DlaDmgEquipment','rep_tot_dassets')">
+								</td>
+								<td class="right" width="98" colspan="2" ng-model="dlaDmgEquipment.repair_pdmg_assets"
+									ng-bind=" dlaDmgEquipment.repair_pdmg_assets = totalFunc('DlaDmgEquipment','repair_pdmg_assets')">
+								</td>
+								<td class="right" width="98" colspan="2" ng-model="dlaDmgEquipment.tot_damages"
+									ng-bind="dlaDmgEquipment.tot_damages = totalFunc('DlaDmgEquipment','tot_damages')">
+								</td>
 							</tr>
 							<tr class="trheadc" height="20">
 								<td width="171" height="20"> Machinery </td>
@@ -184,12 +246,20 @@ $(document).ready(function() {
 									<button ng-click="insertFirm('DlaDmgMachinery')" class="btn btn-sm btn-info btn-circle" id="insert"><span class="fa fa-plus"></span> </button>
 								</td>
 							</tr>
-							<tr ng-repeat="dlaDmgMachinery in mnDLArtisanalMin.mining.Table_4.DlaDmgMachinery" ng-if="dlaDmgMachinery.assets=='Total'" height="20">
+							<tr ng-repeat="dlaDmgMachinery in mnDLArtisanalMin.mining.Table_4.DlaDmgMachinery"
+								ng-if="dlaDmgMachinery.assets == 'Total'" height="20">
 								<!-- Fixed rows -->
-								<td ng-bind="dlaDmgMachinery.assets" height="20" width="264" class="boldash"> </td>
-								<td class="right" width="98" colspan="2" ng-model="dlaDmgMachinery.rep_tot_dassets" ng-bind="dlaDmgMachinery.rep_tot_dassets = totalFunc('DlaDmgMachinery','rep_tot_dassets')">
-									<td class="right" width="98" colspan="2" ng-model="dlaDmgMachinery.repair_pdmg_assets" ng-bind="dlaDmgMachinery.repair_pdmg_assets = totalFunc('DlaDmgMachinery','repair_pdmg_assets')">
-										<td class="right" width="98" colspan="2" ng-model="dlaDmgMachinery.tot_damages" ng-bind="dlaDmgMachinery.tot_damages = totalFunc('DlaDmgMachinery','tot_damages')">
+								<td ng-bind="dlaDmgMachinery.assets" height="20" width="264" class="tdpa">
+								</td>
+								<td class="right" width="98" colspan="2" ng-model="dlaDmgMachinery.rep_tot_dassets"
+									ng-bind="dlaDmgMachinery.rep_tot_dassets = totalFunc('DlaDmgMachinery','rep_tot_dassets')">
+								</td>
+								<td class="right" width="98" colspan="2" ng-model="dlaDmgMachinery.repair_pdmg_assets"
+									ng-bind="dlaDmgMachinery.repair_pdmg_assets = totalFunc('DlaDmgMachinery','repair_pdmg_assets')">
+								</td>
+								<td class="right" width="98" colspan="2" ng-model="dlaDmgMachinery.tot_damages"
+									ng-bind="dlaDmgMachinery.tot_damages = totalFunc('DlaDmgMachinery','tot_damages')">
+								</td>
 							</tr>
 							<tr class="trheadc" height="20">
 								<td width="171" height="20"> Stocks </td>
@@ -213,7 +283,8 @@ $(document).ready(function() {
 								<td colspan="2" width="98">
 									<input ng-model="dlaDmgStocks.tot_damages" id="textinput" name="textinput" onfocus="this.blur()" placeholder="" class="form-control input-md nborder right" ng-bind="dlaDmgStocks.tot_damages=dlaDmgStocks.rep_tot_dassets + dlaDmgStocks.repair_pdmg_assets"> </td>
 							</tr>
-							<tr ng-repeat="dlaDmgStocks in mnDLArtisanalMin.mining.Table_4.DlaDmgStocks" ng-if="dlaDmgStocks.assets=='Total'" height="20">
+							<tr ng-repeat="dlaDmgStocks in mnDLArtisanalMin.mining.Table_4.DlaDmgStocks"
+								ng-if="dlaDmgStocks.assets == 'Total'" height="20">
 								<!-- Fixed rows -->
 								<td ng-bind="dlaDmgStocks.assets" height="20" width="264" class="tdpa"></td>
 								<td class="right" width="98" colspan="2" ng-model="dlaDmgStocks.rep_tot_dassets"
@@ -278,7 +349,8 @@ $(document).ready(function() {
 							<td height="19" width="63"> Year 1 </td>
 							<td height="19" width="63"> Year 2 </td>
 						</tr>
-						<tr ng-repeat="dlaLosPlos in mnDLArtisanalMin.mining.Table_4.DlaLosPlos" height="20" ng-if="dlaLosPlos.type_los !='Total'">
+						<tr ng-repeat="dlaLosPlos in mnDLArtisanalMin.mining.Table_4.DlaLosPlos" height="20"
+							ng-if="dlaLosPlos.type_los != 'Total'">
 							<!-- Fixed rows -->
 							<td ng-bind="dlaLosPlos.type_los" height="20" width="264" class="tdpa"> </td>
 							<td colspan="1" width="98">
@@ -297,15 +369,26 @@ $(document).ready(function() {
 								<input ng-model="dlaLosPlos.tot_losses" id="textinput" name="textinput" onfocus="this.blur()" placeholder="" class="form-control input-md nborder right" ng-bind="dlaLosPlos.tot_losses = dlaLosPlos.los_year1 +
                                    dlaLosPlos.los_year2"> </td>
 						</tr>
-						<tr ng-repeat="dlaLosPlos in mnDLArtisanalMin.mining.Table_4.DlaLosPlos" ng-if="dlaLosPlos.type_los=='Total'" height="20">
+						<tr ng-repeat="dlaLosPlos in mnDLArtisanalMin.mining.Table_4.DlaLosPlos"
+							ng-if="dlaLosPlos.type_los == 'Total'" height="20">
 							<!-- Fixed rows -->
-							<td ng-bind="dlaLosPlos.type_los" height="20" width="264" class="boldash"> </td>
-							<td width="98" colspan="1" ng-model="dlaLosPlos.avg_per_year" class="boldash"> </td>
-							<td width="98" colspan="1" ng-model="dlaLosPlos.red_voutput_year1" class="boldash"> </td>
-							<td width="98" colspan="1" ng-model="dlaLosPlos.red_voutput_year2" class="boldash"> </td>
-							<td class="right" width="98" colspan="1" ng-model="dlaLosPlos.los_year1" ng-bind="dlaLosPlos.los_year1 = totalFunc('DlaLosPlos','los_year1')"> </td>
-							<td class="right" width="98" colspan="1" ng-model="dlaLosPlos.los_year2" ng-bind="dlaLosPlos.los_year2 = totalFunc('DlaLosPlos','los_year2')"> </td>
-							<td class="right" width="98" colspan="1" ng-model="dlaLosPlos.tot_losses" ng-bind="dlaLosPlos.tot_losses = totalFunc('DlaLosPlos','tot_losses')"> </td>
+							<td ng-bind="dlaLosPlos.type_los" height="20" width="264" class="tdpa">
+							</td>
+							<td width="98" colspan="1" ng-model="dlaLosPlos.avg_per_year" class="tdpa">
+							</td>
+							<td width="98" colspan="1" ng-model="dlaLosPlos.red_voutput_year1" class="tdpa">
+							</td>
+							<td width="98" colspan="1" ng-model="dlaLosPlos.red_voutput_year2" class="tdpa">
+							</td>
+							<td class="right" width="98" colspan="1" ng-model="dlaLosPlos.los_year1"
+								ng-bind="dlaLosPlos.los_year1 = totalFunc('DlaLosPlos','los_year1')">
+							</td>
+							<td class="right" width="98" colspan="1" ng-model="dlaLosPlos.los_year2"
+								ng-bind="dlaLosPlos.los_year2 = totalFunc('DlaLosPlos','los_year2')">
+							</td>
+							<td class="right" width="98" colspan="1" ng-model="dlaLosPlos.tot_losses"
+								ng-bind="dlaLosPlos.tot_losses = totalFunc('DlaLosPlos','tot_losses')">
+							</td>
 						</tr>
 						<tr class="trheadc" height="19">
 							<td height="19" width="171"> Other Losses </td>
@@ -323,33 +406,51 @@ $(document).ready(function() {
 							<td colspan="1" width="98" class="tdpa" ng-if="dlaLosOlos.type_los !='Total' && dlaLosOlos.type_los !='GRAND TOTAL'"> </td>
 							<td colspan="1" width="98" class="tdpa" ng-if="dlaLosOlos.type_los !='Total' && dlaLosOlos.type_los !='GRAND TOTAL'"> </td>
 							<td colspan="1" width="98" ng-if="dlaLosOlos.type_los !='Total'">
-								<input ng-model="dlaLosOlos.los_year1" ng-change="getTotal('DlaLosOlos','los_year1');getColumnTotal('DlaLosOlos','los_year1');" id="textinput" name="textinput" type="number" placeholder="" class="form-control"> </td>
+								<input ng-model="dlaLosOlos.los_year1" ng-change="getTotal('DlaLosOlos','los_year1');
+								getColumnTotal('DlaLosOlos','los_year1');" id="textinput" name="textinput" type="number"
+									   placeholder="" class="form-control">
+							</td>
 							<td colspan="1" width="98" ng-if="dlaLosOlos.type_los !='Total' && dlaLosOlos.type_los !='GRAND TOTAL'">
-								<input ng-model="dlaLosOlos.los_year2" ng-change="getTotal('DlaLosOlos','los_year2');getColumnTotal('DlaLosOlos','los_year2');" id="textinput" name="textinput" type="number" placeholder="" class="form-control"> </td>
+								<input ng-model="dlaLosOlos.los_year2" ng-change="getTotal('DlaLosOlos','los_year2');
+								getColumnTotal('DlaLosOlos','los_year2');" id="textinput" name="textinput" type="number"
+									   placeholder="" class="form-control">
+							</td>
 							<td colspan="1" width="98" ng-if="dlaLosOlos.type_los !='Total' && dlaLosOlos.type_los !='GRAND TOTAL'">
-								<input ng-model="dlaLosOlos.tot_losses" id="textinput" name="textinput" onfocus="this.blur()" placeholder="" class="form-control input-md nborder right" ng-bind="dlaLosOlos.tot_losses = dlaLosOlos.los_year1 + dlaLosOlos.los_year2"> </td>
+								<input ng-model="dlaLosOlos.tot_losses" id="textinput" name="textinput" onfocus="this.blur()"
+									   placeholder="" class="form-control input-md nborder right"
+									   ng-bind="dlaLosOlos.tot_losses = dlaLosOlos.los_year1 + dlaLosOlos.los_year2">
+							</td>
 						</tr>
-						<tr ng-repeat="dlaLosOlos in mnDLArtisanalMin.mining.Table_4.DlaLosOlos" ng-if="dlaLosOlos.type_los=='Total'" height="20">
+						<tr ng-repeat="dlaLosOlos in mnDLArtisanalMin.mining.Table_4.DlaLosOlos"
+							ng-if="dlaLosOlos.type_los == 'Total'" height="20">
 							<!-- Fixed rows -->
-							<td ng-bind="dlaLosOlos.type_los" height="20" width="264" class="boldash"> </td>
-							<td width="98" colspan="1" class="boldash"> </td>
-							<td width="98" colspan="1" class="boldash"> </td>
-							<td width="98" colspan="1" class="boldash"> </td>
+							<td ng-bind="dlaLosOlos.type_los" height="20" width="264" class="tdpa"> </td>
+							<td width="98" colspan="1" class="tdpa"> </td>
+							<td width="98" colspan="1" class="tdpa"> </td>
+							<td width="98" colspan="1" class="tdpa"> </td>
 							<td class="right" width="98" colspan="1" ng-model="dlaLosOlos.los_year1" ng-bind="dlaLosOlos.los_year1 = totalFunc('DlaLosOlos','los_year1')"> </td>
 							<td class="right" width="98" colspan="1" ng-model="dlaLosOlos.los_year2" ng-bind="dlaLosOlos.los_year2 = totalFunc('DlaLosOlos','los_year2')"> </td>
 							<td class="right" width="98" colspan="1" ng-model="dlaLosOlos.tot_losses" ng-bind="dlaLosOlos.tot_losses = totalFunc('DlaLosOlos','tot_losses')"> </td>
 						</tr>
 						<tr height="20">
-							<td height="20" width="264" class="boldash"> GRAND TOTAL </td>
-							<td width="98" colspan="1" class="boldash"> </td>
-							<td width="98" colspan="1" class="boldash"> </td>
-							<td width="98" colspan="1" class="boldash"> </td>
+							<td height="20" width="264" class="tdpa">
+								GRAND TOTAL
+							</td>
+							<td width="98" colspan="1" class="tdpa">
+							</td>
+							<td width="98" colspan="1" class="tdpa">
+							</td>
+							<td width="98" colspan="1" class="tdpa">
+							</td>
 							<td class="right" width="98" colspan="1" ng-bind="totalFunc('DlaLosOlos','los_year1') +
-                            totalFunc('DlaLosPlos','los_year1')"></td>
+                            	totalFunc('DlaLosPlos','los_year1')">
+							</td>
 							<td class="right" width="98" colspan="1" ng-bind="totalFunc('DlaLosOlos','los_year2') +
-                            totalFunc('DlaLosPlos','los_year2')"></td>
+                            	totalFunc('DlaLosPlos','los_year2')">
+							</td>
 							<td class="right" width="98" colspan="1" ng-bind="totalFunc('DlaLosOlos','tot_losses') +
-                            totalFunc('DlaLosPlos','tot_losses')"></td>
+                            	totalFunc('DlaLosPlos','tot_losses')">
+							</td>
 						</tr>
 					</tbody>
 				</table>

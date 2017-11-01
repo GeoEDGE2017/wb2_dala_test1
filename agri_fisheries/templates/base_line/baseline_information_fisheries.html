@@ -27,7 +27,8 @@
         <li style="float:right;">
             <a href="{% static 'dashboard/doc/4C-Agriculture-Fisheries-24Jan17.pdf' %}"
                target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;"
-               class="icon-info" data-toggle="tooltip" title="Veiw Document"></a></li>
+               class="icon-info" data-toggle="tooltip" title="Veiw Document"></a>
+        </li>
     </ol>
     <div class="container-fluid">
         <div>
@@ -153,61 +154,53 @@
                             <td class="tdpa" width="125" height="19" ng-bind="bifProduction.types">
                                 Inland Fisheries
                             </td>
-
                             <td width="95" height="19" ng-if="bifProduction.types == 'Inland fisheries'">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="bifProduction.area_pub">
                             </td>
                             <td class="tdpa" width="115" height="19" ng-if="bifProduction.types != 'Inland fisheries'">
-
                                 <br/>
                             </td>
-
                             <td width="111" height="19" ng-if="bifProduction.types == 'Inland fisheries'">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="bifProduction.area_pvt">
                             </td>
                             <td class="tdpa" width="115" height="19" ng-if="bifProduction.types != 'Inland fisheries'">
                                 <br/>
-
                             </td>
-
                             <td width="63" height="19">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="bifProduction.avg_yield_pub">
                             </td>
                             <!--<td class="tdpa" width="115" height="19" ng-if="bifProduction.types == 'Inland fisheries'">-->
                             <!--<br/>-->
-
                             <!--</td>-->
-
                             <td width="63" height="19">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="bifProduction.avg_yield_pvt">
                             </td>
-                            <td width="63" height="19" class="trsubc"
-                                ng-if="bifProduction.types !='Inland fisheries'">
-
+                            <td width="63" height="19" class="trsubc" ng-if="bifProduction.types != 'Inland fisheries'">
                             </td>
-
-                            <td width="63" height="19" ng-if="bifProduction.types =='Inland fisheries'">
+                            <td width="63" height="19" ng-if="bifProduction.types == 'Inland fisheries'">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="bifProduction.prodc_pub">
+                                       class="form-control input-md" ng-model="bifProduction.prodc_pub"
+                                       ng-bind="bifProduction.prodc_pub = bifProduction.area_pub / bifProduction.avg_yield_pub">
                             </td>
-                            <td width="63" height="19" class="trsubc" ng-if="bifProduction.types !='Inland fisheries'">
-
+                            <td width="63" height="19" class="trsubc" ng-if="bifProduction.types != 'Inland fisheries'">
                             </td>
-
-                            <td width="63" height="19" ng-if="bifProduction.types =='Inland fisheries'">
+                            <td width="63" height="19" ng-if="bifProduction.types == 'Inland fisheries'">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="bifProduction.prodc_pvt">
+                                       class="form-control input-md" ng-model="bifProduction.prodc_pvt"
+                                       ng-bind="bifProduction.prodc_pvt = bifProduction.area_pvt / bifProduction.avg_yield_pvt">
                             </td>
                         </tr>
                         </tbody>
                     </table>
                     <br>
-                    <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
-                            class="glyphicon glyphicon-arrow-right"></span> Fill Assets Informations</a>
+                    <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab">
+                        <span class="glyphicon glyphicon-arrow-right"></span>
+                        Fill Assets Informations
+                    </a>
                     <br>
                 </div>
                 <div class="tab-pane fade" id="step2">
@@ -253,10 +246,7 @@
                         </tr>
                         </tbody>
                     </table>
-
                     <div id="boxscroll" style="height:400px;overflow:auto;">
-
-
                         <table class="table table-bordered">
                             <tr class="trheadc" height="19">
                                 <td width="125" height="19" style="width:19.7%;">

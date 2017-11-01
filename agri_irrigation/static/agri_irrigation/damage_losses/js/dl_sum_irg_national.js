@@ -20,22 +20,20 @@ app.controller("dlAgriIrrifationNatController", function ($scope,$http,$parse, _
         if($scope.incident){
             $scope.is_edit = true;
             $scope.submitted = true;
-                $http({
-                    method: "POST",
-                    url: '/dl_fetch_summary_disagtn',
-                    data: angular.toJson({
-                        'table_name':  ['Table_6'],
-                        'sector': ['agri_irrigation'],
-                        'com_data': {
-                                'incident': $scope.incident,
-                        },
-                    }),
-                }).success(function(data) {
-                    angular.forEach(data, function(value, key) {
-
-                    });
-                    $scope.dlagriIrrigationNat = data  ;
-                })
+            $http({
+                method: "POST",
+                url: '/dl_fetch_summary_disagtn',
+                data: angular.toJson({
+                    'table_name':  ['Table_6'],
+                    'sector': ['agri_irrigation'],
+                    'com_data': {
+                        'incident': $scope.incident,
+                    },
+                }),
+            }).success(function(data) {
+                $scope.dlagriIrrigationNat = data;
+                console.log($scope.dlagriIrrigationNat);
+            })
         }
     }
 
@@ -106,8 +104,7 @@ app.controller("dlAgriIrrifationNatController", function ($scope,$http,$parse, _
             var totDmg7 = 0;
             var totDmg= 0;
             angular.forEach($scope.dlagriIrrigationNat.agri_irrigation.Table_6, function(value, index) {
-
-            angular.forEach(value, function(value_in, key) {
+                angular.forEach(value, function(value_in, key) {
                     if(key == 'DlMajorTanksNational') {
                           totDmg1 = totDmg1 + value_in[0].damages;
                     }
@@ -129,14 +126,11 @@ app.controller("dlAgriIrrifationNatController", function ($scope,$http,$parse, _
                     if(key == 'DlBuildingsNational') {
                           totDmg7 = totDmg7 + value_in[0].damages;
                     }
+
                     totDmg =  totDmg1 + totDmg2 + totDmg3 + totDmg4 + totDmg5 + totDmg6 + totDmg7;
-
-                    console.log('ttttt',totDmg);
-                    })
-
-
+//                    console.log('ttttt',totDmg);
                 })
-
+            })
             return totDmg;
         }
     }
@@ -151,8 +145,9 @@ app.controller("dlAgriIrrifationNatController", function ($scope,$http,$parse, _
             var totLos6 = 0;
             var totLos7 = 0;
             var totLos= 0;
+
             angular.forEach($scope.dlagriIrrigationNat.agri_irrigation.Table_6, function(value, index) {
-            angular.forEach(value, function(value_in, key) {
+                angular.forEach(value, function(value_in, key) {
                     if(key == 'DlLosMajorTanksNational') {
                           totLos1 = totLos1 + value_in[0].total_los;
                     }
@@ -175,13 +170,10 @@ app.controller("dlAgriIrrifationNatController", function ($scope,$http,$parse, _
                           totLos7 = totLos7 + value_in[1].total_los;
                     }
                     totLos = totLos1 + totLos2 + totLos3 + totLos4 + totLos5 + totLos6 + totLos7;
-                    console.log('test',totLos);
-                    })
-
+//                    console.log('test',totLos);
                 })
-
+            })
             return totLos;
         }
     }
-
  })

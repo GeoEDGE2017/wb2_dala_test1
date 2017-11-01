@@ -2096,6 +2096,8 @@ TABLE_PROPERTY_MAPPER = {
                 ['damages'],
             'DlLosMediumTanksNational':
                 ['total_los'],
+            'DlMediumTanksNational':
+                ['damages'],
             'DlMajorTanksNational':
                 ['damages'],
             'DlLosMajorTanksNational':

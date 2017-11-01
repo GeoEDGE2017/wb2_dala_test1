@@ -6,29 +6,31 @@
     .right {text-align:right;}
 </style>
 <main class="main" ng-app="dlAgriIrrifationNatApp" ng-controller="dlAgriIrrifationNatController">
-
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:agri_irrigation_main' %}">Agri Irrigation Sector</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:agri_irrigation_main' %}">
+                Agri Irrigation Sector
+            </a>
         </li>
-
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 6. Summary of Damages and Losses in the Irrigation Sub-sector Nationwide</span>
+        <li class="breadcrumb-item active">
+            <span class="label label-success" style="font-size:14px;">
+                Table 6. Summary of Damages and Losses in the Irrigation Sub-sector Nationwide
+            </span>
         </li>
-        <li style="float:right;"><a href="{% static 'dashboard/doc/4D-Agriculture-Irrigation-24Jan17.pdf' %}"
-                                    target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;"
-                                    class="icon-info" data-toggle="tooltip" title="Veiw Document"></a></li>
+        <li style="float:right;">
+            <a href="{% static 'dashboard/doc/4D-Agriculture-Irrigation-24Jan17.pdf' %}"
+               target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document">
+            </a>
+        </li>
     </ol>
-
-
     <div class="container-fluid">
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
-
                 <table class="table table-bordered">
-
                     <colgroup>
                         <col width="258"/>
                         <col width="118"/>
@@ -36,238 +38,188 @@
                         <col width="128"/>
                     </colgroup>
                     <tbody>
-                    <tr class="trhead1" height="20">
-
-                        <td class="trhead1" width="130">
-                            Incident
-                        </td>
-                        <td colspan="4" width="125" colspan="2">
-                            <select id="selectbasic" name="incident" ng-model="incident"
-                                    class="form-control" ng-change="changedValue(true);fetchDlData();"
-                                    style="width:100%;font-weight:400;" required>
-                                <option value="" selected="true">Select an Incident</option>
-                                {% for incident in incidents %}
-
-                                <option value={{incident.id}}>
-                                    <!--{{incident.disaster_type.name}}-->
-                                    <!--{{incident.reported_date_time}}-->
-                                    {{incident.incident_name}}
-                                    {% endfor %}
-                            </select>
-                        </td>
-                        <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
-                    </tr>
-                    <table ng-if="!checkIfNull()" ng-repeat="(key, value) in dlagriIrrigationNat.agri_irrigation.Table_6"
-                           class="table table-bordered">
-                        <tbody>
-                    <tr class="trheadc1" height="20">
-                        <td width="258" height="20">
-                            Type of Irrigation Facility
-                        </td>
-                        <td width="118">
-                            Damages (LKR)
-                        </td>
-                        <td width="116">
-                            Losses (LKR)
-                        </td>
-                        <td width="128">
-                            Total (LKR)
-                        </td>
-                    </tr>
-
-                        <tr class="trhead" height="20" ng-init="getTotal(key)">
-                            <td ng-bind="key" width="253" height="19" colspan="4">
-
+                        <tr class="trhead1" height="20">
+                            <td class="trhead1" width="130">
+                                Incident
                             </td>
+                            <td colspan="4" width="125" colspan="2">
+                                <select id="selectbasic" name="incident" ng-model="incident"
+                                        class="form-control" ng-change="changedValue(true);fetchDlData();"
+                                        style="width:100%;font-weight:400;" required>
+                                    <option value="" selected="true">Select an Incident</option>
+                                    {% for incident in incidents %}
 
+                                    <option value={{incident.id}}>
+                                        <!--{{incident.disaster_type.name}}-->
+                                        <!--{{incident.reported_date_time}}-->
+                                        {{incident.incident_name}}
+                                        {% endfor %}
+                                </select>
+                            </td>
+                            <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
                         </tr>
-                        <tr height="20">
-                            <td class="tdpa" width="258" height="20">
-                                Major Tanks
-                            </td>
-                            <td width="118" class="right" ng-bind="value.DlMajorTanksNational[0].damages">
-
-                            </td>
-                            <td width="116" class="right" ng-bind="value.DlLosMajorTanksNational[0].total_los">
-
-                            </td>
-                            <td class="right" width="128"
-                                ng-bind="value.DlMajorTanksNational[0].damages + value.DlLosMajorTanksNational[0].total_los">
-
-                            </td>
-                        </tr>
-                        <tr height="20">
-                            <td class="tdpa" width="258" height="20">
-                                Medium Tanks
-                            </td>
-                            <td width="118" class="right" ng-bind="value.DlMediumTanksNational[0].damages">
-
-                            </td>
-                            <td width="116" class="right" ng-bind="value.DlLosMediumTanksNational[0].total_los">
-
-                            </td>
-                            <td class="right" width="128"
-                                ng-bind="value.DlMediumTanksNational[0].damages + value.DlLosMediumTanksNational[0].total_los">
-
-                            </td>
-                        </tr>
-
-                        <tr height="20">
-                            <td class="tdpa" width="258" height="20">
-                                Minor Tanks
-                            </td>
-                            <td width="118" class="right" ng-bind="value.DlMinorTanksNational[0].damages">
-
-                            </td>
-                            <td width="116" class="right" ng-bind="value.DlLosMinorTanksNational[0].total_los">
-
-                            </td>
-                            <td class="right" width="128"
-                                ng-bind="value.DlMinorTanksNational[0].damages + value.DlLosMinorTanksNational[0].total_los">
-
-                            </td>
-                        </tr>
-
-                        <tr height="20">
-                            <td class="tdpa" width="258" height="20">
-                                Anicuts
-                            </td>
-                            <td width="118" class="right" ng-bind="value.DlAnicutsNational[0].damages">
-
-                            </td>
-                            <td width="116" class="right" ng-bind="value.DlLosAnicutsNational[0].total_los">
-
-                            </td>
-                            <td class="right" width="128"
-                                ng-bind="value.DlAnicutsNational[0].damages + value.DlLosAnicutsNational[0].total_los">
-
-                            </td>
-                        </tr>
-
-                        <tr height="20">
-                            <td class="tdpa" width="258" height="20">
-                                Other Structures
-                            </td>
-                            <td width="118" class="right" ng-bind="value.DlOtherStructuresNational[0].damages">
-
-                            </td>
-                            <td width="116" class="right" ng-bind="value.DlLosOtherNational[3].total_los">
-
-                            </td>
-                            <td class="right" width="128"
-                                ng-bind="value.DlOtherStructuresNational[0].damages + value.DlLosOtherNational[3].total_los">
-
-                            </td>
-                        </tr>
-
-                        <tr height="20">
-                            <td class="tdpa" width="258" height="20">
-                                River Embankments
-                            </td>
-                            <td width="118" class="right" ng-bind="value.DlRiverEmbankmntNational[0].damages">
-
-                            </td>
-                            <td width="116" class="right" ng-bind="value.DlLosOtherNational[0].total_los">
-
-                            </td>
-                            <td class="right" width="128"
-                                ng-bind="value.DlRiverEmbankmntNational[0].damages + value.DlLosOtherNational[0].total_los">
-
-                            </td>
-                        </tr>
-
-                        <tr height="20">
-                            <td class="tdpa" width="258" height="20">
-                                Buildings
-                            </td>
-                            <td width="118" class="right" ng-bind="value.DlBuildingsNational[0].damages">
-
-                            </td>
-                            <td width="116" class="right" ng-bind="value.DlLosOtherNational[1].total_los">
-
-                            </td>
-                            <td class="right" width="128"
-                                ng-bind="value.DlBuildingsNational[0].damages + value.DlLosOtherNational[1].total_los">
-
-                            </td>
-                        </tr>
-                        <tr height="20">
-                            <td class="tdpa" width="258" height="20">
-                                Total
-                            </td>
-                            <td class="right" width="118" ng-model="damages"
-                                ng-bind="damages =
-                            value.DlMajorTanksNational[0].damages +
-                            value.DlMediumTanksNational[0].damages +
-                            value.DlMinorTanksNational[0].damages +
-                            value.DlAnicutsNational[0].damages +
-                            value.DlOtherStructuresNational[0].damages +
-                            value.DlRiverEmbankmntNational[0].damages +
-                            value.DlBuildingsNational[0].damages">
-
-                            </td>
-                            <td class="right" width="116" ng-model="losses"
-                                ng-bind="losses =
-                            value.DlLosMajorTanksNational[0].total_los+
-                            value.DlLosMediumTanksNational[0].total_los+
-                            value.DlLosMinorTanksNational[0].total_los+
-                            value.DlLosAnicutsNational[0].total_los+
-                            value.DlLosOtherNational[3].total_los+
-                            value.DlLosOtherNational[0].total_los+
-                            value.DlLosOtherNational[1].total_los">
-
-                            </td>
-
-                            <td width="128" class="right"
-                                ng-bind="damages + losses">
-                            </td>
-                        </tr>
-
-
-                        </tbody>
+                        <table ng-if="!checkIfNull()" ng-repeat="(key, value) in dlagriIrrigationNat.agri_irrigation.Table_6"
+                               class="table table-bordered">
+                            <tbody>
+                                <tr class="trheadc1" height="20">
+                                    <td width="258" height="20">
+                                        Type of Irrigation Facility
+                                    </td>
+                                    <td width="118">
+                                        Damages (LKR)
+                                    </td>
+                                    <td width="116">
+                                        Losses (LKR)
+                                    </td>
+                                    <td width="128">
+                                        Total (LKR)
+                                    </td>
+                                </tr>
+                                <tr class="trhead" height="20" ng-init="getTotal(key)">
+                                    <td ng-bind="key" width="253" height="19" colspan="4">
+                                    </td>
+                                </tr>
+                                <tr height="20">
+                                    <td class="tdpa" width="258" height="20">
+                                        Major Tanks
+                                    </td>
+                                    <td width="118" class="right" ng-bind="value.DlMajorTanksNational[0].damages">
+                                    </td>
+                                    <td width="116" class="right" ng-bind="value.DlLosMajorTanksNational[0].total_los">
+                                    </td>
+                                    <td class="right" width="128"
+                                        ng-bind="value.DlMajorTanksNational[0].damages + value.DlLosMajorTanksNational[0].total_los">
+                                    </td>
+                                </tr>
+                                <tr height="20">
+                                    <td class="tdpa" width="258" height="20">
+                                        Medium Tanks
+                                    </td>
+                                    <td width="118" class="right" ng-bind="value.DlMediumTanksNational[0].damages">
+                                    </td>
+                                    <td width="116" class="right" ng-bind="value.DlLosMediumTanksNational[0].total_los">
+                                    </td>
+                                    <td class="right" width="128"
+                                        ng-bind="value.DlMediumTanksNational[0].damages + value.DlLosMediumTanksNational[0].total_los">
+                                    </td>
+                                </tr>
+                                <tr height="20">
+                                    <td class="tdpa" width="258" height="20">
+                                        Minor Tanks
+                                    </td>
+                                    <td width="118" class="right" ng-bind="value.DlMinorTanksNational[0].damages">
+                                    </td>
+                                    <td width="116" class="right" ng-bind="value.DlLosMinorTanksNational[0].total_los">
+                                    </td>
+                                    <td class="right" width="128"
+                                        ng-bind="value.DlMinorTanksNational[0].damages + value.DlLosMinorTanksNational[0].total_los">
+                                    </td>
+                                </tr>
+                                <tr height="20">
+                                    <td class="tdpa" width="258" height="20">
+                                        Anicuts
+                                    </td>
+                                    <td width="118" class="right" ng-bind="value.DlAnicutsNational[0].damages">
+                                    </td>
+                                    <td width="116" class="right" ng-bind="value.DlLosAnicutsNational[0].total_los">
+                                    </td>
+                                    <td class="right" width="128"
+                                        ng-bind="value.DlAnicutsNational[0].damages + value.DlLosAnicutsNational[0].total_los">
+                                    </td>
+                                </tr>
+                                <tr height="20">
+                                    <td class="tdpa" width="258" height="20">
+                                        Other Structures
+                                    </td>
+                                    <td width="118" class="right" ng-bind="value.DlOtherStructuresNational[0].damages">
+                                    </td>
+                                    <td width="116" class="right" ng-bind="value.DlLosOtherNational[0].total_los">
+                                    </td>
+                                    <td class="right" width="128"
+                                        ng-bind="value.DlOtherStructuresNational[0].damages + value.DlLosOtherNational[0].total_los">
+                                    </td>
+                                </tr>
+                                <tr height="20">
+                                    <td class="tdpa" width="258" height="20">
+                                        River Embankments
+                                    </td>
+                                    <td width="118" class="right" ng-bind="value.DlRiverEmbankmntNational[0].damages">
+                                    </td>
+                                    <td width="116" class="right" ng-bind="value.DlLosOtherNational[0].total_los">
+                                    </td>
+                                    <td class="right" width="128"
+                                        ng-bind="value.DlRiverEmbankmntNational[0].damages + value.DlLosOtherNational[0].total_los">
+                                    </td>
+                                </tr>
+                                <tr height="20">
+                                    <td class="tdpa" width="258" height="20">
+                                        Buildings
+                                    </td>
+                                    <td width="118" class="right" ng-bind="value.DlBuildingsNational[0].damages">
+                                    </td>
+                                    <td width="116" class="right" ng-bind="value.DlLosOtherNational[1].total_los">
+                                    </td>
+                                    <td class="right" width="128"
+                                        ng-bind="value.DlBuildingsNational[0].damages + value.DlLosOtherNational[1].total_los">
+                                    </td>
+                                </tr>
+                                <tr height="20">
+                                    <td class="tdpa" width="258" height="20">
+                                        Total
+                                    </td>
+                                    <td class="right" width="118" ng-model="damages"
+                                        ng-bind="damages = value.DlMajorTanksNational[0].damages +
+                                        value.DlMediumTanksNational[0].damages +
+                                        value.DlMinorTanksNational[0].damages +
+                                        value.DlAnicutsNational[0].damages +
+                                        value.DlOtherStructuresNational[0].damages +
+                                        value.DlRiverEmbankmntNational[0].damages +
+                                        value.DlBuildingsNational[0].damages">
+                                    </td>
+                                    <td class="right" width="116" ng-model="losses"
+                                        ng-bind="losses = value.DlLosMajorTanksNational[0].total_los+
+                                        value.DlLosMediumTanksNational[0].total_los+
+                                        value.DlLosMinorTanksNational[0].total_los+
+                                        value.DlLosAnicutsNational[0].total_los+
+                                        value.DlLosOtherNational[3].total_los+
+                                        value.DlLosOtherNational[0].total_los+
+                                        value.DlLosOtherNational[1].total_los">
+                                    </td>
+                                    <td width="128" class="right"
+                                        ng-bind="damages + losses">
+                                    </td>
+                                </tr>
+                            </tbody>
                         </table>
-                       <table ng-if="!checkIfNull()"
-                           class="table table-bordered">
-                        <tr height="20">
-                            <td class="tdpa" width="258" height="20">
-                                GRAND TOTAL
-                            </td>
-                            <td class="right" width="118" ng-bind="totDmg()">
+                        <table ng-if="!checkIfNull()" class="table table-bordered">
+                            <tr height="20">
+                                <td class="tdpa" width="258" height="20">
+                                    GRAND TOTAL
+                                </td>
+                                <td class="right" width="118" ng-bind="totDmg()">
+                                </td>
+                                <td class="right" width="116" ng-bind="totLoss()">
+                                </td>
+                                <td class="right" width="128" ng-bind="totDmg() + totLoss() ">
+                                </td>
+                            </tr>
 
-                            </td>
-                            <td class="right" width="116" ng-bind="totLoss()">
-
-                            </td>
-                            <td class="right" width="128" ng-bind="totDmg() + totLoss() ">
-
-                            </td>
-                        </tr>
-
-                        </tbody>
-                    </table>
-
-
+                        </table>
+                    </tbody>
                     <br>
                     <div class="pull-right">
                         <br>
-
                     </div>
+                </table>
             </div>
-
-
         </div>
     </div>
-
-
     <div class="col-md-12">
-
-
         <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
              aria-hidden="true">
             <div class="modal-dialog" style="width:50%;">
                 <div class="modal-content">
                     <div class="modal-header">
-
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                             ×
                         </button>
@@ -282,13 +234,11 @@
                             <div class="col-md-10">
                                 <input id="textinput" name="textinput" type="text" placeholder=""
                                        class="form-control input-md">
-
                             </div>
                         </div>
                     </div>
                     <br><br>
                     <div class="modal-footer">
-
                         <button type="button" class="btn btn-default" data-dismiss="modal">
                             Close
                         </button>
@@ -297,19 +247,9 @@
                         </button>
                     </div>
                 </div>
-
             </div>
-
         </div>
-
-
     </div>
-    </div>
-
-    </div>
-
     <!-- /.conainer-fluid -->
 </main>
-
-
 {% endblock content %}

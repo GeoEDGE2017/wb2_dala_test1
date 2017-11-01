@@ -963,13 +963,13 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
         location.reload();
     }
 
-    $scope.convertToInt = function(val) {
+    $scope.convertToFloat = function(val) {
         var total = 0;
         if(val == null || isNaN(val)) {
             val=0;
         }
 
-        total = parseInt(val);
+        total = parseFloat(val);
         return total;
     }
 }]);

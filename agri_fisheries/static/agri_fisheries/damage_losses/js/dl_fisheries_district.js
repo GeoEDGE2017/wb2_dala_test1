@@ -491,18 +491,18 @@ app.controller('dlFisheriesDistrictController', function($scope, $http, $parse, 
                         dataType: 'json',
                     }).then(function successCallback(response) {
                         console.log('response', response);
-							var result = response.data;
-							if(result.bs_date == null) {
-								$("#modal-container-239458").modal('show');
-							}
-							else {
-								var bs_date = result.bs_date.replace(/^"(.*)"$/, '$1');
-								$scope.currentBaselineDate = "Latest baseline data as at " + bs_date;
-								$scope.bsCreatedeDate = result.bs_created_date;
-								console.log('bs_date', result.bs_date);
-								console.log('bsCreatedeDate', result.bs_created_date);
-								 generateRefencedData();
-							}
+                        var result = response.data;
+                        if(result.bs_date == null) {
+                            $("#modal-container-239458").modal('show');
+                        }
+                        else {
+                            var bs_date = result.bs_date.replace(/^"(.*)"$/, '$1');
+                            $scope.currentBaselineDate = "Latest baseline data as at " + bs_date;
+                            $scope.bsCreatedeDate = result.bs_created_date;
+                            console.log('bs_date', result.bs_date);
+                            console.log('bsCreatedeDate', result.bs_created_date);
+                            generateRefencedData();
+                        }
                     });
                 }
             }, function errorCallback(response) {
@@ -519,10 +519,7 @@ app.controller('dlFisheriesDistrictController', function($scope, $http, $parse, 
             data: angular.toJson(),
 
         }).success(function(data) {
-
-           $scope.fishing_types =data;
-           console.log(data);
-
+            $scope.fishing_types = data;
         })
     }
 
@@ -707,25 +704,21 @@ app.controller('dlFisheriesDistrictController', function($scope, $http, $parse, 
         var finaltotal = 0;
         angular.forEach(arr, function(value, key) {
             if(value.assets != 'Total' && value.assets !='Percentage Reduction in Value of Yield (%)'){
-                console.log('printing',value[property]);
                 finaltotal = finaltotal + value[property] ;
             }
         })
         return finaltotal;
     }
 
-     $scope.CalTote = function(arr,property) {
+    $scope.CalTote = function(arr,property) {
         var finaltotal = 0;
         angular.forEach(arr, function(value, key) {
             if(value.assets != 'Total'){
-                console.log('printing',value[property]);
                 finaltotal = finaltotal + value[property] ;
             }
         })
         return finaltotal;
     }
-
-
 
 //     $scope.CalTote = function() {
 //        if(!angular.isUndefined($scope.dlFisheriesDistrict)) {
@@ -841,7 +834,6 @@ app.controller('dlFisheriesDistrictController', function($scope, $http, $parse, 
              }
         })
         grantot = finaltotal1 + finaltotal2 + finaltotal3 + finaltotal4 + finaltotal5;
-        console.log("alert",finaltotal1 , finaltotal2 , finaltotal3, finaltotal4 ,finaltotal5);
         return grantot;
     }
 
@@ -865,8 +857,8 @@ app.controller('dlFisheriesDistrictController', function($scope, $http, $parse, 
                     'is_edit':$scope.is_edit
                 }),
             }).success(function(data) {
-                console.log(data);
                 $scope.dlFisheriesDistrict = data;
+                console.log($scope.dlFisheriesDistrict);
             })
         }
     }
@@ -876,8 +868,7 @@ app.controller('dlFisheriesDistrictController', function($scope, $http, $parse, 
         document.getElementById("clearbtn").disabled = true;
 		document.getElementById("editbtn").disabled = true;
 		document.getElementById("subbtn").disabled = true;
-		console.log("test", $scope.district);
-		console.log("test", $scope.bs_date);
+
 		$scope.is_search = true;
         if(form.$valid) {
             $http({
@@ -912,6 +903,16 @@ app.controller('dlFisheriesDistrictController', function($scope, $http, $parse, 
         console.log('done');
         $scope.is_edit = false;
         $scope.dlFisheriesDistrict = angular.copy(init_data);
-         location.reload();
+        location.reload();
+    }
+
+    $scope.convertToFloat = function(val) {
+        var total = 0;
+        if(val == null || isNaN(val)) {
+            val=0;
+        }
+
+        total = parseFloat(val);
+        return total;
     }
 });

@@ -421,7 +421,6 @@
                             <tr height="19" ng-repeat="dlfDmgMachinery in dlFisheriesDistrict.agri_fisheries.Table_3.DlfDmgMachinery"
                                 ng-if="dlfDmgMachinery.assets != 'Total'">
                                 <td class="tdpa" colspan="2" width="250" height="19" ng-bind="dlfDmgMachinery.assets">
-                                    Vehicles
                                 </td>
                                 <td width="111" height="19">
                                     <input id="textinput" ng-model="dlfDmgMachinery.dmg_dest_pub" name="textinput"
@@ -441,34 +440,34 @@
                                 </td>
                                 <td width="63" height="19" ng-if="!fishing_type.name">
                                 </td>
-                                <td class="right" width="63" height="19" ng-if="fishing_type.name =='Inland Fisheries'"
+                                <td class="right" width="63" height="19" ng-if="fishing_type.name == 'Inland Fisheries'"
                                     ng-model="dlfDmgMachinery.dmg_pub" ng-bind="dlfDmgMachinery.dmg_pub =
                                     convertToFloat(dlfDmgMachinery.dmg_dest_pub) * convertToFloat(bs_data['BifAstMachinery'][$index].fields.if_avg_replace_cost) +
-                                    convertToFloat(dlfDmgMachinery.dmg_pdmg_pub) * convertToFloat(bs_data['BifAstMachinery'][$index].fields.if_avg_repair_cost) ">
+                                    convertToFloat(dlfDmgMachinery.dmg_pdmg_pub) * convertToFloat(bs_data['BifAstMachinery'][$index].fields.if_avg_repair_cost)">
                                 </td>
-                                <td class="right" width="63" height="19" ng-if="fishing_type.name =='River Fisheries'"
+                                <td class="right" width="63" height="19" ng-if="fishing_type.name == 'River Fisheries'"
                                     ng-model="dlfDmgMachinery.dmg_pub" ng-bind="dlfDmgMachinery.dmg_pub =
                                     convertToFloat(dlfDmgMachinery.dmg_dest_pub) * convertToFloat(bs_data['BifAstMachinery'][$index].fields.rf_avg_replace_cost) +
                                     convertToFloat(dlfDmgMachinery.dmg_pdmg_pub) * convertToFloat(bs_data['BifAstMachinery'][$index].fields.rf_avg_repair_cost)">
                                 </td>
-                                <td class="right" width="63" height="19" ng-if="fishing_type.name =='Marine Fisheries'"
+                                <td class="right" width="63" height="19" ng-if="fishing_type.name == 'Marine Fisheries'"
                                     ng-model="dlfDmgMachinery.dmg_pub" ng-bind="dlfDmgMachinery.dmg_pub =
                                     convertToFloat(dlfDmgMachinery.dmg_dest_pub) * convertToFloat(bs_data['BifAstMachinery'][$index].fields.mf_avg_replace_cost) +
                                     convertToFloat(dlfDmgMachinery.dmg_pdmg_pub) * convertToFloat(bs_data['BifAstMachinery'][$index].fields.mf_avg_repair_cost)">
                                 </td>
                                 <td class="right" width="63" height="19" ng-if="!fishing_type.name">
                                 </td>
-                                <td class="right" width="63" height="19" ng-if="fishing_type.name =='Inland Fisheries'"
+                                <td class="right" width="63" height="19" ng-if="fishing_type.name == 'Inland Fisheries'"
                                     ng-model="dlfDmgMachinery.dmg_pvt" ng-bind="dlfDmgMachinery.dmg_pvt =
                                     convertToFloat(dlfDmgMachinery.dmg_dst_pvt) * convertToFloat(bs_data['BifAstMachinery'][$index].fields.if_avg_replace_cost) +
                                     convertToFloat(dlfDmgMachinery.dmg_pdmg_pvt) * convertToFloat(bs_data['BifAstMachinery'][$index].fields.if_avg_repair_cost)">
                                 </td>
-                                <td class="right" width="63" height="19" ng-if="fishing_type.name =='River Fisheries'"
+                                <td class="right" width="63" height="19" ng-if="fishing_type.name == 'River Fisheries'"
                                     ng-model="dlfDmgMachinery.dmg_pvt" ng-bind="dlfDmgMachinery.dmg_pvt =
-                                    convertToFloat(dlfDmgMachinery.dmg_dst_pvt * convertToFloat(bs_data['BifAstMachinery'][$index].fields.rf_avg_replace_cost +
-                                    convertToFloat(dlfDmgMachinery.dmg_pdmg_pvt * convertToFloat(bs_data['BifAstMachinery'][$index].fields.rf_avg_repair_cost ">
+                                    convertToFloat(dlfDmgMachinery.dmg_dst_pvt) * convertToFloat(bs_data['BifAstMachinery'][$index].fields.rf_avg_replace_cost) +
+                                    convertToFloat(dlfDmgMachinery.dmg_pdmg_pvt) * convertToFloat(bs_data['BifAstMachinery'][$index].fields.rf_avg_repair_cost) ">
                                 </td>
-                                <td class="right" width="63" height="19" ng-if="fishing_type.name =='Marine Fisheries'"
+                                <td class="right" width="63" height="19" ng-if="fishing_type.name == 'Marine Fisheries'"
                                     ng-model="dlfDmgMachinery.dmg_pvt" ng-bind="dlfDmgMachinery.dmg_pvt =
                                     convertToFloat(dlfDmgMachinery.dmg_dst_pvt) * convertToFloat(bs_data['BifAstMachinery'][$index].fields.mf_avg_replace_cost) +
                                     convertToFloat(dlfDmgMachinery.dmg_pdmg_pvt) * convertToFloat(bs_data['BifAstMachinery'][$index].fields.mf_avg_repair_cost)">
@@ -545,37 +544,37 @@
                                 </td>
                                 <td width="63" height="19" ng-if="!fishing_type.name">
                                 </td>
-                                <td class="right" width="63" height="19" ng-if="fishing_type.name =='Inland Fisheries'"
+                                <td class="right" width="63" height="19" ng-if="fishing_type.name == 'Inland Fisheries'"
                                     ng-model="dlfDmgStructures.dmg_pub" ng-bind="dlfDmgStructures.dmg_pub =
                                     convertToFloat(dlfDmgStructures.dmg_dest_pub) * convertToFloat(bs_data['BifAstStructures'][$index].fields.if_avg_replace_cost) +
                                     convertToFloat(dlfDmgStructures.dmg_pdmg_pub) * convertToFloat(bs_data['BifAstStructures'][$index].fields.if_avg_repair_cost)">
                                 </td>
-                                <td class="right" width="63" height="19" ng-if="fishing_type.name =='River Fisheries'"
+                                <td class="right" width="63" height="19" ng-if="fishing_type.name == 'River Fisheries'"
                                     ng-model="dlfDmgStructures.dmg_pub" ng-bind="dlfDmgStructures.dmg_pub =
                                     convertToFloat(dlfDmgStructures.dmg_dest_pub) * convertToFloat(bs_data['BifAstStructures'][$index].fields.rf_avg_replace_cost) +
-                                    convertToFloat(dlfDmgStructures.dmg_pdmg_pub) * convertToFloat(bs_data['BifAstStructures'][$index].fields.rf_avg_repair_cost) ">
+                                    convertToFloat(dlfDmgStructures.dmg_pdmg_pub) * convertToFloat(bs_data['BifAstStructures'][$index].fields.rf_avg_repair_cost)">
                                 </td>
-                                <td class="right" width="63" height="19" ng-if="fishing_type.name =='Marine Fisheries'"
+                                <td class="right" width="63" height="19" ng-if="fishing_type.name == 'Marine Fisheries'"
                                     ng-model="dlfDmgStructures.dmg_pub" ng-bind="dlfDmgStructures.dmg_pub =
                                     convertToFloat(dlfDmgStructures.dmg_dest_pub) * convertToFloat(bs_data['BifAstStructures'][$index].fields.mf_avg_replace_cost) +
                                     convertToFloat(dlfDmgStructures.dmg_pdmg_pub) * convertToFloat(bs_data['BifAstStructures'][$index].fields.mf_avg_repair_cost)">
                                 </td>
                                 <td class="right" width="63" height="19" ng-if="!fishing_type.name">
                                 </td>
-                                <td class="right" width="63" height="19" ng-if="fishing_type.name =='Inland Fisheries'"
+                                <td class="right" width="63" height="19" ng-if="fishing_type.name == 'Inland Fisheries'"
                                     ng-model="dlfDmgStructures.dmg_pvt" ng-bind="dlfDmgStructures.dmg_pvt =
                                     convertToFloat(dlfDmgStructures.dmg_dst_pvt) * convertToFloat(bs_data['BifAstStructures'][$index].fields.if_avg_replace_cost) +
                                     convertToFloat(dlfDmgStructures.dmg_pdmg_pvt) * convertToFloat(bs_data['BifAstStructures'][$index].fields.if_avg_repair_cost)">
                                 </td>
-                                <td class="right" width="63" height="19" ng-if="fishing_type.name =='River Fisheries'"
+                                <td class="right" width="63" height="19" ng-if="fishing_type.name == 'River Fisheries'"
                                     ng-model="dlfDmgStructures.dmg_pvt" ng-bind="dlfDmgStructures.dmg_pvt =
                                     convertToFloat(dlfDmgStructures.dmg_dst_pvt) * convertToFloat(bs_data['BifAstStructures'][$index].fields.rf_avg_replace_cost) +
                                     convertToFloat(dlfDmgStructures.dmg_pdmg_pvt) * convertToFloat(bs_data['BifAstStructures'][$index].fields.rf_avg_repair_cost)">
                                 </td>
-                                <td class="right" width="63" height="19" ng-if="fishing_type.name =='Marine Fisheries'"
+                                <td class="right" width="63" height="19" ng-if="fishing_type.name == 'Marine Fisheries'"
                                     ng-model="dlfDmgStructures.dmg_pvt" ng-bind="dlfDmgStructures.dmg_pvt =
                                     convertToFloat(dlfDmgStructures.dmg_dst_pvt) * convertToFloat(bs_data['BifAstStructures'][$index].fields.mf_avg_replace_cost) +
-                                    convertToFloat(dlfDmgStructures.dmg_pdmg_pub) * convertToFloat(bs_data['BifAstStructures'][$index].fields.mf_avg_repair_cost)">
+                                    convertToFloat(dlfDmgStructures.dmg_pdmg_pvt) * convertToFloat(bs_data['BifAstStructures'][$index].fields.mf_avg_repair_cost)">
                                 </td>
                             </tr>
                             <!--Structures Total-->

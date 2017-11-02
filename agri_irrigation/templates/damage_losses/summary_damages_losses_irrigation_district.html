@@ -6,29 +6,32 @@
 </style>
 <!-- Main content -->
 <main class="main" ng-app="dlSumIrrigationDstrApp" ng-controller="dlSumIrrigationDstrController">
-
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:index' %}">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:agri_irrigation_main' %}">
+                Agri Irrigation Sector
+            </a>
+        </li>
+        <li class="breadcrumb-item active">
+            <span class="label label-success" style="font-size:14px;">
+                Table 4. Summary of damages and losses to irrigation in the District
+            </span>
+        </li>
+        <li style="float:right;">
+            <a href="{% static 'dashboard/doc/4D-Agriculture-Irrigation-24Jan17.pdf' %}"
+               target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document">
 
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+            </a>
         </li>
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:agri_irrigation_main' %}">Agri Irrigation Sector</a>
-        </li>
-
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 4. Summary of damages and losses to irrigation in the District</span>
-        </li>
-        <li style="float:right;"><a href="{% static 'dashboard/doc/4D-Agriculture-Irrigation-24Jan17.pdf' %}"
-                                    target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;"
-                                    class="icon-info" data-toggle="tooltip" title="Veiw Document"></a></li>
     </ol>
     <div class="container-fluid" ng-form name="form_dlsum_irri_distr">
-
-
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
-
                 <table class="table table-bordered">
-
                     <colgroup>
                         <col width="258"/>
                         <col width="118"/>
@@ -40,16 +43,16 @@
                         <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
                         </td>
                         <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-                <span class="arrow_box" ng-show="isLoded && form_dlsum_irri_distr.incident.$error.required">
-                    Please select Incident
-                </span>
+                            <span class="arrow_box" ng-show="isLoded && form_dlsum_irri_distr.incident.$error.required">
+                                Please select Incident
+                            </span>
                         </td>
                         <td colspan="" style="background:#fff;border:1px solid #fff;text-align:center;">
                         </td>
                         <td colspan="" style="background:#fff;border:1px solid #fff;text-align:center;">
-                <span class="arrow_box" ng-show="isLoded && form_dlsum_irri_distr.district.$error.required">
-                    Please select District
-                </span>
+                            <span class="arrow_box" ng-show="isLoded && form_dlsum_irri_distr.district.$error.required">
+                                Please select District
+                            </span>
                         </td>
                     </tr>
                     <tr class="trhead1" height="20">
@@ -193,18 +196,31 @@
                             TOTAL
                         </td>
                         <td class="right" width="118"
-                            ng-bind="
-                        data.agri_irrigation.Table_4.DlMajorTanksDistrict[0].damages +
-                        data.agri_irrigation.Table_4.DlMediumTanksDistrict[0].damages +
-                        data.agri_irrigation.Table_4.DlMinorTanksDistrict[0].damages +
-                        data.agri_irrigation.Table_4.DlAnicutsDistrict[0].damages +
-                        data.agri_irrigation.Table_4.DlOtherStructuresDistrict[0].damages +
-                        data.agri_irrigation.Table_4.DlRiverEmbankmntDistrict[0].damages +
-                        data.agri_irrigation.Table_4.DlBuildingsDistrict[0].damages">
-
+                            ng-bind="data.agri_irrigation.Table_4.DlMajorTanksDistrict[0].damages +
+                            data.agri_irrigation.Table_4.DlMediumTanksDistrict[0].damages +
+                            data.agri_irrigation.Table_4.DlMinorTanksDistrict[0].damages +
+                            data.agri_irrigation.Table_4.DlAnicutsDistrict[0].damages +
+                            data.agri_irrigation.Table_4.DlOtherStructuresDistrict[0].damages +
+                            data.agri_irrigation.Table_4.DlRiverEmbankmntDistrict[0].damages +
+                            data.agri_irrigation.Table_4.DlBuildingsDistrict[0].damages">
                         </td>
                         <td class="right" width="116"
-                            ng-bind="
+                            ng-bind="data.agri_irrigation.Table_4.DlLosMajorTanksDistrict[0].total_los +
+                            data.agri_irrigation.Table_4.DlLosMediumTanksDistrict[0].total_los +
+                            data.agri_irrigation.Table_4.DlLosMinorTanksDistrict[0].total_los +
+                            data.agri_irrigation.Table_4.DlLosAnicutsDistrict[0].total_los +
+                            data.agri_irrigation.Table_4.DlLosOtherDistrict[0].total_los +
+                            data.agri_irrigation.Table_4.DlLosOtherDistrict[1].total_los+
+                            data.agri_irrigation.Table_4.DlLosOtherDistrict[2].total_los">
+                        </td>
+                        <td class="right" width="128"
+                            ng-bind="data.agri_irrigation.Table_4.DlMajorTanksDistrict[0].damages +
+                            data.agri_irrigation.Table_4.DlMediumTanksDistrict[0].damages +
+                            data.agri_irrigation.Table_4.DlMinorTanksDistrict[0].damages +
+                            data.agri_irrigation.Table_4.DlAnicutsDistrict[0].damages +
+                            data.agri_irrigation.Table_4.DlOtherStructuresDistrict[0].damages +
+                            data.agri_irrigation.Table_4.DlRiverEmbankmntDistrict[0].damages +
+                            data.agri_irrigation.Table_4.DlBuildingsDistrict[0].damages +
                             data.agri_irrigation.Table_4.DlLosMajorTanksDistrict[0].total_los +
                             data.agri_irrigation.Table_4.DlLosMediumTanksDistrict[0].total_los +
                             data.agri_irrigation.Table_4.DlLosMinorTanksDistrict[0].total_los +
@@ -212,54 +228,30 @@
                             data.agri_irrigation.Table_4.DlLosOtherDistrict[0].total_los +
                             data.agri_irrigation.Table_4.DlLosOtherDistrict[1].total_los+
                             data.agri_irrigation.Table_4.DlLosOtherDistrict[2].total_los">
-
-
-                        <td class="right" width="128"
-                            ng-bind="data.agri_irrigation.Table_4.DlMajorTanksDistrict[0].damages +
-                        data.agri_irrigation.Table_4.DlMediumTanksDistrict[0].damages +
-                        data.agri_irrigation.Table_4.DlMinorTanksDistrict[0].damages +
-                        data.agri_irrigation.Table_4.DlAnicutsDistrict[0].damages +
-                        data.agri_irrigation.Table_4.DlOtherStructuresDistrict[0].damages +
-                        data.agri_irrigation.Table_4.DlRiverEmbankmntDistrict[0].damages +
-                        data.agri_irrigation.Table_4.DlBuildingsDistrict[0].damages +
-                        data.agri_irrigation.Table_4.DlLosMajorTanksDistrict[0].total_los +
-                        data.agri_irrigation.Table_4.DlLosMediumTanksDistrict[0].total_los +
-                        data.agri_irrigation.Table_4.DlLosMinorTanksDistrict[0].total_los +
-                        data.agri_irrigation.Table_4.DlLosAnicutsDistrict[0].total_los +
-                        data.agri_irrigation.Table_4.DlLosOtherDistrict[0].total_los +
-                        data.agri_irrigation.Table_4.DlLosOtherDistrict[1].total_los+
-                        data.agri_irrigation.Table_4.DlLosOtherDistrict[2].total_los">
+                        </td>
                     </tr>
                     </tbody>
                 </table>
-
-
                 <div class="pull-right">
                     <br>
-
                 </div>
-                <br> <br> <br>
+                <br>
+                <br>
+                <br>
             </div>
-
-
         </div>
     </div>
-
-
     <div class="col-md-12">
-
-
         <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
              aria-hidden="true">
             <div class="modal-dialog" style="width:50%;">
                 <div class="modal-content">
                     <div class="modal-header">
-
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                             ×
                         </button>
                         <h5 class="modal-title">
-                            <span id="bookId"> </span>
+                            <span id="bookId"></span>
                         </h5>
                     </div>
                     <div class="modal-body">
@@ -269,13 +261,12 @@
                             <div class="col-md-10">
                                 <input id="textinput" name="textinput" type="text" placeholder=""
                                        class="form-control input-md">
-
                             </div>
                         </div>
                     </div>
-                    <br><br>
+                    <br>
+                    <br>
                     <div class="modal-footer">
-
                         <button type="button" class="btn btn-default" data-dismiss="modal">
                             Close
                         </button>
@@ -284,19 +275,9 @@
                         </button>
                     </div>
                 </div>
-
             </div>
-
         </div>
-
-
     </div>
-    </div>
-
-    </div>
-
     <!-- /.conainer-fluid -->
 </main>
-
-
 {% endblock content %}

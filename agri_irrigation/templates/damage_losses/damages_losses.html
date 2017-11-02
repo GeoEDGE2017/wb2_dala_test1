@@ -2,13 +2,9 @@
 {% block content %}
 {% load static %}
 <script>
-  $(document).ready(function() {
-  
-    var nicesx = $("#boxscroll").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
-    
-  });
-  
-
+    $(document).ready(function() {
+        var nicesx = $("#boxscroll").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
+    });
 </script>
 <style>
     .right {text-align:right;}
@@ -17,32 +13,57 @@
 <main class="main" ng-app="dlIrrigationApp" ng-controller="dlIrrigationController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:agri_irrigation_main' %}">Agri Irrigation Sector</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:agri_irrigation_main' %}">
+                Agri Irrigation Sector
+            </a>
         </li>
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 3. Damages and Losses</span>
+        <li class="breadcrumb-item active">
+            <span class="label label-success" style="font-size:14px;">
+                Table 3. Damages and Losses
+            </span>
         </li>
         <span style="margin-left:15px;color:#000;" ng-bind="currentBaselineDate"></span>
-        <li style="float:right;"><a href="{% static 'dashboard/doc/4D-Agriculture-Irrigation-24Jan17.pdf' %}"
-                                    target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;"
-                                    class="icon-info" data-toggle="tooltip" title="Veiw Document"></a></li>
+        <li style="float:right;">
+            <a href="{% static 'dashboard/doc/4D-Agriculture-Irrigation-24Jan17.pdf' %}"
+                target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document">
+            </a>
+        </li>
     </ol>
     <div class="container-fluid" ng-form name="form_dl_irrigation">
         <div>
             <ul class='nav nav-wizard'>
-                <li id="li1" class="active"><a href='#step1' data-toggle="tab">1 Partially Damaged</a></li>
-                <li id="li2"><a href='#step2' data-toggle="tab">2 Losses </a></li>
+                <li id="li1" class="active">
+                    <a href='#step1' data-toggle="tab">
+                        1 Partially Damaged
+                    </a>
+                </li>
+                <li id="li2">
+                    <a href='#step2' data-toggle="tab">
+                        2 Losses
+                    </a>
+                </li>
             </ul>
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane active" id="step1">
-                 <td style="width:100px;"> <span ng-if="!check_search">
-									<button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
-									</span> <span ng-if="check_search">
-									<button ng-click="searchDlData(form_dl_irrigation)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
-									</span>
-									<button ng-click="clear()" ng-if="is_search" class="btn btn-warning">Cancel Search</button>
-								</td>
+                    <td style="width:100px;">
+                        <span ng-if="!check_search">
+                            <button ng-if="!is_search" class="btn btn-info" disabled>
+                                <span class="fa fa-search"></span>
+                            </button>
+                        </span>
+                        <span ng-if="check_search">
+                            <button ng-click="searchDlData(form_dl_irrigation)" ng-if="!is_search" class="btn btn-info">
+                                <span class="fa fa-search"></span>
+                            </button>
+                        </span>
+                        <button ng-click="clear()" ng-if="is_search" class="btn btn-warning">
+                            Cancel Search
+                        </button>
+                    </td>
                     <table class="table table-bordered">
                         <colgroup>
                             <col width="258"/>
@@ -81,7 +102,6 @@
                                         style="width:100%;font-weight:400;" required>
                                     <option value="" selected="true">Select an Incident</option>
                                     {% for incident in incidents %}
-
                                     <option value={{incident.id}}>
                                         <!--{{incident.disaster_type.name}}-->
                                         <!--{{incident.reported_date_time}}-->
@@ -90,7 +110,6 @@
                                     {% endfor %}
                                 </select>
                             </td>
-
                             <td width="85">
                                 District
                             </td>
@@ -135,10 +154,7 @@
                         </tr>
                         </tbody>
                     </table>
-
                     <div id="boxscroll" style="height:400px;overflow:auto;">
-
-
                         <table class="table table-bordered">
                             <tr class="trheadc" height="19">
                                 <td width="258" height="19" style="width:20%;">
@@ -165,14 +181,12 @@
                                     <input id="textinput" name="textinput" type="number" placeholder=""
                                            class="form-control input-md" ng-model="dlMajorTanks.totally_destroyed">
                                 </td>
-                                <td class="right" width="85" ng-model="dlMajorTanks.damages"
-                                    ng-bind="dlMajorTanks.damages =
-                            dlMajorTanks.partially_damaged * bs_data['BsRciaMajorTanks'][$index].fields.avg_repair_cost +
-                            dlMajorTanks.totally_destroyed * bs_data['BsRciaMajorTanks'][$index].fields.avg_replacement_cost">
+                                <td class="right" width="85" ng-model="dlMajorTanks.damages" ng-bind="dlMajorTanks.damages =
+                                    dlMajorTanks.partially_damaged * bs_data['BsRciaMajorTanks'][$index].fields.avg_repair_cost +
+                                    dlMajorTanks.totally_destroyed * bs_data['BsRciaMajorTanks'][$index].fields.avg_replacement_cost">
                                 </td>
                             </tr>
-                            <tr height="19"
-                                ng-repeat="dlMajorTanks in dlIrrigation.agri_irrigation.Table_3.DlMajorTanks"
+                            <tr height="19" ng-repeat="dlMajorTanks in dlIrrigation.agri_irrigation.Table_3.DlMajorTanks"
                                 ng-if="dlMajorTanks.irrigation_assets == 'Total'">
                                 <td class="tdpa" width="258" height="19" ng-bind="dlMajorTanks.irrigation_assets">
                                     Total
@@ -183,7 +197,6 @@
                                 </td>
                                 <td class="right" width="85" ng-model="dlMajorTanks.damages"
                                     ng-bind="dlMajorTanks.damages = CalTot($parent.dlIrrigation.agri_irrigation.Table_3.DlMajorTanks)">
-
                                 </td>
                             </tr>
                             <tr class="trheadc" height="19">
@@ -210,10 +223,9 @@
                                     <input id="textinput" name="textinput" type="number" placeholder=""
                                            class="form-control input-md" ng-model="dlMediumTanks.totally_destroyed">
                                 </td>
-                                <td class="right" width="85" ng-model="dlMediumTanks.damages"
-                                    ng-bind="dlMediumTanks.damages =
-                            dlMediumTanks.partially_damaged * bs_data['BsRciaMediumTanks'][$index].fields.avg_repair_cost +
-                            dlMediumTanks.totally_destroyed * bs_data['BsRciaMediumTanks'][$index].fields.avg_replacement_cost">
+                                <td class="right" width="85" ng-model="dlMediumTanks.damages" ng-bind="dlMediumTanks.damages =
+                                    dlMediumTanks.partially_damaged * bs_data['BsRciaMediumTanks'][$index].fields.avg_repair_cost +
+                                    dlMediumTanks.totally_destroyed * bs_data['BsRciaMediumTanks'][$index].fields.avg_replacement_cost">
                                 </td>
                             </tr>
                             <tr height="19"
@@ -227,9 +239,7 @@
                                 </td>
                                 <td class="right" width="85" ng-model="dlMediumTanks.damages"
                                     ng-bind="dlMediumTanks.damages = CalTot($parent.dlIrrigation.agri_irrigation.Table_3.DlMediumTanks)">
-
                                 </td>
-
                             </tr>
                             <tr class="trheadc" height="19">
                                 <td width="258" height="19">
@@ -256,10 +266,9 @@
                                     <input id="textinput" name="textinput" type="number" placeholder=""
                                            class="form-control input-md" ng-model="dlMinorTanks.totally_destroyed">
                                 </td>
-                                <td class="right" width="85" ng-model="dlMinorTanks.damages"
-                                    ng-bind="dlMinorTanks.damages =
-                            dlMinorTanks.partially_damaged * bs_data['BsRciaMinorTanks'][$index].fields.avg_repair_cost +
-                            dlMinorTanks.totally_destroyed * bs_data['BsRciaMinorTanks'][$index].fields.avg_replacement_cost">
+                                <td class="right" width="85" ng-model="dlMinorTanks.damages" ng-bind="dlMinorTanks.damages =
+                                    dlMinorTanks.partially_damaged * bs_data['BsRciaMinorTanks'][$index].fields.avg_repair_cost +
+                                    dlMinorTanks.totally_destroyed * bs_data['BsRciaMinorTanks'][$index].fields.avg_replacement_cost">
                                 </td>
                             </tr>
                             <tr height="19"
@@ -274,7 +283,6 @@
                                 </td>
                                 <td class="right" width="85" ng-model="dlMinorTanks.damages"
                                     ng-bind="dlMinorTanks.damages = CalTot($parent.dlIrrigation.agri_irrigation.Table_3.DlMinorTanks)">
-
                                 </td>
                             </tr>
                             <tr class="trheadc" height="19">
@@ -301,10 +309,9 @@
                                            class="form-control input-md" ng-model="dlAnicuts.totally_destroyed">
                                 </td>
 
-                                <td class="right" width="85" ng-model="dlAnicuts.damages"
-                                    ng-bind="dlAnicuts.damages =
-                            dlAnicuts.partially_damaged * bs_data['BsRciaAnicuts'][$index].fields.avg_repair_cost +
-                            dlAnicuts.totally_destroyed * bs_data['BsRciaAnicuts'][$index].fields.avg_replacement_cost">
+                                <td class="right" width="85" ng-model="dlAnicuts.damages" ng-bind="dlAnicuts.damages =
+                                    dlAnicuts.partially_damaged * bs_data['BsRciaAnicuts'][$index].fields.avg_repair_cost +
+                                    dlAnicuts.totally_destroyed * bs_data['BsRciaAnicuts'][$index].fields.avg_replacement_cost">
                                 </td>
                             </tr>
                             <tr height="19" ng-repeat="dlAnicuts in dlIrrigation.agri_irrigation.Table_3.DlAnicuts"
@@ -317,9 +324,7 @@
                                 </td>
                                 <td  class="right" width="85" ng-model="dlAnicuts.damages"
                                     ng-bind="dlAnicuts.damages = CalTot($parent.dlIrrigation.agri_irrigation.Table_3.DlAnicuts)">
-
                                 </td>
-
                             </tr>
                             <tr class="trheadc" height="19">
                                 <td width="258" height="19">
@@ -348,8 +353,8 @@
                                 </td>
                                 <td class="right" width="85" ng-model="dlOtherStructures.damages"
                                     ng-bind="dlOtherStructures.damages =
-                            dlOtherStructures.partially_damaged * bs_data['BsRciaOtherStructures'][$index].fields.avg_repair_cost +
-                            dlOtherStructures.totally_destroyed * bs_data['BsRciaOtherStructures'][$index].fields.avg_replacement_cost">
+                                    dlOtherStructures.partially_damaged * bs_data['BsRciaOtherStructures'][$index].fields.avg_repair_cost +
+                                    dlOtherStructures.totally_destroyed * bs_data['BsRciaOtherStructures'][$index].fields.avg_replacement_cost">
                                 </td>
                             </tr>
                             <!--Total-->
@@ -362,9 +367,8 @@
                                 </td>
                                 <td class="tdpa" colspan="2" ng-bind="dlOtherStructures.totally_destroyed">
                                 </td>
-                                <td  class="right" width="85" ng-model="dlOtherStructures.damages"
+                                <td class="right" width="85" ng-model="dlOtherStructures.damages"
                                     ng-bind="dlOtherStructures.damages = CalTot($parent.dlIrrigation.agri_irrigation.Table_3.DlOtherStructures)">
-
                                 </td>
                             </tr>
                             <tr height="19"
@@ -380,10 +384,9 @@
                                     <input id="textinput" name="textinput" type="number" placeholder=""
                                            class="form-control input-md" ng-model="dlRiverEmbankmnt.totally_destroyed">
                                 </td>
-                                <td class="right" width="85" ng-model="dlRiverEmbankmnt.damages"
-                                    ng-bind="dlRiverEmbankmnt.damages =
-                            dlRiverEmbankmnt.partially_damaged * bs_data['BsRciRiverEmbankmnt'][$index].fields.avg_repair_cost +
-                            dlRiverEmbankmnt.totally_destroyed * bs_data['BsRciRiverEmbankmnt'][$index].fields.avg_replacement_cost">
+                                <td class="right" width="85" ng-model="dlRiverEmbankmnt.damages" ng-bind="dlRiverEmbankmnt.damages =
+                                    dlRiverEmbankmnt.partially_damaged * bs_data['BsRciRiverEmbankmnt'][$index].fields.avg_repair_cost +
+                                    dlRiverEmbankmnt.totally_destroyed * bs_data['BsRciRiverEmbankmnt'][$index].fields.avg_replacement_cost">
                                 </td>
                             </tr>
                             <tr class="trheadc1 " height="19">
@@ -448,12 +451,11 @@
                                     <input id="textinput" name="textinput" type="number" placeholder=""
                                            class="form-control input-md" ng-model="dlBuildings.tot_destroyed_area">
                                 </td>
-                                <td class="right" width="85" ng-model="dlBuildings.damages"
-                                    ng-bind="dlBuildings.damages =
-                                dlBuildings.part_damaged_roof  * bs_data['BsRciBuildings'][$index].fields.avg_repair_roof +
-                                dlBuildings.part_damaged_wall  * bs_data['BsRciBuildings'][$index].fields.avg_repair_wall +
-                                dlBuildings.part_damaged_floor * bs_data['BsRciBuildings'][$index].fields.avg_repair_floor +
-                                dlBuildings.tot_destroyed_area * bs_data['BsRciBuildings'][$index].fields.avg_replacement_cost ">
+                                <td class="right" width="85" ng-model="dlBuildings.damages" ng-bind="dlBuildings.damages =
+                                    dlBuildings.part_damaged_roof  * bs_data['BsRciBuildings'][$index].fields.avg_repair_roof +
+                                    dlBuildings.part_damaged_wall  * bs_data['BsRciBuildings'][$index].fields.avg_repair_wall +
+                                    dlBuildings.part_damaged_floor * bs_data['BsRciBuildings'][$index].fields.avg_repair_floor +
+                                    dlBuildings.tot_destroyed_area * bs_data['BsRciBuildings'][$index].fields.avg_replacement_cost ">
                                 </td>
                             </tr>
                             <!--Total-->
@@ -477,8 +479,10 @@
                         </table>
                     </div>
                     <br>
-                    <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
-                            class="glyphicon glyphicon-arrow-right"></span> Fill Losses Informations</a>
+                    <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab">
+                        <span class="glyphicon glyphicon-arrow-right"></span>
+                        Fill Losses Informations
+                    </a>
                     <br>
                 </div>
                 <div class="tab-pane fade" id="step2">
@@ -521,8 +525,7 @@
                             </td>
                             <td colspan="2">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md"
-                                       ng-model="dlLosMajorTanks.other_unexpected_expenses">
+                                       class="form-control input-md" ng-model="dlLosMajorTanks.other_unexpected_expenses">
                             </td>
                             <td class="right" width="85" ng-model="dlLosMajorTanks.total_los"
                                 ng-bind="dlLosMajorTanks.total_los = dlLosMajorTanks.high_operation_cost + dlLosMajorTanks.other_unexpected_expenses">
@@ -533,10 +536,8 @@
                                 Medium Tanks
                             </td>
                             <td colspan="4">
-
                             </td>
                             <td colspan="2">
-
                             </td>
                             <td width="85">
                             </td>
@@ -656,16 +657,18 @@
                     </table>
                     <br>
                     <div class="pull-right">
-                        <button id="clearbtn" type="button" ng-click="clear()" class="btn btn-info">Clear</button>
+                        <button id="clearbtn" type="button" ng-click="clear()" class="btn btn-info">
+                            Clear
+                        </button>
                         <button id="editbtn" type="button" ng-click="editDlData(form_dl_irrigation)" ng-if="!is_edit" class="btn btn-success">
                             Edit
                         </button>
-                        <button id="editbtn" type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
-                            Edit
+                        <button id="editbtn" type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
+                            Cancel Edit
                         </button>
                         <button id="subbtn" type="button" ng-disabled="form_pop_lat_census.$invalid"
-                                ng-click="saveDlData(form_dl_irrigation)"
-                                class="btn btn-success">Submit
+                                ng-click="saveDlData(form_dl_irrigation)" class="btn btn-success">
+                            Submit
                         </button>
                     </div>
                     <br> <br> <br>

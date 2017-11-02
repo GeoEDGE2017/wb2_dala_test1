@@ -2,12 +2,9 @@
 {% block content %}
 {% load static %}
 <script>
-  $(document).ready(function() {
-
-    var nicesx = $("#boxscroll").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
-
-  });
-
+    $(document).ready(function() {
+        var nicesx = $("#boxscroll").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
+    });
 </script>
 <style>
     .right {text-align:right;}
@@ -74,86 +71,86 @@
                             <col width="63"/>
                         </colgroup>
                         <tbody>
-                        <tr style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <td colspan="" style="background:#fff;border:1px solid #fff;text-align:center;">
-                            </td>
-                            <td colspan="" style="background:#fff;border:1px solid #fff;text-align:center;">
-                                <span class="arrow_box"
-                                      ng-show="submitted && form_dl_fisheries_district.incident.$error.required">
-                                    Please select Incident
-                                </span>
-                            </td>
-                            <td colspan="" style="background:#fff;border:1px solid #fff;text-align:center;">
-                            </td>
-                            <td colspan="5" style="background:#fff;border:1px solid #fff;text-align:center;">
-                                <span class="arrow_box"
-                                      ng-show="submitted && form_dl_fisheries_district.district.$error.required">
-                                    Please select District
-                                </span>
-                            </td>
-                        </tr>
-                        <tr class="trhead1" height="19">
-                            <td width="125" height="19" style="padding-left:5px;">
-                                Incident
-                            </td>
-                            <td width="95" height="19">
-                                <select id="selectbasic" name="incident" ng-model="incident"
-                                        class="form-control" ng-change="changedValue(true)"
-                                        style="width:100%;font-weight:400;" required>
-                                    <option value="" selected="true">Select an Incident</option>
-                                    {% for incident in incidents %}
-                                    <option value={{incident.id}}>
-                                        <!--{{incident.disaster_type.name}}-->
-                                        <!--{{incident.reported_date_time}}-->
-                                        {{incident.incident_name}}
-                                    </option>
-                                    {% endfor %}
-                                </select>
-                            </td>
-                            <td width="111" height="19" style="padding-left:5px;">
-                                District
-                            </td>
-                            <td colspan="5" width="419" height="19">
-                                <select ng-options="district as district.district__name for district in districts track by district.district__id"
-                                        name="district" id="ccyear" ng-model="district" ng-value="district.district__id"
-                                        class="form-control" ng-change="changedValue(false)" required>
-                                    <option value="" selected>Select District</option>
-                                </select>
-                            </td>
-                            <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
-                        </tr>
-                        <tr class="trheadc1" height="19">
-                            <td width="125" height="19">
-                                Type of Fishing
-                            </td>
-                            <td colspan="7" width="526" height="19" ng-init="getFishingTypes()">
-                                <select name="selectbasic" id="selectbasic" class="form-control"
-                                        ng-model="fishing_type"
-                                        ng-options="fishing_type as fishing_type.name for fishing_type in fishing_types track by fishing_type.id">
-                                    <option value="" selected>Select a Fishing Type</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr class="trheadc1" height="19">
-                            <td colspan="8" width="760" height="19">
-                                Damages
-                            </td>
-                        </tr>
-                        <tr class="trheadc1" height="43">
-                            <td colspan="2" rowspan="2" width="250" height="85" style="width:20%;">
-                                Assets
-                            </td>
-                            <td colspan="2" width="222" height="43" style="width:20%;">
-                                Number of Totally Destroyed
-                            </td>
-                            <td colspan="2" width="126" height="43" style="width:20%;">
-                                Number of Partially Damaged
-                            </td>
-                            <td colspan="2" width="126" height="43" style="width:20%;">
-                                Damages (LKR)
-                            </td>
-                        </tr>
-                        <tr class="trsubc" height="42">
+                            <tr style="background:#fff;border:1px solid #fff;text-align:center;">
+                                <td colspan="" style="background:#fff;border:1px solid #fff;text-align:center;">
+                                </td>
+                                <td colspan="" style="background:#fff;border:1px solid #fff;text-align:center;">
+                                    <span class="arrow_box"
+                                          ng-show="submitted && form_dl_fisheries_district.incident.$error.required">
+                                        Please select Incident
+                                    </span>
+                                </td>
+                                <td colspan="" style="background:#fff;border:1px solid #fff;text-align:center;">
+                                </td>
+                                <td colspan="5" style="background:#fff;border:1px solid #fff;text-align:center;">
+                                    <span class="arrow_box"
+                                          ng-show="submitted && form_dl_fisheries_district.district.$error.required">
+                                        Please select District
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr class="trhead1" height="19">
+                                <td width="125" height="19" style="padding-left:5px;">
+                                    Incident
+                                </td>
+                                <td width="95" height="19">
+                                    <select id="selectbasic" name="incident" ng-model="incident"
+                                            class="form-control" ng-change="changedValue(true)"
+                                            style="width:100%;font-weight:400;" required>
+                                        <option value="" selected="true">Select an Incident</option>
+                                        {% for incident in incidents %}
+                                        <option value={{incident.id}}>
+                                            <!--{{incident.disaster_type.name}}-->
+                                            <!--{{incident.reported_date_time}}-->
+                                            {{incident.incident_name}}
+                                        </option>
+                                        {% endfor %}
+                                    </select>
+                                </td>
+                                <td width="111" height="19" style="padding-left:5px;">
+                                    District
+                                </td>
+                                <td colspan="5" width="419" height="19">
+                                    <select ng-options="district as district.district__name for district in districts track by district.district__id"
+                                            name="district" id="ccyear" ng-model="district" ng-value="district.district__id"
+                                            class="form-control" ng-change="changedValue(false)" required>
+                                        <option value="" selected>Select District</option>
+                                    </select>
+                                </td>
+                                <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
+                            </tr>
+                            <tr class="trheadc1" height="19">
+                                <td width="125" height="19">
+                                    Type of Fishing
+                                </td>
+                                <td colspan="7" width="526" height="19" ng-init="getFishingTypes()">
+                                    <select name="selectbasic" id="selectbasic" class="form-control"
+                                            ng-model="fishing_type"
+                                            ng-options="fishing_type as fishing_type.name for fishing_type in fishing_types track by fishing_type.id">
+                                        <option value="" selected>Select a Fishing Type</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr class="trheadc1" height="19">
+                                <td colspan="8" width="760" height="19">
+                                    Damages
+                                </td>
+                            </tr>
+                            <tr class="trheadc1" height="43">
+                                <td colspan="2" rowspan="2" width="250" height="85" style="width:20%;">
+                                    Assets
+                                </td>
+                                <td colspan="2" width="222" height="43" style="width:20%;">
+                                    Number of Totally Destroyed
+                                </td>
+                                <td colspan="2" width="126" height="43" style="width:20%;">
+                                    Number of Partially Damaged
+                                </td>
+                                <td colspan="2" width="126" height="43" style="width:20%;">
+                                    Damages (LKR)
+                                </td>
+                            </tr>
+                            <tr class="trsubc" height="42">
                             <td width="111" height="42" style="width:10%;">
                                 Public
                             </td>
@@ -1018,7 +1015,8 @@
                         </tr>
                         <tr height="19" ng-repeat="dlfLosIfisheries in dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosIfisheries"
                             ng-if="dlfLosIfisheries.assets == 'Total'">
-                            <td class="boldash" colspan="2" width="250" height="19" >TOTAL DAMAGES
+                            <td class="tdpa" colspan="2" width="250" height="19">
+                                TOTAL DAMAGES
                             </td>
                             <td class="right" width="111" height="19" ng-model="dlfLosIfisheries.los_year_1_pub"
                                 ng-bind="dlfLosIfisheries.los_year_1_pub =
@@ -1087,19 +1085,21 @@
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dlfLosRfisheries.los_year_2_pvt">
                             </td>
-                            <td width="63" height="19"
-                                ng-if="dlfLosRfisheries.assets != 'Percentage Reduction in Value of Yield (%)'">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlfLosRfisheries.los_pub">
+                            <td width="63" height="19" ng-if="dlfLosRfisheries.assets != 'Percentage Reduction in Value of Yield (%)'"
+                                ng-model="dlfLosRfisheries.los_pub"
+                                ng-bind="dlfLosRfisheries.los_pub = dlfLosRfisheries.los_year_1_pub + dlfLosRfisheries.los_year_2_pub">
+                                <!--<input id="textinput" name="textinput" type="number" placeholder=""-->
+                                       <!--class="form-control input-md" ng-model="dlfLosRfisheries.los_pub">-->
                             </td>
                             <td width="63" height="19"
                                 ng-if="dlfLosRfisheries.assets == 'Percentage Reduction in Value of Yield (%)'">
                                 <br/>
                             </td>
-                            <td width="63" height="19"
-                                ng-if="dlfLosRfisheries.assets != 'Percentage Reduction in Value of Yield (%)'">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlfLosRfisheries.los_pvt">
+                            <td width="63" height="19" ng-if="dlfLosRfisheries.assets != 'Percentage Reduction in Value of Yield (%)'"
+                                ng-model="dlfLosRfisheries.los_pvt"
+                                ng-bind="dlfLosRfisheries.los_pvt = dlfLosRfisheries.los_year_1_pvt + dlfLosRfisheries.los_year_2_pvt">
+                                <!--<input id="textinput" name="textinput" type="number" placeholder=""-->
+                                       <!--class="form-control input-md" ng-model="dlfLosRfisheries.los_pvt">-->
                             </td>
                             <td width="63" height="19"
                                 ng-if="dlfLosRfisheries.assets == 'Percentage Reduction in Value of Yield (%)'">
@@ -1139,10 +1139,10 @@
                                 ng-bind="dlfLosRfisheries.los_pvt = dlfLosRfisheries.los_year_1_pvt + dlfLosRfisheries.los_year_2_pvt ">
                             </td>
                         </tr>
-                        <tr class="tdpa" height="19" ng-repeat="dlfLosRfisheries in dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosRfisheries"
+                        <tr height="19" ng-repeat="dlfLosRfisheries in dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosRfisheries"
                             ng-if="dlfLosRfisheries.assets != 'Percentage Reduction in Value of Yield (%)' &&
                             dlfLosRfisheries.assets != 'Production losses' && dlfLosRfisheries.assets != 'Total'">
-                            <td colspan="2" width="250" height="19" ng-bind="dlfLosRfisheries.assets">
+                            <td class="tdpa" colspan="2" width="250" height="19" ng-bind="dlfLosRfisheries.assets">
                             </td>
                             <td width="111" height="19">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
@@ -1161,18 +1161,22 @@
                                        class="form-control input-md" ng-model="dlfLosRfisheries.los_year_2_pvt">
                             </td>
                             <td width="63" height="19"
-                                ng-if="dlfLosRfisheries.assets != 'Percentage Reduction in Value of Yield (%)'">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlfLosRfisheries.los_pub">
+                                ng-if="dlfLosRfisheries.assets != 'Percentage Reduction in Value of Yield (%)'"
+                                ng-model="dlfLosRfisheries.los_pub"
+                                ng-bind="dlfLosRfisheries.los_pub = dlfLosRfisheries.los_year_1_pub + dlfLosRfisheries.los_year_2_pub">
+                                <!--<input id="textinput" name="textinput" type="number" placeholder=""-->
+                                       <!--class="form-control input-md" ng-model="dlfLosRfisheries.los_pub">-->
                             </td>
                             <td width="63" height="19"
                                 ng-if="dlfLosRfisheries.assets == 'Percentage Reduction in Value of Yield (%)'">
                                 <br/>
                             </td>
                             <td width="63" height="19"
-                                ng-if="dlfLosRfisheries.assets != 'Percentage Reduction in Value of Yield (%)'">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlfLosRfisheries.los_pvt">
+                                ng-if="dlfLosRfisheries.assets != 'Percentage Reduction in Value of Yield (%)'"
+                                ng-model="dlfLosRfisheries.los_pvt"
+                                ng-bind="dlfLosRfisheries.los_pvt = dlfLosRfisheries.los_year_1_pvt + dlfLosRfisheries.los_year_2_pvt">>
+                                <!--<input id="textinput" name="textinput" type="number" placeholder=""-->
+                                       <!--class="form-control input-md" ng-model="dlfLosRfisheries.los_pvt">-->
                             </td>
                             <td width="63" height="19"
                                 ng-if="dlfLosRfisheries.assets == 'Percentage Reduction in Value of Yield (%)'">
@@ -1213,7 +1217,8 @@
                         <tr class="" height="19"
                             ng-repeat="dlfLosRfisheries in dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosRfisheries"
                             ng-if="dlfLosRfisheries.assets == 'Total'">
-                            <td class="boldash" colspan="2" width="250" height="19"> TOTAL DAMAGES
+                            <td class="tdpa" colspan="2" width="250" height="19">
+                                TOTAL DAMAGES
                             </td>
                             <td width="111" height="19" ng-model="dlfLosRfisheries.los_year_1_pub"
                                 ng-bind="dlfLosRfisheries.los_year_1_pub =
@@ -1340,10 +1345,10 @@
                                 dlfLosMfisheries.los_year_1_pvt + dlfLosMfisheries.los_year_2_pvt ">
                             </td>
                         </tr>
-                        <tr class="tdpa" height="31"
+                        <tr height="31"
                             ng-repeat="dlfLosMfisheries in dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosMfisheries"
                             ng-if="dlfLosMfisheries.assets != 'Production losses' && dlfLosMfisheries.assets != 'Percentage Reduction in Value of Yield (%)' && dlfLosMfisheries.assets != 'Total'">
-                            <td colspan="2" width="250" height="19" ng-bind="dlfLosMfisheries.assets">
+                            <td class="tdpa" colspan="2" width="250" height="19" ng-bind="dlfLosMfisheries.assets">
                             </td>
                             <td width="111" height="19">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
@@ -1361,26 +1366,22 @@
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dlfLosMfisheries.los_year_2_pvt">
                             </td>
-                            <td width="63" height="19"
-                                ng-if="dlfLosMfisheries.assets != 'Percentage Reduction in Value of Yield (%)'"
+                            <td width="63" height="19" ng-if="dlfLosMfisheries.assets != 'Percentage Reduction in Value of Yield (%)'"
                                 ng-model="dlfLosMfisheries.los_pub"
                                 ng-bind="dlfLosMfisheries.los_pub = dlfLosMfisheries.los_year_1_pub + dlfLosMfisheries.los_year_2_pub">
                                 <!--<input id="textinput" name="textinput" type="number" placeholder=""-->
                                        <!--class="form-control input-md" ng-model="dlfLosMfisheries.los_pub">-->
                             </td>
-                            <td width="63" height="19"
-                                ng-if="dlfLosMfisheries.assets == 'Percentage Reduction in Value of Yield (%)'">
+                            <td width="63" height="19" ng-if="dlfLosMfisheries.assets == 'Percentage Reduction in Value of Yield (%)'">
                                 <br/>
                             </td>
-                            <td width="63" height="19"
-                                ng-if="dlfLosMfisheries.assets != 'Percentage Reduction in Value of Yield (%)'"
+                            <td width="63" height="19" ng-if="dlfLosMfisheries.assets != 'Percentage Reduction in Value of Yield (%)'"
                                 ng-model="dlfLosMfisheries.los_pvt"
                                 ng-bind="dlfLosMfisheries.los_pvt = dlfLosMfisheries.los_year_1_pvt + dlfLosMfisheries.los_year_2_pvt">
                                 <!--<input id="textinput" name="textinput" type="number" placeholder=""-->
                                        <!--class="form-control input-md" ng-model="dlfLosMfisheries.los_pvt">-->
                             </td>
-                            <td width="63" height="19"
-                                ng-if="dlfLosMfisheries.assets == 'Percentage Reduction in Value of Yield (%)'" >
+                            <td width="63" height="19" ng-if="dlfLosMfisheries.assets == 'Percentage Reduction in Value of Yield (%)'" >
                                 <br/>
                             </td>
                         </tr>
@@ -1391,28 +1392,28 @@
                                 Total
                             </td>
                             <td width="111" height="19" ng-model="dlfLosRfisheries.los_year_1_pub"
-                                ng-bind="dlfLosRfisheries.los_year_1_pub = CalTot(dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosMfisheries,'los_year_1_pub')">
+                                ng-bind="dlfLosRfisheries.los_year_1_pub = CalTot(dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosMfisheries, 'los_year_1_pub')">
                             </td>
                             <td width="115" height="19" ng-model="dlfLosRfisheries.los_year_1_pvt"
-                                ng-bind="dlfLosRfisheries.los_year_1_pvt = CalTot(dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosMfisheries,'los_year_1_pvt')">
+                                ng-bind="dlfLosRfisheries.los_year_1_pvt = CalTot(dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosMfisheries, 'los_year_1_pvt')">
                             </td>
                             <td width="63" height="19" ng-model="dlfLosRfisheries.los_year_2_pub"
-                                ng-bind="dlfLosRfisheries.los_year_2_pub = CalTot(dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosMfisheries,'los_year_2_pub')">
+                                ng-bind="dlfLosRfisheries.los_year_2_pub = CalTot(dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosMfisheries, 'los_year_2_pub')">
                             </td>
                             <td width="63" height="19"
-                                ng-bind="dlfLosRfisheries.los_year_2_pvt = CalTot(dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosMfisheries,'los_year_2_pvt')">
+                                ng-bind="dlfLosRfisheries.los_year_2_pvt = CalTot(dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosMfisheries, 'los_year_2_pvt')">
                             </td>
                             <td width="63" height="19" ng-model="dlfLosRfisheries.los_pub"
-                                ng-bind="dlfLosRfisheries.los_pub = CalTot(dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosMfisheries,'los_pub')">
+                                ng-bind="dlfLosRfisheries.los_pub = CalTot(dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosMfisheries, 'los_pub')">
                             </td>
                             <td width="63" height="19" ng-model="dlfLosRfisheries.los_pvt"
-                                ng-bind="dlfLosRfisheries.los_pvt = CalTot(dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosMfisheries,'los_pvt')">
+                                ng-bind="dlfLosRfisheries.los_pvt = CalTot(dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosMfisheries, 'los_pvt')">
                             </td>
                         </tr>
                         <tr height="19" ng-repeat="dlfLosMfisheries in dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosMfisheries"
                             ng-if="dlfLosMfisheries.assets == 'Total'">
-                            <td class="boldash" colspan="2" width="250" height="19">
-                                TOTAL DAMAGES
+                            <td class="tdpa" colspan="2" width="250" height="19">
+                                TOTAL DAMAGES*
                             </td>
                             <td width="111" height="19" ng-model="dlfLosRfisheries.los_year_1_pub"
                                 ng-bind="dlfLosRfisheries.los_year_1_pub = CalTot(dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosMfisheries,'los_year_1_pub')">

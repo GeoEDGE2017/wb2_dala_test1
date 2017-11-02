@@ -2,38 +2,51 @@
 {% block content %}
 {% load static %}
 <script>
-  $(document).ready(function() {
-  
-    var nicesx = $("#boxscroll").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
-    
-  });
-  
-
+    $(document).ready(function() {
+        var nicesx = $("#boxscroll").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
+    });
 </script>
 <!-- Main content -->
 <main class="main" ng-app="bsIrgFacilitiesApp" ng-controller="bsIrgFacilitiesController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:agri_irrigation_main' %}">Agri Irrigation Sector</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:agri_irrigation_main' %}">
+                Agri Irrigation Sector
+            </a>
         </li>
-
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 1. Irrigation Facilities</span>
+        <li class="breadcrumb-item active">
+            <span class="label label-success" style="font-size:14px;">
+                Table 1. Irrigation Facilities
+            </span>
         </li>
-        <li style="float:right;"><a href="{% static 'dashboard/doc/4D-Agriculture-Irrigation-24Jan17.pdf' %}"
-                                    target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;"
-                                    class="icon-info" data-toggle="tooltip" title="Veiw Document"></a></li>
+        <li style="float:right;">
+            <a href="{% static 'dashboard/doc/4D-Agriculture-Irrigation-24Jan17.pdf' %}" target="_blank"
+               style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document">
+            </a>
+        </li>
     </ol>
     <div class="container-fluid" ng-form name="form_bs_irg_facilities">
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
-             <td style="width:100px;"> <span ng-if="!check_search">
-									<button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
-					</span> <span ng-if="check_search">
-									<button ng-click="searchBsData(form_bs_irg_facilities)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
+                <td style="width:100px;">
+                    <span ng-if="!check_search">
+                        <button ng-if="!is_search" class="btn btn-info" disabled>
+                            <span class="fa fa-search"></span>
+                        </button>
 					</span>
-					<button ng-click="clear()" ng-if="is_search" class="btn  btn-warning">Cancel Search</button>
+                    <span ng-if="check_search">
+                        <button ng-click="searchBsData(form_bs_irg_facilities)" ng-if="!is_search"
+                                class="btn btn-info">
+                            <span class="fa fa-search"></span>
+                        </button>
+					</span>
+					<button ng-click="clear()" ng-if="is_search" class="btn  btn-warning">
+                        Cancel Search
+                    </button>
 				</td>
                 <table class="table table-bordered">
                     <colgroup>
@@ -45,94 +58,92 @@
                         <col width="85" span="2"/>
                     </colgroup>
                     <tbody>
-                    <tr style="background:#fff;border:1px solid #fff;text-align:center;">
-                        <td style="background:#fff;border:1px solid #fff;text-align:center;" border="0">
-                        </td>
-                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <span class="arrow_box"
-                                  ng-show="submitted && form_bs_irg_facilities.district.$error.required">
-                                Please select District
-                            </span>
-                        </td>
-                        <td colspan="" style="background:#fff;border:1px solid #fff;text-align:center;">
-                        </td>
-                        <td colspan="3" style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <span class="arrow_box"
-                                  ng-show="submitted && form_bs_irg_facilities.baselineDate.$error.required">
-                                Please select Date
-                            </span>
-                        </td>
-                    </tr>
-                    <tr class="trhead1" height="19">
-                        <td width="258" height="19">
-                            District:
-                        </td>
-                        <td colspan="2" width="118">
-                            <select id="selectbasic" name="district" class="form-control" ng-change="changeDis()"
-                                    ng-model="district" style="width:100%;font-weight:400;" required>
-                                <option value="" selected="true">Select a District</option>
-                                {% for district in districts %}
-                                <option value={{ district.id }}>{{ district.name }}</option>
-                                {% endfor %}
-                            </select>
-                        </td>
-                        <td width="85">
-                            Year/Month:
-                        </td>
-                        <td colspan="3" width="85">
-                            <input name="baselineDate" type="text" placeholder="mm/yy" id="datepicker"
-                                   ng-change="changeDis()" ng-model="bs_date" class="form-control input-md" required>
-                        </td>
-                        <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
-                    </tr>
-                    <tr class="trhead1" height="19">
-                        <td width="258" height="19">
-                            Division
-                        </td>
-                        <td colspan="5" width="118">
-                            <input type="text" class="form-control" name="division" ng-model="division" required>
-                        </td>
-                        <td>
-                            <span class="arrow_box"
-                                  ng-show="submitted && form_bs_rparpl_cos_assts.division.$error.required"
-                                  ng-model="division">
-                                Please Select Division
-                            </span>
-                        </td>
-                    </tr>
-                    <tr class="trhead1" height="19">
-                        <td width="258" height="19">
-                            Region
-                        </td>
-                        <td colspan="5" width="118">
-                            <input type="text" class="form-control" name="region" ng-model="region" required>
-                        </td>
-                        <td>
-                            <span class="arrow_box"
-                                  ng-show="submitted && form_bs_rparpl_cos_assts.region.$error.required"
-                                  ng-model="region">
-                                Please Select Region
-                            </span>
-                        </td>
-                    </tr>
-                    <tr class="trheadc1" height="19">
-                        <td rowspan="2" width="258" height="38">
-                            Type and Name of Irrigation Facility
-                        </td>
-                        <td rowspan="2" width="118">
-                            Capacity (Acre)
-                        </td>
-                        <td colspan="2" width="244">
-                            Irrigated Area (Acre)
-                        </td>
-                        <td colspan="2" width="268">
-                            Income per Year per Acre
-                        </td>
-                        <td rowspan="2" width="85">
-                            Number of Beneficiary Farmer Families
-                        </td>
-                    </tr>
-                    <tr class="trsubc" height="19">
+                        <tr style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <td style="background:#fff;border:1px solid #fff;text-align:center;" border="0">
+                            </td>
+                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                                <span class="arrow_box"
+                                      ng-show="submitted && form_bs_irg_facilities.district.$error.required">
+                                    Please select District
+                                </span>
+                            </td>
+                            <td colspan="" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            </td>
+                            <td colspan="3" style="background:#fff;border:1px solid #fff;text-align:center;">
+                                <span class="arrow_box"
+                                      ng-show="submitted && form_bs_irg_facilities.baselineDate.$error.required">
+                                    Please select Date
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="trhead1" height="19">
+                            <td width="258" height="19">
+                                District:
+                            </td>
+                            <td colspan="2" width="118">
+                                <select id="selectbasic" name="district" class="form-control" ng-change="changeDis()"
+                                        ng-model="district" style="width:100%;font-weight:400;" required>
+                                    <option value="" selected="true">Select a District</option>
+                                    {% for district in districts %}
+                                    <option value={{ district.id }}>{{ district.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                            <td width="85">
+                                Year/Month:
+                            </td>
+                            <td colspan="3" width="85">
+                                <input name="baselineDate" type="text" placeholder="mm/yy" id="datepicker"
+                                       ng-change="changeDis()" ng-model="bs_date" class="form-control input-md" required>
+                            </td>
+                            <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
+                        </tr>
+                        <tr class="trhead1" height="19">
+                            <td width="258" height="19">
+                                Division
+                            </td>
+                            <td colspan="5" width="118">
+                                <input type="text" class="form-control" name="division" ng-model="division" required>
+                            </td>
+                            <td>
+                                <span class="arrow_box" ng-show="submitted && form_bs_rparpl_cos_assts.division.$error.required"
+                                      ng-model="division">
+                                    Please Select Division
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="trhead1" height="19">
+                            <td width="258" height="19">
+                                Region
+                            </td>
+                            <td colspan="5" width="118">
+                                <input type="text" class="form-control" name="region" ng-model="region" required>
+                            </td>
+                            <td>
+                                <span class="arrow_box" ng-show="submitted && form_bs_rparpl_cos_assts.region.$error.required"
+                                      ng-model="region">
+                                    Please Select Region
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="trheadc1" height="19">
+                            <td rowspan="2" width="258" height="38">
+                                Type and Name of Irrigation Facility
+                            </td>
+                            <td rowspan="2" width="118">
+                                Capacity (Acre)
+                            </td>
+                            <td colspan="2" width="244">
+                                Irrigated Area (Acre)
+                            </td>
+                            <td colspan="2" width="268">
+                                Income per Year per Acre
+                            </td>
+                            <td rowspan="2" width="85">
+                                Number of Beneficiary Farmer Families
+                            </td>
+                        </tr>
+                        <tr class="trsubc" height="19">
                         <td width="116" height="19">
                             Paddy
                         </td>
@@ -148,10 +159,7 @@
                     </tr>
                     </tbody>
                 </table>
-
                 <div id="boxscroll" style="height:400px;overflow:auto;">
-
-
                     <table class="table table-bordered">
                         <tr class="trheadc" height="19">
                             <td width="258" height="19">
@@ -171,8 +179,7 @@
                             </td>
                         </tr>
                         <tr height="19" ng-repeat="bsIfMajor in bsIrgFacilities.agri_irrigation.Table_1.BsIfMajor">
-                            <td class="tdpa" width="258" height="19" ng-bind="bsIfMajor.irrigation_facility"
-                                ng-if="$index < 2">
+                            <td class="tdpa" width="258" height="19" ng-bind="bsIfMajor.irrigation_facility" ng-if="$index < 2">
                             </td>
                             <td width="98" ng-if="$index > 1">
                                 {% verbatim %}
@@ -253,23 +260,18 @@
                             </td>
                         </tr>
                         <tr height="19" ng-repeat="bsIfMedium in bsIrgFacilities.agri_irrigation.Table_1.BsIfMedium">
-                            <td class="tdpa" width="258" height="19" ng-bind="bsIfMedium.irrigation_facility"
-                                ng-if="$index < 2">
+                            <td class="tdpa" width="258" height="19" ng-bind="bsIfMedium.irrigation_facility" ng-if="$index < 2">
                                 Tank 1
                             </td>
                             <td width="98" ng-if="$index > 1">
                                 {% verbatim %}
-                                <button id="delete" ng-click="removeItem('BsIfMedium', $index)"
-                                        class="btn btn-sm btn-danger btn-circle">
+                                <button id="delete" ng-click="removeItem('BsIfMedium', $index)" class="btn btn-sm btn-danger btn-circle">
                                     <i class="fa fa-minus"></i>
                                 </button>
                                 <input style="width:80%;float:right;" name="bsIfMedium_{{$index}}"
-                                       ng-model="bsIfMedium.irrigation_facility"
-                                       popover="This field is required"
+                                       ng-model="bsIfMedium.irrigation_facility" popover="This field is required"
                                        popover-toggle="form_bs_irg_facilities['bsIfMedium_' + $index].$dirty && !form_bs_irg_facilities['bsIfMedium_' + $index].$valid"
-                                       popover-placement="top" required
-                                       type="text"
-                                       class="form-control input-md">
+                                       popover-placement="top" required type="text" class="form-control input-md">
                                 {% endverbatim %}
                             </td>
                             <td width="118">
@@ -336,8 +338,7 @@
                             </td>
                         </tr>
                         <tr height="19" ng-repeat="bsIfMinor in bsIrgFacilities.agri_irrigation.Table_1.BsIfMinor">
-                            <td class="tdpa" width="258" height="19" ng-bind="bsIfMinor.irrigation_facility"
-                                ng-if="$index < 2">
+                            <td class="tdpa" width="258" height="19" ng-bind="bsIfMinor.irrigation_facility" ng-if="$index < 2">
                             </td>
                             <td width="98" ng-if="$index > 1">
                                 {% verbatim %}
@@ -428,12 +429,9 @@
                                     <i class="fa fa-minus"></i>
                                 </button>
                                 <input style="width:80%;float:right;" name="bsIfAnicuts_{{$index}}"
-                                       ng-model="bsIfAnicuts.irrigation_facility"
-                                       popover="This field is required"
+                                       ng-model="bsIfAnicuts.irrigation_facility" popover="This field is required"
                                        popover-toggle="form_bs_irg_facilities['bsIfAnicuts_' + $index].$dirty && !form_bs_irg_facilities['bsIfAnicuts_' + $index].$valid"
-                                       popover-placement="top" required
-                                       type="text"
-                                       class="form-control input-md">
+                                       popover-placement="top" required type="text" class="form-control input-md">
                                 {% endverbatim %}
                             </td>
                             <td width="118">
@@ -482,49 +480,41 @@
                             <td width="85">
                             </td>
                         </tr>
-                        </tbody>
                     </table>
-
-
                     <div class="pull-right">
                         <br>
-                        <button id="clearbtn" type="button" ng-click="clear()" class="btn btn-info">Clear</button>
+                        <button id="clearbtn" type="button" ng-click="clear()" class="btn btn-info">
+                            Clear
+                        </button>
                         <span ng-if="is_edit_disable">
-                        <button id="editbtn" type="button" ng-click="editBsData(form_bs_irg_facilities)" ng-if="!is_edit" class="btn btn-success">
-                            Edit
-                        </button>
-                    </span>
+                            <button id="editbtn" type="button" ng-click="editBsData(form_bs_irg_facilities)" ng-if="!is_edit"
+                                    class="btn btn-success">
+                                Edit
+                            </button>
+                        </span>
                         <span ng-if="!is_edit_disable">
-                        <button id="editbtn" type="button" ng-else="!is_edit" class="btn btn-success" disabled>
-                            Edit
-                        </button>
-                    </span>
-                        <button id="editbtn" type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
-                            Edit
+                            <button id="editbtn" type="button" ng-else="!is_edit" class="btn btn-success" disabled>
+                                Edit
+                            </button>
+                        </span>
+                        <button id="editbtn" type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
+                            Cancel Edit
                         </button>
                         <button id="subbtn" type="button" ng-click="saveBsData(form_bs_irg_facilities)" class="btn btn-success">
                             Submit
                         </button>
-
-
                     </div>
-                    <br><br>
+                    <br>
+                    <br>
                 </div>
-
-
             </div>
         </div>
-
-
         <div class="col-md-12">
-
-
             <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
                  aria-hidden="true">
                 <div class="modal-dialog" style="width:50%;">
                     <div class="modal-content">
                         <div class="modal-header">
-
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                                 ×
                             </button>
@@ -537,15 +527,13 @@
                             <div class="form-group">
                                 <label class="col-md-2 control-label" for="textinput">Name</label>
                                 <div class="col-md-10">
-                                    <input id="textinput" name="textinput" type="text" placeholder=""
-                                           class="form-control input-md">
-
+                                    <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
                                 </div>
                             </div>
                         </div>
-                        <br><br>
+                        <br>
+                        <br>
                         <div class="modal-footer">
-
                             <button type="button" class="btn btn-default" data-dismiss="modal">
                                 Close
                             </button>
@@ -554,19 +542,10 @@
                             </button>
                         </div>
                     </div>
-
                 </div>
-
             </div>
-
-
         </div>
     </div>
-
-    </div>
-
     <!-- /.conainer-fluid -->
 </main>
-
-
 {% endblock content %}

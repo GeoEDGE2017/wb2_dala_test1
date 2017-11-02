@@ -7,37 +7,56 @@
     var nicesx = $("#boxscroll").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
     
   });
-  
-
 </script>
 <!-- Main content -->
 <main class="main" ng-app="bsRparplCosAsstsApp" ng-controller="bsRparplCosAsstsController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:agri_irrigation_main' %}">Agri Irrigation Sector</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:agri_irrigation_main' %}">
+                Agri Irrigation Sector
+            </a>
         </li>
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 2. Repair and Replacement Costs of Irrigation Assets</span>
+        <li class="breadcrumb-item active">
+            <span class="label label-success" style="font-size:14px;">
+                Table 2. Repair and Replacement Costs of Irrigation Assets
+            </span>
         </li>
-        <li style="float:right;"><a href="{% static 'dashboard/doc/4D-Agriculture-Irrigation-24Jan17.pdf' %}"
-                                    target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;"
-                                    class="icon-info" data-toggle="tooltip" title="Veiw Document"></a></li>
+        <li style="float:right;">
+            <a href="{% static 'dashboard/doc/4D-Agriculture-Irrigation-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;"
+               class="icon-info" data-toggle="tooltip" title="Veiw Document">
+            </a>
+        </li>
     </ol>
     <div class="container-fluid" ng-form name="form_bs_rparpl_cos_assts">
         <div>
             <ul class='nav nav-wizard'>
-                <li id="li1" class="active"><a href='#step1' data-toggle="tab">1 Irrigation Assets</a></li>
-                <li id="li2"><a href='#step2' data-toggle="tab">2 Buildings </a></li>
+                <li id="li1" class="active">
+                    <a href='#step1' data-toggle="tab">1 Irrigation Assets</a>
+                </li>
+                <li id="li2">
+                    <a href='#step2' data-toggle="tab">2 Buildings </a>
+                </li>
             </ul>
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane active" id="step1">
-                 <td style="width:100px;"> <span ng-if="!check_search">
-									<button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
-					</span> <span ng-if="check_search">
-									<button ng-click="searchBsData(form_bs_rparpl_cos_assts)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
+                <td style="width:100px;">
+                    <span ng-if="!check_search">
+                        <button ng-if="!is_search" class="btn btn-info" disabled>
+                            <span class="fa fa-search"></span>
+                        </button>
+                    </span>
+                    <span ng-if="check_search">
+                        <button ng-click="searchBsData(form_bs_rparpl_cos_assts)" ng-if="!is_search" class="btn btn-info">
+                            <span class="fa fa-search"></span>
+                        </button>
 					</span>
-					<button ng-click="clear()" ng-if="is_search" class="btn  btn-warning">Cancel Search</button>
+					<button ng-click="clear()" ng-if="is_search" class="btn  btn-warning">
+                        Cancel Search
+                    </button>
 				</td>
                     <table class="table table-bordered">
                         <colgroup>
@@ -79,7 +98,6 @@
                                     {% endfor %}
                                 </select>
                             </td>
-
                             <td width="128" colspan="2" style="padding-left:5px;">
                                 Year/Month
                             </td>
@@ -103,7 +121,6 @@
                                 <!--</span>-->
                             </td>
                             <td width="427">
-
                             </td>
                         </tr>
                         <tr class="trhead1" height="19">
@@ -119,7 +136,6 @@
                                 <!--</span>-->
                             </td>
                             <td width="427">
-
                             </td>
                         </tr>
                         <tr class="trheadc1" height="19">
@@ -142,17 +158,14 @@
                     </table>
                     <div id="boxscroll" style="height:400px;overflow:auto;">
                         <table class="table table-bordered">
-
                             <tbody>
                             <tr class="trheadc" height="34">
                                 <td width="258" height="34" style="width:24.5%;">
                                     Major Tanks
                                 </td>
                                 <td colspan="3" width="362" style="width:35%;">
-
                                 </td>
                                 <td width="183">
-
                                 </td>
                             </tr>
                             <tr height="19"
@@ -182,8 +195,7 @@
                                 </td>
                                 <td width="183">
                                     <input id="textinput" name="textinput" type="number" placeholder=""
-                                           class="form-control input-md"
-                                           ng-model="bsRciaMajorTanks.avg_replacement_cost">
+                                           class="form-control input-md" ng-model="bsRciaMajorTanks.avg_replacement_cost">
                                 </td>
                             </tr>
                             <tr height="19">
@@ -234,8 +246,7 @@
                                 </td>
                                 <td width="183">
                                     <input id="textinput" name="textinput" type="number" placeholder=""
-                                           class="form-control input-md"
-                                           ng-model="bsRciaMediumTanks.avg_replacement_cost">
+                                           class="form-control input-md" ng-model="bsRciaMediumTanks.avg_replacement_cost">
                                 </td>
                             </tr>
                             <tr height="19">
@@ -272,12 +283,10 @@
                                         <i class="fa fa-minus"></i>
                                     </button>
                                     <input style="width:80%;float:right;" name="bsRciaMediumTanks_{{$index}}"
-                                           ng-model="bsRciaMinorTanks.irrigation_facility"
-                                           popover="This field is required"
+                                           ng-model="bsRciaMinorTanks.irrigation_facility" popover="This field is required"
                                            popover-toggle="form_bs_irg_facilities['bsRciaMinorTanks_' + $index].$dirty && !form_bs_irg_facilities['bsRciaMinorTanks_' + $index].$valid"
                                            popover-placement="top" required
-                                           type="text"
-                                           class="form-control input-md">
+                                           type="text" class="form-control input-md">
                                     {% endverbatim %}
                                 </td>
                                 <td colspan="3">
@@ -286,8 +295,7 @@
                                 </td>
                                 <td width="183">
                                     <input id="textinput" name="textinput" type="number" placeholder=""
-                                           class="form-control input-md"
-                                           ng-model="bsRciaMinorTanks.avg_replacement_cost">
+                                           class="form-control input-md" ng-model="bsRciaMinorTanks.avg_replacement_cost">
                                 </td>
                             </tr>
                             <tr height="19">
@@ -299,12 +307,8 @@
                                     </button>
                                 </td>
                                 <td colspan="3">
-                                    <input id="textinput" name="textinput" type="text" placeholder=""
-                                           class="form-control input-md">
                                 </td>
                                 <td width="183">
-                                    <input id="textinput" name="textinput" type="text" placeholder=""
-                                           class="form-control input-md">
                                 </td>
                             </tr>
                             <tr class="trheadc" height="19">
@@ -323,17 +327,13 @@
                                 </td>
                                 <td width="98" ng-if="$index > 5">
                                     {% verbatim %}
-                                    <button id="delete" ng-click="removeItem('BsRciaAnicuts', $index)"
-                                            class="btn btn-sm btn-danger btn-circle">
+                                    <button id="delete" ng-click="removeItem('BsRciaAnicuts', $index)" class="btn btn-sm btn-danger btn-circle">
                                         <i class="fa fa-minus"></i>
                                     </button>
                                     <input style="width:90%;float:right;" name="bsRciaAnicuts_{{$index}}"
-                                           ng-model="bsRciaAnicuts.irrigation_facility"
-                                           popover="This field is required"
+                                           ng-model="bsRciaAnicuts.irrigation_facility" popover="This field is required"
                                            popover-toggle="form_bs_irg_facilities['bsRciaAnicuts_' + $index].$dirty && !form_bs_irg_facilities['bsRciaAnicuts_' + $index].$valid"
-                                           popover-placement="top" required
-                                           type="text"
-                                           class="form-control input-md">
+                                           popover-placement="top" required type="text" class="form-control input-md">
                                     {% endverbatim %}
                                 </td>
                                 <td colspan="3">
@@ -389,13 +389,11 @@
                                 </td>
                                 <td colspan="3">
                                     <input id="textinput" name="textinput" type="number" placeholder=""
-                                           class="form-control input-md"
-                                           ng-model="bsRciaOtherStructures.avg_repair_cost">
+                                           class="form-control input-md" ng-model="bsRciaOtherStructures.avg_repair_cost">
                                 </td>
                                 <td width="183">
                                     <input id="textinput" name="textinput" type="number" placeholder=""
-                                           class="form-control input-md"
-                                           ng-model="bsRciaOtherStructures.avg_replacement_cost">
+                                           class="form-control input-md" ng-model="bsRciaOtherStructures.avg_replacement_cost">
                                 </td>
                             </tr>
                             <tr height="19">
@@ -420,13 +418,11 @@
                                 </td>
                                 <td colspan="3">
                                     <input id="textinput" name="textinput" type="number" placeholder=""
-                                           ng-model="bsRciRiverEmbankmnt.avg_repair_cost"
-                                           class="form-control input-md">
+                                           ng-model="bsRciRiverEmbankmnt.avg_repair_cost" class="form-control input-md">
                                 </td>
                                 <td width="183">
                                     <input id="textinput" name="textinput" type="number" placeholder=""
-                                           ng-model="bsRciRiverEmbankmnt.avg_replacement_cost"
-                                           class="form-control input-md">
+                                           ng-model="bsRciRiverEmbankmnt.avg_replacement_cost" class="form-control input-md">
                                 </td>
                             </tr>
                             </tbody>
@@ -437,10 +433,7 @@
                             class="glyphicon glyphicon-arrow-right"></span> Fill Buildings Informations</a>
                     <br>
                 </div>
-
-
                 <div class="tab-pane fade" id="step2">
-
                     <table class="table table-bordered">
                         <tbody>
                         <tr class="trheadc1" height="19">
@@ -491,20 +484,22 @@
                         </tr>
                         </tbody>
                     </table>
-
                     <div class="pull-right">
                         <br>
-                        <button id="clearbtn" type="button" ng-click="clear()" class="btn btn-info">Clear</button>
+                        <button id="clearbtn" type="button" ng-click="clear()" class="btn btn-info">
+                            Clear
+                        </button>
                         <span ng-if="is_edit_disable">
-                        <button id="editbtn" type="button" ng-click="editBsData(form_bs_rparpl_cos_assts)" ng-if="!is_edit" class="btn btn-success">
-                            Edit
-                        </button>
-                    </span>
+                            <button id="editbtn" type="button" ng-click="editBsData(form_bs_rparpl_cos_assts)"
+                                    ng-if="!is_edit" class="btn btn-success">
+                                Edit
+                            </button>
+                        </span>
                         <span ng-if="!is_edit_disable">
-                        <button id="editbtn" type="button" ng-else="!is_edit" class="btn btn-success" disabled>
-                            Edit
-                        </button>
-                    </span>
+                            <button id="editbtn" type="button" ng-else="!is_edit" class="btn btn-success" disabled>
+                                Edit
+                            </button>
+                        </span>
                         <button id="editbtn" type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
                             Edit
                         </button>
@@ -514,21 +509,14 @@
                     </div>
                     <br><br>
                 </div>
-
-
             </div>
         </div>
-
-
         <div class="col-md-12">
-
-
             <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
                  aria-hidden="true">
                 <div class="modal-dialog" style="width:50%;">
                     <div class="modal-content">
                         <div class="modal-header">
-
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                                 ×
                             </button>
@@ -541,15 +529,12 @@
                             <div class="form-group">
                                 <label class="col-md-2 control-label" for="textinput">Name</label>
                                 <div class="col-md-10">
-                                    <input id="textinput" name="textinput" type="text" placeholder=""
-                                           class="form-control input-md">
-
+                                    <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
                                 </div>
                             </div>
                         </div>
                         <br><br>
                         <div class="modal-footer">
-
                             <button type="button" class="btn btn-default" data-dismiss="modal">
                                 Close
                             </button>
@@ -558,19 +543,10 @@
                             </button>
                         </div>
                     </div>
-
                 </div>
-
             </div>
-
-
         </div>
     </div>
-
-    </div>
-
     <!-- /.conainer-fluid -->
 </main>
-
-
 {% endblock content %}

@@ -1,3 +1,4 @@
+//table 5
 var app = angular.module('dlAgriFisheriesProApp', ['underscore']);
 
 app.controller("DlAgriFisheriesProController", function ($scope, $http, $parse, _) {
@@ -24,7 +25,7 @@ app.controller("DlAgriFisheriesProController", function ($scope, $http, $parse, 
 
 
     // get relevant damage_losses data for calculations
-        $scope.changedValue=function getBsData(selectedValue) {
+    $scope.changedValue=function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {
             fetchProvinces();
         }
@@ -33,21 +34,19 @@ app.controller("DlAgriFisheriesProController", function ($scope, $http, $parse, 
         }
     }
 
-
     function fetchProvinces(){
-          $http({
+        $http({
             method: "POST",
             url: '/fetch_incident_provinces',
             data: angular.toJson({
-                    'incident': $scope.incident
-                   }),
-            }).success(function(data) {
-                $scope.provinces = data;
-                $scope.province = null;
-                console.log(data);
-            })
+                'incident': $scope.incident
+            }),
+        }).success(function(data) {
+            $scope.provinces = data;
+            $scope.province = null;
+            console.log(data);
+        })
     }
-
 
     $scope.fetchDlData = function(form){
         if($scope.incident && $scope.province){
@@ -59,12 +58,12 @@ app.controller("DlAgriFisheriesProController", function ($scope, $http, $parse, 
                 method: "POST",
                 url: '/dl_fetch_district_disagtn',
                 data: angular.toJson({
-                    'table_name':  'Table_5',
+                    'table_name': 'Table_5',
                     'sector': 'agri_fisheries',
                     'com_data': {
                         'province': $scope.province,
                         'incident': $scope.incident,
-                     },
+                    },
                 }),
             }).success(function(data) {
                 console.log('load ', data);
@@ -74,22 +73,22 @@ app.controller("DlAgriFisheriesProController", function ($scope, $http, $parse, 
         }
     }
 
-   $scope.convertToInt = function(val1,val2,val3){
+    $scope.convertToInt = function(val1,val2,val3){
         var sum = parseInt(val1) + parseInt(val2) + parseInt(val3);
         return sum;
     }
 
-   $scope.convertTotal = function(val1,val2,val3,val4){
+    $scope.convertTotal = function(val1,val2,val3,val4){
         var sum = parseInt(val1) + parseInt(val2) + parseInt(val3) + parseInt(val4) ;
         return sum;
     }
 
-   $scope.checkIfNull = function(){
+    $scope.checkIfNull = function(){
         var isNull = $scope.dlAgriFisheriesPro ? angular.equals({}, $scope.dlAgriFisheriesPro.agri_fisheries.Table_5) : true;
         return isNull;
-   }
+    }
 
-   $scope.getTotal = function(key) {
+    $scope.getTotal = function(key) {
         $scope.finaltotalprivate = 0;
         var damagepublic =
             ($scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfDmgPubDistrict[0] ?
@@ -111,7 +110,7 @@ app.controller("DlAgriFisheriesProController", function ($scope, $http, $parse, 
         model.assign($scope, damagepublic);
         $scope.grnddamagepublic = $scope.grnddamagepublic + damagepublic ;
 
-         var damageprivate =
+        var damageprivate =
             ($scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfDmgPvtDistrict[0] ?
             ($scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfDmgPvtDistrict[0].dmg_pvt ?
             $scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfDmgPvtDistrict[0].dmg_pvt : 0) : 0 ) +
@@ -133,9 +132,9 @@ app.controller("DlAgriFisheriesProController", function ($scope, $http, $parse, 
         $scope.grnddamageprivate = $scope.grnddamageprivate + damageprivate ;
 
         var losPubliceyear1 =
-             ($scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfLosIfisheriesDistrict[0] ?
-             ($scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfLosIfisheriesDistrict[0].los_year_1_pub ?
-             $scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfLosIfisheriesDistrict[0].los_year_1_pub : 0) : 0 ) +
+            ($scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfLosIfisheriesDistrict[0] ?
+            ($scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfLosIfisheriesDistrict[0].los_year_1_pub ?
+            $scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfLosIfisheriesDistrict[0].los_year_1_pub : 0) : 0 ) +
 
             ($scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfLosRfisheriesDistrict[0] ?
             ($scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfLosRfisheriesDistrict[0].los_year_1_pub ?
@@ -143,7 +142,7 @@ app.controller("DlAgriFisheriesProController", function ($scope, $http, $parse, 
 
             ($scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfLosMfisheriesDistrict[0] ?
             ($scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfLosMfisheriesDistrict[0].los_year_1_pub ?
-             $scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfLosMfisheriesDistrict[0].los_year_1_pub:0):0);
+            $scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfLosMfisheriesDistrict[0].los_year_1_pub:0):0);
 
 
         var losPubliceyear1string = "losPubliceyear1_"+ key;
@@ -225,5 +224,4 @@ app.controller("DlAgriFisheriesProController", function ($scope, $http, $parse, 
         $scope.finalGrandTotPrivate =
         $scope.grnddamageprivate + $scope.grndlosPPrivateyear1 + $scope.grndlosPrivateyear2;
     }
-
  })

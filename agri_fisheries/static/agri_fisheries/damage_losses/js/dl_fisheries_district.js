@@ -687,12 +687,12 @@ app.controller('dlFisheriesDistrictController', function($scope, $http, $parse, 
                 dataType: 'json',
             }).then(function successCallback(response) {
                 if(response.data == 'False') {
-                        $scope.is_valid_data = false;
-                        $("#modal-container-239454").modal('show');
-                    }
-                    else {
-                        $("#modal-container-239453").modal('show');
-                    }
+                    $scope.is_valid_data = false;
+                    $("#modal-container-239454").modal('show');
+                }
+                else {
+                    $("#modal-container-239453").modal('show');
+                }
             }, function errorCallback(response) {
 
             });
@@ -841,7 +841,7 @@ app.controller('dlFisheriesDistrictController', function($scope, $http, $parse, 
     $scope.editDlData = function(form){
         $scope.is_edit = true;
         $scope.submitted = true;
-         document.getElementById("clearbtn").disabled = true;
+        document.getElementById("clearbtn").disabled = true;
         if(form.$valid) {
             $http({
                 method: "POST",

@@ -171,6 +171,14 @@ app.controller('bsInfoFisheriesController', function($scope, $http) {
         }
     }
 
+    $scope.round = function(val1, val2, fractionSize) {
+        $scope.Math = window.Math;
+        console.log(val1 / val2);
+//        return (val1 / val2) | number:0;
+        return $scope.Math.round(val1 / val2, fractionSize);
+//        return 1;
+    }
+
 
     //Add Enumerate fields
     $scope.insertAsset = function(table) {
@@ -303,15 +311,11 @@ app.controller('bsInfoFisheriesController', function($scope, $http) {
             }).success(function(data) {
                 console.log(data);
 //                $scope.bsInfoFisheries = data;
-
                 var edit_data_not_found = false;
                 if(data != null) {
-                    console.log('----if');
                     angular.forEach(data.agri_fisheries.Table_2, function(value, index) {
-                        console.log('----forEach');
                         console.log(value);
                         if(value.length == 0) {
-                            console.log('----');
                             edit_data_not_found = true;
                         }
                     })
@@ -323,7 +327,6 @@ app.controller('bsInfoFisheriesController', function($scope, $http) {
                     }
                 }
                 else {
-                    console.log('----else');
                     $("#modal-container-239456").modal('show');
                 }
             })
@@ -335,8 +338,7 @@ app.controller('bsInfoFisheriesController', function($scope, $http) {
         document.getElementById("clearbtn").disabled = true;
 		document.getElementById("editbtn").disabled = true;
 		document.getElementById("subbtn").disabled = true;
-		console.log("test", $scope.district);
-		console.log("test", $scope.bs_date);
+
 		$scope.is_search = true;
         if (form.$valid) {
             $http({
@@ -354,15 +356,11 @@ app.controller('bsInfoFisheriesController', function($scope, $http) {
             }).success(function(data) {
                 console.log(data);
 //                $scope.bsInfoFisheries = data;
-
                 var edit_data_not_found = false;
                 if(data != null) {
-                    console.log('----if');
                     angular.forEach(data.agri_fisheries.Table_2, function(value, index) {
-                        console.log('----forEach');
                         console.log(value);
                         if(value.length == 0) {
-                            console.log('----');
                             edit_data_not_found = true;
                         }
                     })
@@ -374,7 +372,6 @@ app.controller('bsInfoFisheriesController', function($scope, $http) {
                     }
                 }
                 else {
-                    console.log('----else');
                     $("#modal-container-239456").modal('show');
                 }
             })
@@ -395,5 +392,4 @@ app.controller('bsInfoFisheriesController', function($scope, $http) {
         $scope.bsInfoFisheries = angular.copy(init_data);
         location.reload();
     }
-
 });

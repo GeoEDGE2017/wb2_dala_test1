@@ -12,7 +12,6 @@ app.controller('dlSumFisheriesInTheDisController', ['$scope', '$http', function(
     $scope.isLoded = false;
     $scope.user_id;
 
-
     $scope.changedValue = function getDlData() {
         if ($scope.incident) {
             $http({
@@ -42,7 +41,7 @@ app.controller('dlSumFisheriesInTheDisController', ['$scope', '$http', function(
                     url: '/dl_fetch_total_data',
                     data: angular.toJson({
                         'table_name': 'Table_4',
-                        'sector':'agri_fisheries',
+                        'sector': 'agri_fisheries',
                         'com_data': {
                             'district': $scope.district.district__id,
                             'incident': $scope.incident,

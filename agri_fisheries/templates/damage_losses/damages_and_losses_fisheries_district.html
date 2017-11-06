@@ -991,32 +991,10 @@
                         <tr height="19"
                             ng-repeat="dlfLosIfisheries in dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosIfisheries"
                             ng-if="dlfLosIfisheries.assets == 'Total'">
-                            <td class="tdpa" colspan="2" width="250" height="19" ng-bind="dlfLosIfisheries.assets">
-                            </td>
-                            <td class="right" width="111" height="19" ng-model="dlfLosIfisheries.los_year_1_pub"
-                                ng-bind="dlfLosIfisheries.los_year_1_pub =
-                                CalTot($parent.dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosIfisheries,'los_year_1_pub')">
-                            </td>
-                            <td class="right" width="115" height="19" ng-model="dlfLosIfisheries.los_year_1_pvt"
-                                ng-bind="dlfLosIfisheries.los_year_1_pvt = CalTot($parent.dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosIfisheries,'los_year_1_pvt')">
-                            </td>
-                            <td class="right" width="63" height="19" ng-model="dlfLosIfisheries.los_year_2_pub"
-                                ng-bind="dlfLosIfisheries.los_year_2_pub = CalTot($parent.dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosIfisheries,'los_year_2_pub')">
-                            </td>
-                            <td class="right" width="63" height="19" ng-model="dlfLosIfisheries.los_year_2_pvt"
-                                ng-bind="dlfLosIfisheries.los_year_2_pvt = CalTot($parent.dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosIfisheries,'los_year_2_pvt')">
-                            </td>
-                            <td class="right" width="63" height="19" ng-model="dlfLosIfisheries.los_pub"
-                                ng-bind="dlfLosIfisheries.los_pub = CalTot($parent.dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosIfisheries,'los_pub')">
-                            </td>
-                            <td class="right" width="63" height="19" ng-model="dlfLosIfisheries.los_pvt"
-                                ng-bind="dlfLosIfisheries.los_pvt = CalTot($parent.dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosIfisheries,'los_pvt')">
-                            </td>
-                        </tr>
-                        <tr height="19" ng-repeat="dlfLosIfisheries in dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosIfisheries"
-                            ng-if="dlfLosIfisheries.assets == 'Total'">
                             <td class="tdpa" colspan="2" width="250" height="19">
-                                TOTAL DAMAGES
+                                <!--ng-bind="dlfLosIfisheries.assets"-->
+                                <!--Total-->
+                                TOTAL LOSSES
                             </td>
                             <td class="right" width="111" height="19" ng-model="dlfLosIfisheries.los_year_1_pub"
                                 ng-bind="dlfLosIfisheries.los_year_1_pub =
@@ -1038,6 +1016,31 @@
                                 ng-bind="dlfLosIfisheries.los_pvt = CalTot($parent.dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosIfisheries,'los_pvt')">
                             </td>
                         </tr>
+                        <!--<tr height="19" ng-repeat="dlfLosIfisheries in dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosIfisheries"-->
+                            <!--ng-if="dlfLosIfisheries.assets == 'Total'">-->
+                            <!--<td class="tdpa" colspan="2" width="250" height="19">-->
+                                <!--TOTAL LOSSES-->
+                            <!--</td>-->
+                            <!--<td class="right" width="111" height="19" ng-model="dlfLosIfisheries.los_year_1_pub"-->
+                                <!--ng-bind="dlfLosIfisheries.los_year_1_pub =-->
+                                <!--CalTot($parent.dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosIfisheries,'los_year_1_pub')">-->
+                            <!--</td>-->
+                            <!--<td class="right" width="115" height="19" ng-model="dlfLosIfisheries.los_year_1_pvt"-->
+                                <!--ng-bind="dlfLosIfisheries.los_year_1_pvt = CalTot($parent.dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosIfisheries,'los_year_1_pvt')">-->
+                            <!--</td>-->
+                            <!--<td class="right" width="63" height="19" ng-model="dlfLosIfisheries.los_year_2_pub"-->
+                                <!--ng-bind="dlfLosIfisheries.los_year_2_pub = CalTot($parent.dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosIfisheries,'los_year_2_pub')">-->
+                            <!--</td>-->
+                            <!--<td class="right" width="63" height="19" ng-model="dlfLosIfisheries.los_year_2_pvt"-->
+                                <!--ng-bind="dlfLosIfisheries.los_year_2_pvt = CalTot($parent.dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosIfisheries,'los_year_2_pvt')">-->
+                            <!--</td>-->
+                            <!--<td class="right" width="63" height="19" ng-model="dlfLosIfisheries.los_pub"-->
+                                <!--ng-bind="dlfLosIfisheries.los_pub = CalTot($parent.dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosIfisheries,'los_pub')">-->
+                            <!--</td>-->
+                            <!--<td class="right" width="63" height="19" ng-model="dlfLosIfisheries.los_pvt"-->
+                                <!--ng-bind="dlfLosIfisheries.los_pvt = CalTot($parent.dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosIfisheries,'los_pvt')">-->
+                            <!--</td>-->
+                        <!--</tr>-->
                     </table>
                     <!--River Fisheries-->
                     <table class="table table-bordered" ng-if="fishing_type.name=='River Fisheries'">
@@ -1187,38 +1190,10 @@
                         <tr class="" height="19"
                             ng-repeat="dlfLosRfisheries in dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosRfisheries"
                             ng-if="dlfLosRfisheries.assets == 'Total'">
-                            <td class="tdpa" colspan="2" width="250" height="19" ng-bind="dlfLosRfisheries.assets">
-                            </td>
-                            <td width="111" height="19" ng-model="dlfLosRfisheries.los_year_1_pub"
-                                ng-bind="dlfLosRfisheries.los_year_1_pub =
-                                CalTot (dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosRfisheries,'los_year_1_pub')">
-                            </td>
-                            <td width="115" height="19" ng-model="dlfLosRfisheries.los_year_1_pvt"
-                                ng-bind="dlfLosRfisheries.los_year_1_pvt =
-                                CalTot (dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosRfisheries,'los_year_1_pvt')">
-                            </td>
-                            <td width="63" height="19" ng-model="dlfLosRfisheries.los_year_2_pub"
-                                ng-bind="dlfLosRfisheries.los_year_2_pub =
-                                CalTot (dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosRfisheries,'los_year_2_pub')">
-                            </td>
-                            <td width="63" height="19" ng-model="dlfLosRfisheries.los_year_2_pvt"
-                                ng-bind="dlfLosRfisheries.los_year_2_pvt =
-                                CalTot (dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosRfisheries,'los_year_2_pvt')">
-                            </td>
-                            <td width="63" height="19" ng-model="dlfLosRfisheries.los_pub"
-                                ng-bind="dlfLosRfisheries.los_pub =
-                                CalTot (dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosRfisheries,'los_pub')">
-                            </td>
-                            <td width="63" height="19" ng-model="dlfLosRfisheries.los_pvt"
-                                ng-bind="dlfLosRfisheries.los_pvt =
-                                CalTot (dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosRfisheries,'los_pvt')">
-                            </td>
-                        </tr>
-                        <tr class="" height="19"
-                            ng-repeat="dlfLosRfisheries in dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosRfisheries"
-                            ng-if="dlfLosRfisheries.assets == 'Total'">
                             <td class="tdpa" colspan="2" width="250" height="19">
-                                TOTAL DAMAGES
+                                <!--ng-bind="dlfLosRfisheries.assets"-->
+                                <!--Total-->
+                                TOTAL LOSSES
                             </td>
                             <td width="111" height="19" ng-model="dlfLosRfisheries.los_year_1_pub"
                                 ng-bind="dlfLosRfisheries.los_year_1_pub =
@@ -1245,6 +1220,37 @@
                                 CalTot (dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosRfisheries,'los_pvt')">
                             </td>
                         </tr>
+                        <!--<tr class="" height="19"-->
+                            <!--ng-repeat="dlfLosRfisheries in dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosRfisheries"-->
+                            <!--ng-if="dlfLosRfisheries.assets == 'Total'">-->
+                            <!--<td class="tdpa" colspan="2" width="250" height="19">-->
+                                <!--TOTAL LOSSES-->
+                            <!--</td>-->
+                            <!--<td width="111" height="19" ng-model="dlfLosRfisheries.los_year_1_pub"-->
+                                <!--ng-bind="dlfLosRfisheries.los_year_1_pub =-->
+                                <!--CalTot (dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosRfisheries,'los_year_1_pub')">-->
+                            <!--</td>-->
+                            <!--<td width="115" height="19" ng-model="dlfLosRfisheries.los_year_1_pvt"-->
+                                <!--ng-bind="dlfLosRfisheries.los_year_1_pvt =-->
+                                <!--CalTot (dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosRfisheries,'los_year_1_pvt')">-->
+                            <!--</td>-->
+                            <!--<td width="63" height="19" ng-model="dlfLosRfisheries.los_year_2_pub"-->
+                                <!--ng-bind="dlfLosRfisheries.los_year_2_pub =-->
+                                <!--CalTot (dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosRfisheries,'los_year_2_pub')">-->
+                            <!--</td>-->
+                            <!--<td width="63" height="19" ng-model="dlfLosRfisheries.los_year_2_pvt"-->
+                                <!--ng-bind="dlfLosRfisheries.los_year_2_pvt =-->
+                                <!--CalTot (dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosRfisheries,'los_year_2_pvt')">-->
+                            <!--</td>-->
+                            <!--<td width="63" height="19" ng-model="dlfLosRfisheries.los_pub"-->
+                                <!--ng-bind="dlfLosRfisheries.los_pub =-->
+                                <!--CalTot (dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosRfisheries,'los_pub')">-->
+                            <!--</td>-->
+                            <!--<td width="63" height="19" ng-model="dlfLosRfisheries.los_pvt"-->
+                                <!--ng-bind="dlfLosRfisheries.los_pvt =-->
+                                <!--CalTot (dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosRfisheries,'los_pvt')">-->
+                            <!--</td>-->
+                        <!--</tr>-->
                     </table>
                     <!--Marine Fisheries-->
                     <table class="table table-bordered" ng-if="fishing_type.name=='Marine Fisheries'">
@@ -1389,7 +1395,9 @@
                         <tr height="19" ng-repeat="dlfLosMfisheries in dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosMfisheries"
                             ng-if="dlfLosMfisheries.assets == 'Total'">
                             <td class="tdpa" colspan="2" width="250" height="19">
-                                Total
+                                <!--Total-->
+                                <!--ng-bind="dlfLosRfisheries.assets"-->
+                                TOTAL LOSSES
                             </td>
                             <td width="111" height="19" ng-model="dlfLosRfisheries.los_year_1_pub"
                                 ng-bind="dlfLosRfisheries.los_year_1_pub = CalTot(dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosMfisheries, 'los_year_1_pub')">
@@ -1410,30 +1418,30 @@
                                 ng-bind="dlfLosRfisheries.los_pvt = CalTot(dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosMfisheries, 'los_pvt')">
                             </td>
                         </tr>
-                        <tr height="19" ng-repeat="dlfLosMfisheries in dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosMfisheries"
-                            ng-if="dlfLosMfisheries.assets == 'Total'">
-                            <td class="tdpa" colspan="2" width="250" height="19">
-                                TOTAL DAMAGES*
-                            </td>
-                            <td width="111" height="19" ng-model="dlfLosRfisheries.los_year_1_pub"
-                                ng-bind="dlfLosRfisheries.los_year_1_pub = CalTot(dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosMfisheries,'los_year_1_pub')">
-                            </td>
-                            <td width="115" height="19" ng-model="dlfLosRfisheries.los_year_1_pvt"
-                                ng-bind="dlfLosRfisheries.los_year_1_pvt = CalTot(dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosMfisheries,'los_year_1_pvt')">
-                            </td>
-                            <td width="63" height="19" ng-model="dlfLosRfisheries.los_year_2_pub"
-                                ng-bind="dlfLosRfisheries.los_year_2_pub = CalTot(dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosMfisheries,'los_year_2_pub')">
-                            </td>
-                            <td width="63" height="19"
-                                ng-bind="dlfLosRfisheries.los_year_2_pvt = CalTot(dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosMfisheries,'los_year_2_pvt')">
-                            </td>
-                            <td width="63" height="19" ng-model="dlfLosRfisheries.los_pub"
-                                ng-bind="dlfLosRfisheries.los_pub = CalTot(dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosMfisheries,'los_pub')">
-                            </td>
-                            <td width="63" height="19" ng-model="dlfLosRfisheries.los_pvt"
-                                ng-bind="dlfLosRfisheries.los_pvt = CalTot(dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosMfisheries,'los_pvt')">
-                            </td>
-                        </tr>
+                        <!--<tr height="19" ng-repeat="dlfLosMfisheries in dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosMfisheries"-->
+                            <!--ng-if="dlfLosMfisheries.assets == 'Total'">-->
+                            <!--<td class="tdpa" colspan="2" width="250" height="19">-->
+                                <!--TOTAL LOSSES-->
+                            <!--</td>-->
+                            <!--<td width="111" height="19" ng-model="dlfLosRfisheries.los_year_1_pub"-->
+                                <!--ng-bind="dlfLosRfisheries.los_year_1_pub = CalTot(dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosMfisheries,'los_year_1_pub')">-->
+                            <!--</td>-->
+                            <!--<td width="115" height="19" ng-model="dlfLosRfisheries.los_year_1_pvt"-->
+                                <!--ng-bind="dlfLosRfisheries.los_year_1_pvt = CalTot(dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosMfisheries,'los_year_1_pvt')">-->
+                            <!--</td>-->
+                            <!--<td width="63" height="19" ng-model="dlfLosRfisheries.los_year_2_pub"-->
+                                <!--ng-bind="dlfLosRfisheries.los_year_2_pub = CalTot(dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosMfisheries,'los_year_2_pub')">-->
+                            <!--</td>-->
+                            <!--<td width="63" height="19"-->
+                                <!--ng-bind="dlfLosRfisheries.los_year_2_pvt = CalTot(dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosMfisheries,'los_year_2_pvt')">-->
+                            <!--</td>-->
+                            <!--<td width="63" height="19" ng-model="dlfLosRfisheries.los_pub"-->
+                                <!--ng-bind="dlfLosRfisheries.los_pub = CalTot(dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosMfisheries,'los_pub')">-->
+                            <!--</td>-->
+                            <!--<td width="63" height="19" ng-model="dlfLosRfisheries.los_pvt"-->
+                                <!--ng-bind="dlfLosRfisheries.los_pvt = CalTot(dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosMfisheries,'los_pvt')">-->
+                            <!--</td>-->
+                        <!--</tr>-->
                     </table>
                     <!--<table class="table table-bordered">-->
                     <!--<tbody>-->

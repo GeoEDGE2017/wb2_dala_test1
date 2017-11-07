@@ -3,36 +3,35 @@
 {% load static %}
 <style>
     .right {text-align:right;}
-
-
 </style>
 <!-- Main content -->
 <main class="main" ng-app="dlAgriFisheriesProApp" ng-controller="DlAgriFisheriesProController">
-
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
 
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:agri_fisheries_main' %}">Agri Fisheries Sector</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:agri_fisheries_main' %}">
+                Agri Fisheries Sector
+            </a>
         </li>
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 5. Summary of Damages and Losses in the Fisheries Sub-sector in the Province</span>
+        <li class="breadcrumb-item active">
+            <span class="label label-success" style="font-size:14px;">
+                Table 5. Summary of Damages and Losses in the Fisheries Sub-sector in the Province
+            </span>
         </li>
-        <li style="float:right;"><a href="{% static 'dashboard/doc/4C-Agriculture-Fisheries-24Jan17.pdf' %}"
-                                    target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;"
-                                    class="icon-info" data-toggle="tooltip" title="Veiw Document"></a></li>
+        <li style="float:right;">
+            <a href="{% static 'dashboard/doc/4C-Agriculture-Fisheries-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;"
+                class="icon-info" data-toggle="tooltip" title="Veiw Document">
+            </a>
+        </li>
     </ol>
-
-
     <div class="container-fluid">
-
-
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
-
                 <table class="table table-bordered">
-
-
                     <colgroup>
                         <col width="125"/>
                         <col width="95"/>
@@ -82,7 +81,6 @@
                     </tr>
                     </tbody>
                 </table>
-
                 <table ng-if="!checkIfNull()"
                        class="table table-bordered">
                     <tbody>
@@ -143,43 +141,27 @@
                        class="table table-bordered">
                     <tr class="trhead" height="20" ng-init="getTotal(key)">
                         <td ng-bind="key" width="253" height="19" colspan="10">
-
                         </td>
-
                     </tr>
                     <tr height="19">
                         <td class="tdpa" width="125" height="19">
                             Inland Fisheries
                         </td>
                         <td width="95" class="right" height="19" ng-bind="value.DlfDmgPubDistrict[0].dmg_pub">
-
                         </td>
                         <td width="111" class="right" height="19" ng-bind="value.DlfDmgPvtDistrict[0].dmg_pvt">
-
                         </td>
-                        <td width="115" class="right" height="19"
-                            ng-bind="value.DlfLosIfisheriesDistrict[0].los_year_1_pub">
-
+                        <td width="115" class="right" height="19" ng-bind="value.DlfLosIfisheriesDistrict[0].los_year_1_pub">
                         </td>
-                        <td width="63" class="right" height="19"
-                            ng-bind="value.DlfLosIfisheriesDistrict[0].los_year_1_pvt">
-
+                        <td width="63" class="right" height="19" ng-bind="value.DlfLosIfisheriesDistrict[0].los_year_1_pvt">
                         </td>
-                        <td width="63" class="right" height="19"
-                            ng-bind="value.DlfLosIfisheriesDistrict[0].los_year_2_pub">
-
+                        <td width="63" class="right" height="19" ng-bind="value.DlfLosIfisheriesDistrict[0].los_year_2_pub">
                         </td>
-                        <td width="63" class="right" height="19"
-                            ng-bind="value.DlfLosIfisheriesDistrict[0].los_year_2_pvt">
-
+                        <td width="63" class="right" height="19" ng-bind="value.DlfLosIfisheriesDistrict[0].los_year_2_pvt">
                         </td>
-                        <td class="right" width="63" height="19"
-                            ng-bind="value.DlfDmgPubDistrict[0].dmg_pub + value.DlfLosIfisheriesDistrict[0].los_year_1_pub +value.DlfLosIfisheriesDistrict[0].los_year_2_pub ">
-
+                        <td class="right" width="63" height="19" ng-bind="value.DlfDmgPubDistrict[0].dmg_pub + value.DlfLosIfisheriesDistrict[0].los_year_1_pub +value.DlfLosIfisheriesDistrict[0].los_year_2_pub ">
                         </td>
-                        <td class="right" width="63" height="19"
-                            ng-bind="value.DlfDmgPvtDistrict[0].dmg_pvt + value.DlfLosIfisheriesDistrict[0].los_year_1_pvt + value.DlfLosIfisheriesDistrict[0].los_year_2_pvt">
-
+                        <td class="right" width="63" height="19" ng-bind="value.DlfDmgPvtDistrict[0].dmg_pvt + value.DlfLosIfisheriesDistrict[0].los_year_1_pvt + value.DlfLosIfisheriesDistrict[0].los_year_2_pvt">
                         </td>
                     </tr>
                     <tr height="19">
@@ -187,22 +169,17 @@
                             River fisheries
                         </td>
                         <td width="95" class="right" height="19" ng-bind="value.DlfDmgPubDistrict[1].dmg_pub">
-
                         </td>
                         <td width="111" class="right" height="19" ng-bind="value.DlfDmgPvtDistrict[1].dmg_pvt">
-
                         </td>
                         <td width="115" class="right" height="19"
                             ng-bind="value.DlfLosRfisheriesDistrict[0].los_year_1_pub">
-
                         </td>
                         <td width="63" class="right" height="19"
                             ng-bind="value.DlfLosRfisheriesDistrict[0].los_year_1_pvt">
-
                         </td>
                         <td width="63" class="right" height="19"
                             ng-bind="value.DlfLosRfisheriesDistrict[0].los_year_2_pub">
-
                         </td>
                         <td width="63" class="right" height="19"
                             ng-bind="value.DlfLosRfisheriesDistrict[0].los_year_2_pvt">
@@ -210,11 +187,9 @@
                         </td>
                         <td class="right" width="63" height="19"
                             ng-bind="value.DlfDmgPubDistrict[1].dmg_pub + value.DlfLosRfisheriesDistrict[0].los_year_1_pub  + value.DlfLosRfisheriesDistrict[0].los_year_2_pub ">
-
                         </td>
                         <td class="right" width="63" height="19"
                             ng-bind="value.DlfDmgPvtDistrict[1].dmg_pvt + value.DlfLosRfisheriesDistrict[0].los_year_1_pvt + value.DlfLosRfisheriesDistrict[0].los_year_2_pvt">
-
                         </td>
                     </tr>
                     <tr height="19">
@@ -222,34 +197,26 @@
                             Marine fisheries
                         </td>
                         <td width="95" class="right" height="19" ng-bind="value.DlfDmgPubDistrict[2].dmg_pub">
-
                         </td>
                         <td width="111" class="right" height="19" ng-bind="value.DlfDmgPvtDistrict[2].dmg_pvt">
-
                         </td>
                         <td width="115" class="right" height="19"
                             ng-bind="value.DlfLosMfisheriesDistrict[0].los_year_1_pub">
-
                         </td>
                         <td width="63" class="right" height="19"
                             ng-bind="value.DlfLosMfisheriesDistrict[0].los_year_1_pvt">
-
                         </td>
                         <td width="63" class="right" height="19"
                             ng-bind="value.DlfLosMfisheriesDistrict[0].los_year_2_pub">
-
                         </td>
                         <td width="63" class="right" height="19"
                             ng-bind="value.DlfLosMfisheriesDistrict[0].los_year_2_pvt">
-
                         </td>
                         <td class="right" width="63" height="19"
                             ng-bind="value.DlfDmgPubDistrict[2].dmg_pub + value.DlfLosMfisheriesDistrict[0].los_year_1_pub +value.DlfLosMfisheriesDistrict[0].los_year_2_pub ">
-
                         </td>
                         <td class="right" width="63" height="19"
                             ng-bind="value.DlfDmgPvtDistrict[1].dmg_pvt + value.DlfLosMfisheriesDistrict[0].los_year_1_pvt + value.DlfLosMfisheriesDistrict[0].los_year_2_pvt ">
-
                         </td>
                     </tr>
                     <tr height="19">
@@ -258,106 +225,89 @@
                         </td>
                         <td class="right" width="95" height="19" ng-model="damagesPublic"
                             ng-bind=" damagesPublic = value.DlfDmgPubDistrict[0].dmg_pub +value.DlfDmgPubDistrict[1].dmg_pub + value.DlfDmgPubDistrict[2].dmg_pub  ">
-
                         </td>
                         <td class="right" width="111" height="19" ng-model="damagesPrivate"
                             ng-bind="damagesPrivate = value.DlfDmgPvtDistrict[0].dmg_pvt + value.DlfDmgPvtDistrict[1].dmg_pvt + value.DlfDmgPvtDistrict[2].dmg_pvt ">
-
                         </td>
                         <td class="right" width="115" height="19" ng-model="losYear1Public"
                             ng-bind="losYear1Public = value.DlfLosIfisheriesDistrict[0].los_year_1_pub +value.DlfLosRfisheriesDistrict[0].los_year_1_pub + value.DlfLosMfisheriesDistrict[0].los_year_1_pub">
-
                         </td>
                         <td class="right" width="63" height="19" ng-model="losYear1Private"
                             ng-bind="losYear1Private = value.DlfLosIfisheriesDistrict[0].los_year_1_pvt + value.DlfLosRfisheriesDistrict[0].los_year_1_pvt + value.DlfLosMfisheriesDistrict[0].los_year_1_pvt">
-
                         </td>
                         <td class="right" width="63" height="19" ng-model="losYear2Public"
                             ng-bind="losYear2Public = value.DlfLosIfisheriesDistrict[0].los_year_2_pub + value.DlfLosRfisheriesDistrict[0].los_year_2_pub + value.DlfLosMfisheriesDistrict[0].los_year_2_pub">
-
                         </td>
                         <td class="right" width="63" height="19" ng-model="losYear2Private"
                             ng-bind="losYear2Private = value.DlfLosIfisheriesDistrict[0].los_year_2_pvt +value.DlfLosRfisheriesDistrict[0].los_year_2_pvt + value.DlfLosMfisheriesDistrict[0].los_year_2_pvt">
-
                         </td>
                         <td class="right" width="63" height="19"
                             ng-bind="damagesPublic + losYear1Public + losYear2Public">
-
                         </td>
                         <td class="right" width="63" height="19"
                             ng-bind="damagesPrivate + losYear1Private + losYear2Private">
-
                         </td>
                     </tr>
                     </tbody>
                 </table>
-
-                <table ng-if="!checkIfNull()"
-                       class="table table-bordered">
-
-
+                <table ng-if="!checkIfNull()" class="table table-bordered">
+                    <tr>
                         <td class="tdpa" width="125" height="19">
                             GRAND TOTAL
-                        </td>                   
-                    <td class="right" width="95" height="19" ng-bind="grnddamagepublic">
-                    </td>
-                    <td class="right" width="111" height="19" ng-bind="grnddamageprivate">
-
-                    </td>
-                    <td class="right" width="115" height="19" ng-bind="grndlosPubliceyear1">
-
-                    </td>
-                    <td class="right" width="63" height="19" ng-bind="grndlosPPrivateyear1">
-
-                    </td>
-                    <td class="right" width="63" height="19" ng-bind="grndlosPublicyear2">
-
-                    </td>
-                    <td class="right" width="63" height="19" ng-bind="grndlosPrivateyear2">
-
-                    </td>
-                    <td class="right" width="63" height="19" ng-bind="finalGrandTotPublic">
-
-                    </td>
-                    <td class="right" width="63" height="19" ng-bind="finalGrandTotPrivate">
-
-                    </td>
+                        </td>
+                        <td class="right" width="95" height="19" ng-bind="getDmgPubGrndTot()">
+                        </td>
+                        <td class="right" width="111" height="19" ng-bind="getDmgPvtGrndTot()">
+                        </td>
+                        <td class="right" width="115" height="19" ng-bind="getLosYer1PubGrndTot()">
+                        </td>
+                        <td class="right" width="63" height="19" ng-bind="getLosYer1PvtGrndTot()">
+                        </td>
+                        <td class="right" width="63" height="19" ng-bind="getLosYer2PubGrndTot()">
+                        </td>
+                        <td class="right" width="63" height="19" ng-bind="getLosYer2PvtGrndTot()">
+                        </td>
+                        <td class="right" width="63" height="19"
+                            ng-bind="getDmgPubGrndTot() + getLosYer1PubGrndTot() + getLosYer2PubGrndTot()">
+                        </td>
+                        <td class="right" width="63" height="19"
+                            ng-bind="getDmgPvtGrndTot() + getLosYer1PvtGrndTot() + getLosYer2PvtGrndTot()">
+                        </td>
                     </tr>
                 </table>
-                <table ng-if="!checkIfNull()"
-                       class="table table-bordered">
+                <table ng-if="!checkIfNull()" class="table table-bordered">
                     <tbody>
-                    <tr class="trheadc1" height="19">
-                        <td colspan="9" width="823" height="19" align="centre">
-                            AGGREGATE DAMAGES AND LOSSES IN THE PROVINCE
-                        </td>
-                    </tr>
-                    <tr class="trheadc1" height="19">
-                        <td rowspan="3" width="125" height="57">
-                            Districts
-                        </td>
-                        <td colspan="4" width="416" height="19">
-                            Year 1
-                        </td>
-                        <td colspan="2" width="126" height="19">
-                            Year 2
-                        </td>
-                        <td colspan="2" rowspan="2" width="126" height="38">
-                            Total (LKR)
-                        </td>
-                    </tr>
-                    <tr class="trheadc1" height="19">
-                        <td colspan="2" width="190" height="19">
-                            Damages (LKR)
-                        </td>
-                        <td colspan="2" width="230" height="19">
-                            Losses (LKR)
-                        </td>
-                        <td colspan="2" width="126" height="19">
-                            Losses (LKR)
-                        </td>
-                    </tr>
-                    <tr class="trheadc1" height="19">
+                        <tr class="trheadc1" height="19">
+                            <td colspan="9" width="823" height="19" align="centre">
+                                AGGREGATE DAMAGES AND LOSSES IN THE PROVINCE
+                            </td>
+                        </tr>
+                        <tr class="trheadc1" height="19">
+                            <td rowspan="3" width="125" height="57">
+                                Districts
+                            </td>
+                            <td colspan="4" width="416" height="19">
+                                Year 1
+                            </td>
+                            <td colspan="2" width="126" height="19">
+                                Year 2
+                            </td>
+                            <td colspan="2" rowspan="2" width="126" height="38">
+                                Total (LKR)
+                            </td>
+                        </tr>
+                        <tr class="trheadc1" height="19">
+                            <td colspan="2" width="190" height="19">
+                                Damages (LKR)
+                            </td>
+                            <td colspan="2" width="230" height="19">
+                                Losses (LKR)
+                            </td>
+                            <td colspan="2" width="126" height="19">
+                                Losses (LKR)
+                            </td>
+                        </tr>
+                        <tr class="trheadc1" height="19">
                         <td width="95" height="19">
                             Public
                         </td>
@@ -386,119 +336,90 @@
                     </tbody>
                 </table>
                 <table ng-repeat="(key, value) in dlAgriFisheriesPro.agri_fisheries.Table_5" ng-if="!checkIfNull()" class="table table-bordered">
-                <tbody>
-                <tr height="19">
+                    <tbody>
+                        <tr height="19">
                     <td class="tdpa" width="125" height="19" ng-bind="key">
-
                     </td>
                     {% verbatim %}
                     <td width="95" class="right" height="19" ng-model="damagepublic"
                         ng-bind="damagepublic= {{'damagepublic_'+key}}">
-
                     </td>
                     {% endverbatim %}
                     {% verbatim %}
                     <td width="111" class="right" height="19" ng-model="damageprivate"
                         ng-bind="damageprivate= {{'damageprivate_'+key}}">
-
                     </td>
                     {% endverbatim %}
                     {% verbatim %}
                     <td width="115" class="right" height="19" ng-model="losPubliceyear1"
                         ng-bind="losPubliceyear1= {{'losPubliceyear1_'+key}}">
-
                     </td>
                     {% endverbatim %}
                     {% verbatim %}
                     <td width="63" class="right" height="19" ng-model="losPrivateyear1"
                         ng-bind="losPrivateyear1= {{'losPrivateyear1_'+key}}">
-
                     </td>
                     {% endverbatim %}
                     {% verbatim %}
                     <td width="63" class="right" height="19" ng-model="losPublicyear2"
                         ng-bind="losPublicyear2= {{'losPublicyear2_'+key}}">
-
                     </td>
                     {% endverbatim %}
                     {% verbatim %}
                     <td width="63" class="right" height="19" ng-model="losPrivateyear2"
                         ng-bind="losPrivateyear2= {{'losPrivateyear2_'+key}}">
-
                     </td>
                     {% endverbatim %}
                     {% verbatim %}
                     <td width="63" class="right" height="19" ng-model="finalGrandTotPublic"
                         ng-bind="damagepublic + losPubliceyear1  + losPublicyear2">
-
                     </td>
                     {% endverbatim %}
                     {% verbatim %}
                     <td width="63" class="right" height="19" ng-model="finalGrandTotPrivate"
                         ng-bind="damageprivate +  losPrivateyear1 + losPrivateyear2">
-
                     </td>
                     {% endverbatim %}
                 </tr>
-                </tbody>
+                    </tbody>
                 </table>
-                <table ng-if="!checkIfNull()"
-                       class="table table-bordered">
-
+                <table ng-if="!checkIfNull()" class="table table-bordered">
                     <tr height="19">
                         <td class="tdpa" width="125" height="19">
                             TOTAL
                         </td>
-                        <td class="right" width="95" height="19" ng-bind="grnddamagepublic">
-
+                        <td class="right" width="95" height="19" ng-bind="getDmgPubGrndTot()">
                         </td>
-                        <td class="right" width="111" height="19" ng-bind="grnddamageprivate">
-
+                        <td class="right" width="111" height="19" ng-bind="getDmgPvtGrndTot()">
                         </td>
-                        <td class="right" width="115" height="19" ng-bind="grndlosPubliceyear1">
-
+                        <td class="right" width="115" height="19" ng-bind="getLosYer1PubGrndTot()">
                         </td>
-                        <td class="right" width="63" height="19" ng-bind="grndlosPPrivateyear1">
-
+                        <td class="right" width="63" height="19" ng-bind="getLosYer1PvtGrndTot()">
                         </td>
-                        <td class="right" width="63" height="19" ng-bind="grndlosPublicyear2">
-
+                        <td class="right" width="63" height="19" ng-bind="getLosYer2PubGrndTot()">
                         </td>
-                        <td class="right" width="63" height="19" ng-bind="grndlosPrivateyear2">
-
+                        <td class="right" width="63" height="19" ng-bind="getLosYer2PvtGrndTot()">
                         </td>
-                        <td class="right" width="63" height="19" ng-bind="finalGrandTotPublic">
-
+                        <td class="right" width="63" height="19"
+                            ng-bind="getDmgPubGrndTot() + getLosYer1PubGrndTot() + getLosYer2PubGrndTot()">
                         </td>
-                        <td class="right" width="63" height="19" ng-bind="finalGrandTotPrivate">
-
+                        <td class="right" width="63" height="19"
+                            ng-bind="getDmgPvtGrndTot() + getLosYer1PvtGrndTot() + getLosYer2PvtGrndTot()">
                         </td>
                     </tr>
-
                 </table>
-
-
                 <br>
                 <div class="pull-right">
                     <br>
-
                 </div>
             </div>
-
-
         </div>
     </div>
-
-
     <div class="col-md-12">
-
-
-        <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
-             aria-hidden="true">
+        <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;" aria-hidden="true">
             <div class="modal-dialog" style="width:50%;">
                 <div class="modal-content">
                     <div class="modal-header">
-
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                             ×
                         </button>
@@ -511,15 +432,12 @@
                         <div class="form-group">
                             <label class="col-md-2 control-label" for="textinput">Name</label>
                             <div class="col-md-10">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-
+                                <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
                             </div>
                         </div>
                     </div>
                     <br><br>
                     <div class="modal-footer">
-
                         <button type="button" class="btn btn-default" data-dismiss="modal">
                             Close
                         </button>
@@ -528,19 +446,9 @@
                         </button>
                     </div>
                 </div>
-
             </div>
-
         </div>
-
-
     </div>
-    </div>
-
-    </div>
-
     <!-- /.conainer-fluid -->
 </main>
-
-
 {% endblock content %}

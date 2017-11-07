@@ -32,16 +32,16 @@ app.controller("DlAgriFisheriesNatController", function ($scope,$http,$parse, _)
                 method: "POST",
                 url: '/dl_fetch_district_disagtn',
                 data: angular.toJson({
-                    'table_name':'Table_6',
+                    'table_name': 'Table_6',
                     'sector': 'agri_fisheries',
                     'com_data': {
                         'incident': $scope.incident,
                     },
                 }),
             }).success(function(data) {
-                console.log('load ', data);
-                $scope.data= data;
+                $scope.data = data;
                 $scope.dlAgriFisheriesSumNat = data;
+                console.log($scope.dlAgriFisheriesSumNat);
             })
         }
     }
@@ -53,8 +53,6 @@ app.controller("DlAgriFisheriesNatController", function ($scope,$http,$parse, _)
 
     $scope.getTotal = function(key) {
         $scope.finaltotalprivate = 0;
-        console.log('test',$scope.dlAgriFisheriesSumNat.agri_fisheries.Table_6[key].DlfLosIfisheriesNational[0]);
-
         var damagepublic =
             ($scope.dlAgriFisheriesSumNat.agri_fisheries.Table_6[key].DlfDmgPubNational[0] ?
             ($scope.dlAgriFisheriesSumNat.agri_fisheries.Table_6[key].DlfDmgPubNational[0].dmg_pub ?
@@ -135,7 +133,6 @@ app.controller("DlAgriFisheriesNatController", function ($scope,$http,$parse, _)
         model.assign($scope, losPrivateyear1);
 
         $scope.grndlosPPrivateyear1 = $scope.grndlosPPrivateyear1 + losPrivateyear1 ;
-//        console.log('Test',$scope.grndlosPPrivateyear1);
 
         var losPublicyear2 =
             ($scope.dlAgriFisheriesSumNat.agri_fisheries.Table_6[key].DlfLosIfisheriesNational[0] ?
@@ -183,5 +180,141 @@ app.controller("DlAgriFisheriesNatController", function ($scope,$http,$parse, _)
 
         $scope.finalGrandTotPrivate =
         $scope.grnddamageprivate + $scope.grndlosPPrivateyear1 + $scope.grndlosPrivateyear2;
+    }
+
+    $scope.getDmgPubGrndTot = function() {
+        if(!angular.isUndefined($scope.dlAgriFisheriesSumNat)) {
+            var tot_dmg_pub = 0;
+            angular.forEach($scope.dlAgriFisheriesSumNat.agri_fisheries.Table_6, function(value, index) {
+                angular.forEach(value, function(value_in, key) {
+                    if(key == 'DlfDmgPubNational') {
+                        angular.forEach(value_in, function(value_in_in) {
+                            tot_dmg_pub = tot_dmg_pub + value_in_in.dmg_pub;
+                        })
+                    }
+                })
+            })
+            return tot_dmg_pub;
+        }
+    }
+
+    $scope.getDmgPvtGrndTot = function() {
+        if(!angular.isUndefined($scope.dlAgriFisheriesSumNat)) {
+            var tot_dmg_pvt = 0;
+            angular.forEach($scope.dlAgriFisheriesSumNat.agri_fisheries.Table_6, function(value, index) {
+                angular.forEach(value, function(value_in, key) {
+                    if(key == 'DlfDmgPvtNational') {
+                        angular.forEach(value_in, function(value_in_in) {
+                            tot_dmg_pvt = tot_dmg_pvt + value_in_in.dmg_pvt;
+                        })
+                    }
+                })
+            })
+            return tot_dmg_pvt;
+        }
+    }
+
+    $scope.getLosYer1PubGrndTot = function() {
+        if(!angular.isUndefined($scope.dlAgriFisheriesSumNat)) {
+            var los_year_1_pub = 0;
+            angular.forEach($scope.dlAgriFisheriesSumNat.agri_fisheries.Table_6, function(value, index) {
+                angular.forEach(value, function(value_in, key) {
+                    if(key == 'DlfLosIfisheriesNational') {
+                        angular.forEach(value_in, function(value_in_in) {
+                            los_year_1_pub = los_year_1_pub + value_in_in.los_year_1_pub;
+                        })
+                    }
+                    if(key == 'DlfLosRfisheriesNational') {
+                        angular.forEach(value_in, function(value_in_in) {
+                            los_year_1_pub = los_year_1_pub + value_in_in.los_year_1_pub;
+                        })
+                    }
+                    if(key == 'DlfLosMfisheriesNational') {
+                        angular.forEach(value_in, function(value_in_in) {
+                            los_year_1_pub = los_year_1_pub + value_in_in.los_year_1_pub;
+                        })
+                    }
+                })
+            })
+            return los_year_1_pub;
+        }
+    }
+
+    $scope.getLosYer1PvtGrndTot = function() {
+        if(!angular.isUndefined($scope.dlAgriFisheriesSumNat)) {
+            var los_year_1_pvt = 0;
+            angular.forEach($scope.dlAgriFisheriesSumNat.agri_fisheries.Table_6, function(value, index) {
+                angular.forEach(value, function(value_in, key) {
+                    if(key == 'DlfLosIfisheriesNational') {
+                        angular.forEach(value_in, function(value_in_in) {
+                            los_year_1_pvt = los_year_1_pvt + value_in_in.los_year_1_pvt;
+                        })
+                    }
+                    if(key == 'DlfLosRfisheriesNational') {
+                        angular.forEach(value_in, function(value_in_in) {
+                            los_year_1_pvt = los_year_1_pvt + value_in_in.los_year_1_pvt;
+                        })
+                    }
+                    if(key == 'DlfLosMfisheriesNational') {
+                        angular.forEach(value_in, function(value_in_in) {
+                            los_year_1_pvt = los_year_1_pvt + value_in_in.los_year_1_pvt;
+                        })
+                    }
+                })
+            })
+            return los_year_1_pvt;
+        }
+    }
+
+    $scope.getLosYer2PubGrndTot = function() {
+        if(!angular.isUndefined($scope.dlAgriFisheriesSumNat)) {
+            var los_year_2_pub = 0;
+            angular.forEach($scope.dlAgriFisheriesSumNat.agri_fisheries.Table_6, function(value, index) {
+                angular.forEach(value, function(value_in, key) {
+                    if(key == 'DlfLosIfisheriesNational') {
+                        angular.forEach(value_in, function(value_in_in) {
+                            los_year_2_pub = los_year_2_pub + value_in_in.los_year_2_pub;
+                        })
+                    }
+                    if(key == 'DlfLosRfisheriesNational') {
+                        angular.forEach(value_in, function(value_in_in) {
+                            los_year_2_pub = los_year_2_pub + value_in_in.los_year_2_pub;
+                        })
+                    }
+                    if(key == 'DlfLosMfisheriesNational') {
+                        angular.forEach(value_in, function(value_in_in) {
+                            los_year_2_pub = los_year_2_pub + value_in_in.los_year_2_pub;
+                        })
+                    }
+                })
+            })
+            return los_year_2_pub;
+        }
+    }
+
+    $scope.getLosYer2PvtGrndTot = function() {
+        if(!angular.isUndefined($scope.dlAgriFisheriesSumNat)) {
+            var los_year_2_pvt = 0;
+            angular.forEach($scope.dlAgriFisheriesSumNat.agri_fisheries.Table_6, function(value, index) {
+                angular.forEach(value, function(value_in, key) {
+                    if(key == 'DlfLosIfisheriesNational') {
+                        angular.forEach(value_in, function(value_in_in) {
+                            los_year_2_pvt = los_year_2_pvt + value_in_in.los_year_2_pvt;
+                        })
+                    }
+                    if(key == 'DlfLosRfisheriesNational') {
+                        angular.forEach(value_in, function(value_in_in) {
+                            los_year_2_pvt = los_year_2_pvt + value_in_in.los_year_2_pvt;
+                        })
+                    }
+                    if(key == 'DlfLosMfisheriesNational') {
+                        angular.forEach(value_in, function(value_in_in) {
+                            los_year_2_pvt = los_year_2_pvt + value_in_in.los_year_2_pvt;
+                        })
+                    }
+                })
+            })
+            return los_year_2_pvt;
+        }
     }
  })

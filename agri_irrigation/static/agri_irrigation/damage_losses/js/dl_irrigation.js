@@ -843,32 +843,36 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
         var array6 = $scope.dlIrrigation.agri_irrigation.Table_3.DlBuildings;
         var array7= $scope.dlIrrigation.agri_irrigation.Table_3.DlRiverEmbankmnt;
 
-
         angular.forEach(array1, function(value, key) {
             if(value.irrigation_assets != 'Total' && value.building != 'Total'){
                 finaltotal1 = finaltotal1 + value.damages ;
             }
         })
+
         angular.forEach(array2, function(value, key) {
             if(value.irrigation_assets != 'Total' && value.building != 'Total'){
                 finaltotal2 = finaltotal2 + value.damages ;
             }
         })
+
         angular.forEach(array3, function(value, key) {
             if(value.irrigation_assets != 'Total' && value.building != 'Total'){
                 finaltotal3 = finaltotal3 + value.damages ;
             }
         })
+
         angular.forEach(array4, function(value, key) {
             if(value.irrigation_assets != 'Total' && value.building != 'Total'){
                 finaltotal4 = finaltotal4 + value.damages ;
             }
         })
+
         angular.forEach(array5, function(value, key) {
             if(value.irrigation_assets != 'Total' && value.building != 'Total'){
                 finaltotal5 = finaltotal5 + value.damages;
             }
         })
+
         angular.forEach(array6, function(value, key) {
             if(value.irrigation_assets != 'Total' && value.building != 'Total'){
                 finaltotal6 = finaltotal6 + value.damages;
@@ -880,6 +884,7 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
                 finaltotal7 = finaltotal7 + value.damages ;
             }
         })
+
         grantot = finaltotal1+ finaltotal2 + finaltotal3  + finaltotal4 + finaltotal5 + finaltotal6 + finaltotal7 ;
         return grantot;
     }
@@ -905,31 +910,37 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
                 finaltotal1 = finaltotal1 + value.high_operation_cost ;
             }
         })
+
         angular.forEach(array2, function(value, key) {
             if(value.irrigation_assets != 'TOTAL LOSSES'){
                 finaltotal2 = finaltotal2 + value.high_operation_cost ;
             }
         })
+
         angular.forEach(array3, function(value, key) {
             if(value.irrigation_assets != 'TOTAL LOSSES'){
                 finaltotal3 = finaltotal3 + value.high_operation_cost ;
             }
         })
+
         angular.forEach(array4, function(value, key) {
             if(value.irrigation_assets != 'TOTAL LOSSES'){
                 finaltotal4 = finaltotal4 + value.high_operation_cost ;
             }
         })
+
         angular.forEach(array5, function(value, key) {
             if(value.irrigation_assets != 'TOTAL LOSSES'){
                 finaltotal5 = finaltotal5 + value.high_operation_cost ;
             }
         })
+
         angular.forEach(array6, function(value, key) {
             if(value.irrigation_assets != 'TOTAL LOSSES'){
                 finaltotal6 = finaltotal6 + value.high_operation_cost ;
             }
         })
+
         grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4+ finaltotal5+finaltotal6;
         return grantot;
     }
@@ -955,26 +966,31 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
                 finaltotal1 = finaltotal1 + value.other_unexpected_expenses ;
             }
         })
+
         angular.forEach(array2, function(value, key) {
             if(value.irrigation_assets != 'TOTAL LOSSES'){
                 finaltotal2 = finaltotal2 + value.other_unexpected_expenses ;
             }
         })
+
         angular.forEach(array3, function(value, key) {
             if(value.irrigation_assets != 'TOTAL LOSSES'){
                 finaltotal3 = finaltotal3 + value.other_unexpected_expenses ;
             }
         })
+
         angular.forEach(array4, function(value, key) {
             if(value.irrigation_assets != 'TOTAL LOSSES'){
                 finaltotal4 = finaltotal4 + value.other_unexpected_expenses ;
             }
         })
+
         angular.forEach(array5, function(value, key) {
             if(value.irrigation_assets != 'TOTAL LOSSES'){
                 finaltotal5 = finaltotal5 + value.other_unexpected_expenses ;
             }
         })
+
         angular.forEach(array6, function(value, key) {
             if(value.irrigation_assets != 'TOTAL LOSSES'){
                 finaltotal6 = finaltotal6 + value.other_unexpected_expenses ;
@@ -1005,31 +1021,37 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
                 finaltotal1 = finaltotal1 + value.total_los ;
             }
         })
+
         angular.forEach(array2, function(value, key) {
             if(value.irrigation_assets != 'TOTAL LOSSES' ){
                 finaltotal2 = finaltotal2 + value.total_los ;
             }
         })
+
         angular.forEach(array3, function(value, key) {
             if(value.irrigation_assets != 'TOTAL LOSSES'){
                 finaltotal3 = finaltotal3 + value.total_los ;
             }
         })
+
         angular.forEach(array4, function(value, key) {
             if(value.irrigation_assets != 'TOTAL LOSSES'){
                 finaltotal4 = finaltotal4 + value.total_los ;
             }
         })
+
         angular.forEach(array5, function(value, key) {
             if(value.irrigation_assets != 'TOTAL LOSSES' ){
                 finaltotal5 = finaltotal5 + value.total_los ;
             }
         })
+
         angular.forEach(array6, function(value, key) {
             if(value.irrigation_assets != 'TOTAL LOSSES'){
                 finaltotal6 = finaltotal6 + value.total_los ;
             }
         })
+
         grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4 + finaltotal5 + finaltotal6;
         return grantot;
     }
@@ -1055,9 +1077,11 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
             }).success(function(data) {
                 console.log(data);
                 $scope.dlIrrigation = data;
+
                 console.log('alert',$scope.dlIrrigation.agri_irrigation.Table_3.DlMajorTanks[0].division);
-                    $scope.division = $scope.dlIrrigation.agri_irrigation.Table_3.DlMajorTanks[0].division;
-                    $scope.region = $scope.dlIrrigation.agri_irrigation.Table_3.DlMajorTanks[0].region;
+
+                $scope.division = $scope.dlIrrigation.agri_irrigation.Table_3.DlMajorTanks[0].division;
+                $scope.region = $scope.dlIrrigation.agri_irrigation.Table_3.DlMajorTanks[0].region;
             })
         }
     }
@@ -1078,17 +1102,19 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
                     'table_name':  'Table_3',
                     'sector':'agri_irrigation',
                     'com_data': {
-                    'district':  $scope.district.district__id,
-                    'incident': $scope.incident,
+                        'district':  $scope.district.district__id,
+                        'incident': $scope.incident,
                     },
                     'is_edit':$scope.is_edit
                 }),
             }).success(function(data) {
                 console.log(data);
                 $scope.dlIrrigation = data;
+
                 console.log('alert',$scope.dlIrrigation.agri_irrigation.Table_3.DlMajorTanks[0].division);
-                    $scope.division = $scope.dlIrrigation.agri_irrigation.Table_3.DlMajorTanks[0].division;
-                    $scope.region = $scope.dlIrrigation.agri_irrigation.Table_3.DlMajorTanks[0].region;
+
+                $scope.division = $scope.dlIrrigation.agri_irrigation.Table_3.DlMajorTanks[0].division;
+                $scope.region = $scope.dlIrrigation.agri_irrigation.Table_3.DlMajorTanks[0].region;
             })
         }
     }

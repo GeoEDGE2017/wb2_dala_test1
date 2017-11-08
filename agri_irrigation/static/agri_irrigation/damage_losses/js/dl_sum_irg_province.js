@@ -1,3 +1,4 @@
+//table 5
 var app = angular.module('dlAgriIrrifationProApp', ['underscore']);
 
 app.controller("DlAgriIrrifationProController", function ($scope, $http, $parse, _) {
@@ -18,7 +19,7 @@ app.controller("DlAgriIrrifationProController", function ($scope, $http, $parse,
     $scope.provinces;
 
     // get relevant damage_losses data for calculations
-        $scope.changedValue=function getBsData(selectedValue) {
+    $scope.changedValue=function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {
             fetchProvinces();
         }
@@ -54,9 +55,9 @@ app.controller("DlAgriIrrifationProController", function ($scope, $http, $parse,
                     'table_name':  ['Table_5'],
                     'sector': ['agri_irrigation'],
                     'com_data': {
-                            'province': $scope.province,
-                            'incident': $scope.incident,
-                     },
+                        'province': $scope.province,
+                        'incident': $scope.incident,
+                    },
                 }),
             }).success(function(data) {
                 $scope.dlAgriIrrifationPro = data;
@@ -64,22 +65,22 @@ app.controller("DlAgriIrrifationProController", function ($scope, $http, $parse,
         }
     }
 
-   $scope.convertToInt = function(val1,val2,val3){
+    $scope.convertToInt = function(val1,val2,val3){
         var sum = parseInt(val1) + parseInt(val2) + parseInt(val3);
         return sum;
     }
 
-   $scope.convertTotal = function(val1,val2,val3,val4){
+    $scope.convertTotal = function(val1,val2,val3,val4){
         var sum = parseInt(val1) + parseInt(val2) + parseInt(val3) + parseInt(val4) ;
         return sum;
     }
 
-   $scope.checkIfNull = function() {
+    $scope.checkIfNull = function() {
         var isNull = $scope.dlAgriIrrifationPro ? angular.equals({}, $scope.dlAgriIrrifationPro.agri_irrigation.Table_5) : true;
         return isNull;
     }
 
-   $scope.totDmg = function() {
+    $scope.totDmg = function() {
         if(!angular.isUndefined($scope.dlAgriIrrifationPro)) {
             var totDmg1 = 0;
             var totDmg2 = 0;
@@ -90,7 +91,7 @@ app.controller("DlAgriIrrifationProController", function ($scope, $http, $parse,
             var totDmg7 = 0;
             var totDmg= 0;
             angular.forEach($scope.dlAgriIrrifationPro.agri_irrigation.Table_5, function(value, index) {
-            angular.forEach(value, function(value_in, key) {
+                angular.forEach(value, function(value_in, key) {
                     if(key == 'DlMajorTanksDistrict') {
                           totDmg1 = totDmg1 + value_in[0].damages;
                     }
@@ -114,15 +115,13 @@ app.controller("DlAgriIrrifationProController", function ($scope, $http, $parse,
                     }
                     totDmg = totDmg1 + totDmg2 + totDmg3 + totDmg4 + totDmg5 + totDmg6 + totDmg7;
                     console.log('test',totDmg);
-                    })
-
                 })
-
+            })
             return totDmg;
         }
     }
 
-   $scope.totLoss = function() {
+    $scope.totLoss = function() {
         if(!angular.isUndefined($scope.dlAgriIrrifationPro)) {
             var totLos1 = 0;
             var totLos2 = 0;
@@ -133,7 +132,7 @@ app.controller("DlAgriIrrifationProController", function ($scope, $http, $parse,
             var totLos7 = 0;
             var totLos= 0;
             angular.forEach($scope.dlAgriIrrifationPro.agri_irrigation.Table_5, function(value, index) {
-            angular.forEach(value, function(value_in, key) {
+                angular.forEach(value, function(value_in, key) {
                     if(key == 'DlLosMajorTanksDistrict') {
                           totLos1 = totLos1 + value_in[0].total_los;
                     }
@@ -157,14 +156,9 @@ app.controller("DlAgriIrrifationProController", function ($scope, $http, $parse,
                     }
                     totLos = totLos1 + totLos2 + totLos3 + totLos4 + totLos5 + totLos6 + totLos7;
                     console.log('test',totLos);
-                    })
-
                 })
-
+            })
             return totLos;
         }
     }
-
-
-
  })

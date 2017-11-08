@@ -534,3 +534,35 @@ class DlIrrigatnLosDistrictNew(models.Model):
     class Meta:
         managed = False
         db_table = 'agri_irrigation\".\"dl_irrigatn_los_district_new'
+
+
+class DlLosRiverEmbankmntNational(models.Model):
+    total_los = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_irrigation\".\"dl_los_river_embankmnt_national'
+
+
+class DlBuildingsNational(models.Model):
+    damages = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_irrigation\".\"dl_buildings_national'
+
+
+class DlLosBuildingsNational(models.Model):
+    total_los = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_irrigation\".\"dl_los_buildings_national'
+
+

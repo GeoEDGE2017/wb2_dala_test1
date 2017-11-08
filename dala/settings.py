@@ -2116,8 +2116,12 @@ TABLE_PROPERTY_MAPPER = {
                 ['total_los'],
             'DlRiverEmbankmntNational':
                 ['damages'],
-
-
+            'DlLosRiverEmbankmntNational':
+                ['total_los'],
+            'DlBuildingsNational':
+                ['damages'],
+            'DlLosBuildingsNational':
+                ['total_los'],
         },
     },
     'agri_agrarian': {

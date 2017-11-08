@@ -38,7 +38,7 @@ app.controller("dlAgriIrrifationNatController", function ($scope,$http,$parse, _
         }
     }
 
-    $scope.convertToInt = function(val1,val2,val3){
+    $scope.convertToInt = function(val1,val2,val3) {
         var sum = parseInt(val1) + parseInt(val2) + parseInt(val3);
         return sum;
     }
@@ -102,25 +102,25 @@ app.controller("dlAgriIrrifationNatController", function ($scope,$http,$parse, _
             angular.forEach($scope.dlagriIrrigationNat.agri_irrigation.Table_6, function(value, index) {
                 angular.forEach(value, function(value_in, key) {
                     if(key == 'DlLosMajorTanksNational') {
-                          totLos1 = totLos1 + value_in[0].total_los;
+                        totLos1 = totLos1 + value_in[0].total_los;
                     }
                     if(key == 'DlLosMediumTanksNational') {
-                          totLos2 = totLos2 + value_in[0].total_los;
+                        totLos2 = totLos2 + value_in[0].total_los;
                     }
                     if(key == 'DlLosMinorTanksNational') {
-                          totLos3 = totLos3 + value_in[0].total_los;
+                        totLos3 = totLos3 + value_in[0].total_los;
                     }
                     if(key == 'DlLosAnicutsNational') {
-                          totLos4 = totLos4 + value_in[0].total_los;
+                        totLos4 = totLos4 + value_in[0].total_los;
                     }
                     if(key == 'DlLosOtherNational') {
-                          totLos5 = totLos5 + value_in[3].total_los;
+                        totLos5 = totLos5 + value_in[0].total_los;
                     }
-                    if(key == 'DlLosOtherNational') {
-                          totLos6 = totLos6 + value_in[2].total_los;
+                    if(key == 'DlLosRiverEmbankmntNational') {
+                        totLos6 = totLos6 + value_in[0].total_los;
                     }
-                    if(key == 'DlLosOtherNational') {
-                          totLos7 = totLos7 + value_in[1].total_los;
+                    if(key == 'DlLosBuildingsNational') {
+                        totLos7 = totLos7 + value_in[0].total_los;
                     }
                     totLos = totLos1 + totLos2 + totLos3 + totLos4 + totLos5 + totLos6 + totLos7;
                 })

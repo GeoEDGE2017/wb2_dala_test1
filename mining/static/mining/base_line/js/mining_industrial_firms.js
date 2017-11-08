@@ -151,7 +151,6 @@ app.controller("MnIndusMinFirmController", function($scope, $http, _) {
 			}).success(function(data) {
 //				console.log(data);
 //				$scope.mnIndusMinFirm = data;
-
 				var edit_data_not_found = false;
                 if(data != null) {
                     angular.forEach(data.mining.Table_1, function(value, index) {
@@ -226,6 +225,7 @@ app.controller("MnIndusMinFirmController", function($scope, $http, _) {
 					$("#modal-container-469842").modal('hide');
 					$("#modal-container-469840").modal('hide');
 					$scope.is_edit_model = false;
+					location.reload();
 				}
 			})
 		}
@@ -235,7 +235,6 @@ app.controller("MnIndusMinFirmController", function($scope, $http, _) {
 		console.log($scope.selectedFirm);
 		console.log("ownership", $scope.ownership);
 		if(!angular.isUndefined($scope.selectedFirm) || $scope.selectedFirm === null) {
-			console.log('2');
 			$http({
 				method: "POST",
 				url: "/edit_firm",
@@ -249,7 +248,6 @@ app.controller("MnIndusMinFirmController", function($scope, $http, _) {
 				console.log(data);
 				$scope.selectedFirm = null;
 				$scope.fetchFirms();
-
 				$("#modal-container-469840").modal('hide');
 			})
 		}
@@ -260,7 +258,6 @@ app.controller("MnIndusMinFirmController", function($scope, $http, _) {
 
 	$scope.openAddFirm = function() {
 		$scope.submitted = true;
-		//        console.log('in');
 		if($scope.district && $scope.baselineDate) {
 			$("#modal-container-469842").modal('show');
 		}

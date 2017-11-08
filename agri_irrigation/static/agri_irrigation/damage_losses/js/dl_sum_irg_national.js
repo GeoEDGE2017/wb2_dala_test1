@@ -57,29 +57,30 @@ app.controller("dlAgriIrrifationNatController", function ($scope,$http,$parse, _
             var totDmg5 = 0;
             var totDmg6 = 0;
             var totDmg7 = 0;
-            var totDmg= 0;
+            var totDmg = 0;
+
             angular.forEach($scope.dlagriIrrigationNat.agri_irrigation.Table_6, function(value, index) {
                 angular.forEach(value, function(value_in, key) {
                     if(key == 'DlMajorTanksNational') {
-                          totDmg1 = totDmg1 + value_in[0].damages;
+                        totDmg1 = totDmg1 + value_in[0].damages;
                     }
                     if(key == 'DlMediumTanksNational') {
-                          totDmg2 = totDmg2 + value_in[0].damages;
+                        totDmg2 = totDmg2 + value_in[0].damages;
                     }
                     if(key == 'DlMinorTanksNational') {
-                          totDmg3 = totDmg3 + value_in[0].damages;
+                        totDmg3 = totDmg3 + value_in[0].damages;
                     }
                     if(key == 'DlAnicutsNational') {
-                          totDmg4 = totDmg4 + value_in[0].damages;
+                        totDmg4 = totDmg4 + value_in[0].damages;
                     }
                     if(key == 'DlOtherStructuresNational') {
-                          totDmg5 = totDmg5 + value_in[0].damages;
+                        totDmg5 = totDmg5 + value_in[0].damages;
                     }
                     if(key == 'DlRiverEmbankmntNational') {
-                          totDmg6 = totDmg6 + value_in[0].damages;
+                        totDmg6 = totDmg6 + value_in[0].damages;
                     }
                     if(key == 'DlBuildingsNational') {
-                          totDmg7 = totDmg7 + value_in[0].damages;
+                        totDmg7 = totDmg7 + value_in[0].damages;
                     }
                     totDmg =  totDmg1 + totDmg2 + totDmg3 + totDmg4 + totDmg5 + totDmg6 + totDmg7;
                 })
@@ -97,7 +98,7 @@ app.controller("dlAgriIrrifationNatController", function ($scope,$http,$parse, _
             var totLos5 = 0;
             var totLos6 = 0;
             var totLos7 = 0;
-            var totLos= 0;
+            var totLos = 0;
 
             angular.forEach($scope.dlagriIrrigationNat.agri_irrigation.Table_6, function(value, index) {
                 angular.forEach(value, function(value_in, key) {

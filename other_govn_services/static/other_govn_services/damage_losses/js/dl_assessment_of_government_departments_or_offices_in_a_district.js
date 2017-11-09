@@ -516,6 +516,7 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function($sco
                 $("#modal-container-218029").modal('hide');
                 $("#modal-container-218020").modal('hide');
                 $scope.is_edit_model = false;
+                location.reload();
 			})
 		}
 	}
@@ -564,7 +565,6 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function($sco
 
 	$scope.openAddDepartment = function(form) {
 		$scope.submitted = true;
-		console.log('in');
 		if($scope.incident && $scope.district) {
 		    $scope.new_department.name = null;
 			$scope.new_department.ownership_id = null;

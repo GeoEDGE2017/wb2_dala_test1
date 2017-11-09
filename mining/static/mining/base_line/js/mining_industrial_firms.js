@@ -88,7 +88,6 @@ app.controller("MnIndusMinFirmController", function($scope, $http, _) {
 
 	$scope.saveBsData = function(form) {
 		$scope.submitted = true;
-		console.log('saveBsData');
 		if(form.$valid) {
 			var array = $scope.mnIndusMinFirm.mining.Table_1;
 			var details = _.map(array, function(model_array) {
@@ -149,8 +148,6 @@ app.controller("MnIndusMinFirmController", function($scope, $http, _) {
 					}
 				}),
 			}).success(function(data) {
-//				console.log(data);
-//				$scope.mnIndusMinFirm = data;
 				var edit_data_not_found = false;
                 if(data != null) {
                     angular.forEach(data.mining.Table_1, function(value, index) {
@@ -177,8 +174,7 @@ app.controller("MnIndusMinFirmController", function($scope, $http, _) {
 		document.getElementById("clearbtn").disabled = true;
 		document.getElementById("editbtn").disabled = true;
 		document.getElementById("subbtn").disabled = true;
-		console.log("test", $scope.district);
-		console.log("test", $scope.bs_date);
+
 		$scope.is_search = true;
 		$scope.submitted = true;
 		if(form.$valid) {
@@ -195,8 +191,8 @@ app.controller("MnIndusMinFirmController", function($scope, $http, _) {
 					}
 				}),
 			}).success(function(data) {
-				console.log(data);
 				$scope.mnIndusMinFirm = data;
+				console.log($scope.mnIndusMinFirm);
 			})
 		}
 	}
@@ -232,8 +228,6 @@ app.controller("MnIndusMinFirmController", function($scope, $http, _) {
 	}
 
 	$scope.saveEditFirm = function(form) {
-		console.log($scope.selectedFirm);
-		console.log("ownership", $scope.ownership);
 		if(!angular.isUndefined($scope.selectedFirm) || $scope.selectedFirm === null) {
 			$http({
 				method: "POST",

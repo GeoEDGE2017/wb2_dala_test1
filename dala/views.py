@@ -1990,6 +1990,8 @@ def fetch_entities_all(request):
 
 @csrf_exempt
 def add_entity(request):
+    print ' add_entity '
+    print '------------'
     data = (yaml.safe_load(request.body))
     model_fields = data['model_fields']
     model_name = data['model']

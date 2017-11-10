@@ -149,21 +149,10 @@ app.controller('bsLivestockPoultryDstController', ['$scope', '$http', function($
                     },
                     'is_edit': $scope.is_edit
                 }),
-//            }).success(function(response) {
             }).then(function successCallback(response) {
                 $scope.bsLivestockPoultryDst = init_data;
                 $scope.is_edit = false;
-
                 console.log('response', response);
-
-//                if (data == 'False') {
-//                    $("#modal-container-239454").modal('show');
-//                    $scope.is_valid_data = false;
-//                }
-//                else {
-//                    $("#modal-container-239453").modal('show');
-//                }
-
                 if(response.data == 'False') {
                     $("#modal-container-239454").modal('show');
                     $scope.is_valid_data = false;

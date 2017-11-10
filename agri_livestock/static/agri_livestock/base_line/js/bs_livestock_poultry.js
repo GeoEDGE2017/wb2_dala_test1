@@ -475,9 +475,7 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {
-//                $("#modal-container-239453").modal('show');
                 console.log('response', response);
-
                 if(response.data == 'False') {
                     $("#modal-container-239454").modal('show');
                     $scope.is_valid_data = false;

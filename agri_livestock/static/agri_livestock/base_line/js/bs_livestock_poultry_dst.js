@@ -86,12 +86,10 @@ app.controller('bsLivestockPoultryDstController', ['$scope', '$http', function($
         if($scope.district && $scope.bs_date){
             $scope.is_edit_disable = true;
             $scope.check_search = true;
-
         }
-        else{
+        else {
             $scope.is_edit_disable = false;
             $scope.check_search = false;
-
         }
     }
 
@@ -151,10 +149,22 @@ app.controller('bsLivestockPoultryDstController', ['$scope', '$http', function($
                     },
                     'is_edit': $scope.is_edit
                 }),
-            }).success(function(data) {
+//            }).success(function(response) {
+            }).then(function successCallback(response) {
                 $scope.bsLivestockPoultryDst = init_data;
                 $scope.is_edit = false;
-                if (data == 'False') {
+
+                console.log('response', response);
+
+//                if (data == 'False') {
+//                    $("#modal-container-239454").modal('show');
+//                    $scope.is_valid_data = false;
+//                }
+//                else {
+//                    $("#modal-container-239453").modal('show');
+//                }
+
+                if(response.data == 'False') {
                     $("#modal-container-239454").modal('show');
                     $scope.is_valid_data = false;
                 }
@@ -185,15 +195,11 @@ app.controller('bsLivestockPoultryDstController', ['$scope', '$http', function($
             }).success(function(data) {
                 console.log(data);
 //                $scope.bsLivestockPoultryDst = data;
-
                 var edit_data_not_found = false;
                 if(data != null) {
-                    console.log('----if');
                     angular.forEach(data.agri_livestock.Table_1, function(value, index) {
-                        console.log('----forEach');
                         console.log(value);
                         if(value.length == 0) {
-                            console.log('----');
                             edit_data_not_found = true;
                         }
                     })
@@ -205,7 +211,6 @@ app.controller('bsLivestockPoultryDstController', ['$scope', '$http', function($
                     }
                 }
                 else {
-                    console.log('----else');
                     $("#modal-container-239456").modal('show');
                 }
             })
@@ -217,8 +222,7 @@ app.controller('bsLivestockPoultryDstController', ['$scope', '$http', function($
         document.getElementById("clearbtn").disabled = true;
 		document.getElementById("editbtn").disabled = true;
 		document.getElementById("subbtn").disabled = true;
-		console.log("test", $scope.district);
-		console.log("test", $scope.bs_date);
+
 		$scope.is_search = true;
         if (form.$valid) {
             $http({

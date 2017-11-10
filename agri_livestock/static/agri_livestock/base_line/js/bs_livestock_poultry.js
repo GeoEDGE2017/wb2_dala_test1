@@ -255,8 +255,7 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
                     avg_repair_cost : null,
                     created_user : null,
                     organization_id:$scope.selectedOrganization,
-                },
-                {
+                }, {
                     other_assets : 'Other Office equipment',
                     avg_replace_cost : null,
                     avg_repair_cost : null,
@@ -325,9 +324,8 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
         if($scope.district && $scope.bs_date) {
             $scope.is_edit_disable = true;
             $scope.check_search = true;
-
         }
-        else{
+        else {
             $scope.is_edit_disable = false;
             $scope.check_search = false;
         }
@@ -477,7 +475,16 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {
-                $("#modal-container-239453").modal('show');
+//                $("#modal-container-239453").modal('show');
+                console.log('response', response);
+
+                if(response.data == 'False') {
+                    $("#modal-container-239454").modal('show');
+                    $scope.is_valid_data = false;
+                }
+                else {
+                    $("#modal-container-239453").modal('show');
+                }
                 console.log(response);
             }, function errorCallback(response) {
                 $("#modal-container-239454").modal('show');
@@ -517,7 +524,6 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
     $scope.saveEditOrganization = function(form) {
         console.log($scope.selectedOrganization);
         if(!angular.isUndefined($scope.selectedOrganization) || $scope.selectedOrganization === null) {
-            console.log('2');
             $http({
                 method: "POST",
                 url: "/edit_organization",
@@ -563,13 +569,13 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
                 url: '/bs_get_data_mock_for_bs',
                 contentType: 'application/json; charset=utf-8',
                 data: angular.toJson({
-                    'db_tables': ['BelLivestock','BelPoultry'],
+                    'db_tables': ['BelLivestock', 'BelPoultry'],
                     'com_data': {
                         'district': $scope.district,
                         'bs_date': $scope.bs_date,
                     },
                     'table_name': 'Table_1',
-                    'sector':'agri_livestock',
+                    'sector': 'agri_livestock',
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {
@@ -647,7 +653,6 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
                     avg_val_mature_male : null,
                     avg_val_mature_female : null,
                 };
-
                 var obj3 = {
                     livestock : value.fields.livestock,
                     avg_replacec_anm_shed : null,
@@ -670,7 +675,6 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
                     avg_repairc_tools : null,
                     avg_repairc_others : null,
                 };
-
                 var obj5 = {
                     livestock : value.fields.livestock,
                     milk : null,
@@ -722,15 +726,11 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
             }).success(function(data) {
                 console.log(data);
 //                $scope.bsLivestockPoultry = data;
-
                 var edit_data_not_found = false;
                 if(data != null) {
-                    console.log('----if');
                     angular.forEach(data.agri_livestock.Table_2, function(value, index) {
-                        console.log('----forEach');
                         console.log(value);
                         if(value.length == 0) {
-                            console.log('----');
                             edit_data_not_found = true;
                         }
                     })
@@ -742,7 +742,6 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
                     }
                 }
                 else {
-                    console.log('----else');
                     $("#modal-container-239456").modal('show');
                 }
             })
@@ -754,8 +753,7 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
         document.getElementById("clearbtn").disabled = true;
 		document.getElementById("editbtn").disabled = true;
 		document.getElementById("subbtn").disabled = true;
-		console.log("test", $scope.district);
-		console.log("test", $scope.bs_date);
+
 		$scope.is_search = true;
         if (form.$valid) {
             $http({
@@ -776,12 +774,9 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
 
                 var edit_data_not_found = false;
                 if(data != null) {
-                    console.log('----if');
                     angular.forEach(data.agri_livestock.Table_2, function(value, index) {
-                        console.log('----forEach');
                         console.log(value);
                         if(value.length == 0) {
-                            console.log('----');
                             edit_data_not_found = true;
                         }
                     })
@@ -793,7 +788,6 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
                     }
                 }
                 else {
-                    console.log('----else');
                     $("#modal-container-239456").modal('show');
                 }
             })

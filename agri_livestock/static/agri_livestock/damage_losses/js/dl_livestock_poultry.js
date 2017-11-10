@@ -1,6 +1,5 @@
 //Table 3
 var app = angular.module('dlLivestockPoultryApp', [])
-
 app.controller('dlLivestockPoultryController', ['$scope', '$http', function($scope, $http) {
     $scope.district;
     $scope.selectedDistrict;
@@ -411,6 +410,7 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
 
     //Get Districts and related baseline Data
     $scope.changedValue = function getBsData(selectedValue) {
+        console.log('**** changedValue');
         if($scope.incident && selectedValue) {
             $http({
                 method: "POST",
@@ -439,7 +439,7 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
                         'organization_id': $scope.selectedOrganization.id,
                     },
                     'table_name': 'Table_2',
-                    'sector':'agri_livestock',
+                    'sector': 'agri_livestock',
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {
@@ -448,6 +448,7 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
                 angular.forEach(data, function(value, key) {
                     $scope.bs_data[key] = JSON.parse(value);
                 });
+
                 console.log($scope.bs_data);
                 var is_null = false;
                 angular.forEach($scope.bs_data, function(value, index) {
@@ -455,6 +456,7 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
                         is_null = true;
                     }
                 })
+
                 if(is_null == true) {
                     $("#modal-container-239458").modal('show');
                     console.log('baseline table or tables are empty');
@@ -493,7 +495,6 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
                         }
                     });
                 }
-
             }, function errorCallback(response) {
 
             });
@@ -503,6 +504,122 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
             $scope.is_edit_disable = true;
             $scope.check_search = true;
         }
+    }
+
+    //save Data
+    $scope.saveDlData = function(form) {
+        $scope.submitted = true;
+        if(form.$valid) {
+            $http({
+                method: 'POST',
+                url:'/dl_save_data',
+                contentType: 'application/json; charset=utf-8',
+                data: angular.toJson({
+                    'table_data': $scope.dlLivestockPoultry,
+                    'com_data': {
+                        'district_id':  $scope.district.district__id,
+                        'incident_id': $scope.incident,
+                        'organizationtype_id': $scope.selectedOrganization.id,
+                        'user_id':$scope.user_id
+                    },
+                    'bs_date': $scope.bsCreatedeDate,
+                    'is_edit': $scope.is_edit,
+                }),
+                dataType: 'json',
+            }).then(function successCallback(response) {
+                if(response.data == 'False') {
+                    $scope.is_valid_data = false;
+                    $("#modal-container-239454").modal('show');
+                }
+                else {
+                    $("#modal-container-239453").modal('show');
+                }
+            },
+            function errorCallback(response) {
+            });
+        }
+    }
+
+    //fetch Organization
+    $scope.fetchOrganization = function() {
+        $http({
+            method: "POST",
+            url: "/fetch_entities",
+            data: angular.toJson({
+                'district':  $scope.district.district__id,
+                'model': 'Organization',
+                'sector':'agri_livestock'
+            }),
+        }).success(function(data) {
+            $scope.organizations = data;
+        })
+    }
+
+    //edit Data
+    $scope.editDlData = function(form) {
+        $scope.is_edit = true;
+        $scope.submitted = true;
+        document.getElementById("clearbtn").disabled = true;
+
+        if(form.$valid) {
+            $http({
+                method: "POST",
+                url: '/dl_fetch_edit_data',
+                data: angular.toJson({
+                    'table_name': 'Table_3',
+                    'sector': 'agri_livestock',
+                    'com_data': {
+                        'district': $scope.district.district__id,
+                        'incident': $scope.incident,
+                        'organizationtype_id': $scope.selectedOrganization.id,
+                    },
+                    'is_edit': $scope.is_edit
+                }),
+            }).success(function(data) {
+                $scope.dlLivestockPoultry = data;
+            })
+        }
+    }
+
+    //Search Data
+    $scope.searchDlData = function(form) {
+        document.getElementById("clearbtn").disabled = true;
+		document.getElementById("editbtn").disabled = true;
+		document.getElementById("subbtn").disabled = true;
+
+		$scope.is_search = true;
+        if(form.$valid){
+            $http({
+                method: "POST",
+                url: '/dl_fetch_edit_data',
+                data: angular.toJson({
+                    'table_name': 'Table_3',
+                    'sector': 'agri_livestock',
+                    'com_data': {
+                        'district': $scope.district.district__id,
+                        'incident': $scope.incident,
+                        'organizationtype_id': $scope.selectedOrganization.id,
+                    },
+                    'is_edit':$scope.is_edit
+                }),
+            }).success(function(data) {
+                $scope.dlLivestockPoultry = data;
+            })
+        }
+    }
+
+    //cancel Data
+    $scope.cancelEdit = function() {
+        $scope.is_edit = false;
+        $scope.dlLivestockPoultry = init_data;
+        location.reload();
+    }
+
+    //clear Function
+    $scope.clear = function() {
+        $scope.is_edit = false;
+        $scope.dlLivestockPoultry = angular.copy(init_data);
+        location.reload();
     }
 
     //get fields from baseline data
@@ -519,8 +636,8 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
 
         angular.forEach(data_array, function(value, key) {
             obj_array = $scope.bs_data[value];
-            console.log('bs_data',$scope.bs_data[value]);
-            console.log('value',value);
+            console.log('bs_data', $scope.bs_data[value]);
+            console.log('value', value);
 
             model_name = value;
 
@@ -766,123 +883,8 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
         });
     }
 
-    //save Data
-    $scope.saveDlData = function(form) {
-        $scope.submitted = true;
-        if(form.$valid) {
-            $http({
-                method: 'POST',
-                url:'/dl_save_data',
-                contentType: 'application/json; charset=utf-8',
-                data: angular.toJson({
-                    'table_data': $scope.dlLivestockPoultry,
-                    'com_data': {
-                        'district_id':  $scope.district.district__id,
-                        'incident_id': $scope.incident,
-                        'organizationtype_id': $scope.selectedOrganization.id,
-                        'user_id':$scope.user_id
-                    },
-                    'bs_date': $scope.bsCreatedeDate,
-                    'is_edit': $scope.is_edit,
-                }),
-                dataType: 'json',
-            }).then(function successCallback(response) {
-                if(response.data == 'False') {
-                    $scope.is_valid_data = false;
-                    $("#modal-container-239454").modal('show');
-                }
-                else {
-                    $("#modal-container-239453").modal('show');
-                }
-            },
-            function errorCallback(response) {
-            });
-        }
-    }
-
-    //fetch Organization
-    $scope.fetchOrganization = function(){
-        $http({
-            method: "POST",
-            url: "/fetch_entities",
-            data: angular.toJson({
-                'district':  $scope.district.district__id,
-                'model': 'Organization',
-                'sector':'agri_livestock'
-            }),
-        }).success(function(data) {
-            $scope.organizations = data;
-        })
-    }
-
-    //edit Data
-    $scope.editDlData = function(form){
-        $scope.is_edit = true;
-        $scope.submitted = true;
-        document.getElementById("clearbtn").disabled = true;
-        if(form.$valid) {
-            $http({
-                method: "POST",
-                url: '/dl_fetch_edit_data',
-                data: angular.toJson({
-                    'table_name': 'Table_3',
-                    'sector': 'agri_livestock',
-                    'com_data': {
-                        'district': $scope.district.district__id,
-                        'incident': $scope.incident,
-                        'organizationtype_id': $scope.selectedOrganization.id,
-                    },
-                    'is_edit':$scope.is_edit
-                }),
-            }).success(function(data) {
-                $scope.dlLivestockPoultry = data;
-            })
-        }
-    }
-
-    //Search Data
-    $scope.searchDlData = function(form){
-        document.getElementById("clearbtn").disabled = true;
-		document.getElementById("editbtn").disabled = true;
-		document.getElementById("subbtn").disabled = true;
-
-		$scope.is_search = true;
-        if(form.$valid){
-            $http({
-                method: "POST",
-                url: '/dl_fetch_edit_data',
-                data: angular.toJson({
-                    'table_name': 'Table_3',
-                    'sector': 'agri_livestock',
-                    'com_data': {
-                        'district': $scope.district.district__id,
-                        'incident': $scope.incident,
-                        'organizationtype_id': $scope.selectedOrganization.id,
-                    },
-                    'is_edit':$scope.is_edit
-                }),
-            }).success(function(data) {
-                $scope.dlLivestockPoultry = data;
-            })
-        }
-    }
-
-    //cancel Data
-    $scope.cancelEdit = function(){
-        $scope.is_edit = false;
-        $scope.dlLivestockPoultry = init_data;
-        location.reload();
-    }
-
-    //clear Function
-    $scope.clear = function() {
-        $scope.is_edit = false;
-        $scope.dlLivestockPoultry = angular.copy(init_data);
-        location.reload();
-    }
-
     //Get Calculate data
-    $scope.CalTot=function(arr){
+    $scope.CalTot = function(arr) {
         var finaltotal = 0;
         angular.forEach(arr, function(value, key) {
             if(value.animals != 'Total' && value.structures !='Total' && value.other_assets !='Total') {
@@ -892,7 +894,7 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
         return finaltotal;
     }
 
-    $scope.calTotaltabOne=function() {
+    $scope.calTotaltabOne = function() {
         var finaltotal1 = 0;
         var finaltotal2 = 0;
         var grantot = 0;
@@ -915,7 +917,6 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
 
         return grantot;
     }
-
 
     $scope.calTotalProduction = function() {
         var finaltotal1 = 0;
@@ -1001,7 +1002,7 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
     }
 
     //Get Calculate data
-    $scope.CalTotlosses=function(arr,property) {
+    $scope.CalTotlosses = function(arr,property) {
         var finaltotal = 0;
         angular.forEach(arr, function(value, key) {
             if(value.animals != 'Total') {
@@ -1034,7 +1035,7 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
         return grantot;
     }
 
-    $scope.totalProLossesYear2 = function(){
+    $scope.totalProLossesYear2 = function() {
         var finaltotal1 = 0;
         var finaltotal2 = 0;
         var grantot = 0;

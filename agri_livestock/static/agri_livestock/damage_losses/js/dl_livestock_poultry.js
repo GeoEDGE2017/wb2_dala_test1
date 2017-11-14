@@ -383,8 +383,7 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
                     eggs_year_2 : null,
                     los_year_1 : null,
                     los_year_2 : null,
-                }
-],
+                }],
                 'DlpLosOther':[{
                     others : 'Cleaning costs',
                     los_year_1 : null,
@@ -487,7 +486,8 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
                         console.log('is not null response', response);
                         var result = response.data;
                         if(result.bs_date == null) {
-                            $("#modal-container-239458").modal('show');
+                            alert('!');
+//                            $("#modal-container-239458").modal('show');
                         }
                         else {
                             var bs_date = result.bs_date.replace(/^"(.*)"$/, '$1');

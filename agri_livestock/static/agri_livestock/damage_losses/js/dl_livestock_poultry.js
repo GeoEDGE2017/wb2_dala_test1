@@ -410,7 +410,6 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
 
     //Get Districts and related baseline Data
     $scope.changedValue = function getBsData(selectedValue) {
-        console.log('**** changedValue');
         if($scope.incident && selectedValue) {
             $http({
                 method: "POST",
@@ -426,6 +425,10 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
         }
 
         if($scope.incident && $scope.district && $scope.selectedOrganization) {
+            console.log('**** changedValue');
+            console.log('incident ', $scope.incident);
+            console.log('district ', $scope.district);
+            console.log('selectedOrganization ', $scope.selectedOrganization);
             $http({
                 method: 'POST',
                 url: '/bs_get_data_mock',
@@ -464,6 +467,7 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
                     $scope.currentBaselineDate = null;
                 }
                 else {
+                    console.log('is not null');
                     $http({
                         method: 'POST',
                         url: '/get_latest_bs_date',
@@ -480,7 +484,7 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
                         }),
                         dataType: 'json',
                     }).then(function successCallback(response) {
-                        console.log('response', response);
+                        console.log('is not null response', response);
                         var result = response.data;
                         if(result.bs_date == null) {
                             $("#modal-container-239458").modal('show');
@@ -576,7 +580,27 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
                     'is_edit': $scope.is_edit
                 }),
             }).success(function(data) {
-                $scope.dlLivestockPoultry = data;
+//                $scope.dlLivestockPoultry = data;
+
+                console.log(data);
+                var edit_data_not_found = false;
+                if (data != null) {
+                    angular.forEach(data.agri_livestock.Table_3, function(value, index) {
+                        console.log(value);
+                        if (value.length == 0) {
+                            edit_data_not_found = true;
+                        }
+                    })
+                    if (edit_data_not_found != true) {
+                        $scope.dlLivestockPoultry = data;
+                    }
+                    else {
+                        $("#modal-container-239456").modal('show');
+                    }
+                }
+                else {
+                    $("#modal-container-239456").modal('show');
+                }
             })
         }
     }

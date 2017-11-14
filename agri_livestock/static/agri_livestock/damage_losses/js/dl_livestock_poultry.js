@@ -581,7 +581,6 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
                 }),
             }).success(function(data) {
 //                $scope.dlLivestockPoultry = data;
-
                 console.log(data);
                 var edit_data_not_found = false;
                 if (data != null) {
@@ -627,7 +626,26 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
                     'is_edit':$scope.is_edit
                 }),
             }).success(function(data) {
-                $scope.dlLivestockPoultry = data;
+//                $scope.dlLivestockPoultry = data;
+                console.log(data);
+                var edit_data_not_found = false;
+                if (data != null) {
+                    angular.forEach(data.agri_livestock.Table_3, function(value, index) {
+                        console.log(value);
+                        if (value.length == 0) {
+                            edit_data_not_found = true;
+                        }
+                    })
+                    if (edit_data_not_found != true) {
+                        $scope.dlLivestockPoultry = data;
+                    }
+                    else {
+                        $("#modal-container-239456").modal('show');
+                    }
+                }
+                else {
+                    $("#modal-container-239456").modal('show');
+                }
             })
         }
     }

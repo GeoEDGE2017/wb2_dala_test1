@@ -106,7 +106,6 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
                     dead_mature_male : null,
                     damages : null,
                },
-
                 ],
                 //Tab 2
                 'DlpPafLivestock':[{

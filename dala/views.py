@@ -18,6 +18,7 @@ from education.base_line.models import PreSchools, PrimarySchools, SecondaryScho
 from users.models import UserDistrict
 import smtplib
 from django.db import connection
+import dateutil.parser
 
 @csrf_exempt
 def send_email(request):
@@ -1179,10 +1180,10 @@ def dl_save_data(request):
     admin_area = None
     filter_fields = {}
     current_user = None
-    print 'com_data', com_data
+    # print 'com_data', com_data
     print 'dl_data', dl_data
     try:
-        print 'bs_date', dl_data['bs_date']
+        print 'bs_date*', dl_data['bs_date']
     except:
         pass
     try:
@@ -1246,7 +1247,10 @@ def dl_save_data(request):
                         filter_fields['province_id'] = district.province.id
                         filter_fields['user'] = current_user
                         try:
+                            # filter_fields['bs_date'] = dl_data['bs_date']
                             filter_fields['bs_date'] = dl_data['bs_date']
+                            print '*** ', dl_data['bs_date']
+                            print '*** ', filter_fields['bs_date']
                         except Exception as e:
                             pass
                         dl_session = sub_app_session(**filter_fields)

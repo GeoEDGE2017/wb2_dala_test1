@@ -13,7 +13,6 @@ app.controller('bsInfoAcfoAssetsController', ['$scope', '$http', function($scope
     $scope.check_search = false;
     $scope.is_search = false;
 
-
     //initialize data
     var init_data = {
         'agri_agrarian': {
@@ -358,7 +357,6 @@ app.controller('bsInfoAcfoAssetsController', ['$scope', '$http', function($scope
                     'sector':'agri_agrarian'
                 }),
             }).success(function(data) {
-
                 $scope.bsInfoAcfoAssets = init_data;
                 $scope.is_edit = false;
 
@@ -375,7 +373,7 @@ app.controller('bsInfoAcfoAssetsController', ['$scope', '$http', function($scope
     }
 
     //edit data
-    $scope.editBsData = function(form){
+    $scope.editBsData = function(form) {
         $scope.submitted = true;
         $scope.is_edit = true;
         document.getElementById("clearbtn").disabled = true;
@@ -397,12 +395,9 @@ app.controller('bsInfoAcfoAssetsController', ['$scope', '$http', function($scope
 
                 var edit_data_not_found = false;
                 if(data != null) {
-                    console.log('----if');
                     angular.forEach(data.agri_agrarian.Table_2, function(value, index) {
-                        console.log('----forEach');
                         console.log(value);
                         if(value.length == 0) {
-                            console.log('----');
                             edit_data_not_found = true;
                         }
                     })
@@ -414,7 +409,6 @@ app.controller('bsInfoAcfoAssetsController', ['$scope', '$http', function($scope
                     }
                 }
                 else {
-                    console.log('----else');
                     $("#modal-container-239456").modal('show');
                 }
             })
@@ -426,8 +420,7 @@ app.controller('bsInfoAcfoAssetsController', ['$scope', '$http', function($scope
         document.getElementById("clearbtn").disabled = true;
 		document.getElementById("editbtn").disabled = true;
 		document.getElementById("subbtn").disabled = true;
-		console.log("test", $scope.district);
-		console.log("test", $scope.bs_date);
+
 		$scope.is_search = true;
         if (form.$valid) {
             $http({
@@ -447,12 +440,9 @@ app.controller('bsInfoAcfoAssetsController', ['$scope', '$http', function($scope
 
                 var edit_data_not_found = false;
                 if(data != null) {
-                    console.log('----if');
                     angular.forEach(data.agri_agrarian.Table_2, function(value, index) {
-                        console.log('----forEach');
                         console.log(value);
                         if(value.length == 0) {
-                            console.log('----');
                             edit_data_not_found = true;
                         }
                     })
@@ -464,7 +454,6 @@ app.controller('bsInfoAcfoAssetsController', ['$scope', '$http', function($scope
                     }
                 }
                 else {
-                    console.log('----else');
                     $("#modal-container-239456").modal('show');
                 }
             })
@@ -515,5 +504,4 @@ app.controller('bsInfoAcfoAssetsController', ['$scope', '$http', function($scope
             $scope.bsInfoAcfoAssets.agri_agrarian.Table_2.BacfStocks.splice(index, 1);
         }
     }
-
 }]);

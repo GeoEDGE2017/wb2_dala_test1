@@ -295,7 +295,7 @@ app.controller('BsInfoAsetTransController', ['$scope', '$http', function($scope,
         }
     }
 
-    //Search Bs Data
+    //search Bs Data
 	$scope.searchBsData = function(form) {
         document.getElementById("clearbtn").disabled = true;
         document.getElementById("editbtn").disabled = true;
@@ -456,11 +456,11 @@ app.controller('BsInfoAsetTransController', ['$scope', '$http', function($scope,
                 $scope.enum_data.transport_air.Table_1.BsAstAirStructures.push(enum_val);
             }
         })
-        console.log('getEnumDataFromStart - enum_data', $scope.enum_data);
+        console.log('getEnumDataFrom Start - enum_data', $scope.enum_data);
     }
 
     $scope.getEnumDataFromEnd = function() {
-        console.log('getEnumDataFromEnd - bsInfoAsetTrans', $scope.bsInfoAsetTrans);
+        console.log('getEnumDataFrom End - bsInfoAsetTrans', $scope.bsInfoAsetTrans);
         var bsAstAirAircrafts_e_index = 0;
         var bsAstAirEquipment_e_index = 0;
         var bsAstAirSupplies_e_index = 0;
@@ -523,7 +523,7 @@ app.controller('BsInfoAsetTransController', ['$scope', '$http', function($scope,
             }
         })
 
-        console.log('getEnumDataFromEnd - enum_data', $scope.enum_data);
+        console.log('getEnumDataFrom End - enum_data', $scope.enum_data);
     }
 
     $scope.updateEnums = function() {

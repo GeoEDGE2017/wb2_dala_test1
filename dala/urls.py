@@ -41,6 +41,7 @@ urlpatterns = [
     url(r'^fetch_company_tele$', views.fetch_company_tele, name='fetch_company_tele'),
 
     url(r'^get_latest_bs_date', views.get_latest_bs_date, name='get_latest_bs_date'),
+    url(r'^getlatest_bs_date_with_organization', views.getlatest_bs_date_with_organization, name='getlatest_bs_date_with_organization'),
     url(r'^dl_save_data_with_array', views.dl_save_data_with_array, name='dl_save_data_with_array'),
     url(r'^bs_get_data_mock_for_bs', views.bs_get_data_mock_for_bs, name='bs_get_data_mock_for_bs'),
     url(r'^dl_fetch_edit_data_with_array', views.dl_fetch_edit_data_with_array, name='dl_fetch_edit_data_with_array'),

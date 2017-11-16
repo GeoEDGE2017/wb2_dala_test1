@@ -467,7 +467,7 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
                     console.log('is not null');
                     $http({
                         method: 'POST',
-                        url: '/get_latest_bs_date_with_organization',
+                        url: '/getlatest_bs_date_with_organization',
                         contentType: 'application/json; charset=utf-8',
                         data: angular.toJson({
                             'db_tables': ['BlpAnmLivestock', 'BlpAnmPoultry', 'BlpAstLivestock', 'BlpAstPoultry',
@@ -495,6 +495,7 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
                             console.log('bs_date', result.bs_date);
                             console.log('bsCreatedeDate', result.bs_created_date);
                             generateRefencedData();
+                            alert('bsCreatedeDate', $scope.bsCreatedeDate);
                         }
                     });
                 }
@@ -676,13 +677,13 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
 
         angular.forEach(data_array, function(value, key) {
             obj_array = $scope.bs_data[value];
-            console.log('bs_data', $scope.bs_data[value]);
-            console.log('value', value);
+//            console.log('bs_data', $scope.bs_data[value]);
+//            console.log('value', value);
 
             model_name = value;
 
             if(model_name) {
-                console.log('name', model_name);
+//                console.log('name', model_name);
 
                 var particular_value_1 = null;
                 var particular_value_2 = null;

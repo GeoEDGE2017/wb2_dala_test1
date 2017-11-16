@@ -1007,9 +1007,9 @@ def get_latest_bs_date(request):
 
 # dileepa
 @csrf_exempt
-def get_latest_bs_date_with_organization(request):
-    print '\nget_latest_bs_date'
-    print '----------------------'
+def getlatest_bs_date_with_organization(request):
+    print 'get_latest_bs_date_with_organization'
+    print '*----------------------'
     todate = timezone.now()
     data = (yaml.safe_load(request.body))
     com_data = data['com_data']
@@ -1033,7 +1033,7 @@ def get_latest_bs_date_with_organization(request):
     try:
         bd_sessions = bs_session_model.objects.extra(select={'difference': 'full_bs_date - %s'},
                                                      select_params=(incident_date,)). \
-            filter(table_name=table_name, district=district, organizationType=organization_id). \
+            filter(table_name=table_name, district=district, organization=organization_id). \
             values('difference', 'id', 'bs_date', 'date').order_by('difference').latest('difference')
 
         print bd_sessions

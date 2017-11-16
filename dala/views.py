@@ -948,7 +948,8 @@ def bs_get_data_mock_for_bs(request):
 # dileepa
 @csrf_exempt
 def get_latest_bs_date(request):
-    print '\n----------------------'
+    print '\nget_latest_bs_date'
+    print '----------------------'
     todate = timezone.now()
     data = (yaml.safe_load(request.body))
     com_data = data['com_data']
@@ -987,6 +988,67 @@ def get_latest_bs_date(request):
         #     'bs_created_date': bs_created_date,
         # }
 
+        return HttpResponse(
+            json.dumps(({
+                'bs_date': bs_date,
+                'bs_created_date': bs_created_date,
+            })),
+            content_type='application/json; charset=utf8'
+        )
+    except Exception as ex:
+        print '** Error', ex
+        bs_date = None
+
+        return HttpResponse(
+            json.dumps((bs_date)),
+            content_type='application/json; charset=utf8'
+        )
+
+
+# dileepa
+@csrf_exempt
+def get_latest_bs_date_with_organization(request):
+    print '\nget_latest_bs_date'
+    print '----------------------'
+    todate = timezone.now()
+    data = (yaml.safe_load(request.body))
+    com_data = data['com_data']
+    district = com_data['district']
+    incident_id = com_data['incident']
+    organization_id = com_data['organization_id']
+    sector = data['sector']
+    incident = IncidentReport.objects.get(pk=incident_id)
+    incident_date = incident.reported_date_time
+    table_name = data['table_name']
+    bs_mtable_data = {}
+
+    sub_app_name = sector + '.base_line'
+
+    bs_session_model = apps.get_model(sub_app_name, 'BdSessionKeys')
+
+    print 'incident_date', incident_date
+    print bs_session_model
+    print '@'
+
+    try:
+        bd_sessions = bs_session_model.objects.extra(select={'difference': 'full_bs_date - %s'},
+                                                     select_params=(incident_date,)). \
+            filter(table_name=table_name, district=district, organizationType=organization_id). \
+            values('difference', 'id', 'bs_date', 'date').order_by('difference').latest('difference')
+
+        print bd_sessions
+
+        bs_date = bd_sessions['bs_date']
+        print 'bs_date', bs_date
+
+        bs_created_date = str(bd_sessions['date'])
+        print '******* bs_created_date', bs_created_date
+
+        # data = {
+        #     'bs_date': bs_date,
+        #     'bs_created_date': bs_created_date,
+        # }
+        print '&&&&& ', bs_created_date
         return HttpResponse(
             json.dumps(({
                 'bs_date': bs_date,

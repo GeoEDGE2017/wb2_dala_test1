@@ -467,7 +467,7 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
                     console.log('is not null');
                     $http({
                         method: 'POST',
-                        url: '/get_latest_bs_date',
+                        url: '/get_latest_bs_date_with_organization',
                         contentType: 'application/json; charset=utf-8',
                         data: angular.toJson({
                             'db_tables': ['BlpAnmLivestock', 'BlpAnmPoultry', 'BlpAstLivestock', 'BlpAstPoultry',
@@ -475,6 +475,7 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
                             'com_data': {
                                 'district': $scope.district.district__id,
                                 'incident': $scope.incident,
+                                'organization_id': $scope.selectedOrganization.id,
                             },
                             'table_name': 'Table_2',
                             'sector': 'agri_livestock',

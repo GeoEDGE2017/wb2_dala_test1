@@ -495,7 +495,7 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
                             console.log('bs_date', result.bs_date);
                             console.log('bsCreatedeDate', result.bs_created_date);
                             generateRefencedData();
-                            alert('bsCreatedeDate', $scope.bsCreatedeDate);
+//                            alert('bsCreatedeDate', $scope.bsCreatedeDate);
                         }
                     });
                 }

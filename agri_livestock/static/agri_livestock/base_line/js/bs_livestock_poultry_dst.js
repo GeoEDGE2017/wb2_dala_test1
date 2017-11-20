@@ -150,7 +150,6 @@ app.controller('bsLivestockPoultryDstController', ['$scope', '$http', function($
                     'is_edit': $scope.is_edit
                 }),
             }).then(function successCallback(response) {
-                $scope.bsLivestockPoultryDst = init_data;
                 $scope.is_edit = false;
                 console.log('response', response);
                 if(response.data == 'False') {
@@ -159,9 +158,9 @@ app.controller('bsLivestockPoultryDstController', ['$scope', '$http', function($
                 }
                 else {
                     $scope.updateEnums();
-                    $scope.bsLivestockPoultryDst = init_data;
                     $("#modal-container-239453").modal('show');
                 }
+                $scope.bsLivestockPoultryDst = init_data;
             })
         }
     }
@@ -234,12 +233,9 @@ app.controller('bsLivestockPoultryDstController', ['$scope', '$http', function($
 
                 var edit_data_not_found = false;
                 if(data != null) {
-                    console.log('----if');
                     angular.forEach(data.agri_livestock.Table_1, function(value, index) {
-                        console.log('----forEach');
                         console.log(value);
                         if(value.length == 0) {
-                            console.log('----');
                             edit_data_not_found = true;
                         }
                     })
@@ -251,7 +247,6 @@ app.controller('bsLivestockPoultryDstController', ['$scope', '$http', function($
                     }
                 }
                 else {
-                    console.log('----else');
                     $("#modal-container-239456").modal('show');
                 }
             })
@@ -287,6 +282,7 @@ app.controller('bsLivestockPoultryDstController', ['$scope', '$http', function($
         angular.forEach($scope.bsLivestockPoultryDst.agri_livestock.Table_1.BelLivestock, function(value, index, key) {
             if(value.livestock != 'Swine' && value.livestock != 'Sheep' && value.livestock != 'Goat' &&
                 value.livestock != 'Cattle' && value.livestock != 'Buffalo') {
+                console.log('-----if getEnumDataFrom Start');
                 var enum_val = {
                     oldasset: value.livestock,
                     newasset: null,
@@ -311,11 +307,19 @@ app.controller('bsLivestockPoultryDstController', ['$scope', '$http', function($
         console.log($scope.bsLivestockPoultryDst.agri_livestock.Table_1);
         var belLivestock_e_index = 0;
         angular.forEach($scope.bsLivestockPoultryDst.agri_livestock.Table_1.BelLivestock, function(value, key) {
+            console.log('-----for', value.livestock);
+            console.log('-----for', value.livestock != 'Swine' && value.livestock != 'Sheep' && value.livestock != 'Goat' &&
+                value.livestock != 'Cattle' && value.livestock != 'Buffalo');
+//            console.log('-----for', value.livestock);
+//            console.log('-----for', value.livestock);
+//            console.log('-----for', value.livestock);
             if(value.livestock != 'Swine' && value.livestock != 'Sheep' && value.livestock != 'Goat' &&
                 value.livestock != 'Cattle' && value.livestock != 'Buffalo') {
+                console.log('-----if');
                 angular.forEach($scope.enum_data.agri_livestock.Table_1.BelLivestock, function(each_enum, index, key_in) {
                     console.log($scope.enum_data.agri_livestock.Table_1.BelLivestock);
                     if(each_enum.enum_index == belLivestock_e_index) {
+                        console.log('-----');
                         $scope.enum_data.agri_livestock.Table_1.BelLivestock[index].newasset = value.livestock;
                     }
                 })
@@ -327,6 +331,7 @@ app.controller('bsLivestockPoultryDstController', ['$scope', '$http', function($
 
     $scope.updateEnums = function() {
         $scope.getEnumDataFromEnd();
+        console.log('updateEnums ', $scope.enum_data);
         $http({
             method: 'POST',
             url: '/update_enumirate_dl_data',

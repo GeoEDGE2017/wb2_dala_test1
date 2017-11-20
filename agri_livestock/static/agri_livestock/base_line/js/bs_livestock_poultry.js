@@ -481,6 +481,7 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
                     $scope.is_valid_data = false;
                 }
                 else {
+                    $scope.updateEnums();
                     $("#modal-container-239453").modal('show');
                 }
                 console.log(response);
@@ -734,6 +735,7 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
                     })
                     if(edit_data_not_found != true) {
                         $scope.bsLivestockPoultry = data;
+                        $scope.getEnumDataFromStart();
                     }
                     else {
                         $("#modal-container-239456").modal('show');
@@ -805,5 +807,87 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
         $scope.is_edit = false;
         $scope.bsLivestockPoultry = angular.copy(init_data);
         location.reload();
+    }
+
+    $scope.enum_data = {
+        'agri_livestock': {
+            'Table_2': {
+                'BlpAstOther': [],
+            }
+        }
+    }
+
+    $scope.getEnumDataFromStart = function() {
+        var blpAstOther_e_index = 0;
+        angular.forEach($scope.bsLivestockPoultry.agri_livestock.Table_2.BlpAstOther, function(value, index, key) {
+            if(value.other_assets != 'Computers' && value.other_assets != 'Furniture' && value.other_assets != 'Office supplies' &&
+                value.other_assets != 'Vehicles' && value.other_assets != 'Other Office equipment') {
+                var enum_val = {
+                    oldasset: value.other_assets,
+                    newasset: null,
+                    enum_index: blpAstOther_e_index,
+                    bs_asset_field: 'other_assets',
+                    dl_tables: {
+                        'Table_3': {
+                            'DlpStructOther': {
+                                dl_asset_field: 'other_assets'
+                            }
+                        }
+                    }
+                };
+                blpAstOther_e_index = blpAstOther_e_index + 1;
+                $scope.enum_data.agri_livestock.Table_2.BlpAstOther.push(enum_val);
+            }
+        })
+        console.log('getEnumDataFromStart', $scope.enum_data);
+    }
+
+    $scope.getEnumDataFromEnd = function() {
+        console.log($scope.bsLivestockPoultry.agri_livestock.Table_2);
+        var blpAstOther_e_index = 0;
+        angular.forEach($scope.bsLivestockPoultry.agri_livestock.Table_2.BlpAstOther, function(value, key) {
+            if(value.other_assets != 'Computers' && value.other_assets != 'Furniture' && value.other_assets != 'Office supplies' &&
+                value.other_assets != 'Vehicles' && value.other_assets != 'Other Office equipment') {
+                angular.forEach($scope.enum_data.agri_livestock.Table_2.BlpAstOther, function(each_enum, index, key_in) {
+                    console.log($scope.enum_data.agri_livestock.Table_2.BlpAstOther);
+                    if(each_enum.enum_index == blpAstOther_e_index) {
+                        $scope.enum_data.agri_livestock.Table_2.BlpAstOther[index].newasset = value.other_assets;
+                    }
+                })
+                blpAstOther_e_index = blpAstOther_e_index + 1;
+            }
+        })
+        console.log('getEnumDataFromEnd', $scope.enum_data);
+    }
+
+    $scope.updateEnums = function() {
+        $scope.getEnumDataFromEnd();
+        $http({
+            method: 'POST',
+            url: '/uupdate_enumirate_dl_data_with_organizations',
+            contentType: 'application/json; charset=utf-8',
+            data: angular.toJson({
+                'enum_data': ($scope.enum_data),
+                'com_data': {
+                    'district': $scope.district,
+                    'bs_date': $scope.bs_date,
+                    'organization_id': $scope.selectedOrganization.id,
+                    'user_id': $scope.user_id
+                },
+                'is_edit': $scope.is_edit,
+                'sector': 'agri_livestock'
+            }),
+            dataType: 'json',
+        }).then(function successCallback(response) {
+            console.log(response);
+//            if(response.data == 'False') {
+//                alert('False');
+//            }
+//            else {
+//                alert('True');
+//            }
+        }, function errorCallback(response) {
+
+        });
     }
 }]);

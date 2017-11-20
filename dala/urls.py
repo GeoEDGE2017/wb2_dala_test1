@@ -63,6 +63,7 @@ urlpatterns = [
     url(r'^update_enumirate_dl_data$', views.update_enumirate_dl_data, name='update_enumirate_dl_data'),
     url(r'^update_other_government_enumirate_dl_data$', views.update_other_government_enumirate_dl_data, name='update_other_government_enumirate_dl_data'),
     url(r'^uupdate_enumirate_dl_data_with_firms$', views.uupdate_enumirate_dl_data_with_firms, name='uupdate_enumirate_dl_data_with_firms'),
+    url(r'^uupdate_enumirate_dl_data_with_organizations$', views.uupdate_enumirate_dl_data_with_organizations, name='uupdate_enumirate_dl_data_with_organizations'),
 
     url(r'^fetch_incident_districts$', views.fetch_incident_districts, name='fetch_incident_districts'),
     url(r'^fetch_incident_provinces$', views.fetch_incident_provinces, name='fetch_incident_provinces'),

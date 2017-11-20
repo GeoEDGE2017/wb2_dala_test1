@@ -10,6 +10,7 @@ bsAstTransWaterApp.controller('BsAstTransWaterController', function BsAstTransWa
 	$scope.is_edit_disable = false;
 	$scope.user_id;
 	$scope.check_search = false;
+
 	var init_data = {
 		'transport_water': {
 			'Table_1': {
@@ -94,7 +95,9 @@ bsAstTransWaterApp.controller('BsAstTransWaterController', function BsAstTransWa
 			}
 		}
 	}
+
 	$scope.bsAstTransWater = angular.copy(init_data);
+
 	//Disable Edit Button
 	$scope.changeDis = function changeDis() {
 		if($scope.district && $scope.bs_date) {
@@ -105,6 +108,7 @@ bsAstTransWaterApp.controller('BsAstTransWaterController', function BsAstTransWa
 			$scope.check_search = false;
 		}
 	}
+
 	$scope.insertAssets = function(table) {
 		console.log($scope.bsAstTransWater.transport_water.Table_1.BsAstWaterStructures);
 		var new_row;
@@ -116,7 +120,8 @@ bsAstTransWaterApp.controller('BsAstTransWaterController', function BsAstTransWa
 				avg_replace_cost: null,
 				avg_repair_cost: null,
 			}
-		} else if(table == 'BsAstWaterEquipment') {
+		}
+		else if(table == 'BsAstWaterEquipment') {
 			new_row = {
 				assets: '',
 				public: null,
@@ -124,7 +129,8 @@ bsAstTransWaterApp.controller('BsAstTransWaterController', function BsAstTransWa
 				avg_replace_cost: null,
 				avg_repair_cost: null,
 			}
-		} else if(table == 'BsAstWaterMaterials') {
+		}
+		else if(table == 'BsAstWaterMaterials') {
 			new_row = {
 				assets: '',
 				public: null,
@@ -132,7 +138,8 @@ bsAstTransWaterApp.controller('BsAstTransWaterController', function BsAstTransWa
 				avg_replace_cost: null,
 				avg_repair_cost: null,
 			}
-		} else if(table == 'BsAstWaterStructures') {
+		}
+		else if(table == 'BsAstWaterStructures') {
 			new_row = {
 				assets: '',
 				public: null,
@@ -146,11 +153,14 @@ bsAstTransWaterApp.controller('BsAstTransWaterController', function BsAstTransWa
 	$scope.removeItem = function removeItem(table, index) {
 		if(table == 'BsAstWaterWcrafts') {
 			$scope.bsAstTransWater.transport_water.Table_1.BsAstWaterWcrafts.splice(index, 1);
-		} else if(table == 'BsAstWaterEquipment') {
+		}
+		else if(table == 'BsAstWaterEquipment') {
 			$scope.bsAstTransWater.transport_water.Table_1.BsAstWaterEquipment.splice(index, 1);
-		} else if(table == 'BsAstWaterMaterials') {
+		}
+		else if(table == 'BsAstWaterMaterials') {
 			$scope.bsAstTransWater.transport_water.Table_1.BsAstWaterMaterials.splice(index, 1);
-		} else if(table == 'BsAstWaterStructures') {
+		}
+		else if(table == 'BsAstWaterStructures') {
 			$scope.bsAstTransWater.transport_water.Table_1.BsAstWaterStructures.splice(index, 1);
 		}
 	}
@@ -181,6 +191,7 @@ bsAstTransWaterApp.controller('BsAstTransWaterController', function BsAstTransWa
 			$scope.bsInfoAsetTrans = init_data;
 		})
 	}
+
 	$scope.editBsData = function() {
 		$scope.submitted = true;
 		$scope.is_edit = true;
@@ -219,6 +230,7 @@ bsAstTransWaterApp.controller('BsAstTransWaterController', function BsAstTransWa
 			}
 		})
 	}
+
 	$scope.searchBsData = function() {
 		document.getElementById("clearbtn").disabled = true;
 		document.getElementById("editbtn").disabled = true;
@@ -242,22 +254,20 @@ bsAstTransWaterApp.controller('BsAstTransWaterController', function BsAstTransWa
 			//            $scope.bsAstTransWater = data;
 			var edit_data_not_found = false;
 			if(data != null) {
-				console.log('----if');
 				angular.forEach(data.transport_water.Table_1, function(value, index) {
-					console.log('----forEach');
 					console.log(value);
 					if(value.length == 0) {
-						console.log('----');
 						edit_data_not_found = true;
 					}
 				})
 				if(edit_data_not_found != true) {
 					$scope.bsAstTransWater = data;
-				} else {
+				}
+				else {
 					$("#modal-container-239456").modal('show');
 				}
-			} else {
-				console.log('----else');
+			}
+			else {
 				$("#modal-container-239456").modal('show');
 			}
 		})

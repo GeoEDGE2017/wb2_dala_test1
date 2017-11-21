@@ -70,6 +70,7 @@ urlpatterns = [
 
     # get Business Types
     url(r'^fetch_business_types$', views.fetch_business_types, name='fetch_business_types'),
+    url(r'^fetch_business_types_for_summary$', views.fetch_business_types_for_summary, name='fetch_business_types_for_summary'),
 
     # get Business Types
     url(r'^fetch_tourism_infrastructure_types$', views.fetch_tourism_infrastructure_types, name='fetch_tourism_infrastructure_types'),
@@ -80,7 +81,6 @@ urlpatterns = [
     url(r'^fetch_pw_gen_firms$', views.fetch_pw_gen_firms, name='fetch_pw_gen_firms'),
 
     url(r'^fetch_entities_plain_column$', views.fetch_entities_plain_column, name='fetch_entities_plain_column'),
-
 
     # agri_irrigation
     url(r'^agri_irrigation/', include('agri_irrigation.urls', namespace='agri_irrigation')),

@@ -82,7 +82,6 @@ app.controller('dlSummTouBusiFaciDisController', function($scope, $http, $parse,
             })
             //business losses
             angular.forEach($scope.data.DlLosBusDistrict, function(value, key) {
-
                 if(!$scope.table.business[value.business]){
                     $scope.table.business[value.business] = {'name':value.business}
                     $scope.table.business[value.business].year1Damage = {};
@@ -124,10 +123,11 @@ app.controller('dlSummTouBusiFaciDisController', function($scope, $http, $parse,
     $scope.fetchBusinessTypes = function(){
         $http({
             method: "POST",
-            url: "/fetch_business_types",
+            url: "/fetch_business_types_for_summary",
             data: angular.toJson({
+//                'district':  $scope.district.district__id,
                 'model': 'TouBusiness',
-                'sector':'tourism'
+                'sector': 'tourism'
              }),
         }).success(function(data) {
             $scope.businessTypes = data;
@@ -140,7 +140,7 @@ app.controller('dlSummTouBusiFaciDisController', function($scope, $http, $parse,
             url: "/fetch_entities_plain",
             data: angular.toJson({
                 'model': 'InfType',
-                'sector':'tourism',
+                'sector': 'tourism',
             }),
         }).success(function(data) {
             console.log(data);

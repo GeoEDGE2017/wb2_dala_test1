@@ -130,16 +130,36 @@ def fetch_business_types(request):
     # print "got objects"
     # business_types_json = business_types.values('business').distinct()
     # print "converted"
-    print dl_data['district']
-    print dl_data['bs_date']
+    # print dl_data['district']
+    # print dl_data['bs_date']
     try:
         business_types = BsTouBusiness.objects.filter(district=dl_data['district'], bs_date=dl_data['bs_date'])
     except:
         business_types = BsTouBusiness.objects.filter(district=dl_data['district'])
 
-    # business_types = BsTouBusiness.objects.filter(district=dl_data['district'])
     business_types_json = business_types.values('business').distinct()
-    # sector = dl_data['sector']
+
+    return HttpResponse(
+        json.dumps(list(business_types_json)),
+        content_type='application/javascript; charset=utf8'
+    )
+
+# dileepa
+@csrf_exempt
+def fetch_business_types_for_summary(request):
+    print "-* fetch_business_types"
+    dl_data = (yaml.safe_load(request.body))
+
+    # change appropiately in the future
+    # business_types = TouBusiness.objects.all()
+    # business_types = TouBusiness.objects.filter(~Q(business=''))
+    # from django.db.models import Q  ## for not operator
+
+    print "before getting objects"
+    business_types = BsTouBusiness.objects.all()
+    print "got objects"
+    business_types_json = business_types.values('business').distinct()
+    print "converted"
 
     return HttpResponse(
         json.dumps(list(business_types_json)),

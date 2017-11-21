@@ -22,9 +22,11 @@
             <span class="label label-success" style="font-size:14px;">
                 Table 2. Damages and Losses in Tourism Business
             </span>
+            <span style="margin-left:15px;color:#000;" ng-bind="currentBaselineDate"></span>
         </li>
         <li style="float:right;">
-            <a href="{% static 'dashboard/doc/Tourism.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document">
+            <a href="{% static 'dashboard/doc/Tourism.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info"
+               data-toggle="tooltip" title="Veiw Document">
             </a>
         </li>
     </ol>
@@ -39,13 +41,21 @@
         </ul>
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
-             <td style="width:100px;"> <span ng-if="!check_search">
-									<button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
-									</span> <span ng-if="check_search">
-									<button ng-click="searchDlData(form_dl_tou_buss)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
-									</span>
-									<button ng-click="clear()" ng-if="is_search" class="btn btn-warning">Cancel Search</button>
-								</td>
+                <td style="width:100px;">
+                    <span ng-if="!check_search">
+                        <button ng-if="!is_search" class="btn btn-info" disabled>
+                            <span class="fa fa-search"></span>
+                        </button>
+                    </span>
+                    <span ng-if="check_search">
+                        <button ng-click="searchDlData(form_dl_tou_buss)" ng-if="!is_search" class="btn btn-info">
+                            <span class="fa fa-search"></span>
+                        </button>
+                    </span>
+                    <button ng-click="clear()" ng-if="is_search" class="btn btn-warning">
+                        Cancel Search
+                    </button>
+                </td>
                 <table class="table table-bordered">
                     <colgroup>
                         <col width="229"/>
@@ -75,8 +85,7 @@
                         </td>
                         <td colspan="3" width="600">
                             <select id="selectbasic" name="incident" ng-model="incident"
-                                    class="form-control" ng-change="changedValue(true)"
-                                    style="width:100%;font-weight:400;" required>
+                                    class="form-control" ng-change="changedValue(true)" style="width:100%;font-weight:400;" required>
                                 <option value="" selected="true">Select an Incident</option>
                                 {% for incident in incidents %}
                                 <option value={{incident.id}}>
@@ -151,7 +160,6 @@
                                 <option value="" selected="true">Select Ownership</option>
                                 <option value="Public">Public</option>
                                 <option value="Private">Private</option>
-
                             </select>
                         </td>
                     </tr>
@@ -798,5 +806,39 @@
         </div>
     </div>
     <!-- /.conainer-fluid -->
+    <!-- please update the baseline tables -->
+    <div class="modal fade" id="modal-container-239458" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                            onclick="javascript:window.location.reload()">
+                        ×
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        Warning
+                    </h4>
+                </div>
+                <div class="modal-body alert-info">
+                    <h4>
+                        <span class="icon-close"></span>
+                        Please update the baseline <br>
+                        <b>'Table 1. Baseline information of tourism facilities in a district'</b><br>
+                        information before you calculate the damage and loss !
+                    </h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"
+                            onclick="javascript:window.location.reload()">
+                        Close
+                    </button>
+                    <button id="ok" onclick="javascript:window.location.reload()" type="button"
+                            class="btn btn-primary">
+                        OK
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
 {% endblock content %}

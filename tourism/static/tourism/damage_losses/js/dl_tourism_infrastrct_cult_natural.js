@@ -105,7 +105,7 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
         }
     }
 
-    $scope.fetchInfTypes = function(){
+    $scope.fetchInfTypes = function() {
         $http({
             method: "POST",
             url: "/fetch_entities_plain",
@@ -119,7 +119,7 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
         })
     }
 
-    $scope.fetchTourismInfrastructures = function(){
+    $scope.fetchTourismInfrastructures = function() {
         console.log("fetching");
         $http({
             method: "POST",
@@ -134,9 +134,9 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
         })
     }
 
-    $scope.insertAsset = function(table){
+    $scope.insertAsset = function(table) {
         var new_row;
-        if(table == 'DmgInfAssets'){
+        if(table == 'DmgInfAssets') {
             new_row = {'assets': '','val_dst':null, 'val_pdmg':null, 'tot_dmg':null, }
             $scope.dl_tourism_infrs.tourism.Table_3[table].push(new_row);
         }
@@ -229,7 +229,7 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
     }
 
     $scope.dataEdit = function() {
-        if($scope.district && $scope.incident && $scope.selectedInfrastructure  ){
+        if($scope.district && $scope.incident && $scope.selectedInfrastructure) {
             $scope.is_edit = true;
             $scope.submitted = true;
             document.getElementById("clearbtn").disabled = true;
@@ -248,7 +248,7 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
                 }),
             }).success(function(data) {
                 console.log("edit", data);
-                if((data.tourism.Table_3.DlInfLosses.length == 0) ||(data.tourism.Table_3.DmgInfAssets.length == 0)) {
+                if((data.tourism.Table_3.DlInfLosses.length == 0) || (data.tourism.Table_3.DmgInfAssets.length == 0)) {
                     $scope.is_edit = false;
                 }
                 else {
@@ -266,12 +266,11 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
     }
 
     $scope.searchDlData = function() {
-        if($scope.district && $scope.incident && $scope.selectedInfrastructure  ){
+        if($scope.district && $scope.incident && $scope.selectedInfrastructure){
             document.getElementById("clearbtn").disabled = true;
 		    document.getElementById("editbtn").disabled = true;
 		    document.getElementById("subbtn").disabled = true;
-		    console.log("test", $scope.district);
-		    console.log("test", $scope.bs_date);
+
 		    $scope.is_search = true;
             $http({
                 method: "POST",
@@ -325,8 +324,8 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
                 data: angular.toJson({
                     'model': 'Infrastructure',
                     'model_fields': $scope.new_infra,
-                    'is_edit' : false,
-                    'sector':'tourism',
+                    'is_edit': false,
+                    'sector': 'tourism',
                     'district_id' : $scope.district.district__id,
                     'inf_type_id' : $scope.selectedType.id,
                 }),

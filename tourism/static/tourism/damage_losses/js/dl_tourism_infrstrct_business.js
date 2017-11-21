@@ -6,12 +6,13 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
     $scope.selectedDistrict;
     $scope.incident;
     $scope.dlDate;
-    $scope.bs_data={};
+    $scope.bs_data = {};
     $scope.firms;
     $scope.ownership;
     $scope.isOwnershipPublic;
     $scope.selectedFirm;
     $scope.selectedType;
+    $scope.currentBaselineDate = null;
     $scope.businessTypes = [];
     $scope.is_edit = false;
     $scope.new_firm = {id: null, name: null, ownership: null,};
@@ -19,114 +20,115 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
     $scope.is_edit_disable = false;
     $scope.check_search = false;
     $scope.is_search = false;
+    $scope.bsCreatedeDate;
 
     var init_data = {
         'tourism': {
             'Table_2': {
                 'DlNumEmpBusiness':[{
-                    'num_emp_male':null,
-                    'num_emp_female':null,
+                    'num_emp_male': null,
+                    'num_emp_female': null,
                 }],
                 'DmgBusAstStructures':[{
                     'assets': 'Buildings',
-                    'val_dst':null,
-                    'val_pdmg':null,
-                    'tot_dmg':null,
+                    'val_dst': null,
+                    'val_pdmg': null,
+                    'tot_dmg': null,
                 }, {
                     'assets': 'Total',
-                    'val_dst':null,
-                    'val_pdmg':null,
-                    'tot_dmg':null,
+                    'val_dst': null,
+                    'val_pdmg': null,
+                    'tot_dmg': null,
                 }],
                 'DmgBusAstEquipment':[{
                     'assets': 'Computers',
-                    'val_dst':null,
-                    'val_pdmg':null,
-                    'tot_dmg':null,
+                    'val_dst': null,
+                    'val_pdmg': null,
+                    'tot_dmg': null,
                 }, {
                     'assets': 'Total',
-                    'val_dst':null,
-                    'val_pdmg':null,
-                    'tot_dmg':null,
+                    'val_dst': null,
+                    'val_pdmg': null,
+                    'tot_dmg': null,
                 }],
                 'DmgBusAstMachinery':[{
                     'assets': 'Generators',
-                    'val_dst':null,
-                    'val_pdmg':null,
-                    'tot_dmg':null,
+                    'val_dst': null,
+                    'val_pdmg': null,
+                    'tot_dmg': null,
                 }, {
                     'assets': 'Total',
-                    'val_dst':null,
-                    'val_pdmg':null,
-                    'tot_dmg':null,
+                    'val_dst': null,
+                    'val_pdmg': null,
+                    'tot_dmg': null,
                 }],
                 'DmgBusAstVehicle': [{
                     'assets': 'Cars',
-                    'val_dst':null,
-                    'val_pdmg':null,
-                    'tot_dmg':null,
+                    'val_dst': null,
+                    'val_pdmg': null,
+                    'tot_dmg': null,
                 }, {
                     'assets': 'Total',
-                    'val_dst':null,
-                    'val_pdmg':null,
-                    'tot_dmg':null,
+                    'val_dst': null,
+                    'val_pdmg': null,
+                    'tot_dmg': null,
                 }],
                 'DmgBusAstInventories':[{
                     'assets': 'Beds',
-                    'val_dst':null,
-                    'val_pdmg':null,
-                    'tot_dmg':null,
+                    'val_dst': null,
+                    'val_pdmg': null,
+                    'tot_dmg': null,
                 }, {
                     'assets': 'Furniture',
-                    'val_dst':null,
-                    'val_pdmg':null,
-                    'tot_dmg':null,
+                    'val_dst': null,
+                    'val_pdmg': null,
+                    'tot_dmg': null,
                 }, {
                     'assets': 'Total',
-                    'val_dst':null,
-                    'val_pdmg':null,
-                    'tot_dmg':null,
+                    'val_dst': null,
+                    'val_pdmg': null,
+                    'tot_dmg': null,
                 }],
-                'DlBusLosses':[{
-                    'los_type':'Income Losses',
-                    'avg_val_income_year':null,
-                    'val_income_year1':null,
-                    'val_income_year2':null,
-                    'val_los_year1':null,
-                    'val_los_year2':null,
-                    'tol_losses':null,
+                'DlBusLosses': [{
+                    'los_type': 'Income Losses',
+                    'avg_val_income_year': null,
+                    'val_income_year1': null,
+                    'val_income_year2': null,
+                    'val_los_year1': null,
+                    'val_los_year2': null,
+                    'tol_losses': null,
                 }, {
-                    'los_type':'Cleaning costs',
-                    'avg_val_income_year':null,
-                    'val_income_year1':null,
-                    'val_income_year2':null,
-                    'val_los_year1':null,
-                    'val_los_year2':null,
-                    'tol_losses':null,
+                    'los_type': 'Cleaning costs',
+                    'avg_val_income_year': null,
+                    'val_income_year1': null,
+                    'val_income_year2': null,
+                    'val_los_year1': null,
+                    'val_los_year2': null,
+                    'tol_losses': null,
                 }, {
-                    'los_type':'Higher operating costs',
-                    'avg_val_income_year':null,
-                    'val_income_year1':null,
-                    'val_income_year2':null,
-                    'val_los_year1':null,
-                    'val_los_year2':null,
-                    'tol_losses':null,
+                    'los_type': 'Higher operating costs',
+                    'avg_val_income_year': null,
+                    'val_income_year1': null,
+                    'val_income_year2': null,
+                    'val_los_year1': null,
+                    'val_los_year2': null,
+                    'tol_losses': null,
                 }, {
-                    'los_type':'Other unexpected expenses',
-                    'avg_val_income_year':null,
-                    'val_income_year1':null,
-                    'val_income_year2':null,
-                    'val_los_year1':null,
-                    'val_los_year2':null,
-                    'tol_losses':null,
+                    'los_type': 'Other unexpected expenses',
+                    'avg_val_income_year': null,
+                    'val_income_year1': null,
+                    'val_income_year2': null,
+                    'val_los_year1': null,
+                    'val_los_year2': null,
+                    'tol_losses': null,
                 }, {
-                    'los_type':'Total',
-                    'avg_val_income_year':null,
-                    'val_income_year1':null,
-                    'val_income_year2':null,
-                    'val_los_year1':null,
-                    'val_los_year2':null,
-                    'tol_losses':null,
+                    'los_type': 'Total',
+                    'avg_val_income_year': null,
+                    'val_income_year1': null,
+                    'val_income_year2': null,
+                    'val_los_year1': null,
+                    'val_los_year2': null,
+                    'tol_losses': null,
                 }],
 //                'DlInfLosses':[
 //                    {
@@ -154,32 +156,29 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
 
     $scope.dl_tourism_business = angular.copy(init_data);
 
-    $scope.insertBussiness = function(table){
-            var new_row;
-            if((table == 'DmgBusAstStructures')
-                || (table == 'DmgBusAstMachinery')
-                || (table == 'DmgBusAstEquipment')
-                || (table == 'DmgBusAstVehicle')
-                || (table == 'DmgBusAstInventories')
-            ) {
-                new_row = {'assets': '','val_dst':null, 'val_pdmg':null, 'tot_dmg':null, }
-                $scope.dl_tourism_business.tourism.Table_2[table].push(new_row);
-            }
+    $scope.insertBussiness = function(table) {
+        var new_row;
+        if((table == 'DmgBusAstStructures')
+            || (table == 'DmgBusAstMachinery')
+            || (table == 'DmgBusAstEquipment')
+            || (table == 'DmgBusAstVehicle')
+            || (table == 'DmgBusAstInventories')) {
+            new_row = {'assets': '','val_dst':null, 'val_pdmg':null, 'tot_dmg':null, }
+            $scope.dl_tourism_business.tourism.Table_2[table].push(new_row);
         }
+    }
 
-        $scope.removeItem = function removeItem(table, index) {
-            if((table == 'DmgBusAstStructures')
-                || (table == 'DmgBusAstMachinery')
-                || (table == 'DmgBusAstEquipment')
-                || (table == 'DmgBusAstVehicle')
-                || (table == 'DmgBusAstInventories')
-            ){
-                $scope.dl_tourism_business.tourism.Table_2[table].splice(index, 1);
-            }
-
+    $scope.removeItem = function removeItem(table, index) {
+        if((table == 'DmgBusAstStructures')
+            || (table == 'DmgBusAstMachinery')
+            || (table == 'DmgBusAstEquipment')
+            || (table == 'DmgBusAstVehicle')
+            || (table == 'DmgBusAstInventories')) {
+            $scope.dl_tourism_business.tourism.Table_2[table].splice(index, 1);
         }
+    }
 
-    $scope.changedValue=function getBsData(selectedValue) {
+    $scope.changedValue = function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {
             $http({
                 method: "POST",
@@ -194,15 +193,46 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
                 //console.log($scope.districts);
             })
         }
-        if($scope.incident && $scope.district ) {
-            $scope.fetchFirms();
-            $scope.fetchBusinessTypes();
+        if($scope.incident && $scope.district) {
             $scope.is_edit_disable = true;
             $scope.check_search = true;
+            $scope.fetchFirms();
+
+            $http({
+                method: 'POST',
+                url: '/get_latest_bs_date',
+                contentType: 'application/json; charset=utf-8',
+                data: angular.toJson({
+                    'db_tables': [],
+                    'com_data': {
+                        'district': $scope.district.district__id,
+                        'incident': $scope.incident,
+                    },
+                    'table_name': 'Table_1',
+                    'sector': 'tourism'
+                }),
+                dataType: 'json',
+            }).then(function successCallback(response) {
+                console.log('response', response);
+                var result = response.data;
+                if(result == null || result == 'null') {
+                    $("#modal-container-239458").modal('show');
+                }
+                else {
+                    var bs_date = response.data.bs_date.replace(/^"(.*)"$/, '$1');
+                    $scope.currentBaselineDate = "Latest baseline data as at " + bs_date;
+                    $scope.bsCreatedeDate = result.bs_created_date;
+                    console.log('*bs_date', result.bs_date);
+                    console.log('*bsCreatedeDate', result.bs_created_date);
+
+                    $scope.fetchBusinessTypes(bs_date);
+                }
+            });
         }
     }
 
-    $scope.fetchFirms = function(){
+    $scope.fetchFirms = function() {
+        console.log('fetchFirms');
         $http({
             method: "POST",
             url: "/fetch_entities",
@@ -212,25 +242,28 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
                 'sector':'tourism'
              }),
         }).success(function(data) {
-        $scope.firms = data;
+            console.log(data);
+            $scope.firms = data;
         })
     }
 
-    $scope.fetchBusinessTypes = function(){
+    $scope.fetchBusinessTypes = function(bs_date) {
+        console.log('fetchBusinessTypes');
         $http({
             method: "POST",
             url: "/fetch_business_types",
             data: angular.toJson({
                 'district':  $scope.district.district__id,
                 'model': 'TouBusiness',
-                'sector':'tourism'
+                'sector': 'tourism',
+                'bs_date': bs_date
              }),
         }).success(function(data) {
-        $scope.businessTypes = data;
+            $scope.businessTypes = data;
         })
     }
 
-//  form model saving for save Firm NOT the main data
+    //form model saving for save Firm NOT the main data
     $scope.saveForm = function(form) {
         if(form.$valid) {
             $scope.new_firm.ownership = $scope.ownership;
@@ -255,7 +288,7 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
         }
     }
 
-//    form model saving for edit Firm NOT the main data
+    //form model saving for edit Firm NOT the main data
     $scope.editFirm = function(form) {
         if(form.$valid) {
         $scope.new_firm.ownership = $scope.ownership;
@@ -282,9 +315,8 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
         }
     }
 
-
     //Correct way of binding data to avoid NaN
-    $scope.sum_of_dst_dpmg = function(a, b, field, totalField){
+    $scope.sum_of_dst_dpmg = function(a, b, field, totalField) {
         if(field){
             field[totalField] = a + b;
             //totalField
@@ -293,8 +325,7 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
         return 0;
     }
 
-
-    $scope.getTotalCol = function(subTable, column, total_object){
+    $scope.getTotalCol = function(subTable, column, total_object) {
         var table = $scope.dl_tourism_business.tourism.Table_2;
         var final_total = 0;
         total_object[column] = 0;
@@ -304,7 +335,7 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
         return final_total;
     }
 
-    $scope.getGrandTotalCol = function(column){
+    $scope.getGrandTotalCol = function(column) {
         var table = $scope.dl_tourism_business.tourism.Table_2;
         var final_total = 0;
         angular.forEach(table, function(subTable, key) {
@@ -319,7 +350,7 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
         return final_total/2;
     }
 
-    $scope.getMulitiplyedYearLoss = function(avgincome, reduction, year){
+    $scope.getMulitiplyedYearLoss = function(avgincome, reduction, year) {
         var subTable = $scope.dl_tourism_business.tourism.Table_2.DlBusLosses;
         var yearName = 'val_los_year'+year;
         var finalValue;
@@ -331,19 +362,18 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
         return finalValue;
     }
 
-    $scope.getSumOfTwo = function(val_a, val_b, total_object, total_field){
+    $scope.getSumOfTwo = function(val_a, val_b, total_object, total_field) {
             total_object[total_field] = val_a + val_b;
             return total_object[total_field];
     }
 
-     $scope.clear = function(){
-            $scope.is_edit = false;
-            $scope.dl_tourism_business = angular.copy(init_data);
-            location.reload();
+    $scope.clear = function() {
+        $scope.is_edit = false;
+        $scope.dl_tourism_business = angular.copy(init_data);
+        location.reload();
+    }
 
-     }
-
-     $scope.saveDlData = function(form) {
+    $scope.saveDlData = function(form) {
         console.log($scope.selectedType);
         $scope.submitted = true;
 //        if (form.$valid) {
@@ -354,24 +384,26 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
                 data: angular.toJson({
                     'table_data': $scope.dl_tourism_business,
                     'com_data': {
-                    'district_id': $scope.district.district__id,
-                    'incident_id': $scope.incident,
-                    'firm_id':$scope.selectedFirm.id,
-                    'ownership':$scope.selectedFirm.ownership,
-                    'user_id': $scope.user_id,
-                    'tou_business':$scope.selectedType.business,
-                },
-                'is_edit': $scope.is_edit
+                        'district_id': $scope.district.district__id,
+                        'incident_id': $scope.incident,
+                        'firm_id':$scope.selectedFirm.id,
+                        'ownership':$scope.selectedFirm.ownership,
+                        'user_id': $scope.user_id,
+                        'tou_business':$scope.selectedType.business,
+                    },
+                    'is_edit': $scope.is_edit
                 }),
                 dataType: 'json',
             }).success(function(data) {
                 $scope.bs_tourism_facilities = init_data;
                 $scope.is_edit = false;
-                if (data == 'False')
+                if (data == 'False') {
                     $scope.is_valid_data = false;
-                else
+                }
+                else {
                     $("#modal-container-239453").modal('show');
-                })
+                }
+            })
 //        }
 //            else{
 //                console.log("form Error", form.$error);
@@ -379,28 +411,28 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
 //            }
         }
 
-     $scope.dataEdit = function(form) {
-            if($scope.district && $scope.incident && $scope.selectedFirm  && $scope.selectedType){
-                $scope.is_edit = true;
-                $scope.submitted = true;
-                document.getElementById("clearbtn").disabled = true;
-                if (form.$valid) {
-                    $http({
-                        method: "POST",
-                        url: '/dl_fetch_edit_data',
-                        data: angular.toJson({
-                            'table_name': 'Table_2',
-                            'sector': 'tourism',
-                            'com_data': {
-                                'district': $scope.district.district__id,
-                                'incident': $scope.incident,
-                                'firm_id':$scope.selectedFirm.id,
-                                'ownership':$scope.selectedFirm.ownership,
-                                'tou_business':$scope.selectedType.business
-                            }
-                        }),
-                    }).success(function(data) {
-                        console.log("edit", data);
+    $scope.dataEdit = function(form) {
+        if($scope.district && $scope.incident && $scope.selectedFirm  && $scope.selectedType){
+            $scope.is_edit = true;
+            $scope.submitted = true;
+            document.getElementById("clearbtn").disabled = true;
+            if (form.$valid) {
+                $http({
+                    method: "POST",
+                    url: '/dl_fetch_edit_data',
+                    data: angular.toJson({
+                        'table_name': 'Table_2',
+                        'sector': 'tourism',
+                        'com_data': {
+                            'district': $scope.district.district__id,
+                            'incident': $scope.incident,
+                            'firm_id':$scope.selectedFirm.id,
+                            'ownership':$scope.selectedFirm.ownership,
+                            'tou_business':$scope.selectedType.business
+                        }
+                    }),
+                }).success(function(data) {
+                    console.log("edit", data);
 //                        // handling response from server if data are not available in this
 //                        if((data.tourism.Table_2.DlBusLosses.length == 0) ||
 //                            (data.tourism.Table_2.DlNumEmpBusiness.length == 0) ||
@@ -416,111 +448,110 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
 //                        else {
 //                                $scope.dl_tourism_business = data;
 //                        }
-                        var edit_data_not_found = false;
-                        if(data != null) {
-                            angular.forEach(data.tourism.Table_2, function(value, index) {
-                                console.log(value);
-                                if(value.length == 0) {
-                                    edit_data_not_found = true;
-                                }
-                            })
-                            if(edit_data_not_found != true) {
-                                $scope.dl_tourism_business = data;
-                                console.log(data);
+                    var edit_data_not_found = false;
+                    if(data != null) {
+                        angular.forEach(data.tourism.Table_2, function(value, index) {
+                            console.log(value);
+                            if(value.length == 0) {
+                                edit_data_not_found = true;
                             }
-                            else {
-                                $("#modal-container-239456").modal('show');
-                            }
+                        })
+                        if(edit_data_not_found != true) {
+                            $scope.dl_tourism_business = data;
+                            console.log(data);
                         }
                         else {
                             $("#modal-container-239456").modal('show');
                         }
-                    })
-                }
-            }
-            else {
-                alert("enter Incident, District, Firm, ownership, Type")
+                    }
+                    else {
+                        $("#modal-container-239456").modal('show');
+                    }
+                })
             }
         }
+        else {
+            alert("enter Incident, District, Firm, ownership, Type")
+        }
+    }
 
-     $scope.searchDlData = function(form) {
-            if($scope.district && $scope.incident && $scope.selectedFirm  && $scope.selectedType){
-                document.getElementById("clearbtn").disabled = true;
-		        document.getElementById("editbtn").disabled = true;
-		        document.getElementById("subbtn").disabled = true;
-		        console.log("test", $scope.district);
-		        console.log("test", $scope.bs_date);
-		        $scope.is_search = true;
-                if (form.$valid) {
-                    $http({
-                        method: "POST",
-                        url: '/dl_fetch_edit_data',
-                        data: angular.toJson({
-                            'table_name': 'Table_2',
-                            'sector': 'tourism',
-                            'com_data': {
-                                'district': $scope.district.district__id,
-                                'incident': $scope.incident,
-                                'firm_id':$scope.selectedFirm.id,
-                                'ownership':$scope.selectedFirm.ownership,
-                                'tou_business':$scope.selectedType.business
+    $scope.searchDlData = function(form) {
+        if($scope.district && $scope.incident && $scope.selectedFirm  && $scope.selectedType){
+            document.getElementById("clearbtn").disabled = true;
+            document.getElementById("editbtn").disabled = true;
+            document.getElementById("subbtn").disabled = true;
+
+            $scope.is_search = true;
+            if (form.$valid) {
+                $http({
+                    method: "POST",
+                    url: '/dl_fetch_edit_data',
+                    data: angular.toJson({
+                        'table_name': 'Table_2',
+                        'sector': 'tourism',
+                        'com_data': {
+                            'district': $scope.district.district__id,
+                            'incident': $scope.incident,
+                            'firm_id':$scope.selectedFirm.id,
+                            'ownership':$scope.selectedFirm.ownership,
+                            'tou_business':$scope.selectedType.business
+                        }
+                    }),
+                }).success(function(data) {
+                    console.log("edit", data);
+
+//                    // handling response from server if data are not available in this
+//                    if((data.tourism.Table_2.DlBusLosses.length == 0) ||
+//                        (data.tourism.Table_2.DlNumEmpBusiness.length == 0) ||
+//                        (data.tourism.Table_2.DmgBusAstEquipment.length == 0) ||
+//                        (data.tourism.Table_2.DmgBusAstInventories.length == 0) ||
+//                        (data.tourism.Table_2.DmgBusAstMachinery.length == 0) ||
+//                        (data.tourism.Table_2.DmgBusAstStructures.length == 0) ||
+//                        (data.tourism.Table_2.DmgBusAstVehicle.length == 0)
+//                         ) {
+//                            $scope.is_edit = false;
+//                            // do nothing or display msg that data are not available
+//                    }
+//                    else {
+//                            $scope.dl_tourism_business = data;
+//                    }
+
+                    var edit_data_not_found = false;
+                    if(data != null) {
+                        angular.forEach(data.tourism.Table_2, function(value, index) {
+                            console.log(value);
+                            if(value.length == 0) {
+                                edit_data_not_found = true;
                             }
-                        }),
-                    }).success(function(data) {
-                        console.log("edit", data);
-//                        // handling response from server if data are not available in this
-//                        if((data.tourism.Table_2.DlBusLosses.length == 0) ||
-//                            (data.tourism.Table_2.DlNumEmpBusiness.length == 0) ||
-//                            (data.tourism.Table_2.DmgBusAstEquipment.length == 0) ||
-//                            (data.tourism.Table_2.DmgBusAstInventories.length == 0) ||
-//                            (data.tourism.Table_2.DmgBusAstMachinery.length == 0) ||
-//                            (data.tourism.Table_2.DmgBusAstStructures.length == 0) ||
-//                            (data.tourism.Table_2.DmgBusAstVehicle.length == 0)
-//                             ) {
-//                                $scope.is_edit = false;
-//                                // do nothing or display msg that data are not available
-//                        }
-//                        else {
-//                                $scope.dl_tourism_business = data;
-//                        }
-                        var edit_data_not_found = false;
-                        if(data != null) {
-                            angular.forEach(data.tourism.Table_2, function(value, index) {
-                                console.log(value);
-                                if(value.length == 0) {
-                                    edit_data_not_found = true;
-                                }
-                            })
-                            if(edit_data_not_found != true) {
-                                $scope.dl_tourism_business = data;
-                                console.log(data);
-                            }
-                            else {
-                                $("#modal-container-239456").modal('show');
-                            }
+                        })
+                        if(edit_data_not_found != true) {
+                            $scope.dl_tourism_business = data;
+                            console.log(data);
                         }
                         else {
                             $("#modal-container-239456").modal('show');
                         }
-                    })
-                }
-            }
-            else {
-                alert("enter Incident, District, Firm, ownership, Type")
+                    }
+                    else {
+                        $("#modal-container-239456").modal('show');
+                    }
+                })
             }
         }
-
-     $scope.cancelEdit = function(){
-             $scope.is_edit = false;
-             $scope.clear();
-             location.reload();
+        else {
+            alert("enter Incident, District, Firm, ownership, Type")
         }
+    }
 
-     changeSelectedType = function(){
+    $scope.cancelEdit = function() {
+        $scope.is_edit = false;
+        $scope.clear();
+        location.reload();
+    }
+
+    changeSelectedType = function() {
         $scope.selectedFirm = $scope.selectedFirm.ownership;
-     }
-
-
+    }
 });
 
 

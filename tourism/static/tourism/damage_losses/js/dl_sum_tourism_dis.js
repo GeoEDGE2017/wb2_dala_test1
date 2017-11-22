@@ -56,7 +56,10 @@ app.controller('dlSummTouBusiFaciDisController', function($scope, $http, $parse,
                     },
                 }),
             }).success(function(data) {
+                console.log('data ', data);
+                console.log('data.tourism.Table_4 ', data.tourism.Table_4);
                 $scope.data = data.tourism.Table_4;
+
                 $scope.makeTable();
                 console.log('data ', $scope.data);
                 console.log('table ', $scope.table);
@@ -125,7 +128,7 @@ app.controller('dlSummTouBusiFaciDisController', function($scope, $http, $parse,
             method: "POST",
             url: "/fetch_business_types_for_summary",
             data: angular.toJson({
-//                'district':  $scope.district.district__id,
+//                'district': $scope.district.district__id,
                 'model': 'TouBusiness',
                 'sector': 'tourism'
              }),

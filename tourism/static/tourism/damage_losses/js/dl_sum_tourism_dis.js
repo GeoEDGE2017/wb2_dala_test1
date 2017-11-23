@@ -57,18 +57,19 @@ app.controller('dlSummTouBusiFaciDisController', function($scope, $http, $parse,
                 }),
             }).success(function(data) {
                 console.log('data ', data);
-                console.log('data.tourism.Table_4 ', data.tourism.Table_4);
-                $scope.data = data.tourism.Table_4;
-
-                $scope.makeTable();
-                console.log('data ', $scope.data);
-                console.log('table ', $scope.table);
-                console.log('businessTypes ', $scope.businessTypes);
+                $scope.dlsumtourismdis = data;
+//                console.log('data.tourism.Table_4 ', data.tourism.Table_4);
+//                $scope.data = data.tourism.Table_4;
+//
+//                $scope.makeTable();
+//                console.log('data ', $scope.data);
+//                console.log('table ', $scope.table);
+//                console.log('businessTypes ', $scope.businessTypes);
             })
         }
     }
 
-    $scope.makeTable = function(){
+    $scope.makeTable = function() {
         if($scope.data != null){
             $scope.table = {};
             $scope.table.business = {};
@@ -220,5 +221,104 @@ app.controller('dlSummTouBusiFaciDisController', function($scope, $http, $parse,
         if(!val)    return 0;
         if(isNaN(val)) return 0;
         return val;
+    }
+
+    $scope.checkIfNull = function() {
+        var isNull = $scope.dlsumtourismdis ? angular.equals({},
+        $scope.dlsumtourismdis.tourism.Table_4) : true;
+
+        return isNull;
+    }
+
+    $scope.calFirmTotalDmgPub = function() {
+        if(!angular.isUndefined($scope.dlsumtourismdis)) {
+            console.log('calTotalDmgPub');
+            var tot_dmg_pub = 0;
+            angular.forEach($scope.dlsumtourismdis.tourism.Table_4, function(value, key) {
+                if(key == 'DlDmgBusDistrictN') {
+                    angular.forEach(value, function(value_in, index) {
+                        tot_dmg_pub = tot_dmg_pub + value_in.sumpub;
+                    })
+                }
+            })
+
+            return tot_dmg_pub;
+        }
+    }
+
+    $scope.calFirmTotalDmgPvt = function() {
+        if(!angular.isUndefined($scope.dlsumtourismdis)) {
+            console.log('calTotalDmgPub');
+            var tot_dmg_pvt = 0;
+            angular.forEach($scope.dlsumtourismdis.tourism.Table_4, function(value, key) {
+                if(key == 'DlDmgBusDistrictN') {
+                    angular.forEach(value, function(value_in, index) {
+                        tot_dmg_pvt = tot_dmg_pvt + value_in.sumpvt;
+                    })
+                }
+            })
+
+            return tot_dmg_pvt;
+        }
+    }
+
+    $scope.calFirmTotalLosYer1Pub = function() {
+        if(!angular.isUndefined($scope.dlsumtourismdis)) {
+            var tot_los_pub = 0;
+            angular.forEach($scope.dlsumtourismdis.tourism.Table_4, function(value, key) {
+                if(key == 'DlLosBusDistrictN') {
+                    angular.forEach(value, function(value_in, index) {
+                        tot_los_pub = tot_los_pub + value_in.tot_year1_pub;
+                    })
+                }
+            })
+
+            return tot_los_pub;
+        }
+    }
+
+    $scope.calFirmTotalLosYer1Pvt = function() {
+        if(!angular.isUndefined($scope.dlsumtourismdis)) {
+            var tot_los_pvt = 0;
+            angular.forEach($scope.dlsumtourismdis.tourism.Table_4, function(value, key) {
+                if(key == 'DlLosBusDistrictN') {
+                    angular.forEach(value, function(value_in, index) {
+                        tot_los_pvt = tot_los_pvt + value_in.tot_year1_pvt;
+                    })
+                }
+            })
+
+            return tot_los_pvt;
+        }
+    }
+
+    $scope.calFirmTotalLosYer2Pub = function() {
+        if(!angular.isUndefined($scope.dlsumtourismdis)) {
+            var tot_los_pub = 0;
+            angular.forEach($scope.dlsumtourismdis.tourism.Table_4, function(value, key) {
+                if(key == 'DlLosBusDistrictN') {
+                    angular.forEach(value, function(value_in, index) {
+                        tot_los_pub = tot_los_pub + value_in.tot_year2_pub;
+                    })
+                }
+            })
+
+            return tot_los_pub;
+        }
+    }
+
+    $scope.calFirmTotalLosYer2Pvt = function() {
+        if(!angular.isUndefined($scope.dlsumtourismdis)) {
+            var tot_los_pvt = 0;
+            angular.forEach($scope.dlsumtourismdis.tourism.Table_4, function(value, key) {
+                if(key == 'DlLosBusDistrictN') {
+                    angular.forEach(value, function(value_in, index) {
+                        tot_los_pvt = tot_los_pvt + value_in.tot_year2_pvt;
+                    })
+                }
+            })
+
+            return tot_los_pvt;
+        }
     }
 })

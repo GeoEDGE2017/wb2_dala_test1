@@ -3182,10 +3182,10 @@ TABLE_PROPERTY_MAPPER = {
         #
         # },
         'Table_4': {
-            'DlDmgBusDistrict': ['tot_damages', 'assets', 'ownership', 'business'],
-            'DlLosBusDistrict': ['los_year1', 'los_year2', 'los_type', 'ownership', 'business'],
-            'DlDmgInfDistrict': ['sum', 'ownership', 'inf_type'],
-            'DlLosInfDistrict': ['tot_year1', 'tot_year2', 'ownership', 'inf_type']
+            'DlDmgBusDistrictN': ['business', 'sumpub', 'sumpvt'],
+            'DlLosBusDistrictN': ['business', 'tot_year1_pub', 'tot_year1_pvt', 'tot_year2_pub', 'tot_year2_pvt'],
+            'DlDmgInfDistrictN': ['infrastructure', 'tot_dst', 'tot_pdmg', 'tot_dmg', 'ownership', 'inf_type'],
+            'DlLosInfDistrictN': ['infrastructure', 'year1', 'year2', 'ownership', 'inf_type']
         },
         'Table_5': {
             'DlLosInfTotDistrict': ['tot_year1', 'tot_year2', 'ownership'],

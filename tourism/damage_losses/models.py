@@ -213,7 +213,6 @@ class DmgInfAssets(models.Model):
 
 # view
 class DlDmgBusDistrict(models.Model):
-
     tot_damages = models.FloatField(blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
     district = models.ForeignKey(District, db_column='district', blank=True, null=True)
@@ -224,6 +223,19 @@ class DlDmgBusDistrict(models.Model):
     class Meta:
         managed = False
         db_table = 'tourism\".\"dl_dmg_bus_district'
+
+
+# view
+class DlDmgBusDistrictN(models.Model):
+    sumpub = models.FloatField(blank=True, null=True)
+    sumpvt = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    business = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'tourism\".\"dl_dmg_bus_district_n'
 
 
 # view
@@ -241,6 +253,21 @@ class DlLosBusDistrict (models.Model):
         db_table = 'tourism\".\"dl_los_bus_district'
 
 
+# view
+class DlLosBusDistrictN (models.Model):
+    tot_year1_pvt = models.FloatField(blank=True, null=True)
+    tot_year2_pvt = models.FloatField(blank=True, null=True)
+    tot_year1_pub = models.FloatField(blank=True, null=True)
+    tot_year2_pub = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    business = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'tourism\".\"dl_los_bus_district_n'
+
+
 # View
 class DlDmgInfDistrict (models.Model):
     sum = models.FloatField(blank=True, null=True)
@@ -252,6 +279,22 @@ class DlDmgInfDistrict (models.Model):
     class Meta:
         managed = False
         db_table = 'tourism\".\"dl_dmg_inf_district'
+
+
+# View
+class DlDmgInfDistrictN (models.Model):
+    infrastructure = models.CharField(max_length=255, blank=True, null=True)
+    tot_dst = models.FloatField(blank=True, null=True)
+    tot_pdmg = models.FloatField(blank=True, null=True)
+    tot_dmg = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    ownership = models.CharField(max_length=255, blank=True, null=True)
+    inf_type = models.ForeignKey(InfType, db_column='inf_type', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'tourism\".\"dl_dmg_inf_district_n'
 
 
 # view
@@ -266,6 +309,21 @@ class DlLosInfDistrict (models.Model):
     class Meta:
         managed = False
         db_table = 'tourism\".\"dl_los_inf_district'
+
+
+# view
+class DlLosInfDistrictN (models.Model):
+    infrastructure = models.CharField(max_length=255, blank=True, null=True)
+    year1 = models.FloatField(blank=True, null=True)
+    year2 = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    ownership = models.CharField(max_length=255, blank=True, null=True)
+    inf_type = models.ForeignKey(InfType, db_column='inf_type', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'tourism\".\"dl_los_inf_district_n'
 
 
 # view

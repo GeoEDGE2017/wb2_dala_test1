@@ -232,7 +232,6 @@ app.controller('dlSummTouBusiFaciDisController', function($scope, $http, $parse,
 
     $scope.calFirmTotalDmgPub = function() {
         if(!angular.isUndefined($scope.dlsumtourismdis)) {
-            console.log('calTotalDmgPub');
             var tot_dmg_pub = 0;
             angular.forEach($scope.dlsumtourismdis.tourism.Table_4, function(value, key) {
                 if(key == 'DlDmgBusDistrictN') {
@@ -248,7 +247,6 @@ app.controller('dlSummTouBusiFaciDisController', function($scope, $http, $parse,
 
     $scope.calFirmTotalDmgPvt = function() {
         if(!angular.isUndefined($scope.dlsumtourismdis)) {
-            console.log('calTotalDmgPub');
             var tot_dmg_pvt = 0;
             angular.forEach($scope.dlsumtourismdis.tourism.Table_4, function(value, key) {
                 if(key == 'DlDmgBusDistrictN') {

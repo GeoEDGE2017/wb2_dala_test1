@@ -164,20 +164,73 @@ app.controller('dlSummTouBusiFaciPovController', function($scope, $http, $parse,
         }
     }
 
+    $scope.grndTotLosYer1Pub = function() {
+        if(!angular.isUndefined($scope.dlSummTouBusiFaciPov)) {
+            var grnd_tot_los_yer1_pub = 0;
+            angular.forEach($scope.dlSummTouBusiFaciPov.tourism.Table_5, function(value, index) {
+                angular.forEach(value, function(value_in, key) {
+                    console.log('key', key);
+                    if(key == 'DlLosFrmTotProvinceN') {
+                        grnd_tot_los_yer1_pub = grnd_tot_los_yer1_pub + value_in[0].los_year1_pub;
+                    }
+                    else if(key == 'DlLosInfTotProvinceN') {
+                        grnd_tot_los_yer1_pub = grnd_tot_los_yer1_pub + value_in[0].los_year1_pub;
+                    }
+                })
+            })
+            return grnd_tot_los_yer1_pub;
+        }
+    }
+
     $scope.grndTotLosYer1Pvt = function() {
         if(!angular.isUndefined($scope.dlSummTouBusiFaciPov)) {
             var grnd_tot_los_yer1_pvt = 0;
             angular.forEach($scope.dlSummTouBusiFaciPov.tourism.Table_5, function(value, index) {
                 angular.forEach(value, function(value_in, key) {
-                    if(key == 'DlDmgFrmTotProvinceN') {
-                        grnd_tot_dmg_pvt = grnd_tot_dmg_pvt + value_in[0].tot_damages_pvt;
+                    if(key == 'DlLosFrmTotProvinceN') {
+                        grnd_tot_los_yer1_pvt = grnd_tot_los_yer1_pvt + value_in[0].los_year1_pvt;
                     }
-                    else if(key == 'DlDmgInfTotProvinceN') {
-                        grnd_tot_dmg_pvt = grnd_tot_dmg_pvt + value_in[0].los_pvt;
+                    else if(key == 'DlLosInfTotProvinceN') {
+                        grnd_tot_los_yer1_pvt = grnd_tot_los_yer1_pvt + value_in[0].los_year1_pvt;
                     }
                 })
             })
-            return grnd_tot_dmg_pvt;
+            return grnd_tot_los_yer1_pvt;
+        }
+    }
+
+    $scope.grndTotLosYer2Pub = function() {
+        if(!angular.isUndefined($scope.dlSummTouBusiFaciPov)) {
+            var grnd_tot_los_yer2_pub = 0;
+            angular.forEach($scope.dlSummTouBusiFaciPov.tourism.Table_5, function(value, index) {
+                angular.forEach(value, function(value_in, key) {
+                    console.log('key', key);
+                    if(key == 'DlLosFrmTotProvinceN') {
+                        grnd_tot_los_yer2_pub = grnd_tot_los_yer2_pub + value_in[0].los_year1_pub;
+                    }
+                    else if(key == 'DlLosInfTotProvinceN') {
+                        grnd_tot_los_yer2_pub = grnd_tot_los_yer2_pub + value_in[0].los_year1_pub;
+                    }
+                })
+            })
+            return grnd_tot_los_yer2_pub;
+        }
+    }
+
+    $scope.grndTotLosYer2Pvt = function() {
+        if(!angular.isUndefined($scope.dlSummTouBusiFaciPov)) {
+            var grnd_tot_los_yer2_pvt = 0;
+            angular.forEach($scope.dlSummTouBusiFaciPov.tourism.Table_5, function(value, index) {
+                angular.forEach(value, function(value_in, key) {
+                    if(key == 'DlLosFrmTotProvinceN') {
+                        grnd_tot_los_yer2_pvt = grnd_tot_los_yer2_pvt + value_in[0].los_year1_pvt;
+                    }
+                    else if(key == 'DlLosInfTotProvinceN') {
+                        grnd_tot_los_yer2_pvt = grnd_tot_los_yer2_pvt + value_in[0].los_year1_pvt;
+                    }
+                })
+            })
+            return grnd_tot_los_yer2_pvt;
         }
     }
 })

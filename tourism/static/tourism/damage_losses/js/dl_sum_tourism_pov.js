@@ -169,7 +169,6 @@ app.controller('dlSummTouBusiFaciPovController', function($scope, $http, $parse,
             var grnd_tot_los_yer1_pub = 0;
             angular.forEach($scope.dlSummTouBusiFaciPov.tourism.Table_5, function(value, index) {
                 angular.forEach(value, function(value_in, key) {
-                    console.log('key', key);
                     if(key == 'DlLosFrmTotProvinceN') {
                         grnd_tot_los_yer1_pub = grnd_tot_los_yer1_pub + value_in[0].los_year1_pub;
                     }
@@ -204,7 +203,6 @@ app.controller('dlSummTouBusiFaciPovController', function($scope, $http, $parse,
             var grnd_tot_los_yer2_pub = 0;
             angular.forEach($scope.dlSummTouBusiFaciPov.tourism.Table_5, function(value, index) {
                 angular.forEach(value, function(value_in, key) {
-                    console.log('key', key);
                     if(key == 'DlLosFrmTotProvinceN') {
                         grnd_tot_los_yer2_pub = grnd_tot_los_yer2_pub + value_in[0].los_year1_pub;
                     }

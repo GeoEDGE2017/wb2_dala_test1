@@ -41,6 +41,7 @@ urlpatterns = [
     url(r'^fetch_company_tele$', views.fetch_company_tele, name='fetch_company_tele'),
 
     url(r'^get_latest_bs_date', views.get_latest_bs_date, name='get_latest_bs_date'),
+    url(r'^getlatest_bs_date_with_organization', views.getlatest_bs_date_with_organization, name='getlatest_bs_date_with_organization'),
     url(r'^dl_save_data_with_array', views.dl_save_data_with_array, name='dl_save_data_with_array'),
     url(r'^bs_get_data_mock_for_bs', views.bs_get_data_mock_for_bs, name='bs_get_data_mock_for_bs'),
     url(r'^dl_fetch_edit_data_with_array', views.dl_fetch_edit_data_with_array, name='dl_fetch_edit_data_with_array'),
@@ -62,12 +63,14 @@ urlpatterns = [
     url(r'^update_enumirate_dl_data$', views.update_enumirate_dl_data, name='update_enumirate_dl_data'),
     url(r'^update_other_government_enumirate_dl_data$', views.update_other_government_enumirate_dl_data, name='update_other_government_enumirate_dl_data'),
     url(r'^uupdate_enumirate_dl_data_with_firms$', views.uupdate_enumirate_dl_data_with_firms, name='uupdate_enumirate_dl_data_with_firms'),
+    url(r'^uupdate_enumirate_dl_data_with_organizations$', views.uupdate_enumirate_dl_data_with_organizations, name='uupdate_enumirate_dl_data_with_organizations'),
 
     url(r'^fetch_incident_districts$', views.fetch_incident_districts, name='fetch_incident_districts'),
     url(r'^fetch_incident_provinces$', views.fetch_incident_provinces, name='fetch_incident_provinces'),
 
     # get Business Types
     url(r'^fetch_business_types$', views.fetch_business_types, name='fetch_business_types'),
+    url(r'^fetch_business_types_for_summary$', views.fetch_business_types_for_summary, name='fetch_business_types_for_summary'),
 
     # get Business Types
     url(r'^fetch_tourism_infrastructure_types$', views.fetch_tourism_infrastructure_types, name='fetch_tourism_infrastructure_types'),
@@ -78,7 +81,6 @@ urlpatterns = [
     url(r'^fetch_pw_gen_firms$', views.fetch_pw_gen_firms, name='fetch_pw_gen_firms'),
 
     url(r'^fetch_entities_plain_column$', views.fetch_entities_plain_column, name='fetch_entities_plain_column'),
-
 
     # agri_irrigation
     url(r'^agri_irrigation/', include('agri_irrigation.urls', namespace='agri_irrigation')),

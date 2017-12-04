@@ -747,7 +747,7 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
         angular.forEach(arr, function(value, key) {
             if(value.assets != "Total") {
                 if(!isNaN(value.dmg_pub)) {
-                    finaltotal = finaltotal + $scope.convertToInt(value.dmg_pub);
+                    finaltotal = finaltotal + $scope.convertToFloat(value.dmg_pub);
                 }
                 else {
                     finaltotal = finaltotal + 0;
@@ -763,7 +763,7 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
         angular.forEach(arr, function(value, key) {
             if(value.assets != "Total") {
                 if(!isNaN(value.dmg_pvt)) {
-                    finaltotal = finaltotal + $scope.convertToInt(value.dmg_pvt);
+                    finaltotal = finaltotal + $scope.convertToFloat(value.dmg_pvt);
                 }
                 else {
                     finaltotal = finaltotal + 0;
@@ -800,55 +800,55 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
 
         angular.forEach(array1, function(value, key) {
             if(value.assets !="Total") {
-                finaltotal1 = finaltotal1 + $scope.convertToInt(value.dmg_pub);
+                finaltotal1 = finaltotal1 + $scope.convertToFloat(value.dmg_pub);
             }
         })
 
         angular.forEach(array2, function(value, key) {
             if(value.assets !="Total"){
-                finaltotal2 = finaltotal2 + $scope.convertToInt(value.dmg_pub);
+                finaltotal2 = finaltotal2 + $scope.convertToFloat(value.dmg_pub);
             }
         })
 
         angular.forEach(array3, function(value, key) {
             if(value.assets !="Total"){
-                finaltotal3 = finaltotal3 + $scope.convertToInt(value.dmg_pub);
+                finaltotal3 = finaltotal3 + $scope.convertToFloat(value.dmg_pub);
             }
         })
 
         angular.forEach(array4, function(value, key) {
             if(value.assets != "Total") {
-                finaltotal4 = finaltotal4 + $scope.convertToInt(value.dmg_pub);
+                finaltotal4 = finaltotal4 + $scope.convertToFloat(value.dmg_pub);
             }
         })
 
         angular.forEach(array5, function(value, key) {
             if(value.assets != "Total") {
-                finaltotal5 = finaltotal5 + $scope.convertToInt(value.dmg_pub);
+                finaltotal5 = finaltotal5 + $scope.convertToFloat(value.dmg_pub);
             }
         })
 
         angular.forEach(array6, function(value, key) {
             if(value.assets != "Total") {
-                finaltotal6 = finaltotal6 + $scope.convertToInt(value.dmg_pub);
+                finaltotal6 = finaltotal6 + $scope.convertToFloat(value.dmg_pub);
             }
         })
 
         angular.forEach(array7, function(value, key) {
             if(value.assets != "Total") {
-                finaltotal7 = finaltotal7 + $scope.convertToInt(value.dmg_pub);
+                finaltotal7 = finaltotal7 + $scope.convertToFloat(value.dmg_pub);
             }
         })
 
         angular.forEach(array8, function(value, key) {
             if(value.assets != "Total") {
-                finaltotal8 = finaltotal8 + $scope.convertToInt(value.dmg_pub);
+                finaltotal8 = finaltotal8 + $scope.convertToFloat(value.dmg_pub);
             }
         })
 
         angular.forEach(array9, function(value, key) {
             if(value.assets != "Total") {
-                finaltotal9 = finaltotal9 + $scope.convertToInt(value.dmg_pub);
+                finaltotal9 = finaltotal9 + $scope.convertToFloat(value.dmg_pub);
             }
         })
 

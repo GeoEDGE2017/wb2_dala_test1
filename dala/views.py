@@ -18,6 +18,7 @@ from education.base_line.models import PreSchools, PrimarySchools, SecondaryScho
 from users.models import UserDistrict
 import smtplib
 from django.db import connection
+import dateutil.parser
 
 @csrf_exempt
 def send_email(request):
@@ -116,6 +117,37 @@ def fetch_incident_provinces(request):
 
 @csrf_exempt
 def fetch_business_types(request):
+    print "-* fetch_business_types"
+    dl_data = (yaml.safe_load(request.body))
+
+    # change appropiately in the future
+    # business_types = TouBusiness.objects.all()
+    # business_types = TouBusiness.objects.filter(~Q(business=''))
+    # from django.db.models import Q  ## for not operator
+
+    # print "before getting objects"
+    # business_types = BsTouBusiness.objects.all()
+    # print "got objects"
+    # business_types_json = business_types.values('business').distinct()
+    # print "converted"
+    # print dl_data['district']
+    # print dl_data['bs_date']
+    try:
+        business_types = BsTouBusiness.objects.filter(district=dl_data['district'], bs_date=dl_data['bs_date'])
+    except:
+        business_types = BsTouBusiness.objects.filter(district=dl_data['district'])
+
+    business_types_json = business_types.values('business').distinct()
+
+    return HttpResponse(
+        json.dumps(list(business_types_json)),
+        content_type='application/javascript; charset=utf8'
+    )
+
+# dileepa
+@csrf_exempt
+def fetch_business_types_for_summary(request):
+    print "-* fetch_business_types"
     dl_data = (yaml.safe_load(request.body))
 
     # change appropiately in the future
@@ -535,11 +567,81 @@ def uupdate_enumirate_dl_data_with_firms(request):
 
 
 # dileepa
+@csrf_exempt
+def uupdate_enumirate_dl_data_with_organizations(request):
+    print 'uupdate_enumirate_dl_data_with_organizations\n'
+    data = (yaml.safe_load(request.body))
+    enum_data = data['enum_data']
+    com_data = data['com_data']
+
+    interface_table_name = None
+    for sector in enum_data:
+        for interface_table in enum_data[sector]:
+            interface_table_name = interface_table
+
+    # print data['sector']
+    # print interface_table_name
+    # print com_data['district']
+    # print com_data['bs_date']
+    # print com_data['organization_id']
+
+    print com_data
+
+    dsdate = get_bd_session_key_record_with_organizations(data['sector'], interface_table_name, com_data['district'], com_data['bs_date'], com_data['organization_id'])
+
+    for sector in enum_data:
+        sub_app_name = sector + '.base_line'
+        print 'sub_app_name :', sub_app_name
+        for interface_table in enum_data[sector]:
+            for db_table in enum_data[sector][interface_table]:
+                for row in enum_data[sector][interface_table][db_table]:
+                    for dl_interface_table in row['dl_tables']:
+                        for dl_db_table in row['dl_tables'][dl_interface_table]:
+                            info = {'sector': data['sector'], 'dltable': get_db_table_from_model(str(dl_db_table)),
+                                    'district': com_data['district'], 'organizationid': com_data['organization_id'], 'dsdate': dsdate,
+                                    'oldasset': row['oldasset'], 'newasset': row['newasset'],
+                                    'dl_asset_field': row['dl_tables'][dl_interface_table][dl_db_table]['dl_asset_field']}
+
+                            sql = """UPDATE {sector}.{dltable} dla
+                                     SET {dl_asset_field} = '{newasset}'
+                                     WHERE dla.{dl_asset_field} = (SELECT di.{dl_asset_field}
+                                         FROM {sector}.{dltable} di
+                                             JOIN {sector}.dl_session_keys dls ON di.created_date =  dls.date
+                                             JOIN {sector}.bd_session_keys bss ON dls.bs_date = bss.date
+                                         WHERE di.district = {district} AND bss.date = '{dsdate}' AND
+                                         di.{dl_asset_field} = '{oldasset}' AND di.organization='{organizationid}')
+                                     AND dla.district = {district}
+                                     AND dla.created_date = (SELECT dls.date
+                                         FROM {sector}.{dltable} di
+                                             JOIN {sector}.dl_session_keys dls ON di.created_date =  dls.date
+                                             JOIN {sector}.bd_session_keys bss ON dls.bs_date = bss.date
+                                         WHERE di.district = {district} AND bss.date = '{dsdate}' AND
+                                         di.{dl_asset_field} = '{oldasset}'  AND di.organization='{organizationid}')""".format(**info)
+
+                            print dl_db_table
+                            print sql
+                            cursor = connection.cursor()
+                            cursor.execute(sql)
+                            # row = cursor.fetchone()
+    return HttpResponse('success')
+
+
+# dileepa
 def get_bd_session_key_record_with_firm(sector, table_name, district, bs_date, firm_id):
     print '*get_bd_session_key_record_with_firm', sector, table_name, district, bs_date, firm_id
     sub_app_name = sector + '.base_line'
     sub_app_session = apps.get_model(sub_app_name, 'BdSessionKeys')
     bd_session = sub_app_session.objects.get(district=district, bs_date=bs_date, table_name=table_name, firm_id=firm_id)
+    # bd_session = sub_app_session.objects.get(id=1)
+    return bd_session.date
+
+
+# dileepa
+def get_bd_session_key_record_with_organizations(sector, table_name, district, bs_date, organization_id):
+    print '*get_bd_session_key_record_with_organizations', sector, table_name, district, bs_date, organization_id
+    sub_app_name = sector + '.base_line'
+    sub_app_session = apps.get_model(sub_app_name, 'BdSessionKeys')
+    bd_session = sub_app_session.objects.get(district=district, bs_date=bs_date, table_name=table_name, organization_id=organization_id)
     # bd_session = sub_app_session.objects.get(id=1)
     return bd_session.date
 
@@ -733,7 +835,7 @@ def bs_save_data_with_organization(request):
                     bs_full_date = datetime.date(int(bs_year), int(bs_month), 1)
 
                     bd_session = sub_app_session(bs_date=com_data['bs_date'], table_name=interface_table,
-                                               date=todate, district_id=district, data_type='base_line',
+                                               date=todate, user=current_user, district_id=district, data_type='base_line',
                                                full_bs_date=bs_full_date, organization_id=organization)
                     bd_session.save()
                 else:
@@ -947,7 +1049,8 @@ def bs_get_data_mock_for_bs(request):
 # dileepa
 @csrf_exempt
 def get_latest_bs_date(request):
-    print '\n----------------------'
+    print '\nget_latest_bs_date'
+    print '----------------------'
     todate = timezone.now()
     data = (yaml.safe_load(request.body))
     com_data = data['com_data']
@@ -986,6 +1089,67 @@ def get_latest_bs_date(request):
         #     'bs_created_date': bs_created_date,
         # }
 
+        return HttpResponse(
+            json.dumps(({
+                'bs_date': bs_date,
+                'bs_created_date': bs_created_date,
+            })),
+            content_type='application/json; charset=utf8'
+        )
+    except Exception as ex:
+        print '** Error', ex
+        bs_date = None
+
+        return HttpResponse(
+            json.dumps((bs_date)),
+            content_type='application/json; charset=utf8'
+        )
+
+
+# dileepa
+@csrf_exempt
+def getlatest_bs_date_with_organization(request):
+    print 'get_latest_bs_date_with_organization'
+    print '*----------------------'
+    todate = timezone.now()
+    data = (yaml.safe_load(request.body))
+    com_data = data['com_data']
+    district = com_data['district']
+    incident_id = com_data['incident']
+    organization_id = com_data['organization_id']
+    sector = data['sector']
+    incident = IncidentReport.objects.get(pk=incident_id)
+    incident_date = incident.reported_date_time
+    table_name = data['table_name']
+    bs_mtable_data = {}
+
+    sub_app_name = sector + '.base_line'
+
+    bs_session_model = apps.get_model(sub_app_name, 'BdSessionKeys')
+
+    print 'incident_date', incident_date
+    print bs_session_model
+    print '@'
+
+    try:
+        bd_sessions = bs_session_model.objects.extra(select={'difference': 'full_bs_date - %s'},
+                                                     select_params=(incident_date,)). \
+            filter(table_name=table_name, district=district, organization=organization_id). \
+            values('difference', 'id', 'bs_date', 'date').order_by('difference').latest('difference')
+
+        print bd_sessions
+
+        bs_date = bd_sessions['bs_date']
+        print 'bs_date', bs_date
+
+        bs_created_date = str(bd_sessions['date'])
+        print '******* bs_created_date', bs_created_date
+
+        # data = {
+        #     'bs_date': bs_date,
+        #     'bs_created_date': bs_created_date,
+        # }
+        print '&&&&& ', bs_created_date
         return HttpResponse(
             json.dumps(({
                 'bs_date': bs_date,
@@ -1179,10 +1343,10 @@ def dl_save_data(request):
     admin_area = None
     filter_fields = {}
     current_user = None
-    print 'com_data', com_data
+    # print 'com_data', com_data
     print 'dl_data', dl_data
     try:
-        print 'bs_date', dl_data['bs_date']
+        print 'bs_date*', dl_data['bs_date']
     except:
         pass
     try:
@@ -1246,7 +1410,10 @@ def dl_save_data(request):
                         filter_fields['province_id'] = district.province.id
                         filter_fields['user'] = current_user
                         try:
+                            # filter_fields['bs_date'] = dl_data['bs_date']
                             filter_fields['bs_date'] = dl_data['bs_date']
+                            print '*** ', dl_data['bs_date']
+                            print '*** ', filter_fields['bs_date']
                         except Exception as e:
                             pass
                         dl_session = sub_app_session(**filter_fields)
@@ -1990,6 +2157,8 @@ def fetch_entities_all(request):
 
 @csrf_exempt
 def add_entity(request):
+    print ' add_entity '
+    print '------------'
     data = (yaml.safe_load(request.body))
     model_fields = data['model_fields']
     model_name = data['model']

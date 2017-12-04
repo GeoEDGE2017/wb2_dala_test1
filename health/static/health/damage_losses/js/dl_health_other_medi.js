@@ -780,10 +780,6 @@ app.controller("DsHealthDamagelostOtherMediController", ['$scope', '$http', func
         document.getElementById("clearbtn").disabled = true;
         document.getElementById("editbtn").disabled = true;
         document.getElementById("subbtn").disabled = true;
-
-        console.log("test", $scope.district);
-        console.log("test", $scope.bs_date);
-
         $scope.is_search = true;
 
         if (form.$valid) {
@@ -811,10 +807,12 @@ app.controller("DsHealthDamagelostOtherMediController", ['$scope', '$http', func
                     })
                     if (edit_data_not_found != true) {
                         $scope.dlDataHealthDamagelostOtherMedicalFacilities = data;
-                    } else {
+                    }
+                    else {
                         $("#modal-container-239456").modal('show');
                     }
-                } else {
+                }
+                else {
                     $("#modal-container-239456").modal('show');
                 }
             })

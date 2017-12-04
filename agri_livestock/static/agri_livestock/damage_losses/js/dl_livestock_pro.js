@@ -21,7 +21,7 @@ app.controller("DlAgriLivestockroController", ['$scope','$http',function ($scope
     $scope.provinces;
 
     // get relevant damage_losses data for calculations
-        $scope.changedValue=function getBsData(selectedValue) {
+    $scope.changedValue=function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {
             fetchProvinces();
         }

@@ -61,63 +61,72 @@ app.controller('dlSumLivestockPoultryDstController', function($scope, $http,$par
     $scope.calTotal = function(arr,property) {
         var finaltotal = 0;
         angular.forEach(arr, function(value, key) {
-        if(value.animals !="Total"){
-             finaltotal = finaltotal + value[property] ;
-             }
+            if(value.animals != "Total"){
+                finaltotal = finaltotal + $scope.convertToFloat(value[property]);
+                console.log($scope.convertToFloat(value[property]));
+            }
         })
         return finaltotal;
     }
 
-     $scope.calTotal1 = function() {
+    $scope.calTotal1 = function() {
         var finaltotal1 = 0;
         var finaltotal2 = 0;
         var garnd = 0;
-        console.log('type',$scope.data);
-        if($scope.data){
-        var arrayone = $scope.data.agri_livestock.Table_4.DlpNdaLivestockPubDistrict;
-        var arraytwo= $scope.data.agri_livestock.Table_4.DlpNdaPoultryPubDistrict;
+
+        if($scope.data) {
+            var arrayone = $scope.data.agri_livestock.Table_4.DlpNdaLivestockPubDistrict;
+            var arraytwo = $scope.data.agri_livestock.Table_4.DlpNdaPoultryPubDistrict;
         }
-        console.log('type',$scope.data);
+
         angular.forEach(arrayone, function(value, key) {
-        if(value.animals !="Total"){
-             finaltotal1 = finaltotal1 + value.damages ;
-             }
+            if(value.animals != "Total") {
+                finaltotal1 = finaltotal1 + value.damages;
+            }
         })
 
         angular.forEach(arraytwo, function(value, key) {
-        if(value.animals =="Total"){
-             finaltotal2 = value.damages ;
-             }
+            if(value.animals == "Total") {
+                finaltotal2 = value.damages;
+            }
         })
 
-        garnd   = finaltotal1 + finaltotal2;
+        garnd = finaltotal1 + finaltotal2;
         return garnd;
-
     }
 
     $scope.calTotal2 = function() {
         var finaltotal1 = 0;
         var finaltotal2 = 0;
         var garnd = 0;
-        if($scope.data){
-        var arrayone = $scope.data.agri_livestock.Table_4.DlpNdaLivestockPvtDistrict;
-        var arraytwo= $scope.data.agri_livestock.Table_4.DlpNdaPoultryPvtDistrict;
+        if($scope.data) {
+            var arrayone = $scope.data.agri_livestock.Table_4.DlpNdaLivestockPvtDistrict;
+            var arraytwo= $scope.data.agri_livestock.Table_4.DlpNdaPoultryPvtDistrict;
         }
+
         angular.forEach(arrayone, function(value, key) {
-        if(value.animals !="Total"){
-             finaltotal1 = finaltotal1 + value.damages ;
-             }
+            if(value.animals != "Total") {
+                finaltotal1 = finaltotal1 + value.damages;
+            }
         })
 
         angular.forEach(arraytwo, function(value, key) {
-        if(value.animals =="Total"){
-             finaltotal2 = value.damages ;
-             }
+            if(value.animals == "Total") {
+                finaltotal2 = value.damages;
+            }
         })
 
-        garnd   = finaltotal1 + finaltotal2;
+        garnd = finaltotal1 + finaltotal2;
         return garnd;
-
     }
 
+    $scope.convertToFloat = function(val) {
+        var total = 0;
+        if(val == null || isNaN(val)) {
+            val = 0;
+        }
+
+        total = parseFloat(val);
+        return total;
+    }
 });

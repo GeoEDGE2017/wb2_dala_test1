@@ -27,6 +27,7 @@ app.controller('HousingChartController', function($scope, $http, $parse, _) {
 			angular.forEach($scope.provincenames.sort(), function(value, key) {
 				google.charts.setOnLoadCallback(drawPieChart);
 				google.charts.setOnLoadCallback(drawBarChart);
+
 				var totalNumDes = 0;
 				totalNumDes = $scope.convertToInt(
 					($scope.dlHousingSumNat.housing.Table_6[value].DlNumDesPerNational[0] ? ($scope.dlHousingSumNat.housing.Table_6[value].DlNumDesPerNational[0].tot_num_houses ? $scope.dlHousingSumNat.housing.Table_6[value].DlNumDesPerNational[0].tot_num_houses : 0) : 0), ($scope.dlHousingSumNat.housing.Table_6[value].DlNumDesSemiPerNational[0] ? ($scope.dlHousingSumNat.housing.Table_6[value].DlNumDesSemiPerNational[0].tot_num_houses ? $scope.dlHousingSumNat.housing.Table_6[value].DlNumDesSemiPerNational[0].tot_num_houses : 0) : 0), ($scope.dlHousingSumNat.housing.Table_6[value].DlNumDesImpNational[0] ? ($scope.dlHousingSumNat.housing.Table_6[value].DlNumDesImpNational[0].tot_num_houses ? $scope.dlHousingSumNat.housing.Table_6[value].DlNumDesImpNational[0].tot_num_houses : 0) : 0));

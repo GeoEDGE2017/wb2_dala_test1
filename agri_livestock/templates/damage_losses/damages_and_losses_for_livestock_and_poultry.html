@@ -8,27 +8,39 @@
 <main class="main" ng-app="dlLivestockPoultryApp" ng-controller="dlLivestockPoultryController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-         <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+         <li class="breadcrumb-item">
+             <a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:agri_livestock_main' %}">Agri Livestock  Sector</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:agri_livestock_main' %}">
+                Agri Livestock  Sector
+            </a>
         </li>
         <li class="breadcrumb-item active">
             <span class="label label-success" style="font-size:14px;">
                 Table 3. Damages and Losses for Livestock and Poultry
             </span>
         </li>
-        <li style="float:right;"> <a href="{% static 'dashboard/doc/4B-Agriculture-Livestock-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
+        <li style="float:right;">
+            <a href="{% static 'dashboard/doc/4B-Agriculture-Livestock-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;"
+               class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a>
+        </li>
     </ol>
     <div class="container-fluid" ng-form name="form_dl_livestock_poultry">
         <div>
             <ul class='nav nav-wizard'>
-                <li id="li1" class="active"><a href='#step1' data-toggle="tab">1 Number of Dead Animals</a></li>
-                <li id="li2"><a href='#step2' data-toggle="tab">2 Production Assets Affected</a></li>
-                <li id="li3"><a href='#step3' data-toggle="tab">3 Losses</a></li>
+                <li id="li1" class="active">
+                    <a href='#step1' data-toggle="tab">1 Number of Dead Animals</a>
+                </li>
+                <li id="li2">
+                    <a href='#step2' data-toggle="tab">2 Production Assets Affected</a>
+                </li>
+                <li id="li3">
+                    <a href='#step3' data-toggle="tab">3 Losses</a>
+                </li>
             </ul>
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane active" id="step1">
-                
                     <table class="table table-bordered">
                         <colgroup>
                             <col width="113"/>
@@ -105,8 +117,6 @@
                                 <option value="" selected>Select Organization</option>
                             </select>
                         </td>
-
-
                     </tr>
                     <tr  height="19">
                         <td class="trhead1" height="19" width="171">
@@ -114,7 +124,6 @@
                         </td>
                         <td colspan="15" >
                             <span ng-bind="selectedOrganization.ownership"></span>
-
                         </td>
                     </tr>
                         <tr class="trheadc1" height="19">
@@ -191,21 +200,17 @@
                                        class="form-control input-md" ng-model="dlpNdaLivestock.dead_mature_female">
                             </td>
                             <td class="right" colspan="4" width="252" height="19" ng-model="dlpNdaLivestock.damages" ng-bind="dlpNdaLivestock.damages =
-                            dlpNdaLivestock.dead_young_male * bs_data['BlpAnmLivestock'][$index].fields.avg_val_young_male +
-                            dlpNdaLivestock.dead_young_female * bs_data['BlpAnmLivestock'][$index].fields.avg_val_young_female +
-                            dlpNdaLivestock.dead_juvenile_male * bs_data['BlpAnmLivestock'][$index].fields.avg_val_juvenile_male +
-                            dlpNdaLivestock.dead_juvenile_female * bs_data['BlpAnmLivestock'][$index].fields.avg_val_juvenile_female +
-                            dlpNdaLivestock.dead_mature_male * bs_data['BlpAnmLivestock'][$index].fields.avg_val_mature_male +
-                            dlpNdaLivestock.dead_mature_female * bs_data['BlpAnmLivestock'][$index].fields.avg_val_mature_female ">
+                                dlpNdaLivestock.dead_young_male * bs_data['BlpAnmLivestock'][$index].fields.avg_val_young_male +
+                                dlpNdaLivestock.dead_young_female * bs_data['BlpAnmLivestock'][$index].fields.avg_val_young_female +
+                                dlpNdaLivestock.dead_juvenile_male * bs_data['BlpAnmLivestock'][$index].fields.avg_val_juvenile_male +
+                                dlpNdaLivestock.dead_juvenile_female * bs_data['BlpAnmLivestock'][$index].fields.avg_val_juvenile_female +
+                                dlpNdaLivestock.dead_mature_male * bs_data['BlpAnmLivestock'][$index].fields.avg_val_mature_male +
+                                dlpNdaLivestock.dead_mature_female * bs_data['BlpAnmLivestock'][$index].fields.avg_val_mature_female ">
                             </td>
-
-
                         </tr>
-
                         <!--Livestock Total-->
                         <tr height="19" ng-repeat="dlpNdaLivestock in dlLivestockPoultry.agri_livestock.Table_3.DlpNdaLivestock" ng-if="dlpNdaLivestock.animals == 'Total'">
                             <td class="tdpa" width="113" height="19"ng-bind="dlpNdaLivestock.animals">
-
                             </td>
                             <td class="tdpa" width="117" height="19">
                                 <br/>
@@ -257,7 +262,6 @@
                         </tr>
                         <tr height="19" ng-repeat="dlpNdaPoultry in dlLivestockPoultry.agri_livestock.Table_3.DlpNdaPoultry" ng-if="dlpNdaPoultry.animals != 'Total' && dlpNdaPoultry.animals != 'TOTAL'">
                             <td class="tdpa" width="113" height="19" ng-bind="dlpNdaPoultry.animals">
-
                             </td>
                             <td width="117" height="19">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
@@ -283,23 +287,18 @@
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dlpNdaPoultry.dead_mature_female">
                             </td>
-
                             <td class="right" colspan="4" width="252" height="19" ng-model="dlpNdaPoultry.damages" ng-bind="dlpNdaPoultry.damages =
-                            dlpNdaPoultry.dead_young_male * bs_data['BlpAnmPoultry'][$index].fields.avg_val_young_male +
-                            dlpNdaPoultry.dead_young_female * bs_data['BlpAnmPoultry'][$index].fields.avg_val_young_female +
-                            dlpNdaPoultry.dead_juvenile_male * bs_data['BlpAnmPoultry'][$index].fields.avg_val_juvenile_male +
-                            dlpNdaPoultry.dead_juvenile_female * bs_data['BlpAnmPoultry'][$index].fields.avg_val_juvenile_female +
-                            dlpNdaPoultry.dead_mature_male * bs_data['BlpAnmPoultry'][$index].fields.avg_val_mature_male +
-                            dlpNdaPoultry.dead_mature_female * bs_data['BlpAnmPoultry'][$index].fields.avg_val_mature_female ">
+                                dlpNdaPoultry.dead_young_male * bs_data['BlpAnmPoultry'][$index].fields.avg_val_young_male +
+                                dlpNdaPoultry.dead_young_female * bs_data['BlpAnmPoultry'][$index].fields.avg_val_young_female +
+                                dlpNdaPoultry.dead_juvenile_male * bs_data['BlpAnmPoultry'][$index].fields.avg_val_juvenile_male +
+                                dlpNdaPoultry.dead_juvenile_female * bs_data['BlpAnmPoultry'][$index].fields.avg_val_juvenile_female +
+                                dlpNdaPoultry.dead_mature_male * bs_data['BlpAnmPoultry'][$index].fields.avg_val_mature_male +
+                                dlpNdaPoultry.dead_mature_female * bs_data['BlpAnmPoultry'][$index].fields.avg_val_mature_female ">
                             </td>
-
-
                         </tr>
-
                         <!--Poultry Total-->
                         <tr height="19" ng-repeat="dlpNdaPoultry in dlLivestockPoultry.agri_livestock.Table_3.DlpNdaPoultry" ng-if="dlpNdaPoultry.animals == 'Total'">
                             <td class="tdpa" width="113" height="19" ng-bind="dlpNdaPoultry.animals">
-
                             </td>
                             <td class="tdpa" width="117" height="19">
                                 <br/>
@@ -345,24 +344,17 @@
                                 <br/>
                             </td>
                             <td class="right" colspan="4" width="252" height="19" ng-model="value1" ng-bind="value1 = calTotaltabOne()">
-
                             </td>
                         </tr>
-
                         </tbody>
                     </table>
-
                     <br>
                     <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
                             class="glyphicon glyphicon-arrow-right"></span> Fill Production Assets Affected Informations</a>
-
                 <br>
                 </div>
-
                 <div class="tab-pane" id="step2">
                     <table class="table table-bordered">
-
-
                         <tr class="trheadc1" height="19">
                             <td colspan="11" width="1099" height="19">
                                 Production Assets Affected
@@ -442,7 +434,6 @@
                         </tr>
                         <tr height="19" ng-repeat="dlpPafLivestock in dlLivestockPoultry.agri_livestock.Table_3.DlpPafLivestock" ng-if="dlpPafLivestock.animals != 'Total'">
                             <td class="tdpa" width="113" height="19" ng-bind="dlpPafLivestock.animals">
-
                             </td>
                             <td width="117" height="19">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
@@ -476,19 +467,17 @@
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dlpPafLivestock.dmg_others">
                             </td>
-
                             <td class="right" colspan="4" width="252" height="19" ng-model="dlpPafLivestock.damages" ng-bind="dlpPafLivestock.damages =
-                            dlpPafLivestock.dest_animal_shed * bs_data['BlpAstLivestock'][$index].fields.avg_replacec_anm_shed +
-                            dlpPafLivestock.dest_feeds * bs_data['BlpAstLivestock'][$index].fields.avg_replacec_feeds +
-                            dlpPafLivestock.dest_medicines * bs_data['BlpAstLivestock'][$index].fields.avg_replacec_medicines +
-                            dlpPafLivestock.dest_tools * bs_data['BlpAstLivestock'][$index].fields.avg_replacec_tools +
-                            dlpPafLivestock.dest_others * bs_data['BlpAstLivestock'][$index].fields.avg_replacec_others +
-                            dlpPafLivestock.dmg_animal_shed * bs_data['BlpAstLivestock'][$index].fields.avg_repairc_anm_shed +
-                            dlpPafLivestock.dmg_tools * bs_data['BlpAstLivestock'][$index].fields.avg_repairc_tools  +
-                            dlpPafLivestock.dmg_others * bs_data['BlpAstLivestock'][$index].fields.avg_repairc_others ">
+                                dlpPafLivestock.dest_animal_shed * bs_data['BlpAstLivestock'][$index].fields.avg_replacec_anm_shed +
+                                dlpPafLivestock.dest_feeds * bs_data['BlpAstLivestock'][$index].fields.avg_replacec_feeds +
+                                dlpPafLivestock.dest_medicines * bs_data['BlpAstLivestock'][$index].fields.avg_replacec_medicines +
+                                dlpPafLivestock.dest_tools * bs_data['BlpAstLivestock'][$index].fields.avg_replacec_tools +
+                                dlpPafLivestock.dest_others * bs_data['BlpAstLivestock'][$index].fields.avg_replacec_others +
+                                dlpPafLivestock.dmg_animal_shed * bs_data['BlpAstLivestock'][$index].fields.avg_repairc_anm_shed +
+                                dlpPafLivestock.dmg_tools * bs_data['BlpAstLivestock'][$index].fields.avg_repairc_tools  +
+                                dlpPafLivestock.dmg_others * bs_data['BlpAstLivestock'][$index].fields.avg_repairc_others ">
                             </td>
                         </tr>
-
                         <tr height="19" ng-repeat="dlpPafLivestock in dlLivestockPoultry.agri_livestock.Table_3.DlpPafLivestock" ng-if="dlpPafLivestock.animals == 'Total'">
                             <td class="tdpa" width="113" height="19" ng-bind="dlpPafLivestock.animals">
                             </td>
@@ -516,8 +505,8 @@
                             <td class="tdpa" width="63" height="19">
                                 <br/>
                             </td>
-                            <td class="right"  colspan="2" width="126" height="19" ng-model="dlpPafLivestock.damages" ng-bind="dlpPafLivestock.damages = CalTot(dlLivestockPoultry.agri_livestock.Table_3.DlpPafLivestock)">
-
+                            <td class="right"  colspan="2" width="126" height="19" ng-model="dlpPafLivestock.damages"
+                                ng-bind="dlpPafLivestock.damages = CalTot(dlLivestockPoultry.agri_livestock.Table_3.DlpPafLivestock)">
                             </td>
                         </tr>
                         <tr class="trheadc" height="19">
@@ -587,19 +576,17 @@
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dlpPafPoultry.dmg_others">
                             </td>
-
                             <td class="right" colspan="4" width="252" height="19" ng-model="dlpPafPoultry.damages" ng-bind="dlpPafPoultry.damages =
-                            dlpPafPoultry.dest_animal_shed * bs_data['BlpAstPoultry'][$index].fields.avg_replacec_anm_shed +
-                            dlpPafPoultry.dest_feeds * bs_data['BlpAstPoultry'][$index].fields.avg_replacec_feeds +
-                            dlpPafPoultry.dest_medicines * bs_data['BlpAstPoultry'][$index].fields.avg_replacec_medicines +
-                            dlpPafPoultry.dest_tools * bs_data['BlpAstPoultry'][$index].fields.avg_replacec_tools +
-                            dlpPafPoultry.dest_others * bs_data['BlpAstPoultry'][$index].fields.avg_replacec_others +
-                            dlpPafPoultry.dmg_animal_shed * bs_data['BlpAstPoultry'][$index].fields.avg_repairc_anm_shed +
-                            dlpPafPoultry.dmg_tools * bs_data['BlpAstPoultry'][$index].fields.avg_repairc_tools  +
-                            dlpPafPoultry.dmg_others * bs_data['BlpAstPoultry'][$index].fields.avg_repairc_others ">
+                                dlpPafPoultry.dest_animal_shed * bs_data['BlpAstPoultry'][$index].fields.avg_replacec_anm_shed +
+                                dlpPafPoultry.dest_feeds * bs_data['BlpAstPoultry'][$index].fields.avg_replacec_feeds +
+                                dlpPafPoultry.dest_medicines * bs_data['BlpAstPoultry'][$index].fields.avg_replacec_medicines +
+                                dlpPafPoultry.dest_tools * bs_data['BlpAstPoultry'][$index].fields.avg_replacec_tools +
+                                dlpPafPoultry.dest_others * bs_data['BlpAstPoultry'][$index].fields.avg_replacec_others +
+                                dlpPafPoultry.dmg_animal_shed * bs_data['BlpAstPoultry'][$index].fields.avg_repairc_anm_shed +
+                                dlpPafPoultry.dmg_tools * bs_data['BlpAstPoultry'][$index].fields.avg_repairc_tools  +
+                                dlpPafPoultry.dmg_others * bs_data['BlpAstPoultry'][$index].fields.avg_repairc_others ">
                             </td>
                         </tr>
-
                         <tr height="43" ng-repeat="dlpPafPoultry in dlLivestockPoultry.agri_livestock.Table_3.DlpPafPoultry" ng-if="dlpPafPoultry.animals == 'Total'">
                             <td class="tdpa" width="113" height="43">
                                 Total
@@ -720,12 +707,11 @@
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dlpStructStructures.pdmg_floor">
                             </td>
-
                             <td class="right" colspan="4" width="252" height="19" ng-model="dlpStructStructures.damages" ng-bind="dlpStructStructures.damages =
-                            dlpStructStructures.dest_sqm * bs_data['BlpAstStructures'][$index].fields.avg_replace_cost +
-                            dlpStructStructures.pdmg_roof * bs_data['BlpAstStructures'][$index].fields.avg_repair_roof +
-                            dlpStructStructures.pdmg_wall * bs_data['BlpAstStructures'][$index].fields.avg_repair_wall +
-                            dlpStructStructures.pdmg_floor * bs_data['BlpAstStructures'][$index].fields.avg_repair_floor ">
+                                dlpStructStructures.dest_sqm * bs_data['BlpAstStructures'][$index].fields.avg_replace_cost +
+                                dlpStructStructures.pdmg_roof * bs_data['BlpAstStructures'][$index].fields.avg_repair_roof +
+                                dlpStructStructures.pdmg_wall * bs_data['BlpAstStructures'][$index].fields.avg_repair_wall +
+                                dlpStructStructures.pdmg_floor * bs_data['BlpAstStructures'][$index].fields.avg_repair_floor ">
                             </td>
                         </tr>
                         <tr height="19" ng-repeat="dlpStructStructures in dlLivestockPoultry.agri_livestock.Table_3.DlpStructStructures" ng-if="dlpStructStructures.structures == 'Total'">
@@ -779,10 +765,9 @@
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dlpStructOther.num_part_dmg">
                             </td>
-
                             <td class="right" colspan="4" width="252" height="19" ng-model="dlpStructOther.damages" ng-bind="dlpStructOther.damages =
-                            dlpStructOther.num_tot_dest * bs_data['BlpAstOther'][$index].fields.avg_replace_cost +
-                            dlpStructOther.num_part_dmg * bs_data['BlpAstOther'][$index].fields.avg_repair_cost">
+                                dlpStructOther.num_tot_dest * bs_data['BlpAstOther'][$index].fields.avg_replace_cost +
+                                dlpStructOther.num_part_dmg * bs_data['BlpAstOther'][$index].fields.avg_repair_cost">
                             </td>
                         </tr>
 
@@ -817,9 +802,11 @@
                         </tbody>
                     </table>
                     <br>
-                    <a href="#step3" id="s2" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
-                            class="glyphicon glyphicon-arrow-right"></span> Fill Losses Informations</a>
-                            <br>
+                    <a href="#step3" id="s2" class="btn btn-sm btn-info pull-right" data-toggle="tab">
+                        <span class="glyphicon glyphicon-arrow-right"></span>
+                        Fill Losses Informations
+                    </a>
+                    <br>
                 </div>
                 <div class="tab-pane" id="step3">
                     <table class="table table-bordered">
@@ -888,7 +875,6 @@
                             <td class="tdpa" width="113" height="19" ng-bind="dlpLosLivestock.animals">
                             </td>
                             <td class="tdpa" width="117" height="19" ng-if="dlpLosLivestock.animals == 'Swine' || dlpLosLivestock.animals == 'Sheep'">
-
                             </td>
                             <td width="117" height="19" ng-if="dlpLosLivestock.animals != 'Swine' &&  dlpLosLivestock.animals != 'Sheep'">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
@@ -923,27 +909,26 @@
                             </td>
                             <td width="63" class="right" ng-if="dlpLosLivestock.animals == 'Swine' && dlpLosLivestock.animals == 'Sheep' "
                                 height="19" ng-model="dlpLosLivestock.los_year_1" ng-bind="dlpLosLivestock.los_year_1 =
-                            dlpLosLivestock.meat_year_1/100 * bs_data['BlpApyLivestock'][$index].fields.meat +
-                            dlpLosLivestock.others_year_1/100 *bs_data['BlpApyLivestock'][$index].fields.others">
+                                dlpLosLivestock.meat_year_1/100 * bs_data['BlpApyLivestock'][$index].fields.meat +
+                                dlpLosLivestock.others_year_1/100 *bs_data['BlpApyLivestock'][$index].fields.others">
                             </td>
                             <td width="63" class="right" ng-if="dlpLosLivestock.animals == 'Swine' && dlpLosLivestock.animals == 'Sheep' "
                                 height="19" ng-model="dlpLosLivestock.los_year_2" ng-bind="dlpLosLivestock.los_year_2 =
-                            dlpLosLivestock.meat_year_2/100* bs_data['BlpApyLivestock'][$index].fields.meat +
-                            dlpLosLivestock.others_year_2/100 *bs_data['BlpApyLivestock'][$index].fields.others">
+                                dlpLosLivestock.meat_year_2/100* bs_data['BlpApyLivestock'][$index].fields.meat +
+                                dlpLosLivestock.others_year_2/100 *bs_data['BlpApyLivestock'][$index].fields.others">
                             </td>
                             <td width="63" class="right" ng-if="dlpLosLivestock.animals != 'Swine' || dlpLosLivestock.animals != 'Sheep' "
                                 height="19" ng-model="dlpLosLivestock.los_year_1" ng-bind="dlpLosLivestock.los_year_1 =
-                            dlpLosLivestock.milk_year_1/100 * bs_data['BlpApyLivestock'][$index].fields.milk +
-                            dlpLosLivestock.meat_year_1/100 * bs_data['BlpApyLivestock'][$index].fields.meat +
-                            dlpLosLivestock.others_year_1/100 *bs_data['BlpApyLivestock'][$index].fields.others">
+                                dlpLosLivestock.milk_year_1/100 * bs_data['BlpApyLivestock'][$index].fields.milk +
+                                dlpLosLivestock.meat_year_1/100 * bs_data['BlpApyLivestock'][$index].fields.meat +
+                                dlpLosLivestock.others_year_1/100 *bs_data['BlpApyLivestock'][$index].fields.others">
                             </td>
                             <td width="63" class="right" ng-if="dlpLosLivestock.animals != 'Swine' || dlpLosLivestock.animals != 'Sheep' " height="19" ng-model="dlpLosLivestock.los_year_2" ng-bind="dlpLosLivestock.los_year_2 =
-                            dlpLosLivestock.milk_year_2/100 * bs_data['BlpApyLivestock'][$index].fields.milk +
-                            dlpLosLivestock.meat_year_2/100* bs_data['BlpApyLivestock'][$index].fields.meat +
-                            dlpLosLivestock.others_year_2/100 *bs_data['BlpApyLivestock'][$index].fields.others">
+                                dlpLosLivestock.milk_year_2/100 * bs_data['BlpApyLivestock'][$index].fields.milk +
+                                dlpLosLivestock.meat_year_2/100* bs_data['BlpApyLivestock'][$index].fields.meat +
+                                dlpLosLivestock.others_year_2/100 *bs_data['BlpApyLivestock'][$index].fields.others">
                             </td>
                         </tr>
-
                         <!--Livestock Total-->
                         <tr height="19" ng-repeat="dlpLosLivestock in dlLivestockPoultry.agri_livestock.Table_3.DlpLosLivestock" ng-if="dlpLosLivestock.animals == 'Total'">
                             <td class="tdpa" colspan="9" width="973" height="19" ng-bind="dlpLosLivestock.animals">
@@ -1020,17 +1005,16 @@
                                        class="form-control input-md" ng-model="dlpLosPoultry.others_year_2">
                             </td>
                             <td width="63" class="right" height="19" ng-bind="dlpLosPoultry.los_year_1 =
-                            dlpLosPoultry.meat_year_1/100 * bs_data['BlpApyPoultry'][$index].fields.meat+
-                            dlpLosPoultry.eggs_year_1/100* bs_data['BlpApyPoultry'][$index].fields.eggs +
-                            dlpLosPoultry.others_year_1/100 * bs_data['BlpApyPoultry'][$index].fields.others ">
+                                dlpLosPoultry.meat_year_1/100 * bs_data['BlpApyPoultry'][$index].fields.meat+
+                                dlpLosPoultry.eggs_year_1/100* bs_data['BlpApyPoultry'][$index].fields.eggs +
+                                dlpLosPoultry.others_year_1/100 * bs_data['BlpApyPoultry'][$index].fields.others ">
                             </td>
                             <td width="63" class="right" height="19" ng-bind="dlpLosPoultry.los_year_2 =
-                            dlpLosPoultry.meat_year_2/100 * bs_data['BlpApyPoultry'][$index].fields.meat+
-                            dlpLosPoultry.eggs_year_2/100 * bs_data['BlpApyPoultry'][$index].fields.eggs +
-                            dlpLosPoultry.others_year_2/100 * bs_data['BlpApyPoultry'][$index].fields.others ">
+                                dlpLosPoultry.meat_year_2/100 * bs_data['BlpApyPoultry'][$index].fields.meat+
+                                dlpLosPoultry.eggs_year_2/100 * bs_data['BlpApyPoultry'][$index].fields.eggs +
+                                dlpLosPoultry.others_year_2/100 * bs_data['BlpApyPoultry'][$index].fields.others ">
                             </td>
                         </tr>
-
                         <tr height="19" ng-repeat="dlpLosPoultry in dlLivestockPoultry.agri_livestock.Table_3.DlpLosPoultry" ng-if="dlpLosPoultry.animals == 'Total'">
                             <td class="tdpa" colspan="9" width="973" height="19" ng-bind="dlpLosPoultry.animals">
                             </td>
@@ -1047,9 +1031,6 @@
                             <td width="63" class="right" height="19" ng-bind="totalProLossesYear2()">
                             </td>
                         </tr>
-
-
-
                         <!--Cleaning of Debris-->
                         <tr height="19" ng-repeat="dlpLosOther in dlLivestockPoultry.agri_livestock.Table_3.DlpLosOther" ng-if="dlpLosOther.others != 'TOTAL OF LOSSES'">
                             <td class="tdpa" colspan="9" width="973" height="19" ng-bind="dlpLosOther.others">
@@ -1072,11 +1053,7 @@
                             <td width="63" class="right" height="19" ng-model="dlpLosOther.los_year_2" ng-bind="dlpLosOther.los_year_2 =totalOtherLossesYear2()">
                             </td>
                         </tr>
-                        </tbody>
                     </table>
-                    </tbody>
-                    </table>
-                    
                     <div class="pull-right">
                         <br>
                     <button id="clearbtn" type="button" ng-click="clear()" class="btn btn-info">Clear</button>
@@ -1094,7 +1071,6 @@
                         Edit
                     </button>
                     <button id="subbtn" type="button" class="btn btn-success" ng-click="saveDlData(form_dl_livestock_poultry)">Submit</button>
-
                     </div>
                     <br><br><br>
                 </div>
@@ -1171,7 +1147,29 @@
                 </div>
             </div>
         </div>
-    </div>
+        <!-- please update the baseline tables -->
+        <div class="modal fade" id="modal-container-239458" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="javascript:window.location.reload()"> × </button>
+                        <h4 class="modal-title" id="myModalLabel">
+                            Warning
+                        </h4> </div>
+                    <div class="modal-body alert-info">
+                        <h4>
+                            <span class="icon-close"></span>
+                            Please update the baseline <br>
+                            <b>'Table 2: Baseline Information on Livestock and Poultry'</b><br>
+                            information before calculate the damage and loss !
+                        </h4> </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="javascript:window.location.reload()"> Close </button>
+                        <button id="ok" onclick="javascript:window.location.reload()" type="button" class="btn btn-primary"> OK </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- /.conainer-fluid -->
 </main>

@@ -3174,24 +3174,22 @@ TABLE_PROPERTY_MAPPER = {
             'DlInfLosses': ['avg_val_income_year', 'los_type', 'tol_losses', 'val_income_year1', 'val_income_year2',
                             'val_los_year1', 'val_los_year2', 'id']
         },
-        # 'Table_4': {
-        #
-        #     'DlBusLosses': ['los_type', 'avg_val_income_year', 'val_income_year1', 'val_income_year2', 'val_los_year1',
-        #                     'val_los_year2', 'tol_losses', 'id'],
-        #     'DlInfLosses': ['los_type', 'val_los_year1', 'val_los_year2', 'tol_losses', 'id'],
-        #
-        # },
         'Table_4': {
-            'DlDmgBusDistrict': ['tot_damages', 'assets', 'ownership', 'business'],
-            'DlLosBusDistrict': ['los_year1', 'los_year2', 'los_type', 'ownership', 'business'],
-            'DlDmgInfDistrict': ['sum', 'ownership', 'inf_type'],
-            'DlLosInfDistrict': ['tot_year1', 'tot_year2', 'ownership', 'inf_type']
+            'DlDmgBusDistrictN': ['business', 'sumpub', 'sumpvt'],
+            'DlLosBusDistrictN': ['business', 'tot_year1_pub', 'tot_year1_pvt', 'tot_year2_pub', 'tot_year2_pvt'],
+            'DlDmgInfDistrictN': ['infrastructure', 'tot_dst', 'tot_pdmg', 'tot_dmg', 'ownership', 'inf_type'],
+            'DlLosInfDistrictN': ['infrastructure', 'year1', 'year2', 'ownership', 'inf_type']
         },
         'Table_5': {
-            'DlLosInfTotDistrict': ['tot_year1', 'tot_year2', 'ownership'],
-            'DlDmgbusTotDistrict': ['tot_damages', 'ownership'],
-            'DlLosbusTotDistrict': ['los_year1', 'los_year2', 'ownership'],
-            'DlDmgInfTotDistrict': ['sum', 'ownership']
+            # 'DlLosInfTotDistrict': ['tot_year1', 'tot_year2', 'ownership'],
+            # 'DlDmgbusTotDistrict': ['tot_damages', 'ownership'],
+            # 'DlLosbusTotDistrict': ['los_year1', 'los_year2', 'ownership'],
+            # 'DlDmgInfTotDistrict': ['sum', 'ownership'],
+
+            'DlDmgFrmTotProvinceN': ['asset', 'tot_damages_pub', 'tot_damages_pvt'],
+            'DlLosFrmTotProvinceN': ['asset', 'los_year1_pub', 'los_year1_pvt', 'los_year2_pub', 'los_year2_pvt'],
+            'DlDmgInfTotProvinceN': ['assets', 'los_pub', 'los_pvt'],
+            'DlLosInfTotProvinceN': ['asset', 'los_year1_pub', 'los_year1_pvt', 'los_year2_pub', 'los_year2_pvt'],
         },
         'Table_6': {
             'DlDmgInfTotNational': ['sum', 'ownership'],

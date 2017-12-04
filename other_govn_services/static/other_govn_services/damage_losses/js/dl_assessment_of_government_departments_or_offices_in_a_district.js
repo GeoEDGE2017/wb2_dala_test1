@@ -502,6 +502,13 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function($sco
 
 	$scope.saveDepartment = function(form) {
 		if(!$scope.is_edit_model) {
+		    console.log('saveDepartment');
+		    console.log('is_edit_model', $scope.is_edit_model);
+		    console.log('new_department', $scope.new_department.id);
+		    $scope.new_department.id = null;
+		    $scope.new_department.district_id = $scope.district.district__id;
+		    delete $scope.new_department.ownership;
+		    console.log('new_department', $scope.new_department);
 			$http({
 				method: "POST",
 				url: "/add_entity",

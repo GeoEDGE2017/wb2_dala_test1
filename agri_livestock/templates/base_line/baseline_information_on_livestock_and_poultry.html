@@ -7,6 +7,11 @@
     });
 
 </script>
+<style type="text/css">
+td {
+   width:9em!important;
+}
+</style>
 <!-- Main content -->
 <main class="main" ng-app="bsLivestockPoultryApp" ng-controller="bsLivestockPoultryController">
     <!-- Breadcrumb -->
@@ -43,22 +48,7 @@
             </ul>
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane active" id="step1">
-                    <td style="width:100px;">
-                        <span ng-if="!check_search">
-                            <button ng-if="!is_search" class="btn btn-info" disabled>
-                                <span class="fa fa-search"></span>
-                            </button>
-                        </span>
-                        <span ng-if="check_search">
-                            <button ng-click="searchBsData(form_bs_livestock_poultry)" ng-if="!is_search"
-                                    class="btn btn-info">
-                                <span class="fa fa-search"></span>
-                            </button>
-                        </span>
-                        <button ng-click="clear()" ng-if="is_search" class="btn  btn-warning">
-                            Cancel Search
-                        </button>
-                    </td>
+                   
                     <table class="table table-bordered">
                         <colgroup>
                             <col width="113"/>
@@ -113,11 +103,27 @@
                             <td colspan="3" width="244" height="19">
                                 Year/Month
                             </td>
-                            <td colspan="5" width="793" height="19">
+                            <td colspan="2" width="793" height="19">
                                 <input name="baselineDate" type="text" placeholder="mm/yy"
                                        ng-change="getBsData();changeDis();" id="datepicker" ng-model="bs_date"
                                        class="form-control input-md" required>
                             </td>
+                             <td style="width:100px;">
+                        <span ng-if="!check_search">
+                            <button ng-if="!is_search" class="btn btn-info" disabled>
+                                <span class="fa fa-search"></span>
+                            </button>
+                        </span>
+                        <span ng-if="check_search">
+                            <button ng-click="searchBsData(form_bs_livestock_poultry)" ng-if="!is_search"
+                                    class="btn btn-info">
+                                <span class="fa fa-search"></span>
+                            </button>
+                        </span>
+                        <button ng-click="clear()" ng-if="is_search" class="btn  btn-warning">
+                            <span class="fa fa-times" aria-hidden="true"></span>
+                        </button>
+                    </td>
                             <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
                         </tr>
                         <tr class="trheadc1" height="34">

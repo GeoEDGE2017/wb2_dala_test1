@@ -21,6 +21,11 @@ $(document).ready(function() {
 	});
 });
 </script>
+<style type="text/css">
+td {
+   width: 6em!important;
+}
+</style>
 <!-- Main content -->
 <main class="main" ng-app="dsHealthDamagelostOtherMediApp" ng-controller="DsHealthDamagelostOtherMediController">
 	<!-- Breadcrumb -->
@@ -70,25 +75,11 @@ $(document).ready(function() {
 					<span style="color:red" ng-show="!is_valid_data">
                         This request can't be proceed, there is data-set available for this selection.
                     </span>
-                    <td style="width:100px;">
-						<span ng-if="!check_search">
-							<button ng-if="!is_search" class="btn btn-info" disabled>
-								<span class="fa fa-search"></span>
-							</button>
-						</span>
-						<span ng-if="check_search">
-							<button ng-click="searchDlData(form_damagelost_other_medi)" ng-if="!is_search" class="btn btn btn-info">
-								<span class="fa fa-search"></span>
-							</button>
-						</span>
-						<button ng-click="clear()" ng-if="is_search" class="btn btn-warning">
-							Cancel Search
-						</button>
-					</td>
-					<table class="table table-bordered" style="width:100%;background:#E4E5E6;">
+                   
+					<table class="table table-bordered" style="">
 						<colgroup>
 							<col width="264"/>
-							<col width="98" span="8"/>
+							<col width="98" />
 						</colgroup>
 						<tbody>
 							<tr style="background:#fff;border:1px solid #fff;text-align:center;">
@@ -98,7 +89,7 @@ $(document).ready(function() {
 										Please Select incident
 									</span>
 								</td>
-								<td colspan="3" style="background:#fff;border:1px solid #fff;text-align:center;">
+								<td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
 								</td>
 								<td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
 									<span class="arrow_box" ng-show="submitted && form_damagelost_other_medi.district.$error.required">
@@ -119,12 +110,27 @@ $(document).ready(function() {
 										{% endfor %}
 									</select>
 								</td>
-								<td colspan="3" style="padding-left:5px;"> Name of District:</td>
+								<td colspan="2" style="padding-left:5px;"> Name of District:</td>
 								<td colspan="3" style="">
 									<select ng-options="district as district.district__name for district in districts track by district.district__id" name="district" style="font-weight:400;" id="ccyear" ng-model="district" ng-value="district.district__id" class="form-control" ng-change="changedValue(false)" required>
 										<option value="" selected>Select District</option>
 									</select>
 								</td>
+								 <td style="width:100px;">
+						<span ng-if="!check_search">
+							<button ng-if="!is_search" class="btn btn-info" disabled>
+								<span class="fa fa-search"></span>
+							</button>
+						</span>
+						<span ng-if="check_search">
+							<button ng-click="searchDlData(form_damagelost_other_medi)" ng-if="!is_search" class="btn btn btn-info">
+								<span class="fa fa-search"></span>
+							</button>
+						</span>
+						<button ng-click="clear()" ng-if="is_search" class="btn btn-warning">
+								<span class="fa fa-times" aria-hidden="true"></span>
+						</button>
+					</td>
 								 <span ng-bind="user_id={{user.id}}" style="display:none;"></span> </tr>
 							<tr height="20" class="trheadc1">
 								<td width="287" height="20"> </td>
@@ -132,7 +138,7 @@ $(document).ready(function() {
 								<td width="98"> </td>
 							</tr>
 							<tr height="34" class="trsubc1">
-								<td width="264" height="34" class="trheadc" style="width:25.2%"> </td>
+								<td width="264" height="34" class="trheadc" > </td>
 								<td width="98"> Base Hospital </td>
 								<td width="98"> Divisional Hospital </td>
 								<td width="98"> Rural Hospital </td>
@@ -147,6 +153,10 @@ $(document).ready(function() {
 					<!--tab 1-->
 					<div style="height:auto;overflow:auto;">
 						<table class="table table-bordered">
+						<colgroup>
+							<col width="264"/>
+							<col width="98" />
+						</colgroup>
 							<tbody>
 								<!--Table 6:Tab one :Table one-->
 								<tr height="20">
@@ -247,10 +257,10 @@ $(document).ready(function() {
 					</div>
 				</div>
 				<div class="tab-pane" id="step2">
-					<table class="table table-bordered" style="width:100%;background:#E4E5E6;">
+					<table class="table table-bordered" style="background:#E4E5E6;">
 						<colgroup>
 							<col width="264"/>
-							<col width="98" span="8"/></colgroup>
+							<col width="98" /></colgroup>
 						<tbody>
 							<tr height="20" class="trheadc1">
 								<td width="294" height="20"></td>
@@ -258,7 +268,7 @@ $(document).ready(function() {
 								<td width="98"></td>
 							</tr>
 							<tr height="34" class="trsubc">
-								<td width="264" height="34" class="trheadc" style="width:25.5%;"></td>
+								<td width="264" height="34" class="trheadc" ></td>
 								<td width="98"> Base Hospital </td>
 								<td width="98"> Divisional Hospital </td>
 								<td width="98"> Rural Hospital </td>
@@ -273,6 +283,11 @@ $(document).ready(function() {
 					<!--tab 2-->
 					<div style="height:400px;overflow:auto;">
 						<table class="table table-bordered">
+						<colgroup>
+							<col width="264"/>
+							<col width="98" />
+						</colgroup>
+						<tbody>
 							<!--Table 6:Tab three :Table one row one-->
 							<tr height="20">
 								<td ng-bind="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdfaNum[0].num_pdamaged_facilities" width="264" height="20" class="tdpa"> </td>
@@ -372,10 +387,10 @@ $(document).ready(function() {
 					</div>
 				</div>
 				<div class="tab-pane" id="step3">
-					<table class="table table-bordered" style="width:100%;">
+					<table class="table table-bordered" style="">
 						<colgroup>
 							<col width="264" />
-							<col width="98" span="8" />
+							<col width="98"  />
 						</colgroup>
 						<tbody>
 							<tr height="34" class="trheadc1">
@@ -398,6 +413,10 @@ $(document).ready(function() {
 					<!--tab 3-->
 					<div id="boxscroll1" style="height:400px;overflow:auto;">
 						<table class="table table-bordered">
+						<colgroup>
+							<col width="264"/>
+							<col width="98" />
+						</colgroup>
 							<tbody>
 								<tr height="20" class="trheadc">
 									<td width="264" height="20"> Structures (in sqm) </td>
@@ -1081,10 +1100,10 @@ dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaOassets[4].tota
 					</div>
 				</div>
 				<div class="tab-pane" id="step4">
-					<table class="table table-bordered" style="width:100%;">
+					<table class="table table-bordered" style="">
 						<colgroup>
-							<col width="264" />
-							<col width="98" span="8" /> </colgroup>
+							<col width="264"/>
+							<col width="98"/> </colgroup>
 						<tbody>
 							<tr height="20" class="trheadc1">
 								<td width="280" height="20"> </td>
@@ -1107,6 +1126,9 @@ dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaOassets[4].tota
 					<div id="boxscroll2" style="height:400px;overflow:auto;">
 						<table class="table table-bordered">
 							<tbody>
+							<colgroup>
+							<col width="264"/>
+							<col width="98"/> </colgroup>
 								<tr height="20" class="trheadc">
 									<td width="264" height="20" style="width:26.5%;"> Structure (in sqm) </td>
 									<td width="98"> </td>
@@ -1673,10 +1695,10 @@ dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[4].tot
 					</div>
 				</div>
 				<div class="tab-pane" id="step5">
-					<table class="table table-bordered" style="width:100%;">
+					<table class="table table-bordered" style="">
 						<colgroup>
 							<col width="264" />
-							<col width="98" span="8" /> </colgroup>
+							<col width="98"  /> </colgroup>
 						<tbody>
 							<tr height="20" class="trheadc1">
 								<td rowspan="2" width="284" height="54" style="text-align:left;padding-left:5px;width:25.2%;"> Types of Losses </td>
@@ -1697,6 +1719,10 @@ dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[4].tot
 					<!--tab 5-->
 					<div id="boxscroll3" style="height:400px;overflow:auto;">
 						<table class="table table-bordered">
+						<colgroup>
+							<col width="264" />
+							<col width="98"  /> </colgroup>
+							<tbody>
 							<!--Foregone income-->
 							<!--Table 6:Tab five :Table one row three-->
 							<tr height="20" class="trheadc">

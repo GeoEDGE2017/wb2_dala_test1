@@ -16,13 +16,7 @@
     <div class="container-fluid" ng-form name="form_bs_info_acfo_assets">
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
-              <td style="width:100px;"> <span ng-if="!check_search">
-									<button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
-					</span> <span ng-if="check_search">
-									<button ng-click="searchBsData(form_bs_info_acfo_assets)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
-					</span>
-					<button ng-click="clear()" ng-if="is_search" class="btn  btn-warning">Cancel Search</button>
-				</td>
+             
                 <table class="table table-bordered">
                     <colgroup>
                         <col width="249"/>
@@ -51,7 +45,7 @@
                         <td width="249" style="padding-left:5px;" height="19">
                             District:
                         </td>
-                        <td colspan="2" width="269">
+                        <td colspan="" width="269">
                             <select id="selectbasic" name="district" class="form-control" ng-change="changeDis()" ng-model="district" style="width:100%;font-weight:400;" required>
                                 <option value="" selected="true">Select a District</option>
                                 {% for district in districts %}
@@ -65,6 +59,13 @@
                         <td width="117">
                             <input name="baselineDate" type="text" placeholder="mm/yy" id="datepicker" ng-change="changeDis()" ng-model="bs_date" class="form-control input-md" required>
                         </td>
+                         <td style="width:100px;"> <span ng-if="!check_search">
+                                    <button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
+                    </span> <span ng-if="check_search">
+                                    <button ng-click="searchBsData(form_bs_info_acfo_assets)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
+                    </span>
+                    <button ng-click="clear()" ng-if="is_search" class="btn  btn-warning"><span class="fa fa-times" aria-hidden="true"></span></button>
+                </td>
                         <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
                     </tr>
                     <tr class="trheadc1" height="19">

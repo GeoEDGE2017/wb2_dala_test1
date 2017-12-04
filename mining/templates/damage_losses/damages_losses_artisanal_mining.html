@@ -9,6 +9,11 @@ $(document).ready(function() {
 	});
 });
 </script>
+<style type="text/css">
+td {
+   width:8em!important;
+}
+</style>
 <!-- Main content -->
 <main class="main" ng-app="mnDLArtisanalMinApp" ng-controller="mnDLArtisanalMinController">
 	<!-- Breadcrumb -->
@@ -41,23 +46,11 @@ $(document).ready(function() {
 		</ul>
 		<div id="myTabContent" class="tab-content" ng-form name="form_mining_artisanal_dl">
 			<div class="tab-pane active" id="step1">
-				<td style="width:100px;">
-					<span ng-if="!check_search">
-						<button ng-if="!is_search" class="btn  btn-info" disabled>
-							<span class="fa fa-search"></span>
-						</button>
-					</span>
-					<span ng-if="check_search">
-						<button ng-click="searchDlData(form_mining_artisanal_dl)" ng-if="!is_search" class="btn btn-info">
-							<span class="fa fa-search"></span>
-						</button>
-					</span>
-					<button ng-click="clear()" ng-if="is_search" class="btn  btn-warning">Cancel Search</button>
-				</td>
+				
 				<table class="table table-bordered">
 					<colgroup>
-						<col width="171" />
-						<col width="119" span="5" />
+						<col width="171"/>
+						<col width="119" />
 						<col width="120" /> </colgroup>
 					<tbody>
 						<tr style="background:#fff;border:1px solid #fff;text-align:center;">
@@ -74,10 +67,11 @@ $(document).ready(function() {
                                 	Please Select District
                             	</span>
 							</td>
+
 						</tr>
 						<tr class="trhead1">
 							<td colspan="2" style="padding-left:5px;"> Incident </td>
-							<td colspan="3" style="">
+							<td colspan="" style="">
 								<select id="select" name="incident" ng-model="incident" class="form-control" style="width:100%;font-weight:400;"
 										ng-change="changedValue(true)" required>
 									<option value="" selected="true">Select an Incident</option>
@@ -96,10 +90,23 @@ $(document).ready(function() {
 									<option value="" selected>Select District</option>
 								</select>
 							</td>
+							<td style="width:100px;">
+					<span ng-if="!check_search">
+						<button ng-if="!is_search" class="btn  btn-info" disabled>
+							<span class="fa fa-search"></span>
+						</button>
+					</span>
+					<span ng-if="check_search">
+						<button ng-click="searchDlData(form_mining_artisanal_dl)" ng-if="!is_search" class="btn btn-info">
+							<span class="fa fa-search"></span>
+						</button>
+					</span>
+					<button ng-click="clear()" ng-if="is_search" class="btn  btn-warning"><span class="fa fa-times" aria-hidden="true"></span></button>
+				</td>
 							<span ng-bind="user_id={{user.id}}" style="display:none;"></span>
 						</tr>
 						<tr class="trheadc1" height="34">
-							<td width="171" height="34" style="width:25%;"> Assets </td>
+							<td width="171" height="34"> Assets </td>
 							<td colspan="2" width="238"> Replacement Value of Totally Destroyed Assets (LKR) </td>
 							<td colspan="2" width="238"> Repair Cost for Partially Damaged Assets (LKR) </td>
 							<td colspan="2" width="239"> Total Damages (LKR) </td>
@@ -108,12 +115,17 @@ $(document).ready(function() {
 				</table>
 				<div id="boxscroll1" style="height:400px;overflow:auto;">
 					<table class="table table-bordered">
+					<colgroup>
+						<col width="171" />
+						<col width="119"  />
+						<col width="120" /> 
+						</colgroup>
 						<tbody>
 							<tr class="trheadc" height="20">
-								<td width="171" height="20" style="width:25%;"> Structures </td>
-								<td colspan="2" width="238" style="width:26%;"> </td>
-								<td colspan="2" width="238" style="width:26%;"> </td>
-								<td colspan="2" width="239"> </td>
+								<td width="171" height="20" > Structures </td>
+								<td colspan="2"  > </td>
+								<td colspan="2"  > </td>
+								<td colspan="2" > </td>
 							</tr>
 							<tr ng-repeat="dlaDmgStructures in mnDLArtisanalMin.mining.Table_4.DlaDmgStructures" height="20"
 								ng-if="dlaDmgStructures.assets != 'Total'">
@@ -325,14 +337,7 @@ $(document).ready(function() {
 				<br> </div>
 			<div class="tab-pane fade" id="step2">
 				<table class="table table-bordered">
-					<colgroup>
-						<col width="171" />
-						<col width="119" />
-						<col width="63" />
-						<col width="63" />
-						<col width="63" />
-						<col width="63" />
-						<col width="120" /> </colgroup>
+					
 					<tbody>
 						<tr class="trheadc1" height="34">
 							<td height="34" width="171"> Types of losses </td>

@@ -8,6 +8,7 @@
     
   });
 </script>
+
 <!-- Main content -->
 <main class="main" ng-app="bsInfoAcfoAssetsApp" ng-controller="bsInfoAcfoAssetsController">
     <!-- Breadcrumb -->
@@ -41,19 +42,13 @@
             </ul>
             <div id="myTabContent" class="tab-content" ng-form name="form_bs_info_sero_assets">
                 <div class="tab-pane active" id="step1">
-                  <td style="width:100px;"> <span ng-if="!check_search">
-									<button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
-					</span> <span ng-if="check_search">
-									<button ng-click="searchBsData(form_bs_info_sero_assets)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
-					</span>
-					<button ng-click="clear()" ng-if="is_search" class="btn  btn-warning">Cancel Search</button>
-				</td>
+                 
                     <table class="table table-bordered">
                         <colgroup>
                             <col width="249"/>
                             <col width="148"/>
                             <col width="121"/>
-                            <col width="117" span="2"/>
+                            <col width="117" />
                             <col width="112"/>
                             <col width="99"/>
                         </colgroup>
@@ -98,8 +93,28 @@
                                        ng-change="getValue();changeDis();"
                                        id="datepicker" ng-model="bs_date" class="form-control input-md" required>
                             </td>
+                             <td style="width:100px;"> <span ng-if="!check_search">
+                                    <button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
+                    </span> <span ng-if="check_search">
+                                    <button ng-click="searchBsData(form_bs_info_sero_assets)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
+                    </span>
+                    <button ng-click="clear()" ng-if="is_search" class="btn  btn-warning"><span class="fa fa-times" aria-hidden="true"></span></button>
+                </td>
                             <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
                         </tr>
+                        </tbody>
+                        </table>
+
+                        <table class="table table-bordered">
+                        <colgroup>
+                            <col width="249"/>
+                            <col width="148"/>
+                            <col width="121"/>
+                            <col width="117" />
+                            <col width="112"/>
+                            <col width="99"/>
+                        </colgroup>
+                        <tbody>
                         <tr class="trheadc1" height="19">
                             <td width="249" height="19">
                                 Sub-Sector
@@ -138,7 +153,15 @@
                     </table>
                     <div id="boxscroll" style="height:400px;overflow:auto;">
                         <table class="table table-bordered">
-
+                             <colgroup>
+                            <col width="249"/>
+                            <col width="148"/>
+                            <col width="121"/>
+                            <col width="117" />
+                            <col width="112"/>
+                            <col width="99"/>
+                        </colgroup>
+                        <tbody>
                             <tr class="trheadc" height="19">
                                 <td width="249" height="19">
                                     Seasonal Crops

@@ -33,15 +33,7 @@ $(document).ready(function() {
         </ul>
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
-                <td style="width:100px;"> <span ng-if="!check_search">
-                                    <button ng-if="!is_search" class="btn btn-info" disabled><span
-                                            class="fa fa-search"></span></button>
-                    </span> <span ng-if="check_search">
-                                    <button ng-click="searchDlData(form_damagelost_mining_firm)" ng-if="!is_search"
-                                            class="btn btn-info"><span class="fa fa-search"></span></button>
-                    </span>
-                    <button ng-click="clear()" ng-if="is_search" class="btn btn-warning">Cancel Search</button>
-                </td>
+              
                 <table class="table table-bordered">
                     <colgroup>
                         <col width="171"/>
@@ -80,8 +72,8 @@ $(document).ready(function() {
                                 </option>
                                 {% endfor %} </select>
                         </td>
-                        <td colspan="2" style="padding-left:5px;"> Name of District</td>
-                        <td colspan="3" style="">
+                        <td colspan="1" style="padding-left:5px;"> Name of District</td>
+                        <td colspan="2" style="">
                             <select ng-options="district as district.district__name for district in districts track by district.district__id"
                                     name="district" id="ccyear" ng-model="district" ng-value="district.district__id"
                                     style="font-weight:400;" class="form-control"
@@ -89,6 +81,15 @@ $(document).ready(function() {
                                 <option value="" selected>Select District</option>
                             </select>
                         </td>
+                          <td style="width:100px;"> <span ng-if="!check_search">
+                                    <button ng-if="!is_search" class="btn btn-info" disabled><span
+                                            class="fa fa-search"></span></button>
+                    </span> <span ng-if="check_search">
+                                    <button ng-click="searchDlData(form_damagelost_mining_firm)" ng-if="!is_search"
+                                            class="btn btn-info"><span class="fa fa-search"></span></button>
+                    </span>
+                    <button ng-click="clear()" ng-if="is_search" class="btn btn-warning"><span class="fa fa-times" aria-hidden="true"></button>
+                </td>
                         <span ng-bind="user_id={{user.id}}" style="display:none;"></span></tr>
                     <tr class="trhead1" height="19">
                         <td height="19" width="171"> Name of Firm</td>

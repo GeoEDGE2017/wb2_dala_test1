@@ -161,7 +161,7 @@ DATABASES = {
         #     'options': '-c search_path=industry_services'
         # },
 
-        'NAME': 'dala_2017_11_08',
+        'NAME': 'dala_11_21',
         #'NAME': 'dala_2017_11_08',
         'USER': 'postgres',
     },
@@ -204,7 +204,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/

@@ -27,21 +27,7 @@
     <div class="container-fluid" ng-form name="form_bs_livestock_poultry_dst">
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
-                <td style="width:100px;">
-                    <span ng-if="!check_search">
-                        <button ng-if="!is_search" class="btn btn-info" disabled>
-                            <span class="fa fa-search"></span>
-                        </button>
-					</span>
-                    <span ng-if="check_search">
-                        <button ng-click="searchBsData(form_bs_livestock_poultry_dst)" ng-if="!is_search" class="btn btn-info">
-                            <span class="fa fa-search"></span>
-                        </button>
-					</span>
-					<button ng-click="clear()" ng-if="is_search" class="btn  btn-warning">
-                        Cancel Search
-                    </button>
-				</td>
+              
                 <table class="table table-bordered">
                     <colgroup>
                         <col width="113"/>
@@ -89,10 +75,26 @@
                         <td colspan="" style="padding:5px;">
                             Year/Month:
                         </td>
-                        <td colspan="2">
+                        <td colspan="">
                             <input name="baselineDate" type="text" placeholder="mm/yy" ng-change="changeDis()"
                                    id="datepicker" ng-model="bs_date" class="form-control input-md" required>
                         </td>
+
+                          <td style="width:100px;">
+                    <span ng-if="!check_search">
+                        <button ng-if="!is_search" class="btn btn-info" disabled>
+                            <span class="fa fa-search"></span>
+                        </button>
+                    </span>
+                    <span ng-if="check_search">
+                        <button ng-click="searchBsData(form_bs_livestock_poultry_dst)" ng-if="!is_search" class="btn btn-info">
+                            <span class="fa fa-search"></span>
+                        </button>
+                    </span>
+                    <button ng-click="clear()" ng-if="is_search" class="btn  btn-warning">
+                         <span class="fa fa-times" aria-hidden="true"></span>
+                    </button>
+                </td>
                         <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
                     </tr>
                     <tr class="trheadc1" height="54">

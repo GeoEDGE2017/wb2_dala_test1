@@ -27,13 +27,7 @@
         </ul>
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
-                        <td style="width:100px;"> <span ng-if="!check_search">
-									<button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
-									</span> <span ng-if="check_search">
-									<button ng-click="searchDlData(form_dl_assmnt_husing_sector)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
-									</span>
-									<button ng-click="clear()" ng-if="is_search" class="btn btn-warning">Cancel Search</button>
-								</td>
+                       
                 <table class="table table-bordered">
                     <colgroup>
                         <col width="166"/>
@@ -80,7 +74,7 @@
                                 {% endfor %}
                             </select>
                         </td>
-                        <td class="trhead1" class="p5" colspan="2"  width="120">
+                        <td class="trhead1" class="p5" colspan=""  width="120">
                             District
                         </td>
                         <td class="trhead1" colspan="3"  width="343">
@@ -90,6 +84,14 @@
                                 <option value="" selected>Select District</option>
                             </select>
                         </td>
+                         <td class="trhead1" style="width:100px;"> <span ng-if="!check_search">
+                                    <button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
+                                    </span> <span ng-if="check_search">
+                                    <button ng-click="searchDlData(form_dl_assmnt_husing_sector)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
+                                    </span>
+                                    <button ng-click="clear()" ng-if="is_search" class="btn btn-warning"><span class="fa fa-times"></span></button>
+                                </td>
+
                         <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
                     </tr>
                     <tr class="trheadc1" height="19">

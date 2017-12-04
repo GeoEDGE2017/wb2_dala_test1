@@ -1,6 +1,11 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
 {% load static %}
+<style type="text/css">
+td {
+   width:8.2em!important;
+}
+</style>
 <!-- Main content -->
 <main class="main" ng-app="dmLosOfMinFirmsNatApp" ng-controller="DmLosOfMinFirmsNatController">
     <!-- Breadcrumb -->
@@ -28,9 +33,9 @@
                 <table class="table table-bordered">
                     <colgroup>
                         <col width="171"/>
-                        <col width="119" span="5"/>
+                        <col width="119" />
                         <col width="120"/>
-                        <col width="123" span="2"/>
+                        <col width="123" />
                     </colgroup>
                     <tbody>
                     <tr class="trhead1">
@@ -56,6 +61,12 @@
                 </table>
                 <table class="table table-bordered" ng-repeat="(key, value) in dmLosMinFirmsNation.mining.Table_6"
                        ng-if="!checkIfNull()">
+                       <colgroup>
+                        <col width="171"/>
+                        <col width="119" />
+                        <col width="120"/>
+                        <col width="123" />
+                    </colgroup>
                     <tbody>
                     <tr class="trheadc1" height="20">
                         <td rowspan="3" width="171" height="60">
@@ -173,8 +184,15 @@
                     </tbody>
                     </table>
                  <table class="table table-bordered" ng-if="!checkIfNull()">
+                 <colgroup>
+                        <col width="171"/>
+                        <col width="119" />
+                        <col width="120"/>
+                        <col width="123" />
+                    </colgroup>
+                    <tbody>
                     <tr height="20">
-                        <td width="202" height="20" style="width:13.5%;" class="tdpa">GRAND TOTAL
+                        <td width="202" height="20"  class="tdpa">GRAND TOTAL
                         </td>
                         <td class="right" width="90" ng-bind="totaldpub"></td>
                         <td class="right" width="90" ng-bind="totaldpvt"></td>

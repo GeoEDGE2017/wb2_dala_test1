@@ -6,6 +6,12 @@
         var nicesx = $("#boxscroll1").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
     });
 </script>
+
+<style type="text/css">
+td {
+   width:9em!important;
+}
+</style>
 <!-- Main content -->
 <main class="main" ng-app="dlAssessmentDistrictApp"
       ng-controller="dlAssessmentDistrictController">
@@ -35,7 +41,7 @@
                 <table class="table table-bordered">
                     <colgroup>
                         <col width="183"/>
-                        <col width="108" span="4"/>
+                        <col width="108" />
                     </colgroup>
                     <tbody>
                         <tr class="trhead1" height="19">
@@ -91,6 +97,10 @@
                     </tbody>
                 </table>
                 <table class="table table-bordered">
+                 <colgroup>
+                        <col width="183"/>
+                        <col width="108" />
+                    </colgroup>
                     <tbody ng-repeat="(keys, values) in districtData.other_govn_services.Table_3">
                         <tr class="trhead" ng-if="keys == 'District Government'">
                             <td width="80" ng-bind="keys">

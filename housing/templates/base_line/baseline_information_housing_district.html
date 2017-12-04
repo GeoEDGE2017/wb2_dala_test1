@@ -21,13 +21,7 @@
     <div class="container-fluid" ng-form name="form_bs_housing_dis">
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
-            <td style="width:100px;"> <span ng-if="!check_search">
-									<button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
-					</span> <span ng-if="check_search">
-									<button ng-click="searchBsData(form_bs_housing_dis)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
-					</span>
-					<button ng-click="clear()" ng-if="is_search" class="btn  btn-warning">Cancel Search</button>
-				</td>
+          
                 <table class="table table-bordered">
                     <colgroup>
                         <col width="166"/>
@@ -48,7 +42,7 @@
                                 Please Select District
                             </span>
                         </td>
-                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
                         </td>
                         <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
                             <span class="arrow_box"
@@ -70,7 +64,7 @@
                                 {% endfor %}
                             </select>
                         </td>
-                        <td colspan="2" class="p5" height="19" width="647">
+                        <td colspan="" class="p5" height="19" width="647">
                             Year/Month:
                         </td>
                         <td colspan="2" height="19" width="647">
@@ -78,6 +72,13 @@
                                    id="datepicker" ng-model="bs_date"
                                    class="form-control input-md" required>
                         </td>
+                          <td style="width:100px;"> <span ng-if="!check_search">
+                                    <button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
+                    </span> <span ng-if="check_search">
+                                    <button ng-click="searchBsData(form_bs_housing_dis)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
+                    </span>
+                    <button ng-click="clear()" ng-if="is_search" class="btn  btn-warning"><span class="fa fa-times"></span></button>
+                </td>
                         <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
                     </tr>
                     <tr class="trheadc1" height="35">

@@ -9,6 +9,11 @@ $(document).ready(function() {
 	});
 });
 </script>
+<style type="text/css">
+td {
+   width: 8em!important;
+}
+</style>
 <!-- Main content -->
 <main class="main" ng-app="bsHealthStatusApp" ng-controller="BsHealthStatusController">
     <style type="text/css">
@@ -45,25 +50,11 @@ $(document).ready(function() {
 					<span style="color:red" ng-show="!is_valid_data">
                         This request can't be proceed, there is data-set available for this selection.
 				 	</span>
-				 	<td style="width:100px;">
-				 		<span ng-if="!check_search">
-					 		<button ng-if="!is_search" class="btn btn-info" disabled>
-					 			<span class="fa fa-search"></span>
-						 	</button>
-					 	</span>
-					 	<span ng-if="check_search">
-					 		<button ng-click="searchBsData(form_pop_lat_census)" ng-if="!is_search" class="btn btn-info">
-								<span class="fa fa-search"></span>
-							</button>
-					 	</span>
-						 <button ng-click="clear()" ng-if="is_search" class="btn btn-warning">
-							 Cancel Search
-						 </button>
-					</td>
+				 	
 					<table class="table table-bordered" style="width:100%;background:#4679B2;color:#fff;">
 						<colgroup>
 							<col width="264"/>
-							<col width="98" span="4"/>
+							<col width="98" />
 						</colgroup>
 						<tbody>
 							<tr style="background:#fff;border:1px solid #fff;text-align:center;">
@@ -93,94 +84,113 @@ $(document).ready(function() {
 									</select>
 								</td>
 								<td class="p5"> Year/Month </td>
-								<td colspan="2">
+								<td colspan="">
 									<input ng-model="bs_date" required name="bs_date" ng-change="changeDis();" type="text"
 										   placeholder="mm/yyyy" id="datepicker" class="form-control input-md">
 								</td>
+								<td style="width:100px;">
+				 		<span ng-if="!check_search">
+					 		<button ng-if="!is_search" class="btn btn-info" disabled>
+					 			<span class="fa fa-search"></span>
+						 	</button>
+					 	</span>
+					 	<span ng-if="check_search">
+					 		<button ng-click="searchBsData(form_pop_lat_census)" ng-if="!is_search" class="btn btn-info">
+								<span class="fa fa-search"></span>
+							</button>
+					 	</span>
+						 <button ng-click="clear()" ng-if="is_search" class="btn btn-warning">
+							<span class="fa fa-times" aria-hidden="true"></span>
+						 </button>
+					</td>
 								 <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
 							</tr>
 							<tr height="20" class="trhead1">
-								<td rowspan="3" height="60" width="264" style="padding-left:5px;"> Population as of Latest Census </td>
-								<td colspan="2" width="196" style="text-align:center;" style="padding-left:5px;"> By Sex </td>
-								<td colspan="2" width="196" style="text-align:center;" style="padding-left:5px;"> By Age Group </td>
+								<td rowspan="3" height="60" width="" style="padding-left:5px;"> Population as of Latest Census </td>
+								<td colspan="2" width="" style="text-align:center;" style="padding-left:5px;"> By Sex </td>
+								<td colspan="2" width="" style="text-align:center;" style="padding-left:5px;"> By Age Group </td>
 							</tr>
-							<tr height="20">
-								<td height="20" width="98" class="trsubc"> Male </td>
-								<td width="98" style="text-align:center;background:#EFEFEF;color:#000; "> Female </td>
-								<td width="98" style="text-align:center;background:#EFEFEF;color:#000; "> Children (&lt;12) </td>
-								<td width="98" style="text-align:center;background:#EFEFEF;color:#000; "> Elderly (&gt;60) </td>
+							<tr height="20" class="trsubc">
+								<td height="20" width="" > Male </td>
+								<td width="" style="text-align:center;background:#EFEFEF;color:#000; "> Female </td>
+								<td width="" style="text-align:center;background:#EFEFEF;color:#000; "> Children (&lt;12) </td>
+								<td width="" style="text-align:center;background:#EFEFEF;color:#000; "> Elderly (&gt;60) </td>
 							</tr>
 							<tr height="20" style="background:#fff;" ng-repeat="bhsPlc in dataHealthStatus.health.Table_1.BhsPlc"> {% verbatim %}
-								<td height="20" width="98">
+								<td height="20" width="">
 									<input ng-model="bhsPlc.male" type="number" id='myNumber' value="40000" step="100" placeholder="" class="form-control input-md"> </td>
-								<td width="98">
+								<td width="">
 									<input ng-model="bhsPlc.female" id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
-								<td width="98">
+								<td width="">
 									<input ng-model="bhsPlc.children" id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
-								<td width="98">
+								<td width="">
 									<input ng-model="bhsPlc.elderly" id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md"> </td> {% endverbatim %} </tr>
 							<tr height="34" class="trhead1">
-								<td rowspan="2" height="54" width="264" style="padding-left:5px;text-align:center;"> Common Diseases </td>
-								<td colspan="2" width="196" style="text-align:center; "> Incidence for the Past Three Years By Sex </td>
-								<td colspan="2" width="196" style="text-align:center;"> Incidence for the Past Three Years By Age Group </td>
+								<td rowspan="2" height="54" width="" style="padding-left:5px;text-align:center;"> Common Diseases </td>
+								<td colspan="2" width="" style="text-align:center; "> Incidence for the Past Three Years By Sex </td>
+								<td colspan="2" width="" style="text-align:center;"> Incidence for the Past Three Years By Age Group </td>
 							</tr>
-							<tr height="20">
-								<td height="20" width="98" class="trsubc"> Male </td>
-								<td width="98" style="text-align:center;background:#EFEFEF;color:#000; "> Female </td>
-								<td width="98" style="text-align:center;background:#EFEFEF;color:#000; "> Children </td>
-								<td width="98" style="text-align:center;background:#EFEFEF;color:#000; "> Elderly </td>
+							<tr height="20" class="trsubc">
+								<td height="20" width="" > Male </td>
+								<td width="" style="text-align:center;background:#EFEFEF;color:#000; "> Female </td>
+								<td width="" style="text-align:center;background:#EFEFEF;color:#000; "> Children </td>
+								<td width="" style="text-align:center;background:#EFEFEF;color:#000; "> Elderly </td>
 							</tr>
 						</tbody>
 					</table>
 					<div id="boxscroll1" style="height:300px;overflow:auto;">
 						<table class="table table-bordered" id="tb1" style="width:100%;margin-top:0px;">
+						<colgroup>
+							<col width="264"/>
+							<col width="98" />
+						</colgroup>
 							<tbody>
 								<tr ng-repeat="comDisease in dataHealthStatus.health.Table_1.BhsComDiseases" height="20">
 									<!-- Fixed rows -->
 									<td ng-bind="comDisease.com_disease" ng-if="$index < 2" height="20" width="264" class="tdpa"> </td>
-									<td width="98" ng-if="$index > 1"> {% verbatim %}
+									<td  ng-if="$index > 1"> {% verbatim %}
 										<button id="delete" ng-click="removeItem('BhsComDiseases', $index)" class="btn btn-sm btn-danger btn-circle"><i class="fa fa-minus"></i> </button>
-										<input style="width:90%;float:right;" name="comDisease_{{$index}}" ng-model="comDisease.com_disease" popover="This field is required" popover-toggle="form_pop_lat_census['comDisease_' + $index].$dirty && !form_pop_lat_census['comDisease_' + $index].$valid" popover-placement="top" required type="text" class="form-control input-md"> {% endverbatim %} </td>
-									<td width="98">
+										<input style="width:85%;float:right;" name="comDisease_{{$index}}" ng-model="comDisease.com_disease" popover="This field is required" popover-toggle="form_pop_lat_census['comDisease_' + $index].$dirty && !form_pop_lat_census['comDisease_' + $index].$valid" popover-placement="top" required type="text" class="form-control input-md"> {% endverbatim %} </td>
+									<td >
 										<input ng-model="comDisease.male" id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" onkeypress="return isNumberKey(event)"> </td>
-									<td width="98">
+									<td >
 										<input ng-model="comDisease.female" id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" onkeypress="return isNumberKey(event)"> </td>
-									<td width="98">
+									<td >
 										<input ng-model="comDisease.children" id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" onkeypress="return isNumberKey(event)"> </td>
-									<td width="98">
+									<td >
 										<input ng-model="comDisease.elderly" id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" onkeypress="return isNumberKey(event)"> </td>
 								</tr>
 								<tr height="20">
 									<td height="20" width="264" class="tdpa"> Others &nbsp;&nbsp;
 										<button ng-click="insertDisease('BhsComDiseases')" class="btn btn-sm btn-info btn-circle" id="insert"><span class="fa fa-plus"></span> </button>
 									</td>
-									<td width="98" colspan="4" class="tdpa"> </td>
+									<td  colspan="4" class="tdpa"> </td>
 								</tr>
 								<tr height="20" class="trheadc">
 									<td height="20" width="264"> Vital Indicators </td>
-									<td width="98" colspan="4"> </td>
+									<td  colspan="4"> </td>
 								</tr>
 								<tr ng-repeat="vitalIndicator in dataHealthStatus.health.Table_1.BhsVi" height="20">
-									<td ng-bind="vitalIndicator.vital_indicators" ng-if="$index < 2" height="20" width="264" class="tdpa"> </td>
+									<td ng-bind="vitalIndicator.vital_indicators" ng-if="$index < 2" height="20"  class="tdpa"> </td>
 									<td width="98" ng-if="$index > 1"> {% verbatim %}
 										<button id="delete" ng-click="removeItem('BhsVi', $index)" class="btn btn-sm btn-danger btn-circle"><i class="fa fa-minus"></i> </button>
-										<input style="width:90%;float:right;" ng-model="vitalIndicator.vital_indicators" popover="This field is required" required popover-toggle="form_pop_lat_census['vitalIndicator_' + $index].$dirty && !form_pop_lat_census['vitalIndicator_' + $index].$valid" name="vitalIndicator_{{$index}}" type="text" placeholder="" class="form-control input-md"> {% endverbatim %} </td>
+										<input style="width:85%;float:right;" ng-model="vitalIndicator.vital_indicators" popover="This field is required" required popover-toggle="form_pop_lat_census['vitalIndicator_' + $index].$dirty && !form_pop_lat_census['vitalIndicator_' + $index].$valid" name="vitalIndicator_{{$index}}" type="text" placeholder="" class="form-control input-md"> {% endverbatim %} </td>
 									<td width="98">
 										<input ng-model="vitalIndicator.male" id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
-									<td width="98">
+									<td >
 										<input ng-model="vitalIndicator.female" id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
 									<td width="98" class="tdpa" ng-if="vitalIndicator.vital_indicators == 'Under-5 Mortality Rate'"> </td>
-									<td width="98" ng-if="vitalIndicator.vital_indicators != 'Under-5 Mortality Rate'">
+									<td  ng-if="vitalIndicator.vital_indicators != 'Under-5 Mortality Rate'">
 										<input ng-model="vitalIndicator.children" id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
 									<td width="98" class="tdpa" ng-if="vitalIndicator.vital_indicators == 'Under-5 Mortality Rate'"> </td>
-									<td width="98" ng-if="vitalIndicator.vital_indicators != 'Under-5 Mortality Rate'">
+									<td ng-if="vitalIndicator.vital_indicators != 'Under-5 Mortality Rate'">
 										<input ng-model="vitalIndicator.elderly" id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
 								</tr>
 								<tr height="20">
-									<td height="20" width="264" class="tdpa"> Others &nbsp;&nbsp;
+									<td height="20" class="tdpa"> Others &nbsp;&nbsp;
 										<button ng-click="insertDisease('BhsVi')" class="btn btn-sm btn-info btn-circle" id="insert4"> <span class="fa fa-plus"></span> </button>
 									</td>
-									<td width="98" colspan="4" class="tdpa"> </td>
+									<td  colspan="4" class="tdpa"> </td>
 								</tr>
 								<tr height="20" style="background:#4679B2;color:#fff;">
 									<td height="20" width="264" class="trheadc"> Other Indicators </td>
@@ -188,9 +198,9 @@ $(document).ready(function() {
 								</tr>
 								<tr height="20" ng-repeat="otherIndicator in dataHealthStatus.health.Table_1.BhsOi">
 									<td ng-bind="otherIndicator.other_indicators" ng-if="$index < 2" width="264" height="20" class="tdpa"> </td>
-									<td width="264" height="20" ng-if="$index > 1"> {% verbatim %}
+									<td  height="20" ng-if="$index > 1"> {% verbatim %}
 										<button id="delete" ng-click="removeItem('BhsOi', $index)" class="btn btn-sm btn-danger btn-circle"><i class="fa fa-minus"></i> </button>
-										<input style="width:90%;float:right;" ng-model="otherIndicator.other_indicators" name="otherIndicator_{{$index}}" type="text" placeholder="" popover="This field is required" popover-toggle="form_pop_lat_census['otherIndicator_' + $index].$dirty && !form_pop_lat_census['otherIndicator_' + $index].$valid" popover-placement="top" required class="form-control input-md"> {% endverbatim %} </td>
+										<input style="width:85%;float:right;" ng-model="otherIndicator.other_indicators" name="otherIndicator_{{$index}}" type="text" placeholder="" popover="This field is required" popover-toggle="form_pop_lat_census['otherIndicator_' + $index].$dirty && !form_pop_lat_census['otherIndicator_' + $index].$valid" popover-placement="top" required class="form-control input-md"> {% endverbatim %} </td>
 									<td colspan="4">
 										<input ng-model="otherIndicator.unit_measure" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md"> </td>
 								</tr>
@@ -198,7 +208,7 @@ $(document).ready(function() {
 									<td height="20" width="264" class="tdpa"> Others &nbsp;&nbsp;
 										<button ng-click="insertDisease('BhsOi')" class="btn btn-sm btn-info btn-circle" id="insert2"> <span class="fa fa-plus"></span> </button>
 									</td>
-									<td width="98" colspan="4" class="tdpa"> </td>
+									<td  colspan="4" class="tdpa"> </td>
 								</tr>
 							</tbody>
 						</table>

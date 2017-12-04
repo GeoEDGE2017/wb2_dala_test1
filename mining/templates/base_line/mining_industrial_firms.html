@@ -16,13 +16,7 @@
 	<div class="container-fluid">
 		<div id="myTabContent" class="tab-content" ng-form name="form_industrial_mining">
 			<div class="tab-pane active" id="step1">
-				<td style="width:100px;"> <span ng-if="!check_search">
-									<button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
-					</span> <span ng-if="check_search">
-									<button ng-click="searchBsData(form_industrial_mining)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
-					</span>
-					<button ng-click="clear()" ng-if="is_search" class="btn btn-warning">Cancel Search</button>
-				</td>
+				
 				<table class="table table-bordered">
 					<colgroup>
 						<col width="171" />
@@ -44,22 +38,43 @@
 						</tr>
 						<tr class="trhead1">
 							<td style="padding-left:5px;"> Name of District</td>
-							<td colspan="1" style="">
+							<td colspan="4" style="">
 								<select id="selectbasic" name="district" ng-change="fetchFirms();changeDis();" ng-model='district' class="form-control" style="font-weight:400;" required>
 									<option value="" selected="true">Select a District</option> {% for district in districts %}
 									<option value={{district.id}}>{{district.name}} {% endfor %} </select>
 							</td>
-							<td colspan="1" style="padding-left:5px;"> Year/Month </td>
-							<td colspan="1" style="font-weight:normal;">
-								<input id="datepicker" type="text" placeholder="mm/yy" ng-change="changeDis();" ng-model="baselineDate" class="form-control input-md" name="baselineDate" required> </td> <span ng-bind="user_id={{user.id}}" style="display:none;"></span> </tr>
+							<td colspan="2" style="padding-left:5px;"> Year/Month </td>
+							<td colspan="2" style="font-weight:normal;">
+								<input id="datepicker" type="text" placeholder="mm/yy" ng-change="changeDis();" ng-model="baselineDate" class="form-control input-md" name="baselineDate" required> </td> 
+
+								<td style="width:100px;"> <span ng-if="!check_search">
+									<button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
+					</span> <span ng-if="check_search">
+									<button ng-click="searchBsData(form_industrial_mining)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
+					</span>
+					<button ng-click="clear()" ng-if="is_search" class="btn btn-warning"><span class="fa fa-times" aria-hidden="true"></span></button>
+				</td>
+								<span ng-bind="user_id={{user.id}}" style="display:none;"></span> </tr>
+</tbody>
+</table>
+<table class="table table-bordered">
+					<colgroup>
+						<col width="171" />
+						<col width="63" />
+						<col width="63" />
+						<col width="63" />
+						<col width="63" />
+						<col width="63" /> </colgroup>
+					<tbody>
+
 						<tr>
 							<td class="trhead1"> Firm Name </td>
-							<td colspan="2">
+							<td colspan="2" class="trhead1">
 								<select ng-options="firm as firm.name for firm in firms track by firm.id" name="district" id="ccyear" ng-model="selectedFirm" ng-change="changeDis();" class="form-control">
 									<option value="" selected>Select Firm</option>
 								</select>
 							</td>
-							<td class="trsubc">
+							<td class="trhead1">
 								<!--a id="modal-469842" href="#modal-container-469842" role="button" data-toggle="modal"
                                class="btn btn-sm btn-info">Add</a-->
 								<button id="modal-469842" role="button" data-toggle="modal" class="btn btn-sm btn-info" ng-click="openAddFirm()">Add</button>

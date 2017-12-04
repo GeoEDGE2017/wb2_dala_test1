@@ -27,25 +27,11 @@
     <div class="container-fluid" ng-form name="form_bs_rwater_sply_dis">
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
-                <td style="width:100px;">
-                    <span ng-if="!check_search">
-                        <button ng-if="!is_search" class="btn btn-info" disabled>
-                            <span class="fa fa-search"></span>
-                        </button>
-					</span>
-                    <span ng-if="check_search">
-                        <button ng-click="searchBsData(form_bs_rwater_sply_dis)" ng-if="!is_search" class="btn btn-info">
-                            <span class="fa fa-search"></span>
-                        </button>
-					</span>
-					<button ng-click="clear()" ng-if="is_search" class="btn  btn-warning">
-                        Cancel Search
-                    </button>
-				</td>
+                
                 <table class="table table-bordered">
                     <colgroup>
                         <col width="240"/>
-                        <col width="125" span="3"/>
+                        <col width="125" />
                     </colgroup>
                     <tbody>
                     <tr style="background:#fff;border:1px solid #fff;text-align:center;">
@@ -66,6 +52,7 @@
                             </span>
                         </td>
                     </tr>
+                   
                     <tr class="trhead1">
                         <td style="padding-left:5px;"> Name of District</td>
                         <td colspan="1" style="">
@@ -86,8 +73,34 @@
                                    id="datepicker" ng-model="bs_date"
                                    class="form-control input-md" required>
                         </td>
+                        <td style="width:100px;">
+                    <span ng-if="!check_search">
+                        <button ng-if="!is_search" class="btn btn-info" disabled>
+                            <span class="fa fa-search"></span>
+                        </button>
+                    </span>
+                    <span ng-if="check_search">
+                        <button ng-click="searchBsData(form_bs_rwater_sply_dis)" ng-if="!is_search" class="btn btn-info">
+                            <span class="fa fa-search"></span>
+                        </button>
+                    </span>
+                    <button ng-click="clear()" ng-if="is_search" class="btn  btn-warning">
+                          <span class="fa fa-times" aria-hidden="true"></span>
+                    </button>
+                </td>
                         <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
                     </tr>
+
+                     </tbody>
+                    </table>
+
+                     <table class="table table-bordered">
+                    <colgroup>
+                        <col width="240"/>
+                        <col width="125" />
+                    </colgroup>
+                    <tbody>
+                    
                     <tr class="trheadc1" height="36">
                         <td width="240" height="36">
                             Type of Water Supply

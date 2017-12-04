@@ -6,6 +6,11 @@
     var nicesx = $("#boxscroll1").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
   });
 </script>
+<style type="text/css">
+td {
+   width:15.5em!important;
+}
+</style>
 <!-- Main content -->
 <main class="main" ng-app="dlAssessmenProvinceApp" ng-controller="dlAssessmenProvinceController">
     <!-- Breadcrumb -->
@@ -38,7 +43,7 @@
                     <colgroup>
                         <col width="107"/>
                         <col width="191"/>
-                        <col width="118" span="4"/>
+                        <col width="118" />
                     </colgroup>
                     <tbody ng-form name="form_province">
                     <tr class="trheadc" height="20">
@@ -69,16 +74,16 @@
                         </tr>
                     </tr>
                     <tr class="trheadc1" height="20">
-                        <td rowspan="2" colspan="2" width="191" style="width:10%;">
+                        <td rowspan="2" colspan="2" width="191" >
                             Asset Ownership
                         </td>
-                        <td rowspan="2" colspan="2" width="118" style="width:10%;">
+                        <td rowspan="2" colspan="2" width="118" >
                             Damages (LKR)
                         </td>
-                        <td colspan="2" width="236" style="width:10%;">
+                        <td colspan="2" width="236" >
                             Losses (LKR)
                         </td>
-                        <td rowspan="2" colspan="2" width="118" style="width:10%;">
+                        <td rowspan="2" colspan="2" width="118">
                             Total (LKR)
                         </td>
                     </tr>
@@ -90,18 +95,25 @@
                             Year 2
                         </td>
                     </tr>
+                    </tbody>
+                    </table>
                     <table ng-repeat="(key, value) in dlAssessmenProvinceSys.other_govn_services.Table_4" class="table table-bordered">
+                    <colgroup>
+                        <col width="107"/>
+                        <col width="191"/>
+                        <col width="118" />
+                    </colgroup>
                         <tbody>
                         <tr height="20" class="trhead">
-                            <td ng-bind="key" width="191" style="width:10%;">
+                            <td ng-bind="key" width="191" >
                             </td>
-                            <td width="118"  style="width:10%;">
+                            <td width="118"  >
                             </td>
-                            <td width="118" style="width:5%;">
+                            <td width="118" >
                             </td>
-                            <td width="118" style="width:5%;">
+                            <td width="118" >
                             </td>
-                            <td class="right" width="118" style="width:10%;">
+                            <td class="right" width="118" >
                             </td>
                         </tr>
                         <tr ng-repeat="(key, value) in value" ng-if="value.DlagdDmgProvince[0].ownership == 1" height="20">

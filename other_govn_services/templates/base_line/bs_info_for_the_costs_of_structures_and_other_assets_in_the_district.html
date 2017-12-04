@@ -39,22 +39,7 @@ $(document).ready(function() {
 				<span style="color:red" ng-show="!is_valid_data">
                     This request can't be proceed, there is data-set available for this selection.
                 </span>
-				<td style="width:100px;">
-					<span ng-if="!check_search">
-						<button ng-if="!is_search" class="btn btn-info" disabled>
-							<span class="fa fa-search"></span>
-						</button>
-					</span>
-					<span ng-if="check_search">
-						<button ng-click="searchBsData(form_other_services_bs_assets_district)" ng-if="!is_search"
-								class="btn btn-info">
-							<span class="fa fa-search"></span>
-						</button>
-					</span>
-					<button ng-click="clear()" ng-if="is_search" class="btn btn-warning">
-						Cancel Search
-					</button>
-				</td>
+				
 				<table class="table table-bordered">
 					<colgroup>
 						<col width="241"/>
@@ -86,10 +71,26 @@ $(document).ready(function() {
 								</select>
 							</td>
 							<td style="padding-left:5px;" height="19" width="171"> Year/Month </td>
-							<td colspan="2" height="19" style="font-weight:normal;" width="427">
+							<td colspan="1" height="19" style="font-weight:normal;" width="427">
 								<input name="textinput" type="text" placeholder="mm/yy" ng-change="changeDis()" id="datepicker"
 									   ng-model="baselineDate" class="form-control input-md" required>
 							</td>
+							<td style="width:100px;">
+					<span ng-if="!check_search">
+						<button ng-if="!is_search" class="btn btn-info" disabled>
+							<span class="fa fa-search"></span>
+						</button>
+					</span>
+					<span ng-if="check_search">
+						<button ng-click="searchBsData(form_other_services_bs_assets_district)" ng-if="!is_search"
+								class="btn btn-info">
+							<span class="fa fa-search"></span>
+						</button>
+					</span>
+					<button ng-click="clear()" ng-if="is_search" class="btn btn-warning">
+						<span class="fa fa-times" aria-hidden="true"></span>
+					</button>
+				</td>
 							<span ng-bind="user_id={{user.id}}" style="display:none;"></span>
 						</tr>
 						<tr class="trheadc1" height="30">

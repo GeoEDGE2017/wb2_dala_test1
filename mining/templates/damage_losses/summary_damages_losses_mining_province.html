@@ -1,6 +1,11 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
 {% load static %}
+<style type="text/css">
+td {
+   width:8em!important;
+}
+</style>
 <!-- Main content -->
 <main class="main" ng-app="dlminingProApp" ng-controller="DlminingProController">
     <!-- Breadcrumb -->
@@ -26,12 +31,7 @@
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
                 <table class="table table-bordered">
-                    <colgroup>
-                        <col width="171"/>
-                        <col width="119" span="5"/>
-                        <col width="120"/>
-                        <col width="123" span="2"/>
-                    </colgroup>
+                    
                     <tbody>
                     <tr class="trheadc1" style="text-align:left;margin-left:5px;">
                         <td class="trhead1 p5" width="281" height="20">
@@ -70,6 +70,12 @@
                     </tbody>
                 </table>
                 <table class="table table-bordered" ng-if="!checkIfNull()">
+                <colgroup>
+                        <col width="171"/>
+                        <col width="119" />
+                        <col width="120"/>
+                        <col width="123" />
+                    </colgroup>
                     <tbody>
                     <tr class="trheadc1" height="20">
                         <td rowspan="3" width="171" height="60">
@@ -123,10 +129,12 @@
                         </td>
                     </tr>
                     </tbody>
-                </table>
-                <table class="table table-bordered" ng-repeat="(key, value) in dlMiningPro.mining.Table_7"
+              
+               
+                     
+                    <tbody ng-repeat="(key, value) in dlMiningPro.mining.Table_7"
                        ng-if="!checkIfNull()">
-                    <tbody>
+                   
                     <tr class="trheadc" height="20" ng-init="getTotal($index,key);">
                         <td ng-bind="key" width="171" height="20">
                         </td>
@@ -210,10 +218,18 @@
                         </td>
                     </tr>
                     </tbody>
-
+                    </table>
                     <table class="table table-bordered" ng-if="!checkIfNull()">
+                   
+                    <tbody>
+                    <colgroup>
+                        <col width="171"/>
+                        <col width="119" />
+                        <col width="120"/>
+                        <col width="123" />
+                    </colgroup>
                         <tr height="20">
-                            <td width="202" height="20" style="width:13.7%;" class="tdpa">
+                            <td width="202" height="20"  class="tdpa">
                                 GRAND TOTAL
                             </td>
                             <td class="right" width="90" ng-bind="totDmgPub()"></td>
@@ -225,6 +241,7 @@
                             <td class="right" width="90" ng-bind="totDmgPub() + totLosY1Pub() + totLosY2Pub()"></td>
                             <td class="right" width="90" ng-bind="totDmgPvt() + totLosY1Pvt() + totLosY2Pvt()"></td>
                         </tr>
+                        </tbody>
                     </table>
                     <br>
                     <div class="pull-right">

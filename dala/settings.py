@@ -161,8 +161,8 @@ DATABASES = {
         #     'options': '-c search_path=industry_services'
         # },
 
-        #'NAME': 'dala_11_28',
-        'NAME': 'dala_2017_11_28',
+        'NAME': 'dala_12_04',
+        #'NAME': 'dala_2017_11_28',
         'USER': 'postgres',
     },
 }
@@ -3176,6 +3176,8 @@ TABLE_PROPERTY_MAPPER = {
         },
         'Table_4': {
             'DlDmgBusDistrictN': ['business', 'sumpub', 'sumpvt'],
+            'DlDmgInfDistrictNN': ['tot_dst_pvt', 'tot_pdmg_pvt', 'tot_dmg_pvt', 'tot_dst_pub', 'tot_pdmg_pub', 'tot_dmg_pub', 'infrastructure'],
+            'DlLosInfDistrictNN': ['loss_year1_pub', 'loss_year1_pvt', 'loss_year2_pub', 'loss_year2_pvt', 'infrastructure'],
             'DlLosBusDistrictN': ['business', 'tot_year1_pub', 'tot_year1_pvt', 'tot_year2_pub', 'tot_year2_pvt'],
             'DlDmgInfDistrictN': ['infrastructure', 'tot_dst', 'tot_pdmg', 'tot_dmg', 'ownership', 'inf_type'],
             'DlLosInfDistrictN': ['infrastructure', 'year1', 'year2', 'ownership', 'inf_type']

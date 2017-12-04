@@ -441,6 +441,75 @@ def update_enumirate_dl_data(request):
 
 # dileepa
 @csrf_exempt
+def update_enumirate_bs_data(request):
+    print 'update_enumirate_bs_data\n'
+    data = (yaml.safe_load(request.body))
+    enum_data = data['enum_data']
+    com_data = data['com_data']
+
+    interface_table_name = None
+    for sector in enum_data:
+        for interface_table in enum_data[sector]:
+            interface_table_name = interface_table
+
+    print data['sector']
+    print interface_table_name
+    print com_data['district']
+    print com_data['bs_date']
+
+    dsdate = get_bd_session_key_record(data['sector'], interface_table_name, com_data['district'], com_data['bs_date'])
+
+    for sector in enum_data:
+        sub_app_name = sector + '.base_line'
+        print 'sub_app_name :', sub_app_name
+        for interface_table in enum_data[sector]:
+            for db_table in enum_data[sector][interface_table]:
+                for row in enum_data[sector][interface_table][db_table]:
+                    for dl_interface_table in row['dl_tables']:
+                        for dl_db_table in row['dl_tables'][dl_interface_table]:
+                            info = {'sector': data['sector'], 'dltable': get_db_table_from_model(str(dl_db_table)),
+                                    'district': com_data['district'], 'dsdate': dsdate,
+                                    'oldasset': row['oldasset'], 'newasset': row['newasset'],
+                                    'dl_asset_field': row['dl_tables'][dl_interface_table][dl_db_table]['dl_asset_field']}
+
+                            sql = """UPDATE {sector}.{bstable2}
+                                SET {bs_asset_field} = '{newasset}'
+                                WHERE {bstable2}.bs_date = (SELECT bd_session_keys.bs_date
+                                    FROM {sector}.bd_session_keys
+                                    WHERE (bd_session_keys.date = (SELECT distinct bd_session_keys.parent_bs_date
+                                        FROM {sector}.bd_session_keys
+                                        WHERE bd_session_keys.parent_bs_date = '{parentbsdate}'
+                                            AND bd_session_keys.district = {district})
+                                        AND bd_session_keys.district = {district}))
+                                    AND {bstable2}.district = {district}
+                                AND {bstable2}.{bs_asset_field} = '{oldasset}'""".format(**info)
+
+                            sql = """UPDATE {sector}.{dltable} dla
+                                SET {dl_asset_field} = '{newasset}'
+                                WHERE dla.{dl_asset_field} = (SELECT di.{dl_asset_field}
+                                    FROM {sector}.{dltable} di
+                                         JOIN {sector}.dl_session_keys dls ON di.created_date = dls.date
+                                         JOIN {sector}.bd_session_keys bss ON dls.bs_date = bss.date
+                                    WHERE di.district = {district} AND bss.date = '{dsdate}'
+                                    AND di.{dl_asset_field} = '{oldasset}')
+                                AND dla.district = {district}
+                                AND dla.created_date = (SELECT dls.date
+                                    FROM {sector}.{dltable} di
+                                         JOIN {sector}.dl_session_keys dls ON di.created_date =  dls.date
+                                         JOIN {sector}.bd_session_keys bss ON dls.bs_date = bss.date
+                                    WHERE di.district = {district} AND bss.date = '{dsdate}'
+                                    AND di.{dl_asset_field} = '{oldasset}')""".format(**info)
+
+                            print dl_db_table
+                            print sql
+                            cursor = connection.cursor()
+                            cursor.execute(sql)
+                            # row = cursor.fetchone()
+    return HttpResponse('success')
+
+
+# dileepa
+@csrf_exempt
 def update_other_government_enumirate_dl_data(request):
     print 'update_other_government_enumirate_dl_data\n'
     data = (yaml.safe_load(request.body))

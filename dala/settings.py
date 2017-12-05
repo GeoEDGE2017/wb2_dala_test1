@@ -3208,7 +3208,7 @@ TABLE_PROPERTY_MAPPER = {
         'Table_1': {
             'BsFrmNumBusIndustry': ['industry', 'num_male', 'num_female', 'num_large', 'num_medium', 'num_micro',
                                     'num_small', 'id'],
-            'BsFrmNumBusServices': ['service', 'num_male', 'num_female', 'num_medium', 'num_micro', 'num_small', 'id'],
+            'BsFrmNumBusServices': ['service', 'num_male', 'num_female', 'num_large', 'num_medium', 'num_micro', 'num_small', 'id'],
         },
         'Table_2': {
             'BsNumBusSector': ['avg_num_emp_female', 'avg_num_emp_male', 'components', 'num_businesses', 'id'],

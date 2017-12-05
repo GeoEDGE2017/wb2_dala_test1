@@ -16,57 +16,57 @@ app.controller('bsindustryServicesInfoFormalController', ['$scope', '$http', fun
         'industry_services': {
             'Table_1': {
                 'BsFrmNumBusIndustry':[{
-                    'industry':'Textile and Garments',
-                    'num_micro':null,
-                    'num_small':null,
+                    'industry': 'Textile and Garments',
+                    'num_micro': null,
+                    'num_small': null,
                     'num_medium': null,
                     'num_large': null,
                     'num_male': null,
                     'num_female': null,
                 }, {
                     'industry':'Tea processing',
-                    'num_micro':null,
-                    'num_small':null,
+                    'num_micro': null,
+                    'num_small': null,
                     'num_medium': null,
                     'num_large': null,
                     'num_male': null,
                     'num_female': null,
                 }, {
                     'industry':'Petroleum',
-                    'num_micro':null,
-                    'num_small':null,
+                    'num_micro': null,
+                    'num_small': null,
                     'num_medium': null,
                     'num_large': null,
                     'num_male': null,
                     'num_female': null,
                 }, {
                     'industry':'Construction',
-                    'num_micro':null,
-                    'num_small':null,
+                    'num_micro': null,
+                    'num_small': null,
                     'num_medium': null,
                     'num_large': null,
                     'num_male': null,
                     'num_female': null,
                 }, {
                     'industry':'Beverages',
-                    'num_micro':null,
-                    'num_small':null,
+                    'num_micro': null,
+                    'num_small': null,
                     'num_medium': null,
                     'num_large': null,
                     'num_male': null,
                     'num_female': null,
                 }, {
                     'industry':'Chemicals',
-                    'num_micro':null,
-                    'num_small':null,
+                    'num_micro': null,
+                    'num_small': null,
                     'num_medium': null,
                     'num_large': null,
                     'num_male': null,
                     'num_female': null,
                 }, {
                     'industry':'Pharmaceutical',
-                    'num_micro':null,
-                    'num_small':null,
+                    'num_micro': null,
+                    'num_small': null,
                     'num_medium': null,
                     'num_large': null,
                     'num_male': null,
@@ -74,40 +74,40 @@ app.controller('bsindustryServicesInfoFormalController', ['$scope', '$http', fun
                 }],
                 'BsFrmNumBusServices':[{
                     'service':'Finance and Insurance',
-                    'num_micro':null,
-                    'num_small':null,
+                    'num_micro': null,
+                    'num_small': null,
                     'num_medium': null,
                     'num_large': null,
                     'num_male': null,
                     'num_female': null,
                 }, {
                     'service':'Wholesale Trade',
-                    'num_micro':null,
-                    'num_small':null,
+                    'num_micro': null,
+                    'num_small': null,
                     'num_medium': null,
                     'num_large': null,
                     'num_male': null,
                     'num_female': null,
                 }, {
                     'service':'Retail Trade',
-                    'num_micro':null,
-                    'num_small':null,
+                    'num_micro': null,
+                    'num_small': null,
                     'num_medium': null,
                     'num_large': null,
                     'num_male': null,
                     'num_female': null,
                 }, {
                     'service':'Real estate',
-                    'num_micro':null,
-                    'num_small':null,
+                    'num_micro': null,
+                    'num_small': null,
                     'num_medium': null,
                     'num_large': null,
                     'num_male': null,
                     'num_female': null,
                 }, {
                     'service':'Private services',
-                    'num_micro':null,
-                    'num_small':null,
+                    'num_micro': null,
+                    'num_small': null,
                     'num_medium': null,
                     'num_large': null,
                     'num_male': null,
@@ -127,6 +127,12 @@ app.controller('bsindustryServicesInfoFormalController', ['$scope', '$http', fun
             $scope.is_edit_disable = false;
             $scope.check_search = false;
         }
+    }
+
+    //testing
+    $scope.test = function() {
+        console.log('***');
+        console.log($scope.bs_ind_ser_info_forml);
     }
 
     $scope.bs_ind_ser_info_forml = angular.copy(init_data);

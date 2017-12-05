@@ -3194,10 +3194,14 @@ TABLE_PROPERTY_MAPPER = {
             'DlLosInfTotProvinceN': ['asset', 'los_year1_pub', 'los_year1_pvt', 'los_year2_pub', 'los_year2_pvt'],
         },
         'Table_6': {
-            'DlDmgInfTotNational': ['sum', 'ownership'],
-            'DlLosInfTotNational': ['tot_year1', 'tot_year2', 'ownership'],
-            'DlDmgBusTotNational': ['tot_damages', 'ownership'],
-            'DlLosBusTotNational': ['los_year1', 'los_year2', 'ownership'],
+            # 'DlDmgInfTotNational': ['sum', 'ownership'],
+            # 'DlLosInfTotNational': ['tot_year1', 'tot_year2', 'ownership'],
+            # 'DlDmgBusTotNational': ['tot_damages', 'ownership'],
+            # 'DlLosBusTotNational': ['los_year1', 'los_year2', 'ownership'],
+            'DlDmgFrmNational': ['tot_damages_pub', 'tot_damages_pvt'],
+            'DlLosFrmTotNational': ['los_year1_pub', 'los_year1_pvt', 'los_year2_pub', 'los_year2_pvt'],
+            'DlDmgInfNational': ['tot_damages_pub', 'tot_damages_pvt'],
+            'DlLosInfNational': ['los_year1_pub', 'los_year1_pvt', 'los_year2_pub', 'los_year2_pvt'],
         }
     },
     'industry_services': {

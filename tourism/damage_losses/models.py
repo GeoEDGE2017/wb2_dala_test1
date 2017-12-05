@@ -467,7 +467,6 @@ class DlDmgFrmTotProvinceN (models.Model):
     incident = models.IntegerField(blank=True, null=True)
     province = models.IntegerField(blank=True, null=True)
 
-
     class Meta:
         managed = False
         db_table = 'tourism\".\"dl_dmg_frm_tot_province_n'
@@ -519,3 +518,50 @@ class DlLosInfTotProvinceN (models.Model):
         db_table = 'tourism\".\"dl_los_inf_tot_province_n'
 
 
+# Table 6
+class DlDmgFrmNational (models.Model):
+    tot_damages_pub = models.FloatField(blank=True, null=True)
+    tot_damages_pvt = models.FloatField(blank=True, null=True)
+    incident = models.IntegerField(blank=True, null=True)
+    province = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'tourism\".\"dl_dmg_frm_national'
+
+
+class DlLosFrmTotNational (models.Model):
+    los_year1_pub = models.FloatField(blank=True, null=True)
+    los_year1_pvt = models.FloatField(blank=True, null=True)
+    los_year2_pub = models.FloatField(blank=True, null=True)
+    los_year2_pvt = models.FloatField(blank=True, null=True)
+    incident = models.IntegerField(blank=True, null=True)
+    province = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'tourism\".\"dl_los_frm_tot_national'
+
+
+class DlDmgInfNational (models.Model):
+    tot_damages_pub = models.FloatField(blank=True, null=True)
+    tot_damages_pvt = models.FloatField(blank=True, null=True)
+    incident = models.IntegerField(blank=True, null=True)
+    province = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'tourism\".\"dl_dmg_inf_national'
+
+
+class DlLosInfNational (models.Model):
+    los_year1_pub = models.FloatField(blank=True, null=True)
+    los_year1_pvt = models.FloatField(blank=True, null=True)
+    los_year2_pub = models.FloatField(blank=True, null=True)
+    los_year2_pvt = models.FloatField(blank=True, null=True)
+    incident = models.IntegerField(blank=True, null=True)
+    province = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'tourism\".\"dl_los_inf_national'

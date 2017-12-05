@@ -41,7 +41,7 @@ app.controller('dlSummTouBusiFaciPovController', function($scope, $http, $parse,
                 method: "POST",
                 url: '/dl_fetch_district_disagtn',
                 data: angular.toJson({
-                    'table_name':  'Table_5',
+                    'table_name': 'Table_5',
                     'sector': 'tourism',
                     'com_data': {
                         'province': $scope.province,

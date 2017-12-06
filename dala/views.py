@@ -2438,6 +2438,14 @@ def dl_fetch_summary_disagtn(request):
         dl_data.update(dl_mtable_data)
         i += 1
 
+    print '----------'
+    for s in dl_data:
+        for t in dl_data[s]:
+            print s, t
+            dl_data[s][t] = collections.OrderedDict(sorted(dl_data[s][t].items()))
+    print '----------'
+    # print dl_data
+
     return HttpResponse(
         json.dumps((dl_data), cls=DjangoJSONEncoder),
         content_type='application/javascript; charset=utf8'

@@ -18,6 +18,7 @@ from education.base_line.models import PreSchools, PrimarySchools, SecondaryScho
 from users.models import UserDistrict
 import smtplib
 from django.db import connection
+import collections
 import dateutil.parser
 
 @csrf_exempt
@@ -2108,8 +2109,10 @@ def dl_fetch_district_disagtn(request):
             print '% - ', filter_fields
 
         # print dl_session.district.province
+        print category_name, '***'
 
         if category_name is not None:
+
             dl_mtable_data[sector][table_name][category_name] = {}
 
             for table in tables:
@@ -2128,6 +2131,8 @@ def dl_fetch_district_disagtn(request):
                 dl_mtable_data[sector][table_name][category_name][table] = list(model_class.objects.
                                                                                 filter(**filter_fields)
                                                                                 .values(*table_fields))
+
+    dl_mtable_data[sector][table_name] = collections.OrderedDict(sorted(dl_mtable_data[sector][table_name].items()))
 
     return HttpResponse(
         json.dumps((dl_mtable_data), cls=DjangoJSONEncoder),

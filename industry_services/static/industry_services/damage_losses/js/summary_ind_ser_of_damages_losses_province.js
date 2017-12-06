@@ -148,7 +148,7 @@ app.controller('dlSummIndSerPovController', ['$scope', '$http', function($scope,
         return final_val;
     }
 
-    $scope.getConvertedVal = function(val){
+    $scope.getConvertedVal = function(val) {
         if(!val)    return 0;
         if(isNaN(val)) return 0;
         return val;

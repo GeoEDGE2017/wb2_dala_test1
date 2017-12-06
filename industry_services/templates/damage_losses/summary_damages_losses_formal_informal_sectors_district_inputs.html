@@ -3,29 +3,30 @@
 {% load static %}
 <!-- Main content -->
 <main class="main" ng-app="dlSummFormlInformlDisInputApp" ng-controller="dlSummFormlInformlDisInputController">
-
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:index' %}">
+                Dashboard
+            </a>
         </li>
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:industry_services_main' %}">Industry & Services
-            Sector</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:industry_services_main' %}">
+                Industry & Services Sector
+            </a>
         </li>
-
-
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 7.  Summary of Damages and Losses of the Formal and Informal Sectors in the District / Inputs</span>
+        <li class="breadcrumb-item active">
+            <span class="label label-success" style="font-size:14px;">
+                Table 7. Summary of Damages and Losses of the Formal and Informal Sectors in the District / Inputs
+            </span>
         </li>
-
-        <li style="float:right;"><a href="{% static 'dashboard/doc/Industry_and_Services.pdf' %}" target="_blank"
-                                    style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info"
-                                    data-toggle="tooltip" title="Veiw Document"></a></li>
+        <li style="float:right;">
+            <a href="{% static 'dashboard/doc/Industry_and_Services.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;"
+               class="icon-info" data-toggle="tooltip" title="Veiw Document">
+            </a>
+        </li>
     </ol>
-
-
     <div class="container-fluid" ng-form name="dataForm">
-
-
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
                 <table class="table table-bordered">
@@ -62,19 +63,14 @@
                     </tr>
                 </table>
                 <table class="table table-bordered">
-
-
                     <colgroup>
                         <col width="212"/>
                         <col width="212"/>
                         <col width="212"/>
                         <col width="212"/>
                         <col width="110"/>
-
-
                     </colgroup>
                     <tbody>
-
                     <tr class="trhead1" height="19">
                         <td rowspan="3" height="59" width="212">
                             Types of Businesses
@@ -102,8 +98,8 @@
                         <td height="19" width="110">
                         </td>
                     </tr>
-                    <tr height="19" ng-repeat="row in
-                data.industry_services.Table_5.DlNumAffBusIndustry" ng-if="row.assets != 'Total'">
+                    <tr height="19" ng-repeat="row in data.industry_services.Table_5.DlNumAffBusIndustry"
+                        ng-if="row.assets != 'Total'">
                         <td class="tdpa" height="19" width="212" ng-bind="row.assets">
                             Textile and Garments11
                         </td>
@@ -118,14 +114,13 @@
                                    class="form-control input-md">
                         </td>
                     </tr>
-                    <tr height="21" ng-repeat="row in
-                data.industry_services.Table_5.DlNumAffBusIndustry" ng-if="row.assets == 'Total'">
+                    <tr height="21" ng-repeat="row in data.industry_services.Table_5.DlNumAffBusIndustry"
+                        ng-if="row.assets == 'Total'">
                         <td class="tdpa" height="21" width="212">
                             Total
                         </td>
                         <td class="right" height="21" width="108"
                             ng-bind="row.num_bus_public = getTotalCol('DlNumAffBusIndustry', 'num_bus_public', row )">
-
                             -
                         </td>
                         <td class="right" height="21" width="110"
@@ -142,12 +137,9 @@
                         <td height="19" width="110">
                         </td>
                     </tr>
-                    <tr height="19" ng-repeat="row in
-                data.industry_services.Table_5.DlNumAffBusServices" ng-if="row.assets != 'Total'">
-
-                        <td class="tdpa" height="19" width="212" ng-bind="row.assets">
-
-
+                    <tr height="19" ng-repeat="row in data.industry_services.Table_5.DlNumAffBusServices"
+                        ng-if="row.assets != 'Total'">
+                        <td class="tdpa" height="19" width="212" ng-bind="row.assets"></td>
                         <td height="19" width="108">
                             <input id="textinput" name="textinput"
                                    type="number" min="0" pattern="[0-9]*" ng-model="row.num_bus_public" placeholder=""
@@ -159,16 +151,13 @@
                                    class="form-control input-md">
                         </td>
                     </tr>
-
-
-                    <tr height="21" ng-repeat="row in
-                data.industry_services.Table_5.DlNumAffBusServices" ng-if="row.assets == 'Total'">
+                    <tr height="21" ng-repeat="row in data.industry_services.Table_5.DlNumAffBusServices"
+                        ng-if="row.assets == 'Total'">
                         <td class="tdpa" height="21" width="212">
                             Total
                         </td>
                         <td class="right" height="21" width="108"
                             ng-bind="row.num_bus_public = getTotalCol('DlNumAffBusServices', 'num_bus_public', row )">
-
                             -
                         </td>
                         <td class="right" height="21" width="110"
@@ -176,7 +165,6 @@
                             -
                         </td>
                     </tr>
-
                     <tr height="21">
                         <td class="tdpa" height="21" width="212">
                             TOTAL
@@ -190,8 +178,6 @@
                     </tr>
                     </tbody>
                 </table>
-
-
                 <div class="pull-right">
                     <br>
                     <button type="button" class="btn btn-info" ng-click="clear()">Clear</button>
@@ -201,27 +187,18 @@
                     <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
                         Edit
                     </button>
-
                     <button type="button" class="btn btn-success" ng-click="saveDlData(dataForm)">Submit</button>
                 </div>
                 <br><br><br>
-
             </div>
-
-
         </div>
     </div>
-
-
     <div class="col-md-12">
-
-
         <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
              aria-hidden="true">
             <div class="modal-dialog" style="width:50%;">
                 <div class="modal-content">
                     <div class="modal-header">
-
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                             ×
                         </button>
@@ -234,15 +211,12 @@
                         <div class="form-group">
                             <label class="col-md-2 control-label" for="textinput">Name</label>
                             <div class="col-md-10">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-
+                                <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
                             </div>
                         </div>
                     </div>
                     <br><br>
                     <div class="modal-footer">
-
                         <button type="button" class="btn btn-default" data-dismiss="modal">
                             Close
                         </button>
@@ -251,19 +225,9 @@
                         </button>
                     </div>
                 </div>
-
             </div>
-
         </div>
-
-
     </div>
-    </div>
-
-    </div>
-
     <!-- /.conainer-fluid -->
 </main>
-
-
 {% endblock content %}

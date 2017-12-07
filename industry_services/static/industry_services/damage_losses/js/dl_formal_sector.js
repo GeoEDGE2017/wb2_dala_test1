@@ -172,8 +172,6 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
         if($scope.incident && $scope.district) {
             $scope.is_edit_disable = true;
             $scope.check_search = true;
-            $scope.loadBusinessSubSectorsInd();
-            $scope.loadBusinessSubSectorsSer();
         }
     }
 
@@ -228,6 +226,15 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
         $scope.isIndustrySelected = ($scope.selected_formal_type.firm_type.toLowerCase() == 'services');
         $scope.selectedFirm.firm_type_id = $scope.selected_formal_type.id;
         console.log("seltd Firm", $scope.selectedFirm);
+
+        console.log($scope.selected_formal_type.firm_type);
+
+        if($scope.selected_formal_type.firm_type.toLowerCase() == 'industry') {
+            $scope.loadBusinessSubSectorsInd();
+        }
+        else if($scope.selected_formal_type.firm_type.toLowerCase() == 'services') {
+            $scope.loadBusinessSubSectorsSer();
+        }
     }
 
     $scope.loadBusinessClassification = function() {

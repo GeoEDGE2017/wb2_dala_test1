@@ -44,9 +44,9 @@ def send_email(request):
     server.login(username,password)
     server.sendmail(fromaddr, toaddrs, msg)
     server.quit()
+
     return HttpResponse(
-      json.dumps(True),
-        content_type='application/javascript; charset=utf8'
+        json.dumps(True), content_type='application/javascript; charset=utf8'
     )
 
 
@@ -242,6 +242,27 @@ def fetch_entities_plain_column(request):
     )
 
 
+# dileepa
+@csrf_exempt
+def fetch_entities_plain_column_from_district(request):
+    print 'test_fetch_entities_plain_column'
+    data = (yaml.safe_load(request.body))
+    model_name = data['model']
+    sector = data['sector']
+    col = data['col']
+    district = data['district']
+
+    sub_app_name = sector + '.base_line'
+    model_class = apps.get_model(sub_app_name, model_name)
+    fetched_data = model_class.objects.filter(district=district["district__id"])
+    fetched_data_json = fetched_data.values(col).distinct()
+
+    return HttpResponse(
+        json.dumps(list(fetched_data_json)),
+        content_type='application/javascript; charset=utf8'
+    )
+
+
 @csrf_exempt
 def bs_save_data(request):
     bs_data = (yaml.safe_load(request.body))
@@ -252,6 +273,7 @@ def bs_save_data(request):
     todate = timezone.now()
     is_edit = bs_data['is_edit']
     current_user = None
+
     try:
         current_user = com_data['user_id']
         print 'Current User', current_user

@@ -6,7 +6,9 @@
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
-            <a href="{% url 'dashboard:index' %}">Dashboard</a>
+            <a href="{% url 'dashboard:index' %}">
+                Dashboard
+            </a>
         </li>
         <li class="breadcrumb-item">
             <a href="{% url 'dashboard:industry_services_main' %}">
@@ -19,7 +21,9 @@
             </span>
         </li>
         <li style="float:right;">
-            <a href="{% static 'dashboard/doc/Industry_and_Services.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document"></a>
+            <a href="{% static 'dashboard/doc/Industry_and_Services.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;"
+                class="icon-info" data-toggle="tooltip" title="Veiw Document">
+            </a>
         </li>
     </ol>
     <div class="container-fluid" ng-form name="form_dl_ind_serv_informl_sec">
@@ -36,13 +40,21 @@
         </ul>
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
-             <td style="width:100px;"> <span ng-if="!check_search">
-									<button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
-									</span> <span ng-if="check_search">
-									<button ng-click="searchDlData(form_dl_ind_serv_informl_sec)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
-									</span>
-									<button ng-click="clear()" ng-if="is_search" class="btn btn-warning">Cancel Search</button>
-								</td>
+                <td style="width:100px;">
+                    <span ng-if="!check_search">
+                        <button ng-if="!is_search" class="btn btn-info" disabled>
+                            <span class="fa fa-search"></span>
+                        </button>
+                    </span>
+                    <span ng-if="check_search">
+                        <button ng-click="searchDlData(form_dl_ind_serv_informl_sec)" ng-if="!is_search" class="btn btn-info">
+                            <span class="fa fa-search"></span>
+                        </button>
+                    </span>
+                    <button ng-click="clear()" ng-if="is_search" class="btn btn-warning">
+                        Cancel Search
+                    </button>
+                </td>
                 <table class="table table-bordered">
                     <colgroup>
                         <col width="212"/>
@@ -60,11 +72,9 @@
                         </td>
                         <td height="19" width="108">
                             <select id="selectbasic" name="incident" ng-model="incident"
-                                    class="form-control" ng-change="changedValue(true)"
-                                    style="width:100%;font-weight:400;" required>
+                                    class="form-control" ng-change="changedValue(true)" style="width:100%;font-weight:400;" required>
                                 <option value="" selected="true">Select an Incident</option>
                                 {% for incident in incidents %}
-
                                 <option value={{incident.id}}>
                                     <!--{{incident.disaster_type.name}}-->
                                     <!--{{incident.reported_date_time}}-->
@@ -80,7 +90,6 @@
                             <select ng-options="district as district.district__name for district in districts track by district.district__id"
                                     name="district" id="ccyear" ng-model="district" ng-value="district.district__id"
                                     class="form-control" ng-change="changedValue(false);" required>
-
                                 <option value="" selected>Select District</option>
                             </select>
                         </td>
@@ -96,7 +105,6 @@
                                 <option value="" selected="true">Select Ownership</option>
                                 <option value="Public">Public</option>
                                 <option value="Private">Private</option>
-
                             </select>
                         </td>
                     </tr>
@@ -107,11 +115,10 @@
                         </td>
                         <td colspan="6" height="19" width="661">
                             <select ng-options="formal_formal_type as formal_formal_type.firm_type
-                            for formal_formal_type in formal_formal_types track by formal_formal_type.id"
+                                for formal_formal_type in formal_formal_types track by formal_formal_type.id"
                                     name="formal_formal_type" id="ccyear" ng-model="selected_formal_type"
                                     ng-value="formal_formal_type.id"
                                     class="form-control" ng-change="changeBusinessSubSectors()" required="true">
-
                                 <option value="" selected>Select Type of Business</option>
                             </select>
                         </td>
@@ -121,7 +128,6 @@
                             Industry sub Sector
                         </td>
                         <td colspan="6" height="19" width="661">
-
                             <select ng-model="subSector" ng-change="changeSubSector()" class="form-control"
                                     ng-disabled="isIndustrySelected">
                                 <option value="" selected="true">Select Industry sub sector</option>

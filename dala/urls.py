@@ -82,6 +82,8 @@ urlpatterns = [
 
     url(r'^fetch_entities_plain_column$', views.fetch_entities_plain_column, name='fetch_entities_plain_column'),
 
+    url(r'^fetch_entities_plain_column_from_district$', views.fetch_entities_plain_column_from_district, name='fetch_entities_plain_column_from_district'),
+
     # agri_irrigation
     url(r'^agri_irrigation/', include('agri_irrigation.urls', namespace='agri_irrigation')),
 

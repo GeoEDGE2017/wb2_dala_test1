@@ -169,9 +169,10 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
             })
         }
 
-        if($scope.incident && $scope.district){
+        if($scope.incident && $scope.district) {
             $scope.is_edit_disable = true;
             $scope.check_search = true;
+            $scope.loadBusinessSubSectorsInd();
         }
     }
 
@@ -191,11 +192,13 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
     $scope.loadBusinessSubSectorsInd = function() {
         $http({
             method: "POST",
-            url: "/fetch_entities_plain_column", //single column data load
+            url: "/fetch_entities_plain_column_from_district", //single column data load
             data: angular.toJson({
-                'model': 'BsFrmBusIndustry', //BsFrmBusIndustry
-                'sector':'industry_services', //industry_services
+//                'model': 'BsFrmBusIndustry', //BsFrmBusIndustry
+                'model': 'BsFrmNumBusIndustry', //BsFrmBusIndustry bs_frm_num_bus_industry
+                'sector': 'industry_services', //industry_services
                 'col': 'industry',
+                'district': $scope.district,
             }),
         }).success(function(data) {
             $scope.indSubSec = data;
@@ -208,7 +211,7 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
             url: "/fetch_entities_plain_column", //single column data load
             data: angular.toJson({
                 'model': 'BsFrmBusServices', //BsFrmBusServices
-                'sector':'industry_services', //industry_services
+                'sector': 'industry_services', //industry_services
                 'col': 'service',
             }),
         }).success(function(data) {
@@ -230,7 +233,7 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
             url: "/fetch_entities_plain",
             data: angular.toJson({
                 'model': 'BusinessClassification', //BsFrmBusServices
-                'sector':'industry_services', //industry_services
+                'sector': 'industry_services', //industry_services
             }),
         }).success(function(data) {
             $scope.classificationTypes = data;
@@ -243,7 +246,7 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
             url: "/fetch_entities_all",
             data: angular.toJson({
                 'model': 'FrmFirm',
-                'sector':'industry_services',
+                'sector': 'industry_services',
                 'district': $scope.district.district__id,
             }),
         }).success(function(data) {
@@ -406,9 +409,9 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
                     'com_data': {
                         'district_id': $scope.district.district__id,
                         'incident_id': $scope.incident,
-                        'frm_firm_id':$scope.selectedFirm.id,
-                        'user_id':$scope.user_id,
-                        'ownership':$scope.selectedFirm.ownership,
+                        'frm_firm_id': $scope.selectedFirm.id,
+                        'user_id': $scope.user_id,
+                        'ownership': $scope.selectedFirm.ownership,
                     },
                     'is_edit': $scope.is_edit
                 }),
@@ -434,9 +437,9 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
                     'com_data': {
                         'district_id': $scope.district.district__id,
                         'incident_id': $scope.incident,
-                        'frm_firm_id':$scope.selectedFirm.id,
-                        'user_id':$scope.user_id,
-                        'ownership':$scope.selectedFirm.ownership,
+                        'frm_firm_id': $scope.selectedFirm.id,
+                        'user_id': $scope.user_id,
+                        'ownership': $scope.selectedFirm.ownership,
                     },
                     'is_edit': $scope.is_edit
                 }),
@@ -551,7 +554,6 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
         console.log("selectedFirm", $scope.selectedFirm);
     }
 
-
     $scope.loadAllData = function() {
         if($scope.district && $scope.incident && $scope.selectedFirm) {
             $scope.is_edit = true;
@@ -612,7 +614,7 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
     }
 
     $scope.fetchFormalFirmTypes();
-    $scope.loadBusinessSubSectorsInd();
-    $scope.loadBusinessSubSectorsSer();
+//    $scope.loadBusinessSubSectorsInd();
+//    $scope.loadBusinessSubSectorsSer();
     $scope.loadBusinessClassification();
 }])

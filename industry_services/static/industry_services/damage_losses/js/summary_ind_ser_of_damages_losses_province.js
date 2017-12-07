@@ -25,7 +25,6 @@ app.controller('dlSummIndSerPovController', ['$scope', '$http', function($scope,
         if($scope.incident && $scope.province) {
             console.log("featchiing");
             $scope.fetchData();
-
         }
     }
 
@@ -124,7 +123,7 @@ app.controller('dlSummIndSerPovController', ['$scope', '$http', function($scope,
             })
             console.log('table', $scope.table);
         }
-        else{
+        else {
             console.log("data null");
         }
     }
@@ -140,7 +139,6 @@ app.controller('dlSummIndSerPovController', ['$scope', '$http', function($scope,
 
     $scope.getGrandTotCol = function(col) {
         var final_val = 0;
-
         angular.forEach($scope.districtsTotals, function(value, key) {
             final_val += $scope.getConvertedVal( value[col] );
         })

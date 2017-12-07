@@ -1,4 +1,3 @@
-
 //Table 3
 var app = angular.module('dlindustryServicesFormalSecApp', [])
 
@@ -470,22 +469,24 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
         }
     }
 
-    $scope.initiateEdit = function(){
+    $scope.initiateEdit = function() {
         $scope.loadFirms();
         if($scope.classification && $scope.district && $scope.incident) {
             $("#modal-container-218029").modal('show');
         }
         else {
-            console.log("please select Indident, District and Classification")
+            alert("Please select Indident, District and Classification")
         }
     }
 
     $scope.dataEdit = function() {
+        console.log("dataEdit");
         $("#modal-container-218029").modal('hide');
         if($scope.district && $scope.incident && $scope.selectedFirm.id) {
             $scope.is_edit = true;
             $scope.submitted = true;
-             document.getElementById("clearbtn").disabled = true;
+            document.getElementById("clearbtn").disabled = true;
+
             $http({
                 method: "POST",
                 url: '/dl_fetch_edit_data',
@@ -499,17 +500,45 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
                     }
                 }),
             }).success(function(data) {
-                console.log("edit", data);
-                if((data.industry_services.Table_3.DmgAstEquipment.length == 0) ||
-                    (data.industry_services.Table_3.DmgAstMachinery.length == 0) ||
-                    (data.industry_services.Table_3.DmgAstStocks.length == 0) ||
-                    (data.industry_services.Table_3.DmgAstStructures.length == 0) ||
-                    (data.industry_services.Table_3.LosTypeLossses.length == 0) ||
-                    (data.industry_services.Table_3.DmgAstVehicles.length == 0)) {
-                    $scope.is_edit = false;
+                console.log("incident", $scope.incident);
+                console.log("district", $scope.district.district__id);
+                console.log("frm_firm", $scope.selectedFirm.id);
+
+                console.log('data ', data);
+
+//                if((data.industry_services.Table_3.DmgAstEquipment.length == 0) ||
+//                    (data.industry_services.Table_3.DmgAstMachinery.length == 0) ||
+//                    (data.industry_services.Table_3.DmgAstStocks.length == 0) ||
+//                    (data.industry_services.Table_3.DmgAstStructures.length == 0) ||
+//                    (data.industry_services.Table_3.LosTypeLossses.length == 0) ||
+//                    (data.industry_services.Table_3.DmgAstVehicles.length == 0)) {
+//                    $scope.is_edit = false;
+//                }
+//                else {
+//                    $scope.dl_dmg_loss_foml_sec = data;
+//                    console.log($scope.dl_dmg_loss_foml_sec);
+//                }
+
+
+
+                console.log(data);
+                var edit_data_not_found = false;
+                if (data != null) {
+                    angular.forEach(data.industry_services.Table_3, function(value, index) {
+                        console.log(value);
+                        if (value.length == 0) {
+                            edit_data_not_found = true;
+                        }
+                    })
+                    if (edit_data_not_found != true) {
+                        $scope.dl_dmg_loss_foml_sec = data;
+                    }
+                    else {
+                        $("#modal-container-239456").modal('show');
+                    }
                 }
                 else {
-                    $scope.dl_dmg_loss_foml_sec = data;
+                    $("#modal-container-239456").modal('show');
                 }
             })
         }

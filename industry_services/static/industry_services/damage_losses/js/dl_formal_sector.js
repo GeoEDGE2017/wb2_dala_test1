@@ -173,6 +173,7 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
             $scope.is_edit_disable = true;
             $scope.check_search = true;
             $scope.loadBusinessSubSectorsInd();
+            $scope.loadBusinessSubSectorsSer();
         }
     }
 
@@ -208,11 +209,13 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
     $scope.loadBusinessSubSectorsSer = function() {
         $http({
             method: "POST",
-            url: "/fetch_entities_plain_column", //single column data load
+            url: "/fetch_entities_plain_column_from_district", //single column data load
             data: angular.toJson({
-                'model': 'BsFrmBusServices', //BsFrmBusServices
+//                'model': 'BsFrmBusServices', //BsFrmBusServices
+                'model': 'BsFrmNumBusServices', //BsFrmBusServices
                 'sector': 'industry_services', //industry_services
                 'col': 'service',
+                'district': $scope.district,
             }),
         }).success(function(data) {
             $scope.serSubSec = data;

@@ -245,7 +245,7 @@ def fetch_entities_plain_column(request):
 # dileepa
 @csrf_exempt
 def fetch_entities_plain_column_from_district(request):
-    print 'test_fetch_entities_plain_column'
+    print 'fetch_entities_plain_column_from_district'
     data = (yaml.safe_load(request.body))
     model_name = data['model']
     sector = data['sector']

@@ -2506,7 +2506,6 @@ def dl_fetch_summary_dis_disagtn(request):
         dl_mtable_data[sector][table_name] = {}
 
         for table in tables:
-
             dl_mtable_data[sector][table_name][table] = {}
             table_fields = tables[table]
             model_class = apps.get_model(sub_app_name, table)

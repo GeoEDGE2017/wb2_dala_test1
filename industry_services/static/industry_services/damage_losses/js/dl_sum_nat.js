@@ -12,13 +12,13 @@ app.controller('dl_sum_natController', function($scope, $http, $parse, _) {
     $scope.isDataAvailable = false;
     $scope.user_id;
 
-    $scope.fetchData = function(){
+    $scope.fetchData = function() {
         if($scope.incident){
             $http({
                 method: "POST",
                 url: '/dl_fetch_district_disagtn',
                 data: angular.toJson({
-                    'table_name':  'Table_9',
+                    'table_name': 'Table_9',
                     'sector': 'industry_services',
                     'com_data': {
                         'incident': $scope.incident,

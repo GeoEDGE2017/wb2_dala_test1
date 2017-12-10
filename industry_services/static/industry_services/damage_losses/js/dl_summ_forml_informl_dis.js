@@ -1,3 +1,4 @@
+//Table 5
 var app = angular.module('dlSummFormlInformldisApp', [])
 
 app.controller('dlSummFormlInformldisController', ['$scope', '$http', function($scope, $http) {
@@ -24,7 +25,7 @@ app.controller('dlSummFormlInformldisController', ['$scope', '$http', function($
     $scope.data4;
     $scope.user_id;
 
-    $scope.changedValue=function getBsData(selectedValue) {
+    $scope.changedValue = function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {
             $http({
                 method: "POST",

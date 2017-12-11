@@ -68,32 +68,96 @@ app.controller('dlSummIndSerPovController', ['$scope', '$http', function($scope,
         }
     }
 
-    $scope.totInformalLosY1Pvt = function() {
-        if(!angular.isUndefined($scope.dlSummFormlInformlDis)) {
-            var tot_los_year1_pvt = 0;
-            angular.forEach($scope.dlSummFormlInformlDis.industry_services.Table_5, function(value, key) {
-                if(key == 'DlInfTotLosFoodY1District') {
-                    angular.forEach(value, function(value_in, key) {
-                        tot_los_year1_pvt = $scope.sumFunc2(tot_los_year1_pvt, value_in.tot_los_year1);
-                    })
-                }
-                else if(key == 'DlInfTotLosOthY1District') {
-                    angular.forEach(value, function(value_in, key) {
-                        tot_los_year1_pvt = $scope.sumFunc2(tot_los_year1_pvt, value_in.tot_los_year1);
-                    })
-                }
-                else if(key == 'DlInfTotLosSerY1District') {
-                    angular.forEach(value, function(value_in, key) {
-                        tot_los_year1_pvt = $scope.sumFunc2(tot_los_year1_pvt, value_in.tot_los_year1);
-                    })
-                }
-                else if(key == 'DlInfTotLosTrdY1District') {
-                    angular.forEach(value, function(value_in, key) {
-                        tot_los_year1_pvt = $scope.sumFunc2(tot_los_year1_pvt, value_in.tot_los_year1);
-                    })
-                }
+    $scope.grndTotDmgPub = function() {
+        if(!angular.isUndefined($scope.dlSummIndSerPov)) {
+            var grnd_tot_dmg_pub = 0;
+            angular.forEach($scope.dlSummIndSerPov.industry_services.Table_6, function(value, index) {
+                angular.forEach(value, function(value_in, key) {
+                    if(key == 'DmgTotFrmYear1SumProvince') {
+                        grnd_tot_dmg_pub = grnd_tot_dmg_pub + value_in[0].tot_damages_pub;
+                    }
+                })
             })
-            return tot_los_year1_pvt;
+            return grnd_tot_dmg_pub;
+        }
+    }
+
+    $scope.grndTotDmgPvt = function() {
+        if(!angular.isUndefined($scope.dlSummIndSerPov)) {
+            var grnd_tot_dmg_pvt = 0;
+            angular.forEach($scope.dlSummIndSerPov.industry_services.Table_6, function(value, index) {
+                angular.forEach(value, function(value_in, key) {
+                    if(key == 'DmgTotFrmYear1SumProvince') {
+                        grnd_tot_dmg_pvt = grnd_tot_dmg_pvt + value_in[0].tot_damages_pvt;
+                    }
+                    else if(key == 'DmgTotInfY1SumProvince') {
+                        grnd_tot_dmg_pvt = grnd_tot_dmg_pvt + value_in[0].tot_damages_pvt;
+                    }
+                })
+            })
+            return grnd_tot_dmg_pvt;
+        }
+    }
+
+    $scope.grndTotLosY1Pub = function() {
+        if(!angular.isUndefined($scope.dlSummIndSerPov)) {
+            var grnd_tot_dmg_pub = 0;
+            angular.forEach($scope.dlSummIndSerPov.industry_services.Table_6, function(value, index) {
+                angular.forEach(value, function(value_in, key) {
+                    if(key == 'LosTotFrmSumProvince') {
+                        grnd_tot_dmg_pub = grnd_tot_dmg_pub + value_in[0].los_year1_pub;
+                    }
+                })
+            })
+            return grnd_tot_dmg_pub;
+        }
+    }
+
+    $scope.grndTotLosY1Pvt = function() {
+        if(!angular.isUndefined($scope.dlSummIndSerPov)) {
+            var grnd_tot_dmg_pvt = 0;
+            angular.forEach($scope.dlSummIndSerPov.industry_services.Table_6, function(value, index) {
+                angular.forEach(value, function(value_in, key) {
+                    if(key == 'LosTotFrmSumProvince') {
+                        grnd_tot_dmg_pvt = grnd_tot_dmg_pvt + value_in[0].los_year1_pvt;
+                    }
+                    else if(key == 'LosTotInfY1SumProvince') {
+                        grnd_tot_dmg_pvt = grnd_tot_dmg_pvt + value_in[0].tot_los_year1_pvt;
+                    }
+                })
+            })
+            return grnd_tot_dmg_pvt;
+        }
+    }
+
+    $scope.grndTotLosY2Pub = function() {
+        if(!angular.isUndefined($scope.dlSummIndSerPov)) {
+            var grnd_tot_dmg_pub = 0;
+            angular.forEach($scope.dlSummIndSerPov.industry_services.Table_6, function(value, index) {
+                angular.forEach(value, function(value_in, key) {
+                    if(key == 'LosTotFrmSumProvince') {
+                        grnd_tot_dmg_pub = grnd_tot_dmg_pub + value_in[0].los_year2_pub;
+                    }
+                })
+            })
+            return grnd_tot_dmg_pub;
+        }
+    }
+
+    $scope.grndTotLosY2Pvt = function() {
+        if(!angular.isUndefined($scope.dlSummIndSerPov)) {
+            var grnd_tot_dmg_pvt = 0;
+            angular.forEach($scope.dlSummIndSerPov.industry_services.Table_6, function(value, index) {
+                angular.forEach(value, function(value_in, key) {
+                    if(key == 'LosTotFrmSumProvince') {
+                        grnd_tot_dmg_pvt = grnd_tot_dmg_pvt + value_in[0].los_year2_pvt;
+                    }
+                    else if(key == 'LosTotInfY2SumProvince') {
+                        grnd_tot_dmg_pvt = grnd_tot_dmg_pvt + value_in[0].tot_los_year2_pvt;
+                    }
+                })
+            })
+            return grnd_tot_dmg_pvt;
         }
     }
 

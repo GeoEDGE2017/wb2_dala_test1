@@ -3253,6 +3253,10 @@ TABLE_PROPERTY_MAPPER = {
             'DlInfTotLosSerY2District': ['tot_los_year2'],
             'DlInfTotLosTrdY1District': ['tot_los_year1'],
             'DlInfTotLosTrdY2District': ['tot_los_year2'],
+            'DmgFrmIndYear1TotDis': ['firm_type_name', 'tot_damages_pub', 'tot_damages_pvt'],
+            'DmgFrmSerYear1TotDis': ['firm_type_name', 'tot_damages_pub', 'tot_damages_pvt'],
+            'LosFrmIndTotDis': ['firm_type_name', 'los_year1_pub', 'los_year1_pvt', 'los_year2_pub', 'los_year2_pvt'],
+            'LosFrmSerTotDis': ['firm_type_name', 'los_year1_pub', 'los_year1_pvt', 'los_year2_pub', 'los_year2_pvt'],
         },
         'Table_6': {
             'DlNumAffBusIndustry': ['assets', 'num_bus_public', 'num_bus_private', 'id'],

@@ -337,6 +337,82 @@ app.controller('dlSummFormlInformldisController', ['$scope', '$http', function($
         }
     }
 
+    //-----------------
+
+    $scope.totInformalDmgPvt = function() {
+        if(!angular.isUndefined($scope.dlSummFormlInformlDis)) {
+            var tot_damages_pvt = 0;
+            angular.forEach($scope.dlSummFormlInformlDis.industry_services.Table_5, function(value, key) {
+                if(key == 'DlInfDmgDistrict') {
+                    angular.forEach(value, function(value_in, key) {
+                        tot_damages_pvt = tot_damages_pvt + value_in.tot_damages;
+                    })
+                }
+            })
+            return tot_damages_pvt;
+        }
+    }
+
+    $scope.totNoAffBusPvt = function() {
+        if(!angular.isUndefined($scope.dlSummFormlInformlDis)) {
+            var tot_num_bus_affected = 0;
+            angular.forEach($scope.dlSummFormlInformlDis.industry_services.Table_5, function(value, key) {
+                if(key == 'DlInfNumBusDistrict') {
+                    angular.forEach(value, function(value_in, key) {
+                        if(value_in.assets != 'Total') {
+                            tot_num_bus_affected = tot_num_bus_affected + value_in.tot_num_bus_affected;
+                        }
+                    })
+                }
+            })
+            return tot_num_bus_affected;
+        }
+    }
+
+    $scope.totInformalLosY1Pvt = function() {
+        if(!angular.isUndefined($scope.dlSummFormlInformlDis)) {
+            var tot_los_year1_pvt = 0;
+            angular.forEach($scope.dlSummFormlInformlDis.industry_services.Table_5, function(value, key) {
+                if(key == 'DlInfTotLosFoodY1District') {
+                    tot_los_year1_pvt = $scope.sumFunc2(tot_los_year1_pvt, value[0].tot_los_year1);
+                }
+                else if(key == 'DlInfTotLosOthY1District') {
+                    tot_los_year1_pvt = $scope.sumFunc2(tot_los_year1_pvt, value[0].tot_los_year1);
+                }
+                else if(key == 'DlInfTotLosSerY1District') {
+                    tot_los_year1_pvt = $scope.sumFunc2(tot_los_year1_pvt, value[0].tot_los_year1);
+                }
+                else if(key == 'DlInfTotLosTrdY1District') {
+                    tot_los_year1_pvt = $scope.sumFunc2(tot_los_year1_pvt, value[0].tot_los_year1);
+                }
+            })
+            return tot_los_year1_pvt;
+        }
+    }
+
+    $scope.totInformalLosY2Pvt = function() {
+        if(!angular.isUndefined($scope.dlSummFormlInformlDis)) {
+            var tot_los_year2_pvt = 0;
+            angular.forEach($scope.dlSummFormlInformlDis.industry_services.Table_5, function(value, key) {
+                if(key == 'DlInfTotLosFoodY2District') {
+                    tot_los_year2_pvt = $scope.sumFunc2(tot_los_year2_pvt, value[0].tot_los_year2);
+                }
+                else if(key == 'DlInfTotLosOthY2District') {
+                    tot_los_year2_pvt = $scope.sumFunc2(tot_los_year2_pvt, value[0].tot_los_year2);
+                }
+                else if(key == 'DlInfTotLosSerY2District') {
+                    tot_los_year2_pvt = $scope.sumFunc2(tot_los_year2_pvt, value[0].tot_los_year2);
+                }
+                else if(key == 'DlInfTotLosTrdY2District') {
+                    tot_los_year2_pvt = $scope.sumFunc2(tot_los_year2_pvt, value[0].tot_los_year2);
+                }
+            })
+            return tot_los_year2_pvt;
+        }
+    }
+
+
+    //---------------
     $scope.totFormalSumIndDmgPub = function() {
         if(!angular.isUndefined($scope.dlSummFormlInformlDis)) {
             var tot_dmg_pub = 0;

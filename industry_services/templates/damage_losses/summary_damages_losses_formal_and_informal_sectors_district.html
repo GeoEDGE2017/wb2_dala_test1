@@ -465,37 +465,32 @@
                                 dlSummFormlInformlDis.industry_services.Table_5.DlInfTotLosTrdY2District[0].tot_los_year2">
                         </td>
                     </tr>
-                    <!--<tr height="19" ng-repeat="dlInfNumBusDistrict in dlSummFormlInformlDis.industry_services.Table_5.DlInfNumBusDistrict"-->
-                        <!--ng-if="business.assets == 'Total'">-->
-                        <!--<td class="tdpa" height="19" width="212" ng-bind="dlInfNumBusDistrict.assets">-->
-                            <!--Trading-->
-                        <!--</td>-->
-                        <!--<td class="tdpa" height="19" width="108">-->
-                        <!--</td>-->
-                        <!--<td class="right" height="19" width="110"-->
-                            <!--ng-bind="dlInfNumBusDistrict.tot_num_bus_affected">-->
-                        <!--</td>-->
-                        <!--<td class="tdpa" height="19" width="63">-->
-                        <!--</td>-->
-                        <!--<td class="right" height="19" width="110"-->
-                            <!--ng-bind="businessData[$index].y1Dmg = table3[business.assets].tot_damages">-->
-                        <!--</td>-->
-                        <!--<td class="tdpa" height="19" width="63">-->
-                        <!--</td>-->
-                        <!--<td class="right" height="19" width="110"-->
-                            <!--ng-bind="businessData[$index].tot_los_year1 = table2[business.assets].tot_los_year1">-->
-                        <!--</td>-->
-                        <!--<td class="tdpa" height="19" width="63">-->
-                        <!--</td>-->
-                        <!--<td class="right" height="19" width="110"-->
-                            <!--ng-bind="businessData[$index].tot_los_year2 = table2[business.assets].tot_los_year2">-->
-                        <!--</td>-->
-                        <!--<td class="tdpa" height="19" width="63">-->
-                        <!--</td>-->
-                        <!--<td class="right" height="19" width="63"-->
-                            <!--ng-bind="businessData[$index].tot = getSum3(businessData[$index].y1Dmg, businessData[$index].tot_los_year1 , businessData[$index].tot_los_year2)">-->
-                        <!--</td>-->
-                    <!--</tr>-->
+                    <tr height="19" ng-repeat="dlInfNumBusDistrict in dlSummFormlInformlDis.industry_services.Table_5.DlInfNumBusDistrict"
+                        ng-if="dlInfNumBusDistrict.assets == 'Total'">
+                        <td class="tdpa" height="19" width="212" ng-bind="dlInfNumBusDistrict.assets">
+                            Trading
+                        </td>
+                        <td class="tdpa" height="19" width="108">
+                        </td>
+                        <td class="right" height="19" width="110" ng-bind="totNoAffBusPvt()">
+                        </td>
+                        <td class="tdpa" height="19" width="63">
+                        </td>
+                        <td class="right" height="19" width="110" ng-bind="totInformalDmgPvt()">
+                        </td>
+                        <td class="tdpa" height="19" width="63">
+                        </td>
+                        <td class="right" height="19" width="110" ng-bind="totInformalLosY1Pvt()">
+                        </td>
+                        <td class="tdpa" height="19" width="63">
+                        </td>
+                        <td class="right" height="19" width="110" ng-bind="totInformalLosY2Pvt()">
+                        </td>
+                        <td class="tdpa" height="19" width="63">
+                        </td>
+                        <td class="right" height="19" width="63" ng-bind="0 + totInformalDmgPvt() + totInformalLosY1Pvt() + totInformalLosY2Pvt()">
+                        </td>
+                    </tr>
                     <tr class="trheadc1" height="19">
                         <td colspan="11" height="19" width="1309">
                             SUMMARY OF DAMAGES AND LOSSES IN THE DISTRICT
@@ -683,112 +678,111 @@
                         <td colspan="2" height="19" width="126">
                         </td>
                     </tr>
-                    <tr height="19" ng-repeat="business in data2.DlInfNumBusDistrict"
-                        ng-if="business.assets != 'Total'">
-                        <td class="tdpa" height="19" width="212" ng-bind="business.assets">
-                            Trading
-                        </td>
-                        <!--<td class="tdpa" height="19" width="108">-->
-                        <!--</td>-->
-                        <!--<td height="19" width="110" ng-bind="businessData[$index].numAff = table2[business.assets].tot_num_bus_affected">-->
-                        <!-- - -->
-                        <!--</td>-->
-                        <td class="tdpa" height="19" width="63">
-                        </td>
-                        <td class="right" height="19" width="110"
-                            ng-bind="businessData[$index].y1Dmg = table3[business.assets].tot_damages">
-                            -
+                    <tr height="19" ng-repeat="dlInfNumBusDistrict in dlSummFormlInformlDis.industry_services.Table_5.DlInfNumBusDistrict"
+                        ng-if="dlInfNumBusDistrict.assets != 'Total'">
+                        <td class="tdpa" height="19" width="212" ng-bind="dlInfNumBusDistrict.assets">
+                            ***
                         </td>
                         <td class="tdpa" height="19" width="63">
                         </td>
                         <td class="right" height="19" width="110"
-                            ng-bind="businessData[$index].tot_los_year1 = table2[business.assets].tot_los_year1">
-                            -
+                            ng-bind="dlSummFormlInformlDis.industry_services.Table_5.DlInfDmgDistrict[$index].tot_damages">
                         </td>
                         <td class="tdpa" height="19" width="63">
                         </td>
-                        <td class="right" height="19" width="110"
-                            ng-bind="businessData[$index].tot_los_year2 = table2[business.assets].tot_los_year2">
-                            -
+                        <td class="right" height="19" width="110" ng-if="dlInfNumBusDistrict.assets == 'Food processing'"
+                            ng-bind="dlSummFormlInformlDis.industry_services.Table_5.DlInfTotLosFoodY1District[0].tot_los_year1">
+                        </td>
+                        <td class="right" height="19" width="110" ng-if="dlInfNumBusDistrict.assets == 'Others'"
+                            ng-bind="dlSummFormlInformlDis.industry_services.Table_5.DlInfTotLosOthY1District[0].tot_los_year1">
+                        </td>
+                        <td class="right" height="19" width="110" ng-if="dlInfNumBusDistrict.assets == 'Services'"
+                            ng-bind="dlSummFormlInformlDis.industry_services.Table_5.DlInfTotLosSerY1District[0].tot_los_year1">
+                        </td>
+                        <td class="right" height="19" width="110" ng-if="dlInfNumBusDistrict.assets == 'Trading'"
+                            ng-bind="dlSummFormlInformlDis.industry_services.Table_5.DlInfTotLosTrdY1District[0].tot_los_year1">
+                        </td>
+                        <td class="tdpa" height="19" width="63">
+                        </td>
+                        <td class="right" height="19" width="63" ng-if="dlInfNumBusDistrict.assets == 'Food processing'"
+                            ng-bind="dlSummFormlInformlDis.industry_services.Table_5.DlInfTotLosFoodY2District[0].tot_los_year2">
+                        </td>
+                        <td class="right" height="19" width="63" ng-if="dlInfNumBusDistrict.assets == 'Others'"
+                            ng-bind="dlSummFormlInformlDis.industry_services.Table_5.DlInfTotLosOthY2District[0].tot_los_year2">
+                        </td>
+                        <td class="right" height="19" width="63" ng-if="dlInfNumBusDistrict.assets == 'Services'"
+                            ng-bind="dlSummFormlInformlDis.industry_services.Table_5.DlInfTotLosSerY2District[0].tot_los_year2">
+                        </td>
+                        <td class="right" height="19" width="63" ng-if="dlInfNumBusDistrict.assets == 'Trading'"
+                            ng-bind="dlSummFormlInformlDis.industry_services.Table_5.DlInfTotLosTrdY2District[0].tot_los_year2">
                         </td>
                         <td class="tdpa" height="19" colspan="2" width="63">
                         </td>
-                        <td class="right" height="19" width="63" colspan="2"
-                            ng-bind="businessData[$index].tot = getSum3(businessData[$index].y1Dmg, businessData[$index].tot_los_year1 , businessData[$index].tot_los_year2)">
-                            -
+                        <td class="right" height="19" width="63" ng-if="dlInfNumBusDistrict.assets == 'Food processing'"
+                            ng-bind="dlSummFormlInformlDis.industry_services.Table_5.DlInfDmgDistrict[$index].tot_damages +
+                                dlSummFormlInformlDis.industry_services.Table_5.DlInfTotLosFoodY1District[0].tot_los_year1 +
+                                dlSummFormlInformlDis.industry_services.Table_5.DlInfTotLosFoodY2District[$index].tot_los_year2">
+                        </td>
+                        <td class="right" height="19" width="63" ng-if="dlInfNumBusDistrict.assets == 'Others'"
+                            ng-bind="dlSummFormlInformlDis.industry_services.Table_5.DlInfDmgDistrict[$index].tot_damages +
+                                dlSummFormlInformlDis.industry_services.Table_5.DlInfTotLosOthY1District[0].tot_los_year1 +
+                                dlSummFormlInformlDis.industry_services.Table_5.DlInfTotLosOthY2District[0].tot_los_year2">
+                        </td>
+                        <td class="right" height="19" width="63" ng-if="dlInfNumBusDistrict.assets == 'Services'"
+                            ng-bind="dlSummFormlInformlDis.industry_services.Table_5.DlInfDmgDistrict[$index].tot_damages +
+                                dlSummFormlInformlDis.industry_services.Table_5.DlInfTotLosSerY1District[0].tot_los_year1 +
+                                dlSummFormlInformlDis.industry_services.Table_5.DlInfTotLosSerY2District[0].tot_los_year2">
+                        </td>
+                        <td class="right" height="19" width="63" ng-if="dlInfNumBusDistrict.assets == 'Trading'"
+                            ng-bind="dlSummFormlInformlDis.industry_services.Table_5.DlInfDmgDistrict[$index].tot_damages +
+                                dlSummFormlInformlDis.industry_services.Table_5.DlInfTotLosTrdY1District[0].tot_los_year1 +
+                                dlSummFormlInformlDis.industry_services.Table_5.DlInfTotLosTrdY2District[0].tot_los_year2">
                         </td>
                     </tr>
-                    <tr height="19" ng-repeat="business in data2.DlInfNumBusDistrict"
-                        ng-if="business.assets == 'Total'">
-                        <td class="tdpa" height="19" width="212" ng-bind="business.assets">
-                            Trading
+                    <tr height="19" ng-repeat="dlInfNumBusDistrict in dlSummFormlInformlDis.industry_services.Table_5.DlInfNumBusDistrict"
+                        ng-if="dlInfNumBusDistrict.assets == 'Total'">
+                        <td class="tdpa" height="19" width="212" ng-bind="dlInfNumBusDistrict.assets">
                         </td>
                         <td class="tdpa" height="19" width="108">
                         </td>
-                        <td class="right" height="19" width="110"
-                            ng-bind="summaryTotalInf.numAff = (businessData[0].numAff + businessData[1].numAff + businessData[2].numAff +
-                            businessData[3].numAff + businessData[4].numAff)">
-                            -
+                        <td class="right" height="19" width="110" ng-bind="totInformalDmgPvt()">
                         </td>
                         <td class="tdpa" height="19" width="63">
                         </td>
-                        <td class="right" height="19" width="110"
-                            ng-bind="summaryTotalInf.y1Dmg = (businessData[0].y1Dmg + businessData[1].y1Dmg + businessData[2].y1Dmg +
-                            businessData[3].y1Dmg + businessData[4].y1Dmg)">
-                            -
+                        <td class="right" height="19" width="110" ng-bind="totInformalLosY1Pvt()">
                         </td>
                         <td class="tdpa" height="19" width="100">
                         </td>
-                        <td class="right" height="19" width="108"
-                            ng-bind="summaryTotalInf.tot_los_year1 = (businessData[0].tot_los_year1 + businessData[1].tot_los_year1 +
-                            businessData[2].tot_los_year1 + businessData[3].tot_los_year1 + businessData[4].tot_los_year1)">
-                            -
+                        <td class="right" height="19" width="108" ng-bind="totInformalLosY2Pvt()">
                         </td>
                         <td class="tdpa" colspan="2" height="19" width="63">
                         </td>
                         <td class="right" height="19" width="108" colspan="2"
-                            ng-bind="summaryTotalInf.PriTot = (businessData[0].tot_los_year2 + businessData[1].tot_los_year2 +
-                            businessData[2].tot_los_year2 + businessData[3].tot_los_year2 + businessData[4].tot_los_year2)">
-                            -
+                            ng-bind="totInformalDmgPvt() + totInformalLosY1Pvt() + totInformalLosY2Pvt()">
                         </td>
-                        <!--<td class="tdpa" height="19" width="127">-->
-                        <!--</td>-->
-                        <!--<td height="19" width="63" ng-bind="summaryTotalInf.tot = (businessData[0].tot + businessData[1].tot +-->
-                        <!--businessData[2].tot-->
-                        <!--+ businessData[3].tot + businessData[4].tot)">-->
-                        <!-- - -->
-                        <!--</td>-->
                     </tr>
                     <tr height="21">
                         <td class="tdpa" height="21" width="212">
                             GRAND TOTAL
                         </td>
-                        <td class="right" height="21" width="108" ng-bind="summaryTotal.numAffPub">
-                            -
+                        <td class="right" height="21" width="108" ng-bind="totFormalSumIndDmgPub()">
                         </td>
-                        <td class="right" height="21" width="110"
-                            ng-bind="getSum2(summaryTotal.numAffPri , summaryTotalInf.numAff)">
-                            -
+                        <td class="right" height="21" width="110" ng-bind="totFormalSumIndDmgPvt() + totInformalDmgPvt()">
                         </td>
-                        <td class="right" height="21" width="100" ng-bind="summaryTotal.y1DamPubBus">
+                        <td class="right" height="21" width="100" ng-bind="totFormalSumIndLosY1Pub()">
                         </td>
-                        <td class="right" height="21" width="108"
-                            ng-bind="getSum2(summaryTotal.y1DamPriBus, summaryTotalInf.tot_los_year1)">
-                            -
+                        <td class="right" height="21" width="108" ng-bind="totFormalSumIndLosY1Pvt() + totInformalLosY1Pvt()">
                         </td>
-                        <td class="right" height="21" width="127" ng-bind="summaryTotal.y1LossPubBus">
-                            -
+                        <td class="right" height="21" width="127" ng-bind="totFormalSumIndLosY2Pub()">
                         </td>
-                        <td class="right" height="21" width="143"
-                            ng-bind="getSum2(summaryTotal.y1LossPriBus, summaryTotalInf.tot_los_year2)">
-                            -
-                        </td>
-                        <td class="right" colspan="2" height="21" width="126" ng-bind="summaryTotal.PubTot">
-                            -
+                        <td class="right" height="21" width="143" ng-bind="totFormalSumIndLosY2Pvt() + totInformalLosY2Pvt()">
                         </td>
                         <td class="right" colspan="2" height="21" width="126"
-                            ng-bind="getSum2(summaryTotal.PriTot, summaryTotalInf.PriTot)">
-                            -
+                            ng-bind="totFormalSumIndDmgPub() + totFormalSumIndLosY1Pub() + totFormalSumIndLosY2Pub()">
+                        </td>
+                        <td class="right" colspan="2" height="21" width="126"
+                            ng-bind="totFormalSumIndDmgPvt() + totFormalSumIndLosY1Pvt() + totFormalSumIndLosY2Pvt() +
+                            totInformalDmgPvt() + totInformalLosY1Pvt() + totInformalLosY2Pvt()">
                         </td>
                     </tr>
                     </tbody>

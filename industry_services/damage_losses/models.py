@@ -925,8 +925,6 @@ class DlInfTotLosOthY2District(models.Model):
         db_table = 'industry_services\".\"dl_inf_tot_los_oth_y2_district'
 
 
-
-
 class DlInfTotLosSerY1District(models.Model):
     tot_los_year1 = models.FloatField(blank=True, null=True)
     district = models.ForeignKey(District, db_column='district', blank=True, null=True)
@@ -1027,5 +1025,59 @@ class LosFrmSerTotDis(models.Model):
         managed = False
         db_table = 'industry_services\".\"los_frm_ser_tot_dis'
 
+
+# Table 6
+class DmgTotFrmYear1SumProvince(models.Model):
+    tot_damages_pub = models.FloatField(blank=True, null=True)
+    tot_damages_pvt = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'industry_services\".\"dmg_tot_frm_year1_sum_province'
+
+
+class LosTotFrmSumProvince(models.Model):
+    los_year1_pub = models.FloatField(blank=True, null=True)
+    los_year1_pvt = models.FloatField(blank=True, null=True)
+    los_year2_pub = models.FloatField(blank=True, null=True)
+    los_year2_pvt = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'industry_services\".\"los_tot_frm_sum_province'
+
+
+class DmgTotInfY1SumProvince(models.Model):
+    tot_damages_pvt = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'industry_services\".\"dmg_tot_inf_y1_sum_province'
+
+
+class LosTotInfY1SumProvince(models.Model):
+    tot_los_year1_pvt = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'industry_services\".\"los_tot_inf_y1_sum_province'
+
+
+class LosTotInfY2SumProvince(models.Model):
+    tot_los_year2_pvt = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'industry_services\".\"los_tot_inf_y2_sum_province'
 
 

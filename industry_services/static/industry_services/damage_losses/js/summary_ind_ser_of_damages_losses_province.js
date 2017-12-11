@@ -15,6 +15,7 @@ app.controller('dlSummIndSerPovController', ['$scope', '$http', function($scope,
     $scope.districtsTotals = [];
     $scope.data_available;
     $scope.user_id;
+    $scope.dlSummIndSerPov;
 
     $scope.changedValue =function (selectedValue) {
         if($scope.incident && selectedValue) {
@@ -47,7 +48,7 @@ app.controller('dlSummIndSerPovController', ['$scope', '$http', function($scope,
                 method: "POST",
                 url: '/dl_fetch_district_disagtn',
                 data: angular.toJson({
-                    'table_name': 'Table_8',
+                    'table_name': 'Table_6',
                     'sector': 'industry_services',
                     'com_data': {
                         'incident': $scope.incident,
@@ -55,20 +56,11 @@ app.controller('dlSummIndSerPovController', ['$scope', '$http', function($scope,
                     },
                 }),
             }).success(function(data) {
-                $scope.data = data.industry_services.Table_8;
-                $scope.districts = Object.keys($scope.data);
-                console.log('load ', Object.keys($scope.data));
-                console.log("data", $scope.data);
-
-                $scope.data_available = ($scope.districts.length != 0)
-
-                if(!$scope.data_available){
-                    alert("no data available for your selection");
-                }
-
-    //            console.log($scope.data);
-    //            console.log($scope.districts);
-                $scope.makeTable();
+                $scope.dlSummIndSerPov = data;
+//                if(!$scope.data_available) {
+//                    alert("no data available for your selection");
+//                }
+                console.log($scope.dlSummIndSerPov);
             }).error(function(err){
                 $scope.data = null;
                 $scope.districts = null;
@@ -76,54 +68,32 @@ app.controller('dlSummIndSerPovController', ['$scope', '$http', function($scope,
         }
     }
 
-
-    $scope.makeTable = function() {
-        if($scope.data != null) {
-            $scope.table = {};
-            $scope.table.formal = {};
-            $scope.table.informal = {};
-
-            //district vise objects
-            angular.forEach($scope.districts, function(value, key) {
-                $scope.table.formal[value] = {'name':value }
-                $scope.table.formal[value].year1Damage = {};
-                $scope.table.formal[value].year1Loss = {};
-                $scope.table.formal[value].year2Loss = {};
-
-                $scope.table.informal[value] = {'name':value }
-                $scope.table.informal[value].year1Damage = {};
-                $scope.table.informal[value].year1Loss = {};
-                $scope.table.informal[value].year2Loss = {};
-
-                angular.forEach($scope.data[$scope.districts].DmgTotFrmYear1District, function(value2, key) {
-                    $scope.table.formal[value].year1Damage[value2.ownership] = value2.tot_damages;
-                })
-
-                angular.forEach($scope.data[$scope.districts].LosTotFrmYear1District, function(value2, key) {
-                    $scope.table.formal[value].year1Loss[value2.ownership] = value2.los_year1;
-                })
-
-                angular.forEach($scope.data[$scope.districts].LosTotFrmYear2District, function(value2, key) {
-                    $scope.table.formal[value].year2Loss[value2.ownership] = value2.los_year2;
-                })
-
-
-                angular.forEach($scope.data[$scope.districts].DmgTotInfYear1District, function(value2, key) {
-                    $scope.table.informal[value].year1Damage['Private'] = value2.tot_damages;
-                })
-
-                angular.forEach($scope.data[$scope.districts].LosTotInfYear1District, function(value2, key) {
-                    $scope.table.informal[value].year1Loss['Private'] = value2.los_year1;
-                })
-
-                angular.forEach($scope.data[$scope.districts].LosTotInfYear2District, function(value2, key) {
-                    $scope.table.informal[value].year2Loss['Private'] = value2.los_year2;
-                })
+    $scope.totInformalLosY1Pvt = function() {
+        if(!angular.isUndefined($scope.dlSummFormlInformlDis)) {
+            var tot_los_year1_pvt = 0;
+            angular.forEach($scope.dlSummFormlInformlDis.industry_services.Table_5, function(value, key) {
+                if(key == 'DlInfTotLosFoodY1District') {
+                    angular.forEach(value, function(value_in, key) {
+                        tot_los_year1_pvt = $scope.sumFunc2(tot_los_year1_pvt, value_in.tot_los_year1);
+                    })
+                }
+                else if(key == 'DlInfTotLosOthY1District') {
+                    angular.forEach(value, function(value_in, key) {
+                        tot_los_year1_pvt = $scope.sumFunc2(tot_los_year1_pvt, value_in.tot_los_year1);
+                    })
+                }
+                else if(key == 'DlInfTotLosSerY1District') {
+                    angular.forEach(value, function(value_in, key) {
+                        tot_los_year1_pvt = $scope.sumFunc2(tot_los_year1_pvt, value_in.tot_los_year1);
+                    })
+                }
+                else if(key == 'DlInfTotLosTrdY1District') {
+                    angular.forEach(value, function(value_in, key) {
+                        tot_los_year1_pvt = $scope.sumFunc2(tot_los_year1_pvt, value_in.tot_los_year1);
+                    })
+                }
             })
-            console.log('table', $scope.table);
-        }
-        else {
-            console.log("data null");
+            return tot_los_year1_pvt;
         }
     }
 

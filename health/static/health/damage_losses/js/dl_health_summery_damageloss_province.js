@@ -74,7 +74,7 @@ app.controller("dlHealthSummeryDamageLossProvinceAppController", ['$scope','$htt
                 method: "POST",
                 url: '/dl_fetch_district_disagtn',
                 data: angular.toJson({
-                    'table_name':  'Table_8',
+                    'table_name': 'Table_8',
                     'sector': 'health',
                     'com_data': {
                         'province': $scope.province,

@@ -2164,6 +2164,7 @@ def dl_fetch_district_disagtn(request):
 
 @csrf_exempt
 def dl_fetch_total_data(request):
+    print '-------- dl_fetch_total_data'
     data = (yaml.safe_load(request.body))
     table_name = data['table_name']
     sector = data['sector']
@@ -2173,6 +2174,8 @@ def dl_fetch_total_data(request):
 
     filter_fields = {}
     sub_app_name = sector + '.damage_losses'
+
+    print tables
 
     if 'province' in com_data:
         admin_area = com_data['province']
@@ -2193,6 +2196,7 @@ def dl_fetch_total_data(request):
         dl_mtable_data[sector][table_name][table] = list(model_class.objects.
                                                          filter(**filter_fields).
                                                          values(*table_fields))
+        print model_class, filter_fields, table_fields
 
     return HttpResponse(
         json.dumps(dl_mtable_data, cls=DjangoJSONEncoder),

@@ -747,3 +747,226 @@ class DlNuAffBisDistrict(models.Model):
     class Meta:
         managed = False
         db_table = 'industry_services\".\"dl_nu_aff_bis_district'
+
+
+# Table 5
+class DlNuAffBisIndDistrict(models.Model):
+    sector = models.CharField(max_length=255, blank=True, null=True)
+    count_no_pub = models.BigIntegerField(blank=True, null=True)
+    count_no_pvt = models.BigIntegerField(blank=True, null=True)
+    firm_type = models.CharField(max_length=255, blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'industry_services\".\"dl_nu_aff_bis_ind_district'
+
+
+class DlNuAffBisSerDistrict(models.Model):
+    sector = models.CharField(max_length=255, blank=True, null=True)
+    count_no_pub = models.BigIntegerField(blank=True, null=True)
+    count_no_pvt = models.BigIntegerField(blank=True, null=True)
+    firm_type = models.CharField(max_length=255, blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    # sector count_no_pub count_no_pvt firm_type industry district
+
+    class Meta:
+        managed = False
+        db_table = 'industry_services\".\"dl_nu_aff_bis_ser_district'
+
+
+class DmgFrmYear1IndDistrict(models.Model):
+    firm_type = models.CharField(max_length=255, blank=True, null=True)
+    sector = models.CharField(max_length=255, blank=True, null=True)
+    tot_dmg_pub = models.FloatField(blank=True, null=True)
+    tot_dmg_pvt = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'industry_services\".\"dmg_frm_year1_ind_district'
+
+
+class DmgFrmYear1SerDistrict(models.Model):
+    firm_type = models.CharField(max_length=255, blank=True, null=True)
+    sector = models.CharField(max_length=255, blank=True, null=True)
+    tot_dmg_pub = models.FloatField(blank=True, null=True)
+    tot_dmg_pvt = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'industry_services\".\"dmg_frm_year1_ser_district'
+
+
+class LosFrmYear1IndDistrict(models.Model):
+    firm_type_name = models.CharField(max_length=255, blank=True, null=True)
+    sector = models.CharField(max_length=255, blank=True, null=True)
+    los_year1_pub = models.FloatField(blank=True, null=True)
+    los_year1_pvt = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'industry_services\".\"los_frm_year1_ind_district'
+
+
+class LosFrmYear1SerDistrict(models.Model):
+    firm_type_name = models.CharField(max_length=255, blank=True, null=True)
+    sector = models.CharField(max_length=255, blank=True, null=True)
+    los_year1_pub = models.FloatField(blank=True, null=True)
+    los_year1_pvt = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    # firm_type_name,sector,los_year1_pub,los_year1_pvt,district,incident
+
+    class Meta:
+        managed = False
+        db_table = 'industry_services\".\"los_frm_year1_ser_district'
+
+
+class LosFrmYear2IndDistrict(models.Model):
+    firm_type_name = models.CharField(max_length=255, blank=True, null=True)
+    sector = models.CharField(max_length=255, blank=True, null=True)
+    los_year2_pub = models.FloatField(blank=True, null=True)
+    los_year2_pvt = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'industry_services\".\"los_frm_year2_ind_district'
+
+
+class LosFrmYear2SerDistrict(models.Model):
+    firm_type_name = models.CharField(max_length=255, blank=True, null=True)
+    sector = models.CharField(max_length=255, blank=True, null=True)
+    los_year2_pub = models.FloatField(blank=True, null=True)
+    los_year2_pvt = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    # firm_type_name,sector,los_year1_pub,los_year1_pvt,district,incident
+
+    class Meta:
+        managed = False
+        db_table = 'industry_services\".\"los_frm_year2_ser_district'
+
+
+class DlInfNumBusDistrict(models.Model):
+    assets = models.CharField(max_length=255, blank=True, null=True)
+    tot_num_bus_affected = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    # assets, tot_num_bus_affected
+
+    class Meta:
+        managed = False
+        db_table = 'industry_services\".\"dl_inf_num_bus_district'
+
+
+class DlInfDmgDistrict(models.Model):
+    assets = models.CharField(max_length=255, blank=True, null=True)
+    tot_damages = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    # assets, tot_damages
+
+    class Meta:
+        managed = False
+        db_table = 'industry_services\".\"dl_inf_dmg_district'
+
+
+class DlInfTotLosFoodY1District(models.Model):
+    tot_los_year1 = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    # assets, tot_damages
+
+    class Meta:
+        managed = False
+        db_table = 'industry_services\".\"dl_inf_tot_los_food_y1_district'
+
+
+class DlInfTotLosFoodY2District(models.Model):
+    tot_los_year2 = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    # assets, tot_damages
+
+    class Meta:
+        managed = False
+        db_table = 'industry_services\".\"dl_inf_tot_los_food_y2_district'
+
+
+class DlInfTotLosOthY1District(models.Model):
+    tot_los_year1 = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    # assets, tot_damages
+
+    class Meta:
+        managed = False
+        db_table = 'industry_services\".\"dl_inf_tot_los_oth_y1_district'
+
+
+class DlInfTotLosOthY2District(models.Model):
+    tot_los_year2 = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    # assets, tot_damages
+
+    class Meta:
+        managed = False
+        db_table = 'industry_services\".\"dl_inf_tot_los_oth_y2_district'
+
+
+
+
+class DlInfTotLosSerY1District(models.Model):
+    tot_los_year1 = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    # assets, tot_damages
+
+    class Meta:
+        managed = False
+        db_table = 'industry_services\".\"dl_inf_tot_los_ser_y1_district'
+
+
+class DlInfTotLosSerY2District(models.Model):
+    tot_los_year2 = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    # assets, tot_damages
+
+    class Meta:
+        managed = False
+        db_table = 'industry_services\".\"dl_inf_tot_los_ser_y2_district'
+
+
+class DlInfTotLosTrdY1District(models.Model):
+    tot_los_year1 = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    # assets, tot_damages
+
+    class Meta:
+        managed = False
+        db_table = 'industry_services\".\"dl_inf_tot_los_trd_y1_district'
+
+
+class DlInfTotLosTrdY2District(models.Model):
+    tot_los_year2 = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    # assets, tot_damages
+
+    class Meta:
+        managed = False
+        db_table = 'industry_services\".\"dl_inf_tot_los_trd_y2_district'
+

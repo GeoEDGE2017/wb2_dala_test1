@@ -1,5 +1,4 @@
-//summary_of_damages_losses_province
-//Table 8
+//Table 6
 var app = angular.module('dlSummIndSerPovApp', [])
 
 app.controller('dlSummIndSerPovController', ['$scope', '$http', function($scope, $http) {

@@ -52,10 +52,7 @@
                                     style="width:100%;font-weight:400;" required>
                                 <option value="" selected="true">Select an Incident</option>
                                 {% for incident in incidents %}
-
                                 <option value={{incident.id}}>
-                                    <!--{{incident.disaster_type.name}}-->
-                                    <!--{{incident.reported_date_time}}-->
                                     {{incident.incident_name}}
                                 </option>
                                 {% endfor %}
@@ -66,10 +63,7 @@
                         </td>
                         <td height="19" colspan="3" width="108">
                             <select name="province" ng-model="province" ng-change="fetchData()"
-                                    class="form-control"
-                                    style="width:100%;font-weight:400;"
-
-                                    required>
+                                    class="form-control" style="width:100%;font-weight:400;" required>
                                 <option value="" selected="true">Select Province</option>
                                 <option ng-repeat="province in provinces" ng-value="province.district__province_id"
                                         ng-bind="province.district__province__name"></option>

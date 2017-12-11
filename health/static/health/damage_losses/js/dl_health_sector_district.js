@@ -45,10 +45,10 @@ app.controller("DlHealthSectorDistrictController", ['$scope','$http',function ($
                     method: "POST",
                     url: '/dl_fetch_total_data',
                     data: angular.toJson({
-                        'table_name':  'Table_8',
-                        'sector':'health',
+                        'table_name': 'Table_8',
+                        'sector': 'health',
                         'com_data': {
-                            'district':  $scope.district.district__id,
+                            'district': $scope.district.district__id,
                             'incident': $scope.incident,
                         },
                     }),

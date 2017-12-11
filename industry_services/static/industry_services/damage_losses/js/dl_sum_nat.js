@@ -1,8 +1,6 @@
-//Table 6
+//Table 7
 var app = angular.module('dl_sum_natApp', ['underscore'])
-
 app.controller('dl_sum_natController', function($scope, $http, $parse, _) {
-
     $scope.data;
     $scope.incident;
     $scope.provinces;
@@ -43,7 +41,6 @@ app.controller('dl_sum_natController', function($scope, $http, $parse, _) {
             })
         }
     }
-
 
     $scope.makeTable = function(){
         if($scope.data != null){
@@ -118,5 +115,4 @@ app.controller('dl_sum_natController', function($scope, $http, $parse, _) {
         if(isNaN(val)) return 0;
         return val;
     }
-
 })

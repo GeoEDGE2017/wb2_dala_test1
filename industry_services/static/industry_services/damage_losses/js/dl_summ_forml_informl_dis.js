@@ -45,10 +45,6 @@ app.controller('dlSummFormlInformldisController', ['$scope', '$http', function($
         }
     }
 
-    $scope.test = function() {
-        console.log($scope.dlSummFormlInformlDis);
-    }
-
     $scope.loadData = function() {
         if($scope.incident && $scope.district && $scope.district.district__id) {
             $scope.isLoded = true;
@@ -342,7 +338,6 @@ app.controller('dlSummFormlInformldisController', ['$scope', '$http', function($
     }
 
     //-----------------
-
     $scope.totInformalDmgPvt = function() {
         if(!angular.isUndefined($scope.dlSummFormlInformlDis)) {
             var tot_damages_pvt = 0;
@@ -431,7 +426,6 @@ app.controller('dlSummFormlInformldisController', ['$scope', '$http', function($
         }
     }
 
-
     //---------------
     $scope.totFormalSumIndDmgPub = function() {
         if(!angular.isUndefined($scope.dlSummFormlInformlDis)) {
@@ -489,8 +483,6 @@ app.controller('dlSummFormlInformldisController', ['$scope', '$http', function($
             return tot_los_pub;
         }
     }
-
-
 
     $scope.totFormalSumIndLosY1Pvt = function() {
         if(!angular.isUndefined($scope.dlSummFormlInformlDis)) {

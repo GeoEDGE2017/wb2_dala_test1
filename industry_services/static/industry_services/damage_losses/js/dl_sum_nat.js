@@ -87,11 +87,42 @@ app.controller('dl_sum_natController', function($scope, $http, $parse, _) {
                         grnd_tot_los_y1_pvt = grnd_tot_los_y1_pvt + value_in[0].los_year1_pvt;
                     }
                     else if(key == 'LosTotInfY1SumNational') {
-                        grnd_tot_los_y1_pvt = grnd_tot_los_y1_pvt + value_in[0].los_year1_pvt;
+                        grnd_tot_los_y1_pvt = grnd_tot_los_y1_pvt + value_in[0].tot_los_year1_pvt;
                     }
                 })
             })
             return grnd_tot_los_y1_pvt;
+        }
+    }
+
+    $scope.grndTotLosY2Pub = function() {
+        if(!angular.isUndefined($scope.dlSumNat)) {
+            var grnd_tot_los_y2_pub = 0;
+            angular.forEach($scope.dlSumNat.industry_services.Table_7, function(value, index) {
+                angular.forEach(value, function(value_in, key) {
+                    if(key == 'LosTotFrmSumNational') {
+                        grnd_tot_los_y2_pub = grnd_tot_los_y2_pub + value_in[0].los_year2_pub;
+                    }
+                })
+            })
+            return grnd_tot_los_y2_pub;
+        }
+    }
+
+    $scope.grndTotLosY2Pvt = function() {
+        if(!angular.isUndefined($scope.dlSumNat)) {
+            var grnd_tot_los_y2_pvt = 0;
+            angular.forEach($scope.dlSumNat.industry_services.Table_7, function(value, index) {
+                angular.forEach(value, function(value_in, key) {
+                    if(key == 'LosTotFrmSumNational') {
+                        grnd_tot_los_y2_pvt = grnd_tot_los_y2_pvt + value_in[0].los_year2_pvt;
+                    }
+                    else if(key == 'LosTotInfY2SumNational') {
+                        grnd_tot_los_y2_pvt = grnd_tot_los_y2_pvt + value_in[0].tot_los_year2_pvt;
+                    }
+                })
+            })
+            return grnd_tot_los_y2_pvt;
         }
     }
 

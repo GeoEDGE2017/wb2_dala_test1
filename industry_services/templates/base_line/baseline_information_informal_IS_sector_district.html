@@ -27,13 +27,7 @@
     <div class="container-fluid" ng-form name="form_bs_industry_services_info_informal_sector">
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
-              <td style="width:100px;"> <span ng-if="!check_search">
-									<button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
-					</span> <span ng-if="check_search">
-									<button ng-click="searchBsData(form_bs_industry_services_info_informal_sector)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
-					</span>
-					<button ng-click="clear()" ng-if="is_search" class="btn btn-warning">Cancel Search</button>
-				</td>
+             
                 <table class="table table-bordered" >
                     <colgroup>
                         <col width="212"/>
@@ -77,8 +71,26 @@
                             <input name="baselineDate" type="text" style="font-weight:normal;" ng-change="changeDis();" placeholder="mm/yy"
                                    id="datepicker" ng-model="bs_date" class="form-control input-md" required="true">
                         </td>
+                         <td style="width:100px;"> <span ng-if="!check_search">
+                                    <button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
+                    </span> <span ng-if="check_search">
+                                    <button ng-click="searchBsData(form_bs_industry_services_info_informal_sector)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
+                    </span>
+                    <button ng-click="clear()" ng-if="is_search" class="btn btn-warning"><span class="fa fa-times" aria-hidden="true"></span>
+</button>
+                </td>
                         <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
                     </tr>
+                    </tbody>
+                    </table>
+                     <table class="table table-bordered" >
+                    <colgroup>
+                        <col width="212"/>
+                        <col width="108"/>
+                        <col width="110"/>
+                        <col width="100"/>
+                    </colgroup>
+                    <tbody>
                     <tr class="trheadc1" height="35">
                         <td rowspan="2" height="56" width="212" style="width:30%;">
                             Type of businesses

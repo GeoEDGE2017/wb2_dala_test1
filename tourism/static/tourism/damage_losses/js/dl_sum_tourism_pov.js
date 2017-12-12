@@ -41,7 +41,7 @@ app.controller('dlSummTouBusiFaciPovController', function($scope, $http, $parse,
                 method: "POST",
                 url: '/dl_fetch_district_disagtn',
                 data: angular.toJson({
-                    'table_name':  'Table_5',
+                    'table_name': 'Table_5',
                     'sector': 'tourism',
                     'com_data': {
                         'province': $scope.province,
@@ -204,10 +204,10 @@ app.controller('dlSummTouBusiFaciPovController', function($scope, $http, $parse,
             angular.forEach($scope.dlSummTouBusiFaciPov.tourism.Table_5, function(value, index) {
                 angular.forEach(value, function(value_in, key) {
                     if(key == 'DlLosFrmTotProvinceN') {
-                        grnd_tot_los_yer2_pub = grnd_tot_los_yer2_pub + value_in[0].los_year1_pub;
+                        grnd_tot_los_yer2_pub = grnd_tot_los_yer2_pub + value_in[0].los_year2_pub;
                     }
                     else if(key == 'DlLosInfTotProvinceN') {
-                        grnd_tot_los_yer2_pub = grnd_tot_los_yer2_pub + value_in[0].los_year1_pub;
+                        grnd_tot_los_yer2_pub = grnd_tot_los_yer2_pub + value_in[0].los_year2_pub;
                     }
                 })
             })
@@ -221,10 +221,10 @@ app.controller('dlSummTouBusiFaciPovController', function($scope, $http, $parse,
             angular.forEach($scope.dlSummTouBusiFaciPov.tourism.Table_5, function(value, index) {
                 angular.forEach(value, function(value_in, key) {
                     if(key == 'DlLosFrmTotProvinceN') {
-                        grnd_tot_los_yer2_pvt = grnd_tot_los_yer2_pvt + value_in[0].los_year1_pvt;
+                        grnd_tot_los_yer2_pvt = grnd_tot_los_yer2_pvt + value_in[0].los_year2_pvt;
                     }
                     else if(key == 'DlLosInfTotProvinceN') {
-                        grnd_tot_los_yer2_pvt = grnd_tot_los_yer2_pvt + value_in[0].los_year1_pvt;
+                        grnd_tot_los_yer2_pvt = grnd_tot_los_yer2_pvt + value_in[0].los_year2_pvt;
                     }
                 })
             })

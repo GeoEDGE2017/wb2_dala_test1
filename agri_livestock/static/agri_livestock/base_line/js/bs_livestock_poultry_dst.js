@@ -310,9 +310,6 @@ app.controller('bsLivestockPoultryDstController', ['$scope', '$http', function($
             console.log('-----for', value.livestock);
             console.log('-----for', value.livestock != 'Swine' && value.livestock != 'Sheep' && value.livestock != 'Goat' &&
                 value.livestock != 'Cattle' && value.livestock != 'Buffalo');
-//            console.log('-----for', value.livestock);
-//            console.log('-----for', value.livestock);
-//            console.log('-----for', value.livestock);
             if(value.livestock != 'Swine' && value.livestock != 'Sheep' && value.livestock != 'Goat' &&
                 value.livestock != 'Cattle' && value.livestock != 'Buffalo') {
                 console.log('-----if');

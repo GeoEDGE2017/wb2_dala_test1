@@ -18,6 +18,7 @@ from education.base_line.models import PreSchools, PrimarySchools, SecondaryScho
 from users.models import UserDistrict
 import smtplib
 from django.db import connection
+import collections
 import dateutil.parser
 
 @csrf_exempt
@@ -43,9 +44,9 @@ def send_email(request):
     server.login(username,password)
     server.sendmail(fromaddr, toaddrs, msg)
     server.quit()
+
     return HttpResponse(
-      json.dumps(True),
-        content_type='application/javascript; charset=utf8'
+        json.dumps(True), content_type='application/javascript; charset=utf8'
     )
 
 
@@ -241,6 +242,27 @@ def fetch_entities_plain_column(request):
     )
 
 
+# dileepa
+@csrf_exempt
+def fetch_entities_plain_column_from_district(request):
+    print 'fetch_entities_plain_column_from_district'
+    data = (yaml.safe_load(request.body))
+    model_name = data['model']
+    sector = data['sector']
+    col = data['col']
+    district = data['district']
+
+    sub_app_name = sector + '.base_line'
+    model_class = apps.get_model(sub_app_name, model_name)
+    fetched_data = model_class.objects.filter(district=district["district__id"])
+    fetched_data_json = fetched_data.values(col).distinct()
+
+    return HttpResponse(
+        json.dumps(list(fetched_data_json)),
+        content_type='application/javascript; charset=utf8'
+    )
+
+
 @csrf_exempt
 def bs_save_data(request):
     bs_data = (yaml.safe_load(request.body))
@@ -251,6 +273,7 @@ def bs_save_data(request):
     todate = timezone.now()
     is_edit = bs_data['is_edit']
     current_user = None
+
     try:
         current_user = com_data['user_id']
         print 'Current User', current_user
@@ -420,6 +443,75 @@ def update_enumirate_dl_data(request):
                                 WHERE dla.{dl_asset_field} = (SELECT di.{dl_asset_field}
                                     FROM {sector}.{dltable} di
                                          JOIN {sector}.dl_session_keys dls ON di.created_date =  dls.date
+                                         JOIN {sector}.bd_session_keys bss ON dls.bs_date = bss.date
+                                    WHERE di.district = {district} AND bss.date = '{dsdate}'
+                                    AND di.{dl_asset_field} = '{oldasset}')
+                                AND dla.district = {district}
+                                AND dla.created_date = (SELECT dls.date
+                                    FROM {sector}.{dltable} di
+                                         JOIN {sector}.dl_session_keys dls ON di.created_date =  dls.date
+                                         JOIN {sector}.bd_session_keys bss ON dls.bs_date = bss.date
+                                    WHERE di.district = {district} AND bss.date = '{dsdate}'
+                                    AND di.{dl_asset_field} = '{oldasset}')""".format(**info)
+
+                            print dl_db_table
+                            print sql
+                            cursor = connection.cursor()
+                            cursor.execute(sql)
+                            # row = cursor.fetchone()
+    return HttpResponse('success')
+
+
+# dileepa
+@csrf_exempt
+def update_enumirate_bs_data(request):
+    print 'update_enumirate_bs_data\n'
+    data = (yaml.safe_load(request.body))
+    enum_data = data['enum_data']
+    com_data = data['com_data']
+
+    interface_table_name = None
+    for sector in enum_data:
+        for interface_table in enum_data[sector]:
+            interface_table_name = interface_table
+
+    print data['sector']
+    print interface_table_name
+    print com_data['district']
+    print com_data['bs_date']
+
+    dsdate = get_bd_session_key_record(data['sector'], interface_table_name, com_data['district'], com_data['bs_date'])
+
+    for sector in enum_data:
+        sub_app_name = sector + '.base_line'
+        print 'sub_app_name :', sub_app_name
+        for interface_table in enum_data[sector]:
+            for db_table in enum_data[sector][interface_table]:
+                for row in enum_data[sector][interface_table][db_table]:
+                    for dl_interface_table in row['dl_tables']:
+                        for dl_db_table in row['dl_tables'][dl_interface_table]:
+                            info = {'sector': data['sector'], 'dltable': get_db_table_from_model(str(dl_db_table)),
+                                    'district': com_data['district'], 'dsdate': dsdate,
+                                    'oldasset': row['oldasset'], 'newasset': row['newasset'],
+                                    'dl_asset_field': row['dl_tables'][dl_interface_table][dl_db_table]['dl_asset_field']}
+
+                            sql = """UPDATE {sector}.{bstable2}
+                                SET {bs_asset_field} = '{newasset}'
+                                WHERE {bstable2}.bs_date = (SELECT bd_session_keys.bs_date
+                                    FROM {sector}.bd_session_keys
+                                    WHERE (bd_session_keys.date = (SELECT distinct bd_session_keys.parent_bs_date
+                                        FROM {sector}.bd_session_keys
+                                        WHERE bd_session_keys.parent_bs_date = '{parentbsdate}'
+                                            AND bd_session_keys.district = {district})
+                                        AND bd_session_keys.district = {district}))
+                                    AND {bstable2}.district = {district}
+                                AND {bstable2}.{bs_asset_field} = '{oldasset}'""".format(**info)
+
+                            sql = """UPDATE {sector}.{dltable} dla
+                                SET {dl_asset_field} = '{newasset}'
+                                WHERE dla.{dl_asset_field} = (SELECT di.{dl_asset_field}
+                                    FROM {sector}.{dltable} di
+                                         JOIN {sector}.dl_session_keys dls ON di.created_date = dls.date
                                          JOIN {sector}.bd_session_keys bss ON dls.bs_date = bss.date
                                     WHERE di.district = {district} AND bss.date = '{dsdate}'
                                     AND di.{dl_asset_field} = '{oldasset}')
@@ -2039,8 +2131,10 @@ def dl_fetch_district_disagtn(request):
             print '% - ', filter_fields
 
         # print dl_session.district.province
+        print category_name, '***'
 
         if category_name is not None:
+
             dl_mtable_data[sector][table_name][category_name] = {}
 
             for table in tables:
@@ -2060,6 +2154,8 @@ def dl_fetch_district_disagtn(request):
                                                                                 filter(**filter_fields)
                                                                                 .values(*table_fields))
 
+    dl_mtable_data[sector][table_name] = collections.OrderedDict(sorted(dl_mtable_data[sector][table_name].items()))
+
     return HttpResponse(
         json.dumps((dl_mtable_data), cls=DjangoJSONEncoder),
         content_type='application/javascript; charset=utf8'
@@ -2068,6 +2164,7 @@ def dl_fetch_district_disagtn(request):
 
 @csrf_exempt
 def dl_fetch_total_data(request):
+    print '-------- dl_fetch_total_data'
     data = (yaml.safe_load(request.body))
     table_name = data['table_name']
     sector = data['sector']
@@ -2077,6 +2174,8 @@ def dl_fetch_total_data(request):
 
     filter_fields = {}
     sub_app_name = sector + '.damage_losses'
+
+    print tables
 
     if 'province' in com_data:
         admin_area = com_data['province']
@@ -2097,6 +2196,7 @@ def dl_fetch_total_data(request):
         dl_mtable_data[sector][table_name][table] = list(model_class.objects.
                                                          filter(**filter_fields).
                                                          values(*table_fields))
+        print model_class, filter_fields, table_fields
 
     return HttpResponse(
         json.dumps(dl_mtable_data, cls=DjangoJSONEncoder),
@@ -2364,6 +2464,14 @@ def dl_fetch_summary_disagtn(request):
         dl_data.update(dl_mtable_data)
         i += 1
 
+    print '----------'
+    for s in dl_data:
+        for t in dl_data[s]:
+            print s, t
+            dl_data[s][t] = collections.OrderedDict(sorted(dl_data[s][t].items()))
+    print '----------'
+    # print dl_data
+
     return HttpResponse(
         json.dumps((dl_data), cls=DjangoJSONEncoder),
         content_type='application/javascript; charset=utf8'
@@ -2402,7 +2510,6 @@ def dl_fetch_summary_dis_disagtn(request):
         dl_mtable_data[sector][table_name] = {}
 
         for table in tables:
-
             dl_mtable_data[sector][table_name][table] = {}
             table_fields = tables[table]
             model_class = apps.get_model(sub_app_name, table)

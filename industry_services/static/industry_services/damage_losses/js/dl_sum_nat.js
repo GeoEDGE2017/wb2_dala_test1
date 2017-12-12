@@ -1,8 +1,6 @@
-//Table 6
+//Table 7
 var app = angular.module('dl_sum_natApp', ['underscore'])
-
 app.controller('dl_sum_natController', function($scope, $http, $parse, _) {
-
     $scope.data;
     $scope.incident;
     $scope.provinces;
@@ -12,13 +10,13 @@ app.controller('dl_sum_natController', function($scope, $http, $parse, _) {
     $scope.isDataAvailable = false;
     $scope.user_id;
 
-    $scope.fetchData = function(){
+    $scope.fetchData = function() {
         if($scope.incident){
             $http({
                 method: "POST",
                 url: '/dl_fetch_district_disagtn',
                 data: angular.toJson({
-                    'table_name':  'Table_9',
+                    'table_name': 'Table_9',
                     'sector': 'industry_services',
                     'com_data': {
                         'incident': $scope.incident,
@@ -43,7 +41,6 @@ app.controller('dl_sum_natController', function($scope, $http, $parse, _) {
             })
         }
     }
-
 
     $scope.makeTable = function(){
         if($scope.data != null){
@@ -118,5 +115,4 @@ app.controller('dl_sum_natController', function($scope, $http, $parse, _) {
         if(isNaN(val)) return 0;
         return val;
     }
-
 })

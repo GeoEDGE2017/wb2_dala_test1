@@ -277,6 +277,7 @@ app.controller('dlindustryServicesInfoSecController', ['$scope', '$http', functi
         var table = $scope.dl_dmg_loss_infoml_sec.industry_services.Table_4;
         var final_total = 0;
         total_object[column] = 0;
+
         angular.forEach(table[subTable], function(value, key) {
             final_total += value[column] ;
         })
@@ -288,8 +289,8 @@ app.controller('dlindustryServicesInfoSecController', ['$scope', '$http', functi
         var final_total = 0;
         angular.forEach(table, function(subTable, key) {
             angular.forEach(subTable, function(value, key) {
-                if(value){
-                    if(value[column]){
+                if(value) {
+                    if(value[column]) {
                         final_total += value[column];
                     }
                 }
@@ -372,7 +373,7 @@ app.controller('dlindustryServicesInfoSecController', ['$scope', '$http', functi
         }
     }
 
-    $scope.editDlData = function(form) {
+    $scope.searchDlData = function(form) {
        document.getElementById("clearbtn").disabled = true;
 		document.getElementById("editbtn").disabled = true;
 		document.getElementById("subbtn").disabled = true;

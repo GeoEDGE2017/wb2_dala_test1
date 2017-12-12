@@ -1,4 +1,4 @@
-//Table 5 /dl_sum_forml_informl_dis_inputs
+//Table *5 /dl_sum_forml_informl_dis_inputs
 var app = angular.module('dlSummFormlInformlDisInputApp', [])
 app.controller('dlSummFormlInformlDisInputController', ['$scope', '$http', function($scope, $http) {
     $scope.districts;

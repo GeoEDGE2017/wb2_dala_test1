@@ -48,7 +48,7 @@ app.controller('dlSummTouBusiFaciDisController', function($scope, $http, $parse,
                 method: "POST",
                 url: '/dl_fetch_summary_dis_disagtn',
                 data: angular.toJson({
-                    'table_name':  ['Table_4'],
+                    'table_name': ['Table_4'],
                     'sector': ['tourism'],
                     'com_data': {
                         'district':  $scope.district.district__id,
@@ -124,7 +124,7 @@ app.controller('dlSummTouBusiFaciDisController', function($scope, $http, $parse,
         }
     }
 
-    $scope.fetchBusinessTypes = function(){
+    $scope.fetchBusinessTypes = function() {
         $http({
             method: "POST",
             url: "/fetch_business_types_for_summary",
@@ -160,8 +160,9 @@ app.controller('dlSummTouBusiFaciDisController', function($scope, $http, $parse,
             var final_val = 0;
             angular.forEach($scope.table[type], function(value, key) {
                 if(value[mainCol]){
-                    if(!isNaN(value[mainCol][sub_col]))
+                    if(!isNaN(value[mainCol][sub_col])) {
                         final_val += value[mainCol][sub_col];
+                    }
                 }
             })
             return final_val;
@@ -317,6 +318,98 @@ app.controller('dlSummTouBusiFaciDisController', function($scope, $http, $parse,
             })
 
             return tot_los_pvt;
+        }
+    }
+
+    //------------
+
+    $scope.calInfTotalDmgPub = function() {
+        if(!angular.isUndefined($scope.dlsumtourismdis)) {
+            var tot_dmg_pub = 0;
+            angular.forEach($scope.dlsumtourismdis.tourism.Table_4, function(value, key) {
+                if(key == 'DlDmgInfDistrictNN') {
+                    angular.forEach(value, function(value_in, index) {
+                        tot_dmg_pub = tot_dmg_pub + value_in.tot_dmg_pub;
+                    })
+                }
+            })
+
+            return tot_dmg_pub;
+        }
+    }
+
+    $scope.calInfTotalDmgPvt = function() {
+        if(!angular.isUndefined($scope.dlsumtourismdis)) {
+            var tot_dmg_pvt = 0;
+            angular.forEach($scope.dlsumtourismdis.tourism.Table_4, function(value, key) {
+                if(key == 'DlDmgInfDistrictNN') {
+                    angular.forEach(value, function(value_in, index) {
+                        tot_dmg_pvt = tot_dmg_pvt + value_in.tot_dmg_pvt;
+                    })
+                }
+            })
+
+            return tot_dmg_pvt;
+        }
+    }
+
+    $scope.calInfTotalLosYer1Pub = function() {
+        if(!angular.isUndefined($scope.dlsumtourismdis)) {
+            var loss_year1_pub = 0;
+            angular.forEach($scope.dlsumtourismdis.tourism.Table_4, function(value, key) {
+                if(key == 'DlLosInfDistrictNN') {
+                    angular.forEach(value, function(value_in, index) {
+                        loss_year1_pub = loss_year1_pub + value_in.loss_year1_pub;
+                    })
+                }
+            })
+
+            return loss_year1_pub;
+        }
+    }
+
+    $scope.calInfTotalLosYer1Pvt = function() {
+        if(!angular.isUndefined($scope.dlsumtourismdis)) {
+            var loss_year1_pvt = 0;
+            angular.forEach($scope.dlsumtourismdis.tourism.Table_4, function(value, key) {
+                if(key == 'DlLosInfDistrictNN') {
+                    angular.forEach(value, function(value_in, index) {
+                        loss_year1_pvt = loss_year1_pvt + value_in.loss_year1_pvt;
+                    })
+                }
+            })
+
+            return loss_year1_pvt;
+        }
+    }
+
+    $scope.calInfTotalLosYer2Pub = function() {
+        if(!angular.isUndefined($scope.dlsumtourismdis)) {
+            var loss_year2_pub = 0;
+            angular.forEach($scope.dlsumtourismdis.tourism.Table_4, function(value, key) {
+                if(key == 'DlLosInfDistrictNN') {
+                    angular.forEach(value, function(value_in, index) {
+                        loss_year2_pub = loss_year2_pub + value_in.loss_year2_pub;
+                    })
+                }
+            })
+
+            return loss_year2_pub;
+        }
+    }
+
+    $scope.calInfTotalLosYer2Pvt = function() {
+        if(!angular.isUndefined($scope.dlsumtourismdis)) {
+            var loss_year2_pvt = 0;
+            angular.forEach($scope.dlsumtourismdis.tourism.Table_4, function(value, key) {
+                if(key == 'DlLosInfDistrictNN') {
+                    angular.forEach(value, function(value_in, index) {
+                        loss_year2_pvt = loss_year2_pvt + value_in.loss_year2_pvt;
+                    })
+                }
+            })
+
+            return loss_year2_pvt;
         }
     }
 })

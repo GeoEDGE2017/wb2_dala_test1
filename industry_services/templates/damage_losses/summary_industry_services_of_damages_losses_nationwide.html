@@ -3,34 +3,31 @@
 {% load static %}
 <!-- Main content -->
 <main class="main" ng-app="dl_sum_natApp" ng-controller="dl_sum_natController">
-
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:industry_services_main' %}">Industry & Services
-            Sector</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:industry_services_main' %}">
+                Industry & Services Sector
+            </a>
         </li>
-
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 9.  Summary of Damages and Losses in a Nationwide</span>
+        <li class="breadcrumb-item active">
+            <span class="label label-success" style="font-size:14px;">
+                Table 7. Summary of Damages and Losses in a Nationwide
+            </span>
         </li>
-        <li style="float:right;"><a href="{% static 'dashboard/doc/Industry_and_Services.pdf' %}" target="_blank"
-                                    style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info"
-                                    data-toggle="tooltip" title="Veiw Document"></a></li>
-
+        <li style="float:right;">
+            <a href="{% static 'dashboard/doc/Industry_and_Services.pdf' %}" target="_blank"
+               style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document">
+            </a>
+        </li>
     </ol>
-
-
     <div class="container-fluid">
-
-
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
-
                 <table class="table table-bordered">
-
-
                     <colgroup>
                         <col width="212"/>
                         <col width="108"/>
@@ -149,14 +146,12 @@
                         </td>
                         <td class="right" width="85" ng-bind="provinceTotals[$index].PubTotBus = getSum3(table.formal[province].year1Damage.Public,
                                                 table.formal[province].year1Loss.Public,
-                                                table.formal[province].year2Loss.Public)
-                                                ">
+                                                table.formal[province].year2Loss.Public)">
                             -
                         </td>
                         <td class="right" width="85" ng-bind="provinceTotals[$index].PriTotBus = getSum3(table.formal[province].year1Damage.Private,
                                                 table.formal[province].year1Loss.Private,
-                                                table.formal[province].year2Loss.Private)
-                                                ">
+                                                table.formal[province].year2Loss.Private)">
                             -
                         </td>
                     </tr>
@@ -190,8 +185,7 @@
                         </td>
                         <td class="right" width="85" ng-bind="provinceTotals[$index].PriTotInf= getSum3(table.informal[province].year1Damage.Private,
                                                 table.informal[province].year1Loss.Private,
-                                                table.informal[province].year2Loss.Private)
-                                                ">
+                                                table.informal[province].year2Loss.Private)">
                             -
                         </td>
                     </tr>
@@ -232,9 +226,7 @@
                             -
                         </td>
                     </tr>
-
                     <!--Prov 1-->
-
                     <tr class="trsubc" height="19" ng-repeat="province in provinces" ng-if="$index == 1">
                         <td height="19" width="212" ng-bind="province">
                             Province 1

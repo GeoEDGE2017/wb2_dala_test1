@@ -41,21 +41,7 @@
         </ul>
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
-                <td style="width:100px;">
-                    <span ng-if="!check_search">
-                        <button ng-if="!is_search" class="btn btn-info" disabled>
-                            <span class="fa fa-search"></span>
-                        </button>
-                    </span>
-                    <span ng-if="check_search">
-                        <button ng-click="searchDlData(form_dl_tou_buss)" ng-if="!is_search" class="btn btn-info">
-                            <span class="fa fa-search"></span>
-                        </button>
-                    </span>
-                    <button ng-click="clear()" ng-if="is_search" class="btn btn-warning">
-                        Cancel Search
-                    </button>
-                </td>
+              
                 <table class="table table-bordered">
                     <colgroup>
                         <col width="229"/>
@@ -99,7 +85,7 @@
                         <td width="229" class="p5" height="20">
                             District
                         </td>
-                        <td colspan="2" height="19" style="font-weight:normal;" width="427">
+                        <td colspan="" height="19" style="font-weight:normal;" width="427">
                             <select ng-options="district as district.district__name for district in districts track by district.district__id"
                                     name="district" id="ccyear" ng-model="district" ng-value="district.district__id"
                                     class="form-control" ng-change="changedValue(false);" required>
@@ -107,6 +93,21 @@
                                 <option value="" selected>Select District</option>
                             </select>
                         </td>
+                          <td style="width:100px;">
+                    <span ng-if="!check_search">
+                        <button ng-if="!is_search" class="btn btn-info" disabled>
+                            <span class="fa fa-search"></span>
+                        </button>
+                    </span>
+                    <span ng-if="check_search">
+                        <button ng-click="searchDlData(form_dl_tou_buss)" ng-if="!is_search" class="btn btn-info">
+                            <span class="fa fa-search"></span>
+                        </button>
+                    </span>
+                    <button ng-click="clear()" ng-if="is_search" class="btn btn-warning">
+                        <span class="fa fa-times" aria-hidden="true"></span>
+                    </button>
+                </td>
                         <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
                     </tr>
                     <tr class="trhead1" height="20">
@@ -572,7 +573,7 @@
                 <br>
                 <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
                         class="glyphicon glyphicon-arrow-right"></span> Fill Tourism Informations</a>
-                <br>
+                <br><br>
             </div>
             <div class="tab-pane fade" id="step2">
                 <table class="table table-bordered">
@@ -727,7 +728,7 @@
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Firm Name</label>
-                            <div class="col-md-5">
+                            <div class="col-md-7">
                                 <input id="textinput" name="textinput" type="text" placeholder=""
                                        ng-model="new_firm.name" name="firm_name" class="form-control input-md">
                             </div>
@@ -735,7 +736,7 @@
                         <div class="clearfix"></div>
                         <div class="form-group" style="margin-top:5px;">
                             <label class="col-md-4 control-label" for="textinput">Ownership</label>
-                            <div class="col-md-5">
+                            <div class="col-md-7">
                                 <select id="selectbasic" name="ownership" ng-model='ownership' class="form-control"
                                         style="font-weight:400;" required>
                                     <option value="" selected="true">Select Ownership</option>

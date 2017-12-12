@@ -43,25 +43,11 @@ $(document).ready(function() {
                     <span style="color:red" ng-show="!is_valid_data">
                         This request can't be proceed, there is data-set available for this selection.
                     </span>
-                    <td style="width:100px;">
-                        <span ng-if="!check_search">
-                            <button ng-if="!is_search" class="btn btn-info" disabled>
-                                <span class="fa fa-search"></span>
-                            </button>
-						</span>
-                        <span ng-if="check_search">
-                            <button ng-click="searchBsData(form_bs_edu_fac)" ng-if="!is_search" class="btn btn-info">
-                                <span class="fa fa-search"></span>
-                            </button>
-						</span>
-                        <button ng-click="clear()" ng-if="is_search" class="btn btn-warning">
-                            Cancel Search
-                        </button>
-                    </td>
+                   
                     <table class="table table-bordered">
                         <colgroup>
                             <col width="280"/>
-                            <col width="136" span="3"/>
+                            <col width="136" />
                         </colgroup>
                         <tbody>
                         <tr style="background:#fff;border:1px solid #fff;text-align:center;">
@@ -103,8 +89,33 @@ $(document).ready(function() {
                                 <input name="textinput" type="text" ng-change="changeDis();" placeholder="mm/yy"
                                        id="datepicker" ng-model="baselineDate" class="form-control input-md" required>
                             </td>
+                             <td style="width:100px;">
+                        <span ng-if="!check_search">
+                            <button ng-if="!is_search" class="btn btn-info" disabled>
+                                <span class="fa fa-search"></span>
+                            </button>
+                        </span>
+                        <span ng-if="check_search">
+                            <button ng-click="searchBsData(form_bs_edu_fac)" ng-if="!is_search" class="btn btn-info">
+                                <span class="fa fa-search"></span>
+                            </button>
+                        </span>
+                        <button ng-click="clear()" ng-if="is_search" class="btn btn-warning">
+                            <span class="fa fa-times" aria-hidden="true"></span>
+                        </button>
+                    </td>
+
                             <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
                         </tr>
+                        </tbody>
+                        </table>
+
+                         <table class="table table-bordered">
+                        <colgroup>
+                            <col width="280"/>
+                            <col width="136" />
+                        </colgroup>
+                        <tbody>
                         <tr class="trheadc1" height="17">
                             <td rowspan="2" width="280" height="34" style="width:26.7%;"> Type of Facilities</td>
                             <td rowspan="2" width="136" style="width:28.3%;"> Total Number</td>

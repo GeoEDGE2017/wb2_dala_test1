@@ -44,21 +44,7 @@
             </ul>
             <div id="myTabContent" class="tab-content" ng-form name="form_dl_fisheries_district">
                 <div class="tab-pane active" id="step1">
-                    <td style="width:100px;">
-                        <span ng-if="!check_search">
-                            <button ng-if="!is_search" class="btn btn-info" disabled>
-                                <span class="fa fa-search"></span>
-                            </button>
-                        </span>
-                        <span ng-if="check_search">
-                            <button ng-click="searchDlData(form_dl_fisheries_district)" ng-if="!is_search" class="btn btn-info">
-                                <span class="fa fa-search"></span>
-                            </button>
-                        </span>
-                        <button ng-click="clear()" ng-if="is_search" class="btn btn-warning">
-                            Cancel Search
-                        </button>
-                    </td>
+                   
                     <table class="table table-bordered">
                         <colgroup>
                             <col width="125"/>
@@ -93,7 +79,7 @@
                                 <td width="125" height="19" style="padding-left:5px;">
                                     Incident
                                 </td>
-                                <td width="95" height="19">
+                                <td width="95" height="19" colspan="3">
                                     <select id="selectbasic" name="incident" ng-model="incident"
                                             class="form-control" ng-change="changedValue(true)"
                                             style="width:100%;font-weight:400;" required>
@@ -110,13 +96,28 @@
                                 <td width="111" height="19" style="padding-left:5px;">
                                     District
                                 </td>
-                                <td colspan="5" width="419" height="19">
+                                <td colspan="2" width="419" height="19">
                                     <select ng-options="district as district.district__name for district in districts track by district.district__id"
                                             name="district" id="ccyear" ng-model="district" ng-value="district.district__id"
                                             class="form-control" ng-change="changedValue(false)" required>
                                         <option value="" selected>Select District</option>
                                     </select>
                                 </td>
+                                 <td style="width:100px;">
+                        <span ng-if="!check_search">
+                            <button ng-if="!is_search" class="btn btn-info" disabled>
+                                <span class="fa fa-search"></span>
+                            </button>
+                        </span>
+                        <span ng-if="check_search">
+                            <button ng-click="searchDlData(form_dl_fisheries_district)" ng-if="!is_search" class="btn btn-info">
+                                <span class="fa fa-search"></span>
+                            </button>
+                        </span>
+                        <button ng-click="clear()" ng-if="is_search" class="btn btn-warning">
+                           <span class="fa fa-times" aria-hidden="true"></span>
+                        </button>
+                    </td>
                                 <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
                             </tr>
                             <tr class="trheadc1" height="19">
@@ -172,6 +173,7 @@
                         </tr>
                         </tbody>
                     </table>
+                   
                     <div id="boxscroll" style="height:400px;overflow:auto;">
                         <table class="table table-bordered">
                             <tr class="trheadc" height="19">
@@ -841,7 +843,7 @@
                         <span class="glyphicon glyphicon-arrow-right"></span>
                         Fill Losses Informations
                     </a>
-                    <br>
+                    <br> <br>
                 </div>
                 <div class="tab-pane fade" id="step2">
                     <table class="table table-bordered">
@@ -1484,7 +1486,7 @@
                             Submit
                         </button>
                     </div>
-                    <br><br>
+                    <br><br><br>
                 </div>
             </div>
         </div>

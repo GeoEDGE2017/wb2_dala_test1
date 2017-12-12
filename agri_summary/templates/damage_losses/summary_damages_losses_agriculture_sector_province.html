@@ -3,6 +3,11 @@
 <style>
     .right {text-align:right;}
 </style>
+<style type="text/css">
+td {
+   width:8em!important;
+}
+</style>
 <!-- Main content -->
 <main class="main" ng-app="dlSummeryAgriProApp" ng-controller="DlSummeryAgriProController">
 
@@ -63,10 +68,23 @@
                                         ng-bind="province.district__province__name" ></option>
                             </select>
                         </td>
+                         </tr>
                         <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
+
                     </tbody>
                 </table>
                 <table class="table table-bordered" ng-if="!checkIfNull()">
+                <colgroup>
+                        <col width="213"/>
+                        <col width="107"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                    </colgroup>
                     <tbody>
                     <tr class="trhead1" height="19" style="text-align: center;">
                         <td rowspan="3" height="53" width="213">
@@ -126,7 +144,20 @@
                     </table>
 
             <table class="table table-bordered" ng-if="!checkIfNull()" ng-repeat="(key1, value1) in dlAgriSumPro.agri_agrarian.Table_9">
+
+             <colgroup>
+                        <col width="213"/>
+                        <col width="107"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                    </colgroup>
                     <tbody>
+
                     <tr class="trhead" height="17" ng-init="getTotal(key1)">
                         <td height="17" width="213" ng-bind="key1">
 
@@ -344,7 +375,18 @@
                     </tbody>
                 </table>
      <table class="table table-bordered" ng-if="!checkIfNull()">
-
+ <colgroup>
+                        <col width="213"/>
+                        <col width="107"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                    </colgroup>
+                    <tbody>
                     <tr height="17">
                         <td class="tdpa" height="17" width="213">
                             GRAND TOTAL

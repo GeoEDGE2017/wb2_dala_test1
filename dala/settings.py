@@ -3183,21 +3183,12 @@ TABLE_PROPERTY_MAPPER = {
             'DlLosInfDistrictN': ['infrastructure', 'year1', 'year2', 'ownership', 'inf_type']
         },
         'Table_5': {
-            # 'DlLosInfTotDistrict': ['tot_year1', 'tot_year2', 'ownership'],
-            # 'DlDmgbusTotDistrict': ['tot_damages', 'ownership'],
-            # 'DlLosbusTotDistrict': ['los_year1', 'los_year2', 'ownership'],
-            # 'DlDmgInfTotDistrict': ['sum', 'ownership'],
-
             'DlDmgFrmTotProvinceN': ['asset', 'tot_damages_pub', 'tot_damages_pvt'],
             'DlLosFrmTotProvinceN': ['asset', 'los_year1_pub', 'los_year1_pvt', 'los_year2_pub', 'los_year2_pvt'],
             'DlDmgInfTotProvinceN': ['assets', 'los_pub', 'los_pvt'],
             'DlLosInfTotProvinceN': ['asset', 'los_year1_pub', 'los_year1_pvt', 'los_year2_pub', 'los_year2_pvt'],
         },
         'Table_6': {
-            # 'DlDmgInfTotNational': ['sum', 'ownership'],
-            # 'DlLosInfTotNational': ['tot_year1', 'tot_year2', 'ownership'],
-            # 'DlDmgBusTotNational': ['tot_damages', 'ownership'],
-            # 'DlLosBusTotNational': ['los_year1', 'los_year2', 'ownership'],
             'DlDmgFrmNational': ['tot_damages_pub', 'tot_damages_pvt'],
             'DlLosFrmTotNational': ['los_year1_pub', 'los_year1_pvt', 'los_year2_pub', 'los_year2_pvt'],
             'DlDmgInfNational': ['tot_damages_pub', 'tot_damages_pvt'],
@@ -3265,21 +3256,12 @@ TABLE_PROPERTY_MAPPER = {
             'LosTotInfY1SumProvince': ['tot_los_year1_pvt'],
             'LosTotInfY2SumProvince': ['tot_los_year2_pvt'],
         },
-        # 'Table_7': {
-        #     'DmgTotFrmYear1District': ['incident', 'ownership', 'district', 'tot_damages'],
-        #     'DmgTotInfYear1District': ['incident', 'district', 'tot_damages'],
-        #     'LosTotFrmYear1District': ['incident', 'ownership', 'district', 'los_year1'],
-        #     'LosTotFrmYear2District': ['incident', 'ownership', 'district', 'los_year2'],
-        #     'LosTotInfYear1District': ['incident', 'district', 'los_year1'],
-        #     'LosTotInfYear2District': ['incident', 'district', 'los_year2'],
-        # },
         'Table_7': {
-            'DmgTotFrmYear1National': ['incident', 'ownership', 'province', 'tot_damages'],
-            'DmgTotInfYear1National': ['incident', 'province', 'tot_damages'],
-            'LosTotFrmYear1National': ['incident', 'ownership', 'province', 'los_year1'],
-            'LosTotFrmYear2National': ['incident', 'ownership', 'province', 'los_year2'],
-            'LosTotInfYear1National': ['incident', 'province', 'los_year1'],
-            'LosTotInfYear2National': ['incident', 'province', 'los_year2'],
+            'DmgTotFrmYear1SumNational': ['tot_damages_pub', 'tot_damages_pvt'],
+            'DmgTotInfY1SumNational': ['tot_damages_pvt'],
+            'LosTotFrmSumNational': ['los_year1_pub', 'los_year1_pvt', 'los_year2_pub', 'los_year2_pvt'],
+            'LosTotInfY1SumNational': ['tot_los_year1_pvt'],
+            'LosTotInfY2SumNational': ['tot_los_year2_pvt']
         },
     },
     'housing': {

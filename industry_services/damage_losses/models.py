@@ -1081,3 +1081,57 @@ class LosTotInfY2SumProvince(models.Model):
         db_table = 'industry_services\".\"los_tot_inf_y2_sum_province'
 
 
+# Table 7
+class DmgTotFrmYear1SumNational(models.Model):
+    tot_damages_pub = models.FloatField(blank=True, null=True)
+    tot_damages_pvt = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    province = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'industry_services\".\"dmg_tot_frm_year1_sum_national'
+
+
+class DmgTotInfY1SumNational(models.Model):
+    tot_damages_pvt = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    province = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'industry_services\".\"dmg_tot_inf_y1_sum_national'
+
+
+class LosTotFrmSumNational(models.Model):
+    los_year1_pub = models.FloatField(blank=True, null=True)
+    los_year1_pvt = models.FloatField(blank=True, null=True)
+    los_year2_pub = models.FloatField(blank=True, null=True)
+    los_year2_pvt = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    province = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'industry_services\".\"los_tot_frm_sum_national'
+
+
+class LosTotInfY1SumNational(models.Model):
+    tot_los_year1_pvt = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    province = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'industry_services\".\"los_tot_inf_y1_sum_national'
+
+
+class LosTotInfY2SumNational(models.Model):
+    tot_los_year2_pvt = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    province = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'industry_services\".\"los_tot_inf_y2_sum_national'
+

@@ -9,6 +9,7 @@ app.controller('dl_sum_natController', function($scope, $http, $parse, _) {
     $scope.data_available;
     $scope.isDataAvailable = false;
     $scope.user_id;
+    $scope.dlSumNat;
 
     $scope.fetchData = function() {
         if($scope.incident){
@@ -16,25 +17,15 @@ app.controller('dl_sum_natController', function($scope, $http, $parse, _) {
                 method: "POST",
                 url: '/dl_fetch_district_disagtn',
                 data: angular.toJson({
-                    'table_name': 'Table_9',
+                    'table_name': 'Table_7',
                     'sector': 'industry_services',
                     'com_data': {
                         'incident': $scope.incident,
                     },
                 }),
             }).success(function(data) {
-                $scope.data = data.industry_services.Table_9;
-                $scope.provinces = Object.keys($scope.data);
-                console.log('load ', Object.keys($scope.data));
-                console.log("data", $scope.data);
-                $scope.data_available = ($scope.provinces.length != 0)
-                if(!$scope.data_available){
-                    console.log("no data available for your selection");
-                    $scope.isDataAvailable = false;
-                }
-                $scope.isDataAvailable = true;;
-                $scope.makeTable();
-
+                $scope.dlSumNat = data;
+                console.log($scope.dlSumNat);
             }).error(function(err){
                 $scope.data = null;
                 $scope.provinces = null;
@@ -42,77 +33,96 @@ app.controller('dl_sum_natController', function($scope, $http, $parse, _) {
         }
     }
 
-    $scope.makeTable = function(){
-        if($scope.data != null){
-            $scope.table = {};
-            $scope.table.formal = {};
-            $scope.table.informal = {};
-
-            angular.forEach($scope.provinces, function(value, key) {
-                $scope.table.formal[value] = {'name':value }
-                $scope.table.formal[value].year1Damage = {};
-                $scope.table.formal[value].year1Loss = {};
-                $scope.table.formal[value].year2Loss = {};
-
-                $scope.table.informal[value] = {'name':value }
-                $scope.table.informal[value].year1Damage = {};
-                $scope.table.informal[value].year1Loss = {};
-                $scope.table.informal[value].year2Loss = {};
-
-                console.log('provinces',$scope.data);
-
-                angular.forEach($scope.data[$scope.provinces].DmgTotFrmYear1National, function(value2, key) {
-                    $scope.table.formal[value].year1Damage[value2.ownership] = value2.tot_damages;
-                })
-
-                angular.forEach($scope.data[$scope.provinces].LosTotFrmYear1National, function(value2, key) {
-                    $scope.table.formal[value].year1Loss[value2.ownership] = value2.los_year1;
-                })
-
-                angular.forEach($scope.data[$scope.provinces].LosTotFrmYear2National, function(value2, key) {
-                    $scope.table.formal[value].year2Loss[value2.ownership] = value2.los_year2;
-                })
-
-
-                angular.forEach($scope.data[$scope.provinces].DmgTotInfYear1National, function(value2, key) {
-                    $scope.table.informal[value].year1Damage['Private'] = value2.tot_damages;
-                })
-
-                angular.forEach($scope.data[$scope.provinces].LosTotInfYear1National, function(value2, key) {
-                    $scope.table.informal[value].year1Loss['Private'] = value2.los_year1;
-                })
-
-                angular.forEach($scope.data[$scope.provinces].LosTotInfYear2National, function(value2, key) {
-                    $scope.table.informal[value].year2Loss['Private'] = value2.los_year2;
+    $scope.grndTotDmgY1Pub = function() {
+        if(!angular.isUndefined($scope.dlSumNat)) {
+            var grnd_tot_dmg_pub = 0;
+            angular.forEach($scope.dlSumNat.industry_services.Table_7, function(value, index) {
+                angular.forEach(value, function(value_in, key) {
+                    if(key == 'DmgTotFrmYear1SumNational') {
+                        grnd_tot_dmg_pub = grnd_tot_dmg_pub + value_in[0].tot_damages_pub;
+                    }
                 })
             })
-            console.log('table', $scope.table);
+            return grnd_tot_dmg_pub;
         }
-        else{
-            console.log("data null");
-        }
-   }
-
-    $scope.getSum3 = function(val1, val2, val3){
-        var final_val = 0;
-        if(!isNaN(val1)) final_val += val1;
-        if(!isNaN(val2)) final_val += val2;
-        if(!isNaN(val3)) final_val += val3;
-        return final_val;
     }
 
-    $scope.getGrandTotCol = function(col){
-        var final_val = 0;
-        console.log("$scope.provinceTotals ",$scope.provinceTotals);
-        angular.forEach($scope.provinceTotals, function(value, key) {
-            final_val += $scope.getConvertedVal( value[col] );
-        })
-        return final_val;
+    $scope.grndTotDmgY1Pvt = function() {
+        if(!angular.isUndefined($scope.dlSumNat)) {
+            var grnd_tot_dmg_pvt = 0;
+            angular.forEach($scope.dlSumNat.industry_services.Table_7, function(value, index) {
+                angular.forEach(value, function(value_in, key) {
+                    if(key == 'DmgTotFrmYear1SumNational') {
+                        grnd_tot_dmg_pvt = grnd_tot_dmg_pvt + value_in[0].tot_damages_pvt;
+                    }
+                    else if(key == 'DmgTotInfY1SumNational') {
+                        grnd_tot_dmg_pvt = grnd_tot_dmg_pvt + value_in[0].tot_damages_pvt;
+                    }
+                })
+            })
+            return grnd_tot_dmg_pvt;
+        }
     }
 
-    $scope.getConvertedVal = function(val){
-        if(!val)    return 0;
-        if(isNaN(val)) return 0;
-        return val;
+    $scope.grndTotLosY1Pub = function() {
+        if(!angular.isUndefined($scope.dlSumNat)) {
+            var grnd_tot_los_y1_pub = 0;
+            angular.forEach($scope.dlSumNat.industry_services.Table_7, function(value, index) {
+                angular.forEach(value, function(value_in, key) {
+                    if(key == 'LosTotFrmSumNational') {
+                        grnd_tot_los_y1_pub = grnd_tot_los_y1_pub + value_in[0].los_year1_pub;
+                    }
+                })
+            })
+            return grnd_tot_los_y1_pub;
+        }
+    }
+
+    $scope.grndTotLosY1Pvt = function() {
+        if(!angular.isUndefined($scope.dlSumNat)) {
+            var grnd_tot_los_y1_pvt = 0;
+            angular.forEach($scope.dlSumNat.industry_services.Table_7, function(value, index) {
+                angular.forEach(value, function(value_in, key) {
+                    if(key == 'LosTotFrmSumNational') {
+                        grnd_tot_los_y1_pvt = grnd_tot_los_y1_pvt + value_in[0].los_year1_pvt;
+                    }
+                    else if(key == 'LosTotInfY1SumNational') {
+                        grnd_tot_los_y1_pvt = grnd_tot_los_y1_pvt + value_in[0].tot_los_year1_pvt;
+                    }
+                })
+            })
+            return grnd_tot_los_y1_pvt;
+        }
+    }
+
+    $scope.grndTotLosY2Pub = function() {
+        if(!angular.isUndefined($scope.dlSumNat)) {
+            var grnd_tot_los_y2_pub = 0;
+            angular.forEach($scope.dlSumNat.industry_services.Table_7, function(value, index) {
+                angular.forEach(value, function(value_in, key) {
+                    if(key == 'LosTotFrmSumNational') {
+                        grnd_tot_los_y2_pub = grnd_tot_los_y2_pub + value_in[0].los_year2_pub;
+                    }
+                })
+            })
+            return grnd_tot_los_y2_pub;
+        }
+    }
+
+    $scope.grndTotLosY2Pvt = function() {
+        if(!angular.isUndefined($scope.dlSumNat)) {
+            var grnd_tot_los_y2_pvt = 0;
+            angular.forEach($scope.dlSumNat.industry_services.Table_7, function(value, index) {
+                angular.forEach(value, function(value_in, key) {
+                    if(key == 'LosTotFrmSumNational') {
+                        grnd_tot_los_y2_pvt = grnd_tot_los_y2_pvt + value_in[0].los_year2_pvt;
+                    }
+                    else if(key == 'LosTotInfY2SumNational') {
+                        grnd_tot_los_y2_pvt = grnd_tot_los_y2_pvt + value_in[0].tot_los_year2_pvt;
+                    }
+                })
+            })
+            return grnd_tot_los_y2_pvt;
+        }
     }
 })

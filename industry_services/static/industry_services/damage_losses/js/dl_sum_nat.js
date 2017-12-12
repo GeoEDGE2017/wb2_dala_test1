@@ -26,18 +26,6 @@ app.controller('dl_sum_natController', function($scope, $http, $parse, _) {
             }).success(function(data) {
                 $scope.dlSumNat = data;
                 console.log($scope.dlSumNat);
-
-//                $scope.provinces = Object.keys($scope.data);
-//                console.log('load ', Object.keys($scope.data));
-//                console.log("data", $scope.data);
-//                $scope.data_available = ($scope.provinces.length != 0)
-//                if(!$scope.data_available){
-//                    console.log("no data available for your selection");
-//                    $scope.isDataAvailable = false;
-//                }
-//                $scope.isDataAvailable = true;;
-//                $scope.makeTable();
-
             }).error(function(err){
                 $scope.data = null;
                 $scope.provinces = null;
@@ -45,7 +33,69 @@ app.controller('dl_sum_natController', function($scope, $http, $parse, _) {
         }
     }
 
-    $scope.makeTable = function(){
+    $scope.grndTotDmgY1Pub = function() {
+        if(!angular.isUndefined($scope.dlSumNat)) {
+            var grnd_tot_dmg_pub = 0;
+            angular.forEach($scope.dlSumNat.industry_services.Table_7, function(value, index) {
+                angular.forEach(value, function(value_in, key) {
+                    if(key == 'DmgTotFrmYear1SumNational') {
+                        grnd_tot_dmg_pub = grnd_tot_dmg_pub + value_in[0].tot_damages_pub;
+                    }
+                })
+            })
+            return grnd_tot_dmg_pub;
+        }
+    }
+
+    $scope.grndTotDmgY1Pvt = function() {
+        if(!angular.isUndefined($scope.dlSumNat)) {
+            var grnd_tot_dmg_pvt = 0;
+            angular.forEach($scope.dlSumNat.industry_services.Table_7, function(value, index) {
+                angular.forEach(value, function(value_in, key) {
+                    if(key == 'DmgTotFrmYear1SumNational') {
+                        grnd_tot_dmg_pvt = grnd_tot_dmg_pvt + value_in[0].tot_damages_pvt;
+                    }
+                    else if(key == 'DmgTotInfY1SumNational') {
+                        grnd_tot_dmg_pvt = grnd_tot_dmg_pvt + value_in[0].tot_damages_pvt;
+                    }
+                })
+            })
+            return grnd_tot_dmg_pvt;
+        }
+    }
+
+    $scope.grndTotLosY1Pub = function() {
+        if(!angular.isUndefined($scope.dlSumNat)) {
+            var grnd_tot_los_y1_pub = 0;
+            angular.forEach($scope.dlSumNat.industry_services.Table_7, function(value, index) {
+                angular.forEach(value, function(value_in, key) {
+                    if(key == 'LosTotFrmSumNational') {
+                        grnd_tot_los_y1_pub = grnd_tot_los_y1_pub + value_in[0].los_year1_pub;
+                    }
+                })
+            })
+            return grnd_tot_los_y1_pub;
+        }
+    }
+
+    $scope.grndTotLosY1Pvt = function() {
+        if(!angular.isUndefined($scope.dlSumNat)) {
+            var grnd_tot_los_y1_pvt = 0;
+            angular.forEach($scope.dlSumNat.industry_services.Table_7, function(value, index) {
+                angular.forEach(value, function(value_in, key) {
+                    if(key == 'LosTotFrmSumNational') {
+                        grnd_tot_los_y1_pvt = grnd_tot_los_y1_pvt + value_in[0].los_year1_pvt;
+                    }
+                    else if(key == 'LosTotInfY1SumNational') {
+                        grnd_tot_los_y1_pvt = grnd_tot_los_y1_pvt + value_in[0].los_year1_pvt;
+                    }
+                })
+            })
+            return grnd_tot_los_y1_pvt;
+        }
+    }
+
+    $scope.makeTable = function() {
         if($scope.data != null){
             $scope.table = {};
             $scope.table.formal = {};
@@ -96,7 +146,7 @@ app.controller('dl_sum_natController', function($scope, $http, $parse, _) {
         }
    }
 
-    $scope.getSum3 = function(val1, val2, val3){
+    $scope.getSum3 = function(val1, val2, val3) {
         var final_val = 0;
         if(!isNaN(val1)) final_val += val1;
         if(!isNaN(val2)) final_val += val2;
@@ -104,7 +154,7 @@ app.controller('dl_sum_natController', function($scope, $http, $parse, _) {
         return final_val;
     }
 
-    $scope.getGrandTotCol = function(col){
+    $scope.getGrandTotCol = function(col) {
         var final_val = 0;
         console.log("$scope.provinceTotals ",$scope.provinceTotals);
         angular.forEach($scope.provinceTotals, function(value, key) {
@@ -113,7 +163,7 @@ app.controller('dl_sum_natController', function($scope, $http, $parse, _) {
         return final_val;
     }
 
-    $scope.getConvertedVal = function(val){
+    $scope.getConvertedVal = function(val) {
         if(!val)    return 0;
         if(isNaN(val)) return 0;
         return val;

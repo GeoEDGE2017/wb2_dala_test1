@@ -87,740 +87,143 @@
                         </td>
                     </tr>
                     <!--Prov 0-->
-                    <tr class="trsubc" height="19" ng-repeat="province in provinces" ng-if="$index == 0">
-                        <td height="19" width="212" ng-bind="province">
-                            Province 1
-                        </td>
-                        <td height="19" width="108">
-                            Public
-                        </td>
-                        <td height="19" width="110">
-                            Private
-                        </td>
-                        <td height="19" width="100">
-                            Public
-                        </td>
-                        <td height="19" width="108">
-                            Private
-                        </td>
-                        <td height="19" width="127">
-                            Public
-                        </td>
-                        <td height="19" width="143">
-                            Private
-                        </td>
-                        <td height="19" width="63">
-                            Public
-                        </td>
-                        <td height="19" width="63">
-                            Private
-                        </td>
-                    </tr>
-                    <tr height="19" ng-repeat="province in provinces" ng-if="$index == 0">
-                        <td class="tdpa" height="19" width="212">
-                            Formal Sector
-                        </td>
-                        <td class="right" height="19" width="108"
-                            ng-bind="provinceTotals[$index].y1DamPubBus = getConvertedVal(table.formal[province].year1Damage.Public)">
-                            -
-                        </td>
-                        <td class="right" width="114"
-                            ng-bind="provinceTotals[$index].y1DamPriBus = getConvertedVal(table.formal[province].year1Damage.Private)">
-                            -
-                        </td>
-                        <td class="right" width="114"
-                            ng-bind="provinceTotals[$index].y1LossPubBus = getConvertedVal(table.formal[province].year1Loss.Public)">
-                            -
-                        </td>
-                        <td class="right" width="118"
-                            ng-bind="provinceTotals[$index].y1LossPriBus = getConvertedVal(table.formal[province].year1Loss.Private)">
-                            -
-                        </td>
-                        <td class="right" width="85"
-                            ng-bind="provinceTotals[$index].y2LossPubBus = getConvertedVal(table.formal[province].year2Loss.Public)">
-                            -
-                        </td>
-                        <td class="right" width="85"
-                            ng-bind="provinceTotals[$index].y2LossPriBus = getConvertedVal(table.formal[province].year2Loss.Private)">
-                            -
-                        </td>
-                        <td class="right" width="85" ng-bind="provinceTotals[$index].PubTotBus = getSum3(table.formal[province].year1Damage.Public,
-                                                table.formal[province].year1Loss.Public,
-                                                table.formal[province].year2Loss.Public)">
-                            -
-                        </td>
-                        <td class="right" width="85" ng-bind="provinceTotals[$index].PriTotBus = getSum3(table.formal[province].year1Damage.Private,
-                                                table.formal[province].year1Loss.Private,
-                                                table.formal[province].year2Loss.Private)">
-                            -
-                        </td>
-                    </tr>
-                    <tr height="19" ng-repeat="province in provinces" ng-if="$index == 0">
-                        <td class="tdpa" height="19" width="212">
-                            Informal Sector
-                        </td>
-                        <td class="right" width="115">
-                            -
-                        </td>
-                        <td class="right" width="114"
-                            ng-bind="provinceTotals[$index].y1DamPriInf = getConvertedVal(table.informal[province].year1Damage.Private)">
-                            -
-                        </td>
-                        <td class="right" width="114">
-                            -
-                        </td>
-                        <td class="right" width="118"
-                            ng-bind="provinceTotals[$index].y1LossPriInf = getConvertedVal(table.informal[province].year1Loss.Private)">
-                            -
-                        </td>
-                        <td class="right" width="85">
-                            -
-                        </td>
-                        <td class="right" width="85" ng-bind="provinceTotals[$index].y2LossPriInf =
-                        getConvertedVal(table.informal[province].year2Loss.Private)">
-                            -
-                        </td>
-                        <td class="right" width="85">
-                            -
-                        </td>
-                        <td class="right" width="85" ng-bind="provinceTotals[$index].PriTotInf= getSum3(table.informal[province].year1Damage.Private,
-                                                table.informal[province].year1Loss.Private,
-                                                table.informal[province].year2Loss.Private)">
-                            -
-                        </td>
-                    </tr>
-                    <tr height="21" ng-repeat="province in provinces" ng-if="$index == 0">
-                        <td class="tdpa" height="21" width="212">
-                            Total
-                        </td>
-                        <td class="right" width="115" ng-bind="provinceTotals[$index].totalDamPub
-                        = (provinceTotals[$index].y1DamPubBus + provinceTotals[$index].y1DamPubInf)">
-                            -
-                        </td>
-                        <td class="right" width="114" ng-bind="provinceTotals[$index].totalDamPri
-                        = (provinceTotals[$index].y1DamPriBus + provinceTotals[$index].y1DamPriInf)">
-                            -
-                        </td>
-                        <td class="right" width="114" ng-bind="provinceTotals[$index].totalY1LossPub
-                        = (provinceTotals[$index].y1LossPubBus + provinceTotals[$index].y1LossPubInf)">
-                            -
-                        </td>
-                        <td class="right" width="118" ng-bind="provinceTotals[$index].totalY1LossPri
-                        = (provinceTotals[$index].y1LossPriBus + provinceTotals[$index].y1LossPriInf)">
-                            -
-                        </td>
-                        <td class="right" width="85" ng-bind="provinceTotals[$index].totalY2LossPub
-                        = (provinceTotals[$index].y2LossPubBus + provinceTotals[$index].y2LossPriInf)">
-                            -
-                        </td>
-                        <td class="right" width="85" ng-bind="provinceTotals[$index].totalY2LossPri
-                        = (provinceTotals[$index].y2LossPriBus + provinceTotals[$index].y2LossPriInf)">
-                            -
-                        </td>
-                        <td class="right" width="85" ng-bind="provinceTotals[$index].totalPub
-                        = (provinceTotals[$index].PubTotBus + provinceTotals[$index].PubTotInf)">
-                            -
-                        </td>
-                        <td class="right" width="85" ng-bind="provinceTotals[$index].totalPri
-                        = (provinceTotals[$index].PriTotBus + provinceTotals[$index].PriTotInf)">
-                            -
-                        </td>
-                    </tr>
-                    <!--Prov 1-->
-                    <tr class="trsubc" height="19" ng-repeat="province in provinces" ng-if="$index == 1">
-                        <td height="19" width="212" ng-bind="province">
-                            Province 1
-                        </td>
-                        <td height="19" width="108">
-                            Public
-                        </td>
-                        <td height="19" width="110">
-                            Private
-                        </td>
-                        <td height="19" width="100">
-                            Public
-                        </td>
-                        <td height="19" width="108">
-                            Private
-                        </td>
-                        <td height="19" width="127">
-                            Public
-                        </td>
-                        <td height="19" width="143">
-                            Private
-                        </td>
-                        <td height="19" width="63">
-                            Public
-                        </td>
-                        <td height="19" width="63">
-                            Private
-                        </td>
-                    </tr>
-                    <tr height="19" ng-repeat="province in provinces" ng-if="$index == 1">
-                        <td class="tdpa" height="19" width="212">
-                            Formal Sector
-                        </td>
-                        <td class="right" height="19" width="108"
-                            ng-bind="provinceTotals[$index].y1DamPubBus = getConvertedVal(table.formal[province].year1Damage.Public)">
-                            -
-                        </td>
-                        <td class="right" width="114"
-                            ng-bind="provinceTotals[$index].y1DamPriBus = getConvertedVal(table.formal[province].year1Damage.Private)">
-                            -
-                        </td>
-                        <td class="right" width="114"
-                            ng-bind="provinceTotals[$index].y1LossPubBus = getConvertedVal(table.formal[province].year1Loss.Public)">
-                            -
-                        </td>
-                        <td class="right" width="118"
-                            ng-bind="provinceTotals[$index].y1LossPriBus = getConvertedVal(table.formal[province].year1Loss.Private)">
-                            -
-                        </td>
-                        <td class="right" width="85"
-                            ng-bind="provinceTotals[$index].y2LossPubBus = getConvertedVal(table.formal[province].year2Loss.Public)">
-                            -
-                        </td>
-                        <td class="right" width="85"
-                            ng-bind="provinceTotals[$index].y2LossPriBus = getConvertedVal(table.formal[province].year2Loss.Private)">
-                            -
-                        </td>
-                        <td class="right" width="85" ng-bind="provinceTotals[$index].PubTotBus = getSum3(table.formal[province].year1Damage.Public,
-                                                table.formal[province].year1Loss.Public,
-                                                table.formal[province].year2Loss.Public)
-                                                ">
-                            -
-                        </td>
-                        <td class="right" width="85" ng-bind="provinceTotals[$index].PriTotBus = getSum3(table.formal[province].year1Damage.Private,
-                                                table.formal[province].year1Loss.Private,
-                                                table.formal[province].year2Loss.Private)
-                                                ">
-                            -
-                        </td>
-                    </tr>
-                    <tr height="19" ng-repeat="province in provinces" ng-if="$index == 1">
-                        <td class="tdpa" height="19" width="212">
-                            Informal Sector
-                        </td>
-                        <td class="right" width="115">
-                            -
-                        </td>
-                        <td class="right" width="114"
-                            ng-bind="provinceTotals[$index].y1DamPriInf = getConvertedVal(table.informal[province].year1Damage.Private)">
-                            -
-                        </td>
-                        <td class="right" width="114">
-                            -
-                        </td>
-                        <td class="right" width="118"
-                            ng-bind="provinceTotals[$index].y1LossPriInf = getConvertedVal(table.informal[province].year1Loss.Private)">
-                            -
-                        </td>
-                        <td class="right" width="85">
-                            -
-                        </td>
-                        <td class="right" width="85" ng-bind="provinceTotals[$index].y2LossPriInf =
-                        getConvertedVal(table.informal[province].year2Loss.Private)">
-                            -
-                        </td>
-                        <td class="right" width="85">
-                            -
-                        </td>
-                        <td class="right" width="85" ng-bind="provinceTotals[$index].PriTotInf= getSum3(table.informal[province].year1Damage.Private,
-                                                table.informal[province].year1Loss.Private,
-                                                table.informal[province].year2Loss.Private)
-                                                ">
-                            -
-                        </td>
-                    </tr>
-                    <tr height="21" ng-repeat="province in provinces" ng-if="$index == 1">
-                        <td class="tdpa" height="21" width="212">
-                            Total
-                        </td>
-                        <td class="right" width="115" ng-bind="provinceTotals[$index].totalDamPub
-                        = (provinceTotals[$index].y1DamPubBus + provinceTotals[$index].y1DamPubInf)">
-                            -
-                        </td>
-                        <td class="right" width="114" ng-bind="provinceTotals[$index].totalDamPri
-                        = (provinceTotals[$index].y1DamPriBus + provinceTotals[$index].y1DamPriInf)">
-                            -
-                        </td>
-                        <td class="right" width="114" ng-bind="provinceTotals[$index].totalY1LossPub
-                        = (provinceTotals[$index].y1LossPubBus + provinceTotals[$index].y1LossPubInf)">
-                            -
-                        </td>
-                        <td class="right" class="right" width="118" ng-bind="provinceTotals[$index].totalY1LossPri
-                        = (provinceTotals[$index].y1LossPriBus + provinceTotals[$index].y1LossPriInf)">
-                            -
-                        </td>
-                        <td class="right" width="85" ng-bind="provinceTotals[$index].totalY2LossPub
-                        = (provinceTotals[$index].y2LossPubBus + provinceTotals[$index].y2LossPriInf)">
-                            -
-                        </td>
-                        <td class="right" width="85" ng-bind="provinceTotals[$index].totalY2LossPri
-                        = (provinceTotals[$index].y2LossPriBus + provinceTotals[$index].y2LossPriInf)">
-                            -
-                        </td>
-                        <td class="right" width="85" ng-bind="provinceTotals[$index].totalPub
-                        = (provinceTotals[$index].PubTotBus + provinceTotals[$index].PubTotInf)">
-                            -
-                        </td>
-                        <td class="right" width="85" ng-bind="provinceTotals[$index].totalPri
-                        = (provinceTotals[$index].PriTotBus + provinceTotals[$index].PriTotInf)">
-                            -
-                        </td>
-                    </tr>
-
-                    <!--prov 2-->
-
-                    <tr class="trsubc" height="19" ng-repeat="province in provinces" ng-if="$index == 2">
-                        <td height="19" width="212" ng-bind="province">
-                            Province 1
-                        </td>
-                        <td height="19" width="108">
-                            Public
-                        </td>
-                        <td height="19" width="110">
-                            Private
-                        </td>
-                        <td height="19" width="100">
-                            Public
-                        </td>
-                        <td height="19" width="108">
-                            Private
-                        </td>
-                        <td height="19" width="127">
-                            Public
-                        </td>
-                        <td height="19" width="143">
-                            Private
-                        </td>
-                        <td height="19" width="63">
-                            Public
-                        </td>
-                        <td height="19" width="63">
-                            Private
-                        </td>
-                    </tr>
-                    <tr height="19" ng-repeat="province in provinces" ng-if="$index == 2">
-                        <td class="tdpa" height="19" width="212">
-                            Formal Sector
-                        </td>
-                        <td class="right" height="19" width="108"
-                            ng-bind="provinceTotals[$index].y1DamPubBus = getConvertedVal(table.formal[province].year1Damage.Public)">
-                            -
-                        </td>
-                        <td class="right" width="114"
-                            ng-bind="provinceTotals[$index].y1DamPriBus = getConvertedVal(table.formal[province].year1Damage.Private)">
-                            -
-                        </td>
-                        <td class="right" width="114"
-                            ng-bind="provinceTotals[$index].y1LossPubBus = getConvertedVal(table.formal[province].year1Loss.Public)">
-                            -
-                        </td>
-                        <td class="right" width="118"
-                            ng-bind="provinceTotals[$index].y1LossPriBus = getConvertedVal(table.formal[province].year1Loss.Private)">
-                            -
-                        </td>
-                        <td class="right" width="85"
-                            ng-bind="provinceTotals[$index].y2LossPubBus = getConvertedVal(table.formal[province].year2Loss.Public)">
-                            -
-                        </td>
-                        <td class="right" width="85"
-                            ng-bind="provinceTotals[$index].y2LossPriBus = getConvertedVal(table.formal[province].year2Loss.Private)">
-                            -
-                        </td>
-                        <td class="right" width="85" ng-bind="provinceTotals[$index].PubTotBus = getSum3(table.formal[province].year1Damage.Public,
-                                                table.formal[province].year1Loss.Public,
-                                                table.formal[province].year2Loss.Public)
-                                                ">
-                            -
-                        </td>
-                        <td class="right" width="85" ng-bind="provinceTotals[$index].PriTotBus = getSum3(table.formal[province].year1Damage.Private,
-                                                table.formal[province].year1Loss.Private,
-                                                table.formal[province].year2Loss.Private)
-                                                ">
-                            -
-                        </td>
-                    </tr>
-                    <tr height="19" ng-repeat="province in provinces" ng-if="$index == 2">
-                        <td class="tdpa" height="19" width="212">
-                            Informal Sector
-                        </td>
-                        <td class="right" width="115">
-                            -
-                        </td>
-                        <td class="right" width="114"
-                            ng-bind="provinceTotals[$index].y1DamPriInf = getConvertedVal(table.informal[province].year1Damage.Private)">
-                            -
-                        </td>
-                        <td class="right" width="114">
-                            -
-                        </td>
-                        <td class="right" width="118"
-                            ng-bind="provinceTotals[$index].y1LossPriInf = getConvertedVal(table.informal[province].year1Loss.Private)">
-                            -
-                        </td>
-                        <td class="right" width="85">
-                            -
-                        </td>
-                        <td class="right" width="85" ng-bind="provinceTotals[$index].y2LossPriInf =
-                        getConvertedVal(table.informal[province].year2Loss.Private)">
-                            -
-                        </td>
-                        <td class="right" width="85">
-                            -
-                        </td>
-                        <td class="right" width="85" ng-bind="provinceTotals[$index].PriTotInf= getSum3(table.informal[province].year1Damage.Private,
-                                                table.informal[province].year1Loss.Private,
-                                                table.informal[province].year2Loss.Private)
-                                                ">
-                            -
-                        </td>
-                    </tr>
-                    <tr height="21" ng-repeat="province in provinces" ng-if="$index == 2">
-                        <td class="tdpa" height="21" width="212">
-                            Total
-                        </td>
-                        <td class="right" width="115" ng-bind="provinceTotals[$index].totalDamPub
-                        = (provinceTotals[$index].y1DamPubBus + provinceTotals[$index].y1DamPubInf)">
-                            -
-                        </td>
-                        <td class="right" width="114" ng-bind="provinceTotals[$index].totalDamPri
-                        = (provinceTotals[$index].y1DamPriBus + provinceTotals[$index].y1DamPriInf)">
-                            -
-                        </td>
-                        <td class="right" width="114" ng-bind="provinceTotals[$index].totalY1LossPub
-                        = (provinceTotals[$index].y1LossPubBus + provinceTotals[$index].y1LossPubInf)">
-                            -
-                        </td>
-                        <td class="right" width="118" ng-bind="provinceTotals[$index].totalY1LossPri
-                        = (provinceTotals[$index].y1LossPriBus + provinceTotals[$index].y1LossPriInf)">
-                            -
-                        </td>
-                        <td class="right" width="85" ng-bind="provinceTotals[$index].totalY2LossPub
-                        = (provinceTotals[$index].y2LossPubBus + provinceTotals[$index].y2LossPriInf)">
-                            -
-                        </td>
-                        <td class="right" width="85" ng-bind="provinceTotals[$index].totalY2LossPri
-                        = (provinceTotals[$index].y2LossPriBus + provinceTotals[$index].y2LossPriInf)">
-                            -
-                        </td>
-                        <td class="right" width="85" ng-bind="provinceTotals[$index].totalPub
-                        = (provinceTotals[$index].PubTotBus + provinceTotals[$index].PubTotInf)">
-                            -
-                        </td>
-                        <td class="right" width="85" ng-bind="provinceTotals[$index].totalPri
-                        = (provinceTotals[$index].PriTotBus + provinceTotals[$index].PriTotInf)">
-                            -
-                        </td>
-                    </tr>
-
-                    <!--prov 3-->
-
-                    <tr class="trsubc" height="19" ng-repeat="province in provinces" ng-if="$index == 3">
-                        <td height="19" width="212" ng-bind="province">
-                            Province 1
-                        </td>
-                        <td height="19" width="108">
-                            Public
-                        </td>
-                        <td height="19" width="110">
-                            Private
-                        </td>
-                        <td height="19" width="100">
-                            Public
-                        </td>
-                        <td height="19" width="108">
-                            Private
-                        </td>
-                        <td height="19" width="127">
-                            Public
-                        </td>
-                        <td height="19" width="143">
-                            Private
-                        </td>
-                        <td height="19" width="63">
-                            Public
-                        </td>
-                        <td height="19" width="63">
-                            Private
-                        </td>
-                    </tr>
-                    <tr height="19" ng-repeat="province in provinces" ng-if="$index == 3">
-                        <td class="tdpa" height="19" width="212">
-                            Formal Sector
-                        </td>
-                        <td class="right" height="19" width="108"
-                            ng-bind="provinceTotals[$index].y1DamPubBus = getConvertedVal(table.formal[province].year1Damage.Public)">
-                            -
-                        </td>
-                        <td class="right" width="114"
-                            ng-bind="provinceTotals[$index].y1DamPriBus = getConvertedVal(table.formal[province].year1Damage.Private)">
-                            -
-                        </td>
-                        <td class="right" width="114"
-                            ng-bind="provinceTotals[$index].y1LossPubBus = getConvertedVal(table.formal[province].year1Loss.Public)">
-                            -
-                        </td>
-                        <td class="right" width="118"
-                            ng-bind="provinceTotals[$index].y1LossPriBus = getConvertedVal(table.formal[province].year1Loss.Private)">
-                            -
-                        </td>
-                        <td class="right" width="85"
-                            ng-bind="provinceTotals[$index].y2LossPubBus = getConvertedVal(table.formal[province].year2Loss.Public)">
-                            -
-                        </td>
-                        <td class="right" width="85"
-                            ng-bind="provinceTotals[$index].y2LossPriBus = getConvertedVal(table.formal[province].year2Loss.Private)">
-                            -
-                        </td>
-                        <td class="right" width="85" ng-bind="provinceTotals[$index].PubTotBus = getSum3(table.formal[province].year1Damage.Public,
-                                                table.formal[province].year1Loss.Public,
-                                                table.formal[province].year2Loss.Public)
-                                                ">
-                            -
-                        </td>
-                        <td class="right" width="85" ng-bind="provinceTotals[$index].PriTotBus = getSum3(table.formal[province].year1Damage.Private,
-                                                table.formal[province].year1Loss.Private,
-                                                table.formal[province].year2Loss.Private)
-                                                ">
-                            -
-                        </td>
-                    </tr>
-                    <tr height="19" ng-repeat="province in provinces" ng-if="$index == 3">
-                        <td class="tdpa" height="19" width="212">
-                            Informal Sector
-                        </td>
-                        <td class="right" width="115">
-                            -
-                        </td>
-                        <td class="right" width="114"
-                            ng-bind="provinceTotals[$index].y1DamPriInf = getConvertedVal(table.informal[province].year1Damage.Private)">
-                            -
-                        </td>
-                        <td class="right" width="114">
-                            -
-                        </td>
-                        <td class="right" width="118"
-                            ng-bind="provinceTotals[$index].y1LossPriInf = getConvertedVal(table.informal[province].year1Loss.Private)">
-                            -
-                        </td>
-                        <td class="right" width="85">
-                            -
-                        </td>
-                        <td class="right" width="85" ng-bind="provinceTotals[$index].y2LossPriInf =
-                        getConvertedVal(table.informal[province].year2Loss.Private)">
-                            -
-                        </td>
-                        <td class="right" width="85">
-                            -
-                        </td>
-                        <td class="right" width="85" ng-bind="provinceTotals[$index].PriTotInf= getSum3(table.informal[province].year1Damage.Private,
-                                                table.informal[province].year1Loss.Private,
-                                                table.informal[province].year2Loss.Private)
-                                                ">
-                            -
-                        </td>
-                    </tr>
-                    <tr height="21" ng-repeat="province in provinces" ng-if="$index == 3">
-                        <td class="tdpa" height="21" width="212">
-                            Total
-                        </td>
-                        <td class="right" width="115" ng-bind="provinceTotals[$index].totalDamPub
-                        = (provinceTotals[$index].y1DamPubBus + provinceTotals[$index].y1DamPubInf)">
-                            -
-                        </td>
-                        <td class="right" width="114" ng-bind="provinceTotals[$index].totalDamPri
-                        = (provinceTotals[$index].y1DamPriBus + provinceTotals[$index].y1DamPriInf)">
-                            -
-                        </td>
-                        <td class="right" width="114" ng-bind="provinceTotals[$index].totalY1LossPub
-                        = (provinceTotals[$index].y1LossPubBus + provinceTotals[$index].y1LossPubInf)">
-                            -
-                        </td>
-                        <td class="right" width="118" ng-bind="provinceTotals[$index].totalY1LossPri
-                        = (provinceTotals[$index].y1LossPriBus + provinceTotals[$index].y1LossPriInf)">
-                            -
-                        </td>
-                        <td class="right" width="85" ng-bind="provinceTotals[$index].totalY2LossPub
-                        = (provinceTotals[$index].y2LossPubBus + provinceTotals[$index].y2LossPriInf)">
-                            -
-                        </td>
-                        <td class="right" width="85" ng-bind="provinceTotals[$index].totalY2LossPri
-                        = (provinceTotals[$index].y2LossPriBus + provinceTotals[$index].y2LossPriInf)">
-                            -
-                        </td>
-                        <td class="right" width="85" ng-bind="provinceTotals[$index].totalPub
-                        = (provinceTotals[$index].PubTotBus + provinceTotals[$index].PubTotInf)">
-                            -
-                        </td>
-                        <td class="right" width="85" ng-bind="provinceTotals[$index].totalPri
-                        = (provinceTotals[$index].PriTotBus + provinceTotals[$index].PriTotInf)">
-                            -
-                        </td>
-                    </tr>
-
-                    <!--prov 4-->
-
-                    <tr class="trsubc" height="19" ng-repeat="province in provinces" ng-if="$index == 4">
-                        <td height="19" width="212" ng-bind="province">
-                            Province 1
-                        </td>
-                        <td height="19" width="108">
-                            Public
-                        </td>
-                        <td height="19" width="110">
-                            Private
-                        </td>
-                        <td height="19" width="100">
-                            Public
-                        </td>
-                        <td height="19" width="108">
-                            Private
-                        </td>
-                        <td height="19" width="127">
-                            Public
-                        </td>
-                        <td height="19" width="143">
-                            Private
-                        </td>
-                        <td height="19" width="63">
-                            Public
-                        </td>
-                        <td height="19" width="63">
-                            Private
-                        </td>
-                    </tr>
-                    <tr height="19" ng-repeat="province in provinces" ng-if="$index == 4">
-                        <td class="tdpa" height="19" width="212">
-                            Formal Sector
-                        </td>
-                        <td class="right" height="19" width="108"
-                            ng-bind="provinceTotals[$index].y1DamPubBus = getConvertedVal(table.formal[province].year1Damage.Public)">
-                            -
-                        </td>
-                        <td class="right" width="114"
-                            ng-bind="provinceTotals[$index].y1DamPriBus = getConvertedVal(table.formal[province].year1Damage.Private)">
-                            -
-                        </td>
-                        <td class="right" width="114"
-                            ng-bind="provinceTotals[$index].y1LossPubBus = getConvertedVal(table.formal[province].year1Loss.Public)">
-                            -
-                        </td>
-                        <td class="right" width="118"
-                            ng-bind="provinceTotals[$index].y1LossPriBus = getConvertedVal(table.formal[province].year1Loss.Private)">
-                            -
-                        </td>
-                        <td class="right" width="85"
-                            ng-bind="provinceTotals[$index].y2LossPubBus = getConvertedVal(table.formal[province].year2Loss.Public)">
-                            -
-                        </td>
-                        <td class="right" width="85"
-                            ng-bind="provinceTotals[$index].y2LossPriBus = getConvertedVal(table.formal[province].year2Loss.Private)">
-                            -
-                        </td>
-                        <td class="right" width="85" ng-bind="provinceTotals[$index].PubTotBus = getSum3(table.formal[province].year1Damage.Public,
-                                                table.formal[province].year1Loss.Public,
-                                                table.formal[province].year2Loss.Public)
-                                                ">
-                            -
-                        </td>
-                        <td class="right" width="85" ng-bind="provinceTotals[$index].PriTotBus = getSum3(table.formal[province].year1Damage.Private,
-                                                table.formal[province].year1Loss.Private,
-                                                table.formal[province].year2Loss.Private)
-                                                ">
-                            -
-                        </td>
-                    </tr>
-                    <tr height="19" ng-repeat="province in provinces" ng-if="$index == 4">
-                        <td class="tdpa" height="19" width="212">
-                            Informal Sector
-                        </td>
-                        <td class="right" width="115">
-                            -
-                        </td>
-                        <td class="right" width="114"
-                            ng-bind="provinceTotals[$index].y1DamPriInf = getConvertedVal(table.informal[province].year1Damage.Private)">
-                            -
-                        </td>
-                        <td class="right" width="114">
-                            -
-                        </td>
-                        <td class="right" width="118"
-                            ng-bind="provinceTotals[$index].y1LossPriInf = getConvertedVal(table.informal[province].year1Loss.Private)">
-                            -
-                        </td>
-                        <td class="right" width="85">
-                            -
-                        </td>
-                        <td class="right" width="85" ng-bind="provinceTotals[$index].y2LossPriInf =
-                        getConvertedVal(table.informal[province].year2Loss.Private)">
-                            -
-                        </td>
-                        <td class="right" width="85">
-                            -
-                        </td>
-                        <td class="right" width="85" ng-bind="provinceTotals[$index].PriTotInf= getSum3(table.informal[province].year1Damage.Private,
-                                                table.informal[province].year1Loss.Private,
-                                                table.informal[province].year2Loss.Private)
-                                                ">
-                            -
-                        </td>
-                    </tr>
-                    <tr height="21" ng-repeat="province in provinces" ng-if="$index == 4">
-                        <td class="tdpa" height="21" width="212">
-                            Total
-                        </td>
-                        <td class="right" width="115" ng-bind="provinceTotals[$index].totalDamPub
-                        = (provinceTotals[$index].y1DamPubBus + provinceTotals[$index].y1DamPubInf)">
-                            -
-                        </td>
-                        <td class="right" width="114" ng-bind="provinceTotals[$index].totalDamPri
-                        = (provinceTotals[$index].y1DamPriBus + provinceTotals[$index].y1DamPriInf)">
-                            -
-                        </td>
-                        <td class="right" width="114" ng-bind="provinceTotals[$index].totalY1LossPub
-                        = (provinceTotals[$index].y1LossPubBus + provinceTotals[$index].y1LossPubInf)">
-                            -
-                        </td>
-                        <td class="right" width="118" ng-bind="provinceTotals[$index].totalY1LossPri
-                        = (provinceTotals[$index].y1LossPriBus + provinceTotals[$index].y1LossPriInf)">
-                            -
-                        </td>
-                        <td class="right" width="85" ng-bind="provinceTotals[$index].totalY2LossPub
-                        = (provinceTotals[$index].y2LossPubBus + provinceTotals[$index].y2LossPriInf)">
-                            -
-                        </td>
-                        <td class="right" width="85" ng-bind="provinceTotals[$index].totalY2LossPri
-                        = (provinceTotals[$index].y2LossPriBus + provinceTotals[$index].y2LossPriInf)">
-                            -
-                        </td>
-                        <td class="right" width="85" ng-bind="provinceTotals[$index].totalPub
-                        = (provinceTotals[$index].PubTotBus + provinceTotals[$index].PubTotInf)">
-                            -
-                        </td>
-                        <td class="right" width="85" ng-bind="provinceTotals[$index].totalPri
-                        = (provinceTotals[$index].PriTotBus + provinceTotals[$index].PriTotInf)">
-                            -
-                        </td>
-                    </tr>
-
-
-                    <tr height="20" ng-if="data_available">
+                    <tbody ng-repeat="(key, value) in dlSumNat.industry_services.Table_7">
+                        <tr class="trsubc" height="19">
+                            <td height="19" width="212" ng-bind="key">
+                            </td>
+                            <td height="19" width="108">
+                                Public
+                            </td>
+                            <td height="19" width="110">
+                                Private
+                            </td>
+                            <td height="19" width="100">
+                                Public
+                            </td>
+                            <td height="19" width="108">
+                                Private
+                            </td>
+                            <td height="19" width="127">
+                                Public
+                            </td>
+                            <td height="19" width="143">
+                                Private
+                            </td>
+                            <td height="19" width="63">
+                                Public
+                            </td>
+                            <td height="19" width="63">
+                                Private
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" height="19" width="212">
+                                Formal Sector
+                            </td>
+                            <td class="right" height="19" width="108"
+                                ng-bind="dlSumNat.industry_services.Table_7[key].DmgTotFrmYear1SumNational[0].tot_damages_pub">
+                            </td>
+                            <td class="right" width="114"
+                                ng-bind="dlSumNat.industry_services.Table_7[key].DmgTotFrmYear1SumNational[0].tot_damages_pvt">
+                            </td>
+                            <td class="right" width="114"
+                                ng-bind="dlSumNat.industry_services.Table_7[key].LosTotFrmSumNational[0].los_year1_pub">
+                            </td>
+                            <td class="right" width="118"
+                                ng-bind="dlSumNat.industry_services.Table_7[key].LosTotFrmSumNational[0].los_year1_pvt">
+                            </td>
+                            <td class="right" width="85"
+                                ng-bind="dlSumNat.industry_services.Table_7[key].LosTotFrmSumNational[0].los_year2_pub">
+                            </td>
+                            <td class="right" width="85"
+                                ng-bind="dlSumNat.industry_services.Table_7[key].LosTotFrmSumNational[0].los_year2_pvt">
+                            </td>
+                            <td class="right" width="85" ng-bind="(dlSumNat.industry_services.Table_7[key].DmgTotFrmYear1SumNational[0].tot_damages_pub) +
+                                (dlSumNat.industry_services.Table_7[key].LosTotFrmSumNational[0].los_year1_pub) +
+                                (dlSumNat.industry_services.Table_7[key].LosTotFrmSumNational[0].los_year2_pub)">
+                            </td>
+                            <td class="right" width="85" ng-bind="(dlSumNat.industry_services.Table_7[key].DmgTotFrmYear1SumNational[0].tot_damages_pvt) +
+                                (dlSumNat.industry_services.Table_7[key].LosTotFrmSumNational[0].los_year1_pvt) +
+                                (dlSumNat.industry_services.Table_7[key].LosTotFrmSumNational[0].los_year2_pvt)">
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" height="19" width="212">
+                                Informal Sector
+                            </td>
+                            <td class="tdpa" width="115">
+                            </td>
+                            <td class="right" width="114"
+                                ng-bind="dlSumNat.industry_services.Table_7[key].DmgTotInfY1SumNational[0].tot_damages_pvt">
+                            </td>
+                            <td class="tdpa" width="114">
+                            </td>
+                            <td class="right" width="118"
+                                ng-bind="dlSumNat.industry_services.Table_7[key].LosTotInfY1SumNational[0].tot_los_year1_pvt">
+                            </td>
+                            <td class="tdpa" width="85">
+                            </td>
+                            <td class="right" width="85"
+                                ng-bind="dlSumNat.industry_services.Table_7[key].LosTotInfY2SumNational[0].tot_los_year2_pvt">
+                            </td>
+                            <td class="tdpa" width="85">
+                            </td>
+                            <td class="right" width="85"
+                                ng-bind="(dlSumNat.industry_services.Table_7[key].DmgTotInfY1SumNational[0].tot_damages_pvt) +
+                                (dlSumNat.industry_services.Table_7[key].LosTotInfY1SumNational[0].tot_los_year1_pvt) +
+                                (dlSumNat.industry_services.Table_7[key].LosTotInfY2SumNational[0].tot_los_year2_pvt)">
+                            </td>
+                        </tr>
+                        <tr height="21">
+                            <td class="tdpa" height="21" width="212">
+                                Total
+                            </td>
+                            <td class="right" width="115"
+                                ng-bind="(dlSumNat.industry_services.Table_7[key].DmgTotFrmYear1SumNational[0].tot_damages_pub)">
+                            </td>
+                            <td class="right" width="114"
+                                ng-bind="(dlSumNat.industry_services.Table_7[key].DmgTotFrmYear1SumNational[0].tot_damages_pvt) +
+                                (dlSumNat.industry_services.Table_7[key].DmgTotInfY1SumNational[0].tot_damages_pvt)">
+                            </td>
+                            <td class="right" width="114"
+                                ng-bind="(dlSumNat.industry_services.Table_7[key].LosTotFrmSumNational[0].los_year1_pub)">
+                            </td>
+                            <td class="right" width="118"
+                                ng-bind="(dlSumNat.industry_services.Table_7[key].LosTotFrmSumNational[0].los_year1_pvt) +
+                                (dlSumNat.industry_services.Table_7[key].LosTotInfY1SumNational[0].tot_los_year1_pvt)">
+                            </td>
+                            <td class="right" width="85"
+                                ng-bind="(dlSumNat.industry_services.Table_7[key].LosTotFrmSumNational[0].los_year2_pub)">
+                            </td>
+                            <td class="right" width="85"
+                                ng-bind="(dlSumNat.industry_services.Table_7[key].LosTotFrmSumNational[0].los_year2_pvt) +
+                                (dlSumNat.industry_services.Table_7[key].LosTotInfY2SumNational[0].tot_los_year2_pvt)">
+                            </td>
+                            <td class="right" width="85"
+                                ng-bind="(dlSumNat.industry_services.Table_7[key].DmgTotFrmYear1SumNational[0].tot_damages_pub) +
+                                (dlSumNat.industry_services.Table_7[key].LosTotFrmSumNational[0].los_year1_pub) +
+                                (dlSumNat.industry_services.Table_7[key].LosTotFrmSumNational[0].los_year2_pub)">
+                            </td>
+                            <td class="right" width="85" ng-bind="(dlSumNat.industry_services.Table_7[key].DmgTotFrmYear1SumNational[0].tot_damages_pvt) +
+                                (dlSumNat.industry_services.Table_7[key].LosTotFrmSumNational[0].los_year1_pvt) +
+                                (dlSumNat.industry_services.Table_7[key].LosTotFrmSumNational[0].los_year2_pvt) +
+                                (dlSumNat.industry_services.Table_7[key].DmgTotInfY1SumNational[0].tot_damages_pvt) +
+                                (dlSumNat.industry_services.Table_7[key].LosTotInfY1SumNational[0].tot_los_year1_pvt) +
+                                (dlSumNat.industry_services.Table_7[key].LosTotInfY2SumNational[0].tot_los_year2_pvt)">
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tr height="20">
                         <td class="tdpa" height="20" width="263">
                             GRAND TOTAL
                         </td>
-                        <td class="right" width="115" ng-bind="getGrandTotCol('totalDamPub')">
-                            -
+                        <td class="right" width="115" ng-bind="grndTotDmgY1Pub()">
                         </td>
-                        <td class="right" width="114" ng-bind="getGrandTotCol('totalDamPri')">
-                            -
+                        <td class="right" width="114" ng-bind="grndTotDmgY1Pvt()">
                         </td>
-                        <td class="right" width="114" ng-bind="getGrandTotCol('totalY1LossPub')">
-                            -
+                        <td class="right" width="114" ng-bind="grndTotLosY1Pub()">
                         </td>
-                        <td class="right" width="118" ng-bind="getGrandTotCol('totalY1LossPri')">
-                            -
+                        <td class="right" width="118" ng-bind="grndTotLosY1Pvt()">
                         </td>
                         <td class="right" width="85" ng-bind="getGrandTotCol('totalY2LossPub')">
                             -

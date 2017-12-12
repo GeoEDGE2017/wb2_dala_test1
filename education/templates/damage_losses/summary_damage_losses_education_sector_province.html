@@ -10,6 +10,11 @@
 <style>
     .right {text-align:right;}
 </style>
+<style type="text/css">
+td {
+   width:7em!important;
+}
+</style>
 <main class="main" ng-app="dlEduProvinceApp" ng-controller="DlEduProvinceController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
@@ -48,7 +53,7 @@
                 <table class="table table-bordered">
                     <colgroup>
                         <col width="296"/>
-                        <col width="91" span="7"/>
+                        <col width="91" />
                     </colgroup>
                     <tbody>
                     <tr style="background:#fff;border:1px solid #fff;text-align:center;">
@@ -134,6 +139,7 @@
                         </td>
                     </tr>
                     </tbody>
+
                         <tbody ng-repeat="(key, value) in dlEduProvince.education.Table_6" id="boxscroll1" style="max-height:800px;overflow:auto;">
                             <tr height="20" class="trheadc">
                                 <td ng-bind="key" width="202" height="20">
@@ -359,9 +365,13 @@
             </div>
             <div class="tab-pane fade" id="step2">
                 <table class="table table-bordered">
+                 <colgroup>
+                        <col width="296"/>
+                        <col width="91" />
+                    </colgroup>
                     <tbody>
                         <tr class="trheadc1" height="34">
-                            <td rowspan="2" width="296" style="width:29%" height="51">
+                            <td rowspan="2" width="296"  height="51">
                                 Facilities and Assets
                             </td>
                             <td rowspan="2" width="91">
@@ -395,6 +405,10 @@
                             </td>
                         </tr>
                         <table ng-repeat="(key, value) in dlEduProvince.education.Table_6" class="table table-bordered">
+                         <colgroup>
+                        <col width="296"/>
+                        <col width="91" />
+                    </colgroup>
                             <tbody>
                                 <tr height="20" class="trheadc">
                                     <td ng-bind="key" width="202" height="20">

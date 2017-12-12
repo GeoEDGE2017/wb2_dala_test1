@@ -8,6 +8,11 @@
     
   });
 </script>
+<style type="text/css">
+td {
+   width:9em!important;
+}
+</style>
 <!-- Main content -->
 <main class="main" ng-app="bsInfoFisheriesApp" ng-controller="bsInfoFisheriesController">
     <!-- Breadcrumb -->
@@ -43,21 +48,7 @@
             </ul>
             <div id="myTabContent" class="tab-content" ng-form name="form_info_fisheries">
                 <div class="tab-pane active" id="step1">
-                 <td style="width:100px;">
-                     <span ng-if="!check_search">
-                         <button ng-if="!is_search" class="btn btn-info" disabled>
-                             <span class="fa fa-search"></span>
-                         </button>
-					</span>
-                     <span ng-if="check_search">
-                         <button ng-click="searchBsData(form_info_fisheries)" ng-if="!is_search" class="btn btn-info">
-                             <span class="fa fa-search"></span>
-                         </button>
-					</span>
-					<button ng-click="clear()" ng-if="is_search" class="btn  btn-warning">
-                        Cancel Search
-                    </button>
-				</td>
+                
                     <table class="table table-bordered">
                         <colgroup>
                             <col width="125"/>
@@ -103,10 +94,25 @@
                                 <td width="111" height="19" style="padding-left:5px;">
                                     Year/Month:
                                 </td>
-                                <td colspan="4" width="356" height="19">
+                                <td colspan="3" width="356" height="19">
                                     <input name="baselineDate" style="font-weight:normal;" type="text" placeholder="mm/yy"
                                            id="datepicker" ng-model="bs_date" ng-change="changeDis();" class="form-control input-md" required>
                                 </td>
+                                 <td style="width:100px;">
+                     <span ng-if="!check_search">
+                         <button ng-if="!is_search" class="btn btn-info" disabled>
+                             <span class="fa fa-search"></span>
+                         </button>
+                    </span>
+                     <span ng-if="check_search">
+                         <button ng-click="searchBsData(form_info_fisheries)" ng-if="!is_search" class="btn btn-info">
+                             <span class="fa fa-search"></span>
+                         </button>
+                    </span>
+                    <button ng-click="clear()" ng-if="is_search" class="btn  btn-warning">
+                       <span class="fa fa-times" aria-hidden="true"></span>
+                    </button>
+                </td>
                                 <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
                             </tr>
                             <tr class="trheadc1" class="trheadc" height="19">
@@ -288,7 +294,7 @@
                             </tr>
                             <tr class="tdpa" height="19"
                                 ng-repeat="bifAstFequipment in bsInfoFisheries.agri_fisheries.Table_2.BifAstFequipment">
-                                <td width="125" height="19" ng-bind="bifAstFequipment.assets"
+                                <td width="125" height="19" class="tdpa" ng-bind="bifAstFequipment.assets"
                                     ng-bind="bsAstAirAircrafts.assets" ng-if="$index < 5">
                                 </td>
                                 <td width="98" ng-if="$index > 4">

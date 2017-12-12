@@ -30,17 +30,11 @@ $(document).ready(function() {
 		<div class="col-sm-12" style="padding:0;" ng-form name="form_bs_edu_untcost_dst">
 			<div class="card">
 				<div class="card-block">
-					<td style="width:100px;"> <span ng-if="!check_search">
-									<button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
-						</span> <span ng-if="check_search">
-									<button ng-click="searchBsData(form_bs_edu_untcost_dst)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
-						</span>
-						<button ng-click="clear()" ng-if="is_search" class="btn btn-warning">Cancel Search</button>
-					</td>
+					
 					<table class="table table-bordered">
 						<colgroup>
 							<col width="280" />
-							<col width="136" span="8" /> </colgroup>
+							<col width="136"/> </colgroup>
 						<tbody>
 							<tr style="background:#fff;border:1px solid #fff;text-align:center;">
 								<td style="background:#fff;border:1px solid #fff;text-align:center;" border="0"> </td>
@@ -61,7 +55,24 @@ $(document).ready(function() {
 								</td>
 								<td colspan="2" style="padding-left:5px;"> Year/Month </td>
 								<td colspan="3" style="">
-									<input name="textinput" type="text" ng-change="changeDis();" placeholder="mm/yy" id="datepicker" ng-model="baselineDate" class="form-control input-md" required> </td> <span ng-bind="user_id={{user.id}}" style="display:none;"></span> </tr>
+									<input name="textinput" type="text" ng-change="changeDis();" placeholder="mm/yy" id="datepicker" ng-model="baselineDate" class="form-control input-md" required> </td> 
+									<td style="width:100px;"> <span ng-if="!check_search">
+									<button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
+						</span> <span ng-if="check_search">
+									<button ng-click="searchBsData(form_bs_edu_untcost_dst)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
+						</span>
+						<button ng-click="clear()" ng-if="is_search" class="btn btn-warning"> <span class="fa fa-times" aria-hidden="true"></span></button>
+					</td>
+									<span ng-bind="user_id={{user.id}}" style="display:none;"></span> </tr>
+
+									</tbody>
+									</table>
+
+								<table class="table table-bordered">
+						<colgroup>
+							<col width="280" />
+							<col width="136" /> </colgroup>
+						<tbody>	
 							<tr class="trheadc1" height="17">
 								<td rowspan="2" width="320" height="65" style="width:20%;"> Particulars </td>
 								<td colspan="8" width="1088"> Values (in LKR) </td>

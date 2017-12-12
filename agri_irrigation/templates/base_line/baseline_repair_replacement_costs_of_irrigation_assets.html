@@ -8,6 +8,11 @@
     
   });
 </script>
+<style type="text/css">
+td {
+   width:15em!important;
+}
+</style>
 <!-- Main content -->
 <main class="main" ng-app="bsRparplCosAsstsApp" ng-controller="bsRparplCosAsstsController">
     <!-- Breadcrumb -->
@@ -43,21 +48,7 @@
             </ul>
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane active" id="step1">
-                <td style="width:100px;">
-                    <span ng-if="!check_search">
-                        <button ng-if="!is_search" class="btn btn-info" disabled>
-                            <span class="fa fa-search"></span>
-                        </button>
-                    </span>
-                    <span ng-if="check_search">
-                        <button ng-click="searchBsData(form_bs_rparpl_cos_assts)" ng-if="!is_search" class="btn btn-info">
-                            <span class="fa fa-search"></span>
-                        </button>
-					</span>
-					<button ng-click="clear()" ng-if="is_search" class="btn  btn-warning">
-                        Cancel Search
-                    </button>
-				</td>
+               
                     <table class="table table-bordered">
                         <colgroup>
                             <col width="258"/>
@@ -106,8 +97,35 @@
                                        ng-change="changeDis()" ng-model="bs_date" class="form-control input-md"
                                        required>
                             </td>
+                             <td style="width:100px;">
+                    <span ng-if="!check_search">
+                        <button ng-if="!is_search" class="btn btn-info" disabled>
+                            <span class="fa fa-search"></span>
+                        </button>
+                    </span>
+                    <span ng-if="check_search">
+                        <button ng-click="searchBsData(form_bs_rparpl_cos_assts)" ng-if="!is_search" class="btn btn-info">
+                            <span class="fa fa-search"></span>
+                        </button>
+                    </span>
+                    <button ng-click="clear()" ng-if="is_search" class="btn  btn-warning">
+                       <span class="fa fa-times" aria-hidden="true"></span>
+                    </button>
+                </td>
                             <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
                         </tr>
+                        </tbody>
+                        </table>
+                         <table class="table table-bordered">
+                        <colgroup>
+                            <col width="258"/>
+                            <col width="118"/>
+                            <col width="116"/>
+                            <col width="128"/>
+                            <col width="183"/>
+                        </colgroup>
+                        <tbody>
+
                         <tr class="trhead1" height="19">
                             <td width="258" height="19">
                                 Division
@@ -159,6 +177,13 @@
                     <div id="boxscroll" style="height:400px;overflow:auto;">
                         <table class="table table-bordered">
                             <tbody>
+                             <colgroup>
+                            <col width="258"/>
+                            <col width="118"/>
+                            <col width="116"/>
+                            <col width="128"/>
+                            <col width="183"/>
+                        </colgroup>
                             <tr class="trheadc" height="34">
                                 <td width="258" height="34" style="width:24.5%;">
                                     Major Tanks
@@ -507,7 +532,7 @@
                             Submit
                         </button>
                     </div>
-                    <br><br>
+                    <br><br><br>
                 </div>
             </div>
         </div>

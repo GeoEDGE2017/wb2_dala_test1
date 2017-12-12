@@ -53,12 +53,14 @@ app.controller("DlAgriLivestocknNatController", ['$scope','$http',function ($sco
         if(!angular.isUndefined($scope.dlAgriLivestockSumNat)) {
             var totDmgPub = 0;
             angular.forEach($scope.dlAgriLivestockSumNat.agri_livestock.Table_6, function(value, index) {
-            angular.forEach(value, function(value_in, key) {
+                angular.forEach(value, function(value_in, key) {
                     if(key == 'DlpNdaPubNational') {
-                          totDmgPub = totDmgPub + value_in[0].damages;
+                        angular.forEach(value_in, function(v_in, key) {
+                            totDmgPub = totDmgPub + v_in.damages;
+                        })
                     }
-                    })
                 })
+            })
             return totDmgPub;
         }
     }
@@ -67,12 +69,14 @@ app.controller("DlAgriLivestocknNatController", ['$scope','$http',function ($sco
         if(!angular.isUndefined($scope.dlAgriLivestockSumNat)) {
             var totDmgPvt = 0;
             angular.forEach($scope.dlAgriLivestockSumNat.agri_livestock.Table_6, function(value, index) {
-            angular.forEach(value, function(value_in, key) {
+                angular.forEach(value, function(value_in, key) {
                     if(key == 'DlpNdaPvtNational') {
-                          totDmgPvt = totDmgPvt + value_in[0].damages;
+                        angular.forEach(value_in, function(v_in, key) {
+                            totDmgPvt = totDmgPvt + v_in.damages;
+                        })
                     }
-                    })
                 })
+            })
             return totDmgPvt;
         }
     }
@@ -81,12 +85,14 @@ app.controller("DlAgriLivestocknNatController", ['$scope','$http',function ($sco
         if(!angular.isUndefined($scope.dlAgriLivestockSumNat)) {
             var totLosPubY1= 0;
             angular.forEach($scope.dlAgriLivestockSumNat.agri_livestock.Table_6, function(value, index) {
-            angular.forEach(value, function(value_in, key) {
+                angular.forEach(value, function(value_in, key) {
                     if(key == 'DlpLosPubNational') {
-                          totLosPubY1 = totLosPubY1 + value_in[0].los_year_1;
+                        angular.forEach(value_in, function(v_in, key) {
+                            totLosPubY1 = totLosPubY1 + v_in.los_year_1;
+                        })
                     }
-                    })
                 })
+            })
             return totLosPubY1;
         }
     }
@@ -95,12 +101,14 @@ app.controller("DlAgriLivestocknNatController", ['$scope','$http',function ($sco
         if(!angular.isUndefined($scope.dlAgriLivestockSumNat)) {
             var totLosPvtY1= 0;
             angular.forEach($scope.dlAgriLivestockSumNat.agri_livestock.Table_6, function(value, index) {
-            angular.forEach(value, function(value_in, key) {
+                angular.forEach(value, function(value_in, key) {
                     if(key == 'DlpLosPvtNational') {
-                          totLosPvtY1 = totLosPvtY1 + value_in[0].los_year_1;
+                        angular.forEach(value_in, function(v_in, key) {
+                            totLosPvtY1 = totLosPvtY1 + v_in.los_year_1;
+                        })
                     }
-                    })
                 })
+            })
             return totLosPvtY1;
         }
     }
@@ -109,12 +117,14 @@ app.controller("DlAgriLivestocknNatController", ['$scope','$http',function ($sco
         if(!angular.isUndefined($scope.dlAgriLivestockSumNat)) {
             var totLosPubY2= 0;
             angular.forEach($scope.dlAgriLivestockSumNat.agri_livestock.Table_6, function(value, index) {
-            angular.forEach(value, function(value_in, key) {
+                angular.forEach(value, function(value_in, key) {
                     if(key == 'DlpLosPubNational') {
-                          totLosPubY2 = totLosPubY2 + value_in[0].los_year_2;
+                        angular.forEach(value_in, function(v_in, key) {
+                            totLosPubY2 = totLosPubY2 + v_in.los_year_2;
+                        })
                     }
-                    })
                 })
+            })
             return totLosPubY2;
         }
     }
@@ -123,14 +133,15 @@ app.controller("DlAgriLivestocknNatController", ['$scope','$http',function ($sco
         if(!angular.isUndefined($scope.dlAgriLivestockSumNat)) {
             var totLosPvtY2= 0;
             angular.forEach($scope.dlAgriLivestockSumNat.agri_livestock.Table_6, function(value, index) {
-            angular.forEach(value, function(value_in, key) {
+                angular.forEach(value, function(value_in, key) {
                     if(key == 'DlpLosPvtNational') {
-                          totLosPvtY2 = totLosPvtY2 + value_in[0].los_year_2;
+                        angular.forEach(value_in, function(v_in, key) {
+                            totLosPvtY2 = totLosPvtY2 + v_in.los_year_2;
+                        })
                     }
-                    })
                 })
+            })
             return totLosPvtY2;
         }
     }
-
  }])

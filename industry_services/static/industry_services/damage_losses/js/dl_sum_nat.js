@@ -9,6 +9,7 @@ app.controller('dl_sum_natController', function($scope, $http, $parse, _) {
     $scope.data_available;
     $scope.isDataAvailable = false;
     $scope.user_id;
+    $scope.dlSumNat;
 
     $scope.fetchData = function() {
         if($scope.incident){
@@ -16,24 +17,26 @@ app.controller('dl_sum_natController', function($scope, $http, $parse, _) {
                 method: "POST",
                 url: '/dl_fetch_district_disagtn',
                 data: angular.toJson({
-                    'table_name': 'Table_9',
+                    'table_name': 'Table_7',
                     'sector': 'industry_services',
                     'com_data': {
                         'incident': $scope.incident,
                     },
                 }),
             }).success(function(data) {
-                $scope.data = data.industry_services.Table_9;
-                $scope.provinces = Object.keys($scope.data);
-                console.log('load ', Object.keys($scope.data));
-                console.log("data", $scope.data);
-                $scope.data_available = ($scope.provinces.length != 0)
-                if(!$scope.data_available){
-                    console.log("no data available for your selection");
-                    $scope.isDataAvailable = false;
-                }
-                $scope.isDataAvailable = true;;
-                $scope.makeTable();
+                $scope.dlSumNat = data;
+                console.log($scope.dlSumNat);
+
+//                $scope.provinces = Object.keys($scope.data);
+//                console.log('load ', Object.keys($scope.data));
+//                console.log("data", $scope.data);
+//                $scope.data_available = ($scope.provinces.length != 0)
+//                if(!$scope.data_available){
+//                    console.log("no data available for your selection");
+//                    $scope.isDataAvailable = false;
+//                }
+//                $scope.isDataAvailable = true;;
+//                $scope.makeTable();
 
             }).error(function(err){
                 $scope.data = null;

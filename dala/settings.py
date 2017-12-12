@@ -2733,7 +2733,6 @@ TABLE_PROPERTY_MAPPER = {
                 'pvt_own_female',
                 'id',
             ],
-
         },
         'Table_5': {
             'DlpNdaPubProvince': [
@@ -2766,7 +2765,6 @@ TABLE_PROPERTY_MAPPER = {
                 'los_year_1',
                 'los_year_2',
             ],
-
         },
         'Table_4': {
             'DlpNdaLivestockPubDistrict': [
@@ -2823,7 +2821,6 @@ TABLE_PROPERTY_MAPPER = {
             'DlpStructOtherPvtDistrict': [
                 'damages',
             ],
-
         },
     },
     'agri_fisheries': {

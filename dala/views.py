@@ -1426,7 +1426,7 @@ def bs_save_edit_data(table_data, com_data):
 
 @csrf_exempt
 def dl_save_data(request):
-    print '-----------dl_save_data-----------'
+    print '-----------dl_save_data-----------*'
     dl_data = (yaml.safe_load(request.body))
     dl_table_data = dl_data['table_data']
     com_data = dl_data['com_data']
@@ -1808,6 +1808,7 @@ def dl_save_edit_data(table_data, com_data, current_user):
     todate = timezone.now()
     print "\n"
     print "Edit -------------", current_user
+    print "com_data", com_data
     for sector in table_data:
 
         sub_app_name = sector + '.damage_losses'
@@ -1821,6 +1822,7 @@ def dl_save_edit_data(table_data, com_data, current_user):
                 for row in table_data[sector][interface_table][db_table]:
 
                     print 'row', row
+                    print 'db_table', db_table,
 
                     model_class = apps.get_model(sub_app_name, db_table)
 
@@ -1855,9 +1857,12 @@ def dl_save_edit_data(table_data, com_data, current_user):
                             model_object.lmu = current_user
 
                         model_object.update(**row)
-
-                        print 'row', ' --> ', row, ' id ', model_object[0].id, '\n'
-                        model_class.objects.filter(id=model_object[0].id).update(lmu=current_user, lmd=todate)
+                        if 'ownership' in row:
+                            print 'ownership row', ' --> ', row, ' id ', model_object[0].id, '\n'
+                            model_class.objects.filter(id=model_object[0].id).update(lmu=current_user, lmd=todate, ownership=com_data['ownership'])
+                        else:
+                            print 'row', ' --> ', row, ' id ', model_object[0].id, '\n'
+                            model_class.objects.filter(id=model_object[0].id).update(lmu=current_user, lmd=todate)
 
 
 # dileepa

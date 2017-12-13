@@ -161,8 +161,8 @@ DATABASES = {
         #     'options': '-c search_path=industry_services'
         # },
 
-        'NAME': 'dala_12_12',
-        #'NAME': 'dala_2017_11_28',
+        'NAME': 'dala_12_13',
+        #'NAME': 'dala_2017_12_12',
         'USER': 'postgres',
     },
 }
@@ -3202,13 +3202,13 @@ TABLE_PROPERTY_MAPPER = {
             'BsNumBusSector': ['avg_num_emp_female', 'avg_num_emp_male', 'components', 'num_businesses', 'id'],
         },
         'Table_3': {
-            'DmgAstStructures': ['assets', 'replace_val_destroyed', 'repair_val_damaged', 'tot_damaged', 'id', ],
-            'DmgAstEquipment': ['assets', 'replace_val_destroyed', 'repair_val_damaged', 'tot_damaged', 'id', ],
-            'DmgAstMachinery': ['assets', 'replace_val_destroyed', 'repair_val_damaged', 'tot_damaged', 'id', ],
-            'DmgAstVehicles': ['assets', 'replace_val_destroyed', 'repair_val_damaged', 'tot_damaged', 'id', ],
-            'DmgAstStocks': ['assets', 'replace_val_destroyed', 'repair_val_damaged', 'tot_damaged', 'id', ],
+            'DmgAstStructures': ['assets', 'replace_val_destroyed', 'repair_val_damaged', 'tot_damaged', 'ownership', 'id'],
+            'DmgAstEquipment': ['assets', 'replace_val_destroyed', 'repair_val_damaged', 'tot_damaged', 'ownership', 'id'],
+            'DmgAstMachinery': ['assets', 'replace_val_destroyed', 'repair_val_damaged', 'tot_damaged', 'ownership', 'id'],
+            'DmgAstVehicles': ['assets', 'replace_val_destroyed', 'repair_val_damaged', 'tot_damaged', 'ownership', 'id'],
+            'DmgAstStocks': ['assets', 'replace_val_destroyed', 'repair_val_damaged', 'tot_damaged', 'ownership', 'id', ],
             'LosTypeLossses': ['assets', 'avg_val_output_year', 'est_val_output_year1', 'est_val_output_year2',
-                               'los_year1', 'los_year2', 'tot_losses', 'id'],
+                               'los_year1', 'los_year2', 'tot_losses', 'ownership', 'id'],
         },
         'Table_4': {
             'DlInfDmgTypBusiness': ['assets', 'repair_val_ast_damaged', 'replace_val_ast_destroyed', 'tot_damages',

@@ -284,7 +284,7 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
         return val1 * val2 * 0.01;
     }
 
-    $scope.getMulitiplyedYearLoss =function(value, percentage) {
+    $scope.getMulitiplyedYearLoss = function(value, percentage) {
         if(isNaN(value)) return 0;
         if(isNaN(percentage)) return 0;
         return value * percentage * 0.01;
@@ -653,7 +653,5 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
     }
 
     $scope.fetchFormalFirmTypes();
-//    $scope.loadBusinessSubSectorsInd();
-//    $scope.loadBusinessSubSectorsSer();
     $scope.loadBusinessClassification();
 }])

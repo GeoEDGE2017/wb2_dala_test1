@@ -2538,3 +2538,28 @@ def get_user_id_from_username(username):
     model_class = apps.get_model('public', 'UsersMyuser')
     result = model_class.objects.filter(username=username).filter(id)
     print '*******', username, result
+
+
+# this method is only use for transport summary national should move to it's view
+@csrf_exempt
+def fetch_trans_rail_losses(request):
+    print 'fetch_trans_rail_losses-------'
+    data = (yaml.safe_load(request.body))
+    print data
+    incident = data['incident']
+    model_name = data['models']
+    sector = data['sector']
+
+    print incident, model_name, sector
+
+    sub_app_name = sector + '.damage_losses'
+    model_class = apps.get_model(sub_app_name, model_name)
+    fetched_data = model_class.objects.filter(incident=incident).values(
+        'id', 'loss_type', 'year_1', 'year_2', 'tot_los', 'incident')
+
+    print fetched_data
+
+    return HttpResponse(
+        json.dumps(list(fetched_data)),
+        content_type='application/javascript; charset=utf8'
+    )

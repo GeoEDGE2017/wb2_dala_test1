@@ -1206,102 +1206,33 @@ TABLE_PROPERTY_MAPPER = {
     },
     'transport_rail': {
         'Table_1': {
-            'BsTotEmpRailCompny':
-                ['total_emp', 'particulars', 'no_of_male', 'no_of_female', 'id'],
-            'BsMovingAst':
-                ['asset',
-                 'avg_replace_cost',
-                 'avg_repair_cost',
-                 'id'],
-            'BsIncAstRailIncome':
-                ['annual_income',
-                 'id'
-                 ],
-            'BsEquipMachineryAst':
-                ['asset',
-                 'avg_replace_cost',
-                 'avg_repair_cost',
-                 'id'],
-            'BsMatSuppliesAst':
-                ['asset',
-                 'avg_replace_cost',
-                 'avg_repair_cost',
-                 'id'],
-            'BsStructuresAst':
-                ['asset',
-                 'avg_replace_cost',
-                 'avg_repair_cost',
-                 'id'],
-            'BsBuildingAst': [
-                'asset',
-                'avg_replace_cost',
-                'avg_repair_cost_roof',
-                'avg_repair_cost_wall',
-                'avg_repair_cost_floor',
-                'id'
-            ],
+            'BsTotEmpRailCompny': ['total_emp', 'particulars', 'no_of_male', 'no_of_female', 'id'],
+            'BsMovingAst': ['asset', 'avg_replace_cost', 'avg_repair_cost', 'id'],
+            'BsIncAstRailIncome': ['annual_income', 'id' ],
+            'BsEquipMachineryAst': ['asset', 'avg_replace_cost', 'avg_repair_cost', 'id'],
+            'BsMatSuppliesAst': ['asset', 'avg_replace_cost', 'avg_repair_cost', 'id'],
+            'BsStructuresAst': ['asset', 'avg_replace_cost', 'avg_repair_cost', 'id'],
+            'BsBuildingAst': [ 'asset', 'avg_replace_cost', 'avg_repair_cost_roof', 'avg_repair_cost_wall', 'avg_repair_cost_floor', 'id'],
         },
         'Table_2': {
-            'DlMovingAstLoss':
-                ['asset',
-                 'no_of_tot_destroyed',
-                 'no_of_partially_damaged',
-                 'tot_damages',
-                 'id'
-                 ],
-            'DlEquipMachineryAstLoss':
-                ['asset',
-                 'no_of_tot_destroyed',
-                 'no_of_partially_damaged',
-                 'tot_damages',
-                 'id',
-                 ],
-            'DlMatSuppliesAstLoss':
-                ['asset',
-                 'no_of_tot_destroyed',
-                 'no_of_partially_damaged',
-                 'tot_damages',
-                 'id',
-                 ],
-            'DlStructuresAstLoss':
-                ['asset',
-                 'no_of_tot_destroyed',
-                 'no_of_partially_damaged',
-                 'tot_damages',
-                 'id',
-                 ],
-            'DlBuildingAstLoss':
-                ['asset',
-                 'no_of_tot_destroyed',
-                 'no_of_tot_destroyed_sqr_meters',
-                 'no_of_partially_damaged',
-                 'no_of_partially_damaged_roof',
-                 'no_of_partially_damaged_wall',
-                 'no_of_partially_damaged_floor',
-                 'tot_damages',
-                 'id',
-                 ],
-
+            'DlMovingAstLoss': ['asset', 'no_of_tot_destroyed', 'no_of_partially_damaged', 'id'],
+            'DlEquipMachineryAstLoss': ['asset','no_of_tot_destroyed','no_of_partially_damaged','tot_damages','id'],
+            'DlMatSuppliesAstLoss': ['asset', 'no_of_tot_destroyed', 'no_of_partially_damaged', 'tot_damages', 'id'],
+            'DlStructuresAstLoss': ['asset', 'no_of_tot_destroyed', 'no_of_partially_damaged', 'tot_damages', 'id'],
+            'DlBuildingAstLoss': ['asset', 'no_of_tot_destroyed', 'no_of_tot_destroyed_sqr_meters', 'no_of_partially_damaged',
+                                  'no_of_partially_damaged_roof', 'no_of_partially_damaged_wall', 'no_of_partially_damaged_floor',
+                                  'tot_damages', 'id'],
         },
         'Table_3': {
-
-            'TotDmgProvince':
-                ['tot_damages',
-                 ],
-
+            'TotDmgProvince':['tot_damages'],
         },
         'Table_4': {
-
-            'TotDmgNational':
-                ['tot_damages',
-                 ],
-
+            'TotDmgNational': ['tot_damages'],
+            # 'DlTypeLos': ['loss_type', 'year_1', 'year_2', 'tot_los', 'id'],
         },
         'Table_5': {
-            'DlTypeLos':
-                ['loss_type', 'year_1', 'year_2', 'tot_los', 'id'],
+            'DlTypeLos': ['loss_type', 'year_1', 'year_2', 'tot_los', 'id'],
         }
-
     },
     'transport_water': {
         'Table_1': {
@@ -1866,38 +1797,6 @@ TABLE_PROPERTY_MAPPER = {
         }
     },
     'agri_irrigation': {
-        'Table_4': {
-            'DlMajorTanksDistrict':
-                ['damages', ],
-            'DlLosMajorTanksDistrict':
-                ['total_los', ],
-            'DlMediumTanksDistrict':
-                ['damages', ],
-            'DlLosMediumTanksDistrict':
-                ['total_los', ],
-            'DlMinorTanksDistrict':
-                ['damages'],
-            'DlLosMinorTanksDistrict':
-                ['total_los'],
-            'DlIrrigatnLosDistrictNew':
-             ['total_los'],
-            'DlAnicutsDistrict':
-                ['damages'],
-            'DlIrrigatnDmgDistrict':
-                ['damages'],
-            'DlLosAnicutsDistrict':
-                ['total_los'],
-            'DlOtherStructuresDistrict':
-                ['damages', ],
-            'DlLosOtherDistrict':
-                ['total_los', 'irrigation_assets'],
-            'DlRiverEmbankmntDistrict':
-                ['damages'],
-            # dl_los_other_district
-            'DlBuildingsDistrict':
-                ['damages'],
-            # dl_los_other_district
-        },
         'Table_1': {
             'BsIfMajor':
                 ['irrigation_facility',
@@ -2063,6 +1962,38 @@ TABLE_PROPERTY_MAPPER = {
                  'total_los',
                  'id'],
 
+        },
+        'Table_4': {
+            'DlMajorTanksDistrict':
+                ['damages', ],
+            'DlLosMajorTanksDistrict':
+                ['total_los', ],
+            'DlMediumTanksDistrict':
+                ['damages', ],
+            'DlLosMediumTanksDistrict':
+                ['total_los', ],
+            'DlMinorTanksDistrict':
+                ['damages'],
+            'DlLosMinorTanksDistrict':
+                ['total_los'],
+            'DlIrrigatnLosDistrictNew':
+             ['total_los'],
+            'DlAnicutsDistrict':
+                ['damages'],
+            'DlIrrigatnDmgDistrict':
+                ['damages'],
+            'DlLosAnicutsDistrict':
+                ['total_los'],
+            'DlOtherStructuresDistrict':
+                ['damages', ],
+            'DlLosOtherDistrict':
+                ['total_los', 'irrigation_assets'],
+            'DlRiverEmbankmntDistrict':
+                ['damages'],
+            # dl_los_other_district
+            'DlBuildingsDistrict':
+                ['damages'],
+            # dl_los_other_district
         },
         'Table_5': {
             'DlMediumTanksDistrict':

@@ -56,6 +56,19 @@ app.controller("DlSummeryTSNatController", function ($scope,$http,$parse, _) {
         }).success(function(data) {
             $scope.dlTransSumNat = data;
             console.log($scope.dlTransSumNat);
+
+            $http({
+                method: "POST",
+                url: '/fetch_trans_rail_losses',
+                data: angular.toJson({
+                    'models': 'DlTypeLos',
+                    'sector': 'transport_rail',
+                    'incident': $scope.incident,
+                }),
+            }).success(function(rail_data) {
+                $scope.dlTransRailNat = rail_data;
+                console.log($scope.dlTransRailNat);
+            })
         })
     }
 
@@ -128,7 +141,6 @@ app.controller("DlSummeryTSNatController", function ($scope,$http,$parse, _) {
                             if(db_table_key == 'DlGacPvtNational') {
                                 angular.forEach(db_table, function(row) {
                                     tot_damages_lnd = tot_damages_lnd + parseFloat(row.tot_damages_pvt);
-                                     console.log(row.tot_damages_pvt);
                                 })
                             }
                         })
@@ -158,7 +170,6 @@ app.controller("DlSummeryTSNatController", function ($scope,$http,$parse, _) {
                 }
             })
         }
-        console.log(tot_damages_lnd, tot_damages_air, tot_damages_wat);
         return tot_damages_lnd + tot_damages_air + tot_damages_wat;
     }
 
@@ -221,7 +232,6 @@ app.controller("DlSummeryTSNatController", function ($scope,$http,$parse, _) {
                             if(db_table_key == 'DlOtherLosPvtNational') {
                                 angular.forEach(db_table, function(row) {
                                     tot_damages_lnd = tot_damages_lnd + parseFloat(row.year_1_pvt);
-                                     console.log(row.tot_damages_pvt);
                                 })
                             }
                         })
@@ -251,7 +261,6 @@ app.controller("DlSummeryTSNatController", function ($scope,$http,$parse, _) {
                 }
             })
         }
-        console.log(tot_damages_lnd, tot_damages_air, tot_damages_wat);
         return tot_damages_lnd + tot_damages_air + tot_damages_wat;
     }
 
@@ -314,7 +323,6 @@ app.controller("DlSummeryTSNatController", function ($scope,$http,$parse, _) {
                             if(db_table_key == 'DlOtherLosPvtNational') {
                                 angular.forEach(db_table, function(row) {
                                     tot_damages_lnd = tot_damages_lnd + parseFloat(row.year_2_pub);
-                                     console.log(row.year_2_pub);
                                 })
                             }
                         })
@@ -344,8 +352,31 @@ app.controller("DlSummeryTSNatController", function ($scope,$http,$parse, _) {
                 }
             })
         }
-        console.log(tot_damages_lnd, tot_damages_air, tot_damages_wat);
         return tot_damages_lnd + tot_damages_air + tot_damages_wat;
+    }
+
+    $scope.grndTotRailLosY1 = function() {
+        var tot_los_y1 = 0;
+        if(!angular.isUndefined($scope.dlTransRailNat)) {
+            angular.forEach($scope.dlTransRailNat, function(row) {
+                if(row.loss_type == 'TOTAL LOSSES') {
+                    tot_los_y1 = tot_los_y1 + row.year_1;
+                }
+            })
+        }
+        return tot_los_y1;
+    }
+
+    $scope.grndTotRailLosY2 = function() {
+        var tot_los_y2 = 0;
+        if(!angular.isUndefined($scope.dlTransRailNat)) {
+            angular.forEach($scope.dlTransRailNat, function(row) {
+                if(row.loss_type == 'TOTAL LOSSES') {
+                    tot_los_y2 = tot_los_y2 + row.year_2;
+                }
+            })
+        }
+        return tot_los_y2;
     }
 
     $scope.convertToInt = function(val1,val2,val3) {
@@ -385,7 +416,7 @@ app.controller("DlSummeryTSNatController", function ($scope,$http,$parse, _) {
         model.assign($scope, totaldpub);
         $scope.grndtotaldpub = $scope.grndtotaldpub + totaldpub ;
 
-        console.log(totaldpub);
+//        console.log(totaldpub);
 
         var totaldpvt =$scope.convertToInt(
                          ($scope.dlTransSumNat.transport_land.Table_9[key].DlGacPvtNational[0]?($scope.dlTransSumNat.transport_land.Table_9[key].DlGacPvtNational[0].tot_damages_pvt ?

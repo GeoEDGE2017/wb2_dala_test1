@@ -79,3 +79,4 @@ def dl_rail_trans_nat_type_summary(request):
         'module': 'transport_rail'
     }
     return render(request, 'damage_losses/summary_damages_losses_the_rail_transportation_nationwide_types_of_losses.html', context)
+

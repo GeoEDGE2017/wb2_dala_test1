@@ -19,9 +19,8 @@ app.controller("DlAgriLivestocknNatController", ['$scope','$http',function ($sco
     $scope.total_num_affected = 0;
     $scope.user_id;
 
-
-    $scope.fetchDlData = function(form){
-        if($scope.incident){
+    $scope.fetchDlData = function(form) {
+        if($scope.incident) {
             $scope.is_edit = true;
             $scope.submitted = true;
             $http({
@@ -32,18 +31,15 @@ app.controller("DlAgriLivestocknNatController", ['$scope','$http',function ($sco
                     'sector': ['agri_livestock'],
                     'com_data': {
                         'incident': $scope.incident,
-                     },
+                    },
                 }),
             }).success(function(data) {
-            angular.forEach(data, function(value, key) {
-            });
-            $scope.dlAgriLivestockSumNat = data  ;
+                $scope.dlAgriLivestockSumNat = data;
             })
         }
+    }
 
-        }
-
-    $scope.checkIfNull = function(){
+    $scope.checkIfNull = function() {
         var isNull = $scope.dlAgriLivestockSumNat ? angular.equals({},
         $scope.dlAgriLivestockSumNat.agri_livestock.Table_6) : true;
         return isNull;

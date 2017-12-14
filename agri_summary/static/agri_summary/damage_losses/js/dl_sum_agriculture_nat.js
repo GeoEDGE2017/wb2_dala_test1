@@ -41,8 +41,8 @@ app.controller("DlSummeryAgriNatController", function ($scope, $http, $parse, _)
             method: "POST",
             url: '/dl_fetch_summary_disagtn',
             data: angular.toJson({
-                'table_name':  ['Table_10','Table_6','Table_6','Table_6'],
-                'sector': ['agri_agrarian','agri_livestock','agri_fisheries','agri_irrigation'],
+                'table_name':  ['Table_10', 'Table_6', 'Table_6', 'Table_6'],
+                'sector': ['agri_agrarian', 'agri_livestock', 'agri_fisheries', 'agri_irrigation'],
                 'com_data': {
                     'incident': $scope.incident,
                 },
@@ -103,10 +103,10 @@ app.controller("DlSummeryAgriNatController", function ($scope, $http, $parse, _)
 
          var totalyear1pub =$scope.dlAgriSumNat.agri_agrarian.Table_10[key].DsorLosYear1National[0].dmg_los_pub+
                         $scope.dlAgriSumNat.agri_livestock.Table_6[key].DlpLosPubNational[0].los_year_1 +
-                        $scope.dlAgriSumNat.agri_irrigation.Table_6[key].DlLosOtherNational[0].total_los +
+                        $scope.dlAgriSumNat.agri_irrigation.Table_6[key].DlLosPubNational[0].total_los +
                         $scope.dlAgriSumNat.agri_fisheries.Table_6[key].DlfLosNational[0].los_year_1_pub;
 
-        var totalyear1pubstring = "totalyear1pub_"+ key;
+        var totalyear1pubstring = "totalyear1pub_" + key;
 
         var model = $parse(totalyear1pubstring);
         model.assign($scope, totalyear1pub);
@@ -117,7 +117,7 @@ app.controller("DlSummeryAgriNatController", function ($scope, $http, $parse, _)
                         $scope.dlAgriSumNat.agri_livestock.Table_6[key].DlpLosPvtNational[0].los_year_1 +
                         $scope.dlAgriSumNat.agri_fisheries.Table_6[key].DlfLosNational[0].los_year_1_pvt;
 
-        var totalyear1pvtstring = "totalyear1pvt_"+ key;
+        var totalyear1pvtstring = "totalyear1pvt_" + key;
 
         var model = $parse(totalyear1pvtstring);
         model.assign($scope, totalyear1pvt);

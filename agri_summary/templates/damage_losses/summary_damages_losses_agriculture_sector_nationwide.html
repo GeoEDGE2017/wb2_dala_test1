@@ -13,11 +13,20 @@ td {
 <main class="main" ng-app="dlSummeryAgriNatApp" ng-controller="DlSummeryAgriNatController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Admin</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:index' %}">
+                Admin
+            </a>
         </li>
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:agri_summary_main' %}">Agriculture Sector</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:agri_summary_main' %}">
+                Agriculture Sector
+            </a>
         </li>
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Summary of damages and losses in the agriculture sector nationwide</span>
+        <li class="breadcrumb-item active">
+            <span class="label label-success" style="font-size:14px;">
+                Summary of damages and losses in the agriculture sector nationwide
+            </span>
         </li>
     </ol>
     <div class="container-fluid">
@@ -36,28 +45,27 @@ td {
                         <col width="63"/>
                     </colgroup>
                     <tbody>
-                    <tr height="19" class="trhead1">
-                        <td colspan="2" style="padding-left:5px;">
-                            Incident
-                        </td>
-                        <td colspan="5" style="">
-
-                            <select id="select" name="incident" ng-model="incident"
-                                    class="form-control"
-                                    style="width:100%;font-weight:400;"
-                                    ng-change="changedValue(incident);fetchDlData();" required>
-                                <option value="" selected="true">Select an Incident</option>
-                                {% for incident in incidents %}
-                                <option value={{incident.id}}>
-                                    <!--{{incident.disaster_type.name}}-->
-                                    <!--{{incident.reported_date_time}}-->
-                                    {{incident.incident_name}}
-                                </option>
-                                {% endfor %}
-                            </select>
-                        </td>
-                        <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
-                    </tr>
+                        <tr height="19" class="trhead1">
+                            <td colspan="2" style="padding-left:5px;">
+                                Incident
+                            </td>
+                            <td colspan="5" style="">
+                                <select id="select" name="incident" ng-model="incident"
+                                        class="form-control"
+                                        style="width:100%;font-weight:400;"
+                                        ng-change="changedValue(incident);fetchDlData();" required>
+                                    <option value="" selected="true">Select an Incident</option>
+                                    {% for incident in incidents %}
+                                    <option value={{incident.id}}>
+                                        <!--{{incident.disaster_type.name}}-->
+                                        <!--{{incident.reported_date_time}}-->
+                                        {{incident.incident_name}}
+                                    </option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                            <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
+                        </tr>
                     </tbody>
                 </table>
                 <table class="table table-bordered" ng-if="!checkIfNull()">
@@ -129,215 +137,215 @@ td {
                     </tr>
                     </tbody>
                     </table>
-                           <table class="table table-bordered" ng-if="!checkIfNull()"  ng-repeat="(key1, value1) in dlAgriSumNat.agri_agrarian.Table_10">
-                            <colgroup>
-                        <col width="213"/>
-                        <col width="107"/>
-                        <col width="63"/>
-                        <col width="63"/>
-                        <col width="63"/>
-                        <col width="63"/>
-                        <col width="63"/>
-                        <col width="63"/>
-                        <col width="63"/>
-                    </colgroup>
+                    <table class="table table-bordered" ng-if="!checkIfNull()"  ng-repeat="(key1, value1) in dlAgriSumNat.agri_agrarian.Table_10">
+                        <colgroup>
+                            <col width="213"/>
+                            <col width="107"/>
+                            <col width="63"/>
+                            <col width="63"/>
+                            <col width="63"/>
+                            <col width="63"/>
+                            <col width="63"/>
+                            <col width="63"/>
+                            <col width="63"/>
+                        </colgroup>
                     <tbody>
-                    <tr class="trheadc boldash" height="17" ng-init="getTotal(key1)">
-                        <td height="17" width="213" ng-bind="key1">
+                        <tr class="trheadc boldash" height="17" ng-init="getTotal(key1)">
+                            <td height="17" width="213" ng-bind="key1">
 
-                        </td>
-                        <td height="17" width="107">
-                        </td>
-                        <td height="17" width="63">
-                        </td>
-                        <td height="17" width="63">
-                        </td>
-                        <td height="17" width="63">
-                        </td>
-                        <td height="17" width="63">
-                        </td>
-                        <td height="17" width="63">
-                        </td>
-                        <td height="17" width="63">
-                        </td>
-                        <td height="17" width="63">
-                        </td>
-                    </tr>
-                    <tr height="17">
-                        <td class="tdpa" height="17" width="213">
-                            Agrarian
-                        </td>
-                        <td height="17" class="right" width="107" ng-bind="value1.DsorDmgPubNational[0].sum">
+                            </td>
+                            <td height="17" width="107">
+                            </td>
+                            <td height="17" width="63">
+                            </td>
+                            <td height="17" width="63">
+                            </td>
+                            <td height="17" width="63">
+                            </td>
+                            <td height="17" width="63">
+                            </td>
+                            <td height="17" width="63">
+                            </td>
+                            <td height="17" width="63">
+                            </td>
+                            <td height="17" width="63">
+                            </td>
+                        </tr>
+                        <tr height="17">
+                            <td class="tdpa" height="17" width="213">
+                                Agrarian
+                            </td>
+                            <td height="17" class="right" width="107" ng-bind="value1.DsorDmgPubNational[0].sum">
 
-                        </td>
-                        <td height="17" class="right"width="63" ng-bind="value1.DsorDmgPvtNational[0].sum">
+                            </td>
+                            <td height="17" class="right"width="63" ng-bind="value1.DsorDmgPvtNational[0].sum">
 
-                        </td>
-                        <td height="17" class="right"width="63" ng-bind="value1.DsorLosYear1National[0].dmg_los_pub">
+                            </td>
+                            <td height="17" class="right"width="63" ng-bind="value1.DsorLosYear1National[0].dmg_los_pub">
 
-                        </td>
-                        <td height="17" class="right"width="63" ng-bind="value1.DsorLosYear1National[0].dmg_los_pvt">
+                            </td>
+                            <td height="17" class="right"width="63" ng-bind="value1.DsorLosYear1National[0].dmg_los_pvt">
 
-                        </td>
-                        <td height="17" class="right"width="63" ng-bind="value1.DsorLosYear2National[0].dmg_los_pub">
+                            </td>
+                            <td height="17" class="right"width="63" ng-bind="value1.DsorLosYear2National[0].dmg_los_pub">
 
-                        </td>
-                        <td height="17" class="right"width="63" ng-bind="value1.DsorLosYear2National[0].dmg_los_pvt">
+                            </td>
+                            <td height="17" class="right"width="63" ng-bind="value1.DsorLosYear2National[0].dmg_los_pvt">
 
-                        </td>
-                        <td height="17" class="right" width="63" ng-bind="value1.DsorDmgPubNational[0].sum +
-                        value1.DsorLosYear1National[0].dmg_los_pub + value1.DsorLosYear2National[1].dmg_los_pub ">
+                            </td>
+                            <td height="17" class="right" width="63" ng-bind="value1.DsorDmgPubNational[0].sum +
+                            value1.DsorLosYear1National[0].dmg_los_pub + value1.DsorLosYear2National[1].dmg_los_pub ">
 
-                        </td>
-                        <td height="17" class="right" width="63"
-                            ng-bind="value1.DsorDmgPvtNational[0].sum +value1.DsorLosYear1National[0].dmg_los_pvt + value1.DsorLosYear2National[0].dmg_los_pvt ">
-                        </td>
-                    </tr>
-                    <tr height="17">
-                        <td class="tdpa" height="17" width="213">
-                            Livestock
-                        </td>
+                            </td>
+                            <td height="17" class="right" width="63"
+                                ng-bind="value1.DsorDmgPvtNational[0].sum +value1.DsorLosYear1National[0].dmg_los_pvt + value1.DsorLosYear2National[0].dmg_los_pvt ">
+                            </td>
+                        </tr>
+                        <tr height="17">
+                            <td class="tdpa" height="17" width="213">
+                                Livestock
+                            </td>
 
-                        <td height="17" width="107" class="right"
-                            ng-bind="dlAgriSumNat.agri_livestock.Table_6[key1].DlpNdaPubNational[0].damages">
+                            <td height="17" width="107" class="right"
+                                ng-bind="dlAgriSumNat.agri_livestock.Table_6[key1].DlpNdaPubNational[0].damages">
 
-                        </td>
-                        <td height="17" width="63" class="right"
-                            ng-bind="dlAgriSumNat.agri_livestock.Table_6[key1].DlpNdaPvtNational[0].damages">
+                            </td>
+                            <td height="17" width="63" class="right"
+                                ng-bind="dlAgriSumNat.agri_livestock.Table_6[key1].DlpNdaPvtNational[0].damages">
 
-                        </td>
-                        <td height="17" width="63" class="right"
-                            ng-bind="dlAgriSumNat.agri_livestock.Table_6[key1].DlpLosPubNational[0].los_year_1">
+                            </td>
+                            <td height="17" width="63" class="right"
+                                ng-bind="dlAgriSumNat.agri_livestock.Table_6[key1].DlpLosPubNational[0].los_year_1">
 
-                        </td>
-                        <td height="17" width="63" class="right"
-                            ng-bind="dlAgriSumNat.agri_livestock.Table_6[key1].DlpLosPvtNational[0].los_year_1">
+                            </td>
+                            <td height="17" width="63" class="right"
+                                ng-bind="dlAgriSumNat.agri_livestock.Table_6[key1].DlpLosPvtNational[0].los_year_1">
 
-                        </td>
-                        <td height="17" width="63" class="right"
-                            ng-bind="dlAgriSumNat.agri_livestock.Table_6[key1].DlpLosPubNational[0].los_year_2">
+                            </td>
+                            <td height="17" width="63" class="right"
+                                ng-bind="dlAgriSumNat.agri_livestock.Table_6[key1].DlpLosPubNational[0].los_year_2">
 
-                        </td>
-                        <td height="17" width="63" class="right"
-                            ng-bind="dlAgriSumNat.agri_livestock.Table_6[key1].DlpLosPvtNational[0].los_year_2">
+                            </td>
+                            <td height="17" width="63" class="right"
+                                ng-bind="dlAgriSumNat.agri_livestock.Table_6[key1].DlpLosPvtNational[0].los_year_2">
 
-                        </td>
-                        <td height="17" width="63" class="right"
-                            ng-bind="dlAgriSumNat.agri_livestock.Table_6[key1].DlpNdaPubNational[0].damages +dlAgriSumNat.agri_livestock.Table_6[key1].DlpLosPubNational[0].los_year_1 +dlAgriSumNat.agri_livestock.Table_5[key1].DlpLosPubNational[0].los_year_2">
+                            </td>
+                            <td height="17" width="63" class="right"
+                                ng-bind="dlAgriSumNat.agri_livestock.Table_6[key1].DlpNdaPubNational[0].damages +dlAgriSumNat.agri_livestock.Table_6[key1].DlpLosPubNational[0].los_year_1 +dlAgriSumNat.agri_livestock.Table_5[key1].DlpLosPubNational[0].los_year_2">
 
-                        </td>
-                        <td height="17" width="63" class="right"
-                            ng-bind="dlAgriSumNat.agri_livestock.Table_6[key1].DlpNdaPvtNational[0].damages +dlAgriSumNat.agri_livestock.Table_6[key1].DlpLosPvtNational[0].los_year_1 +dlAgriSumNat.agri_livestock.Table_5[key1].DlpLosPvtNational[0].los_year_2">
+                            </td>
+                            <td height="17" width="63" class="right"
+                                ng-bind="dlAgriSumNat.agri_livestock.Table_6[key1].DlpNdaPvtNational[0].damages +dlAgriSumNat.agri_livestock.Table_6[key1].DlpLosPvtNational[0].los_year_1 +dlAgriSumNat.agri_livestock.Table_5[key1].DlpLosPvtNational[0].los_year_2">
 
-                        </td>
-                    </tr>
-                    <tr height="17">
-                        <td class="tdpa" height="17" width="213">
-                            Fisheries
-                        </td>
-                        <td height="17" width="107" class="right" ng-bind="dlAgriSumNat.agri_fisheries.Table_6[key1].DlfLosPubNational[0].dmg_pub">
+                            </td>
+                        </tr>
+                        <tr height="17">
+                            <td class="tdpa" height="17" width="213">
+                                Fisheries
+                            </td>
+                            <td height="17" width="107" class="right" ng-bind="dlAgriSumNat.agri_fisheries.Table_6[key1].DlfLosPubNational[0].dmg_pub">
 
-                        </td>
-                        <td height="17" width="107" class="right" ng-bind="dlAgriSumNat.agri_fisheries.Table_6[key1].DlfLosPvtNational[0].dmg_pvt">
+                            </td>
+                            <td height="17" width="107" class="right" ng-bind="dlAgriSumNat.agri_fisheries.Table_6[key1].DlfLosPvtNational[0].dmg_pvt">
 
-                        </td>
-                        <td height="17" width="107" class="right" ng-bind="dlAgriSumNat.agri_fisheries.Table_6[key1].DlfLosNational[0].los_year_1_pub">
+                            </td>
+                            <td height="17" width="107" class="right" ng-bind="dlAgriSumNat.agri_fisheries.Table_6[key1].DlfLosNational[0].los_year_1_pub">
 
-                        </td>
-                         <td height="17" width="107" class="right" ng-bind="dlAgriSumNat.agri_fisheries.Table_6[key1].DlfLosNational[0].los_year_1_pvt">
+                            </td>
+                             <td height="17" width="107" class="right" ng-bind="dlAgriSumNat.agri_fisheries.Table_6[key1].DlfLosNational[0].los_year_1_pvt">
 
-                        </td>
-                        <td height="17" width="107" class="right" ng-bind="dlAgriSumNat.agri_fisheries.Table_6[key1].DlfLosNational[0].los_year_2_pub">
+                            </td>
+                            <td height="17" width="107" class="right" ng-bind="dlAgriSumNat.agri_fisheries.Table_6[key1].DlfLosNational[0].los_year_2_pub">
 
-                        </td>
-                         <td height="17" width="107" class="right" ng-bind="dlAgriSumNat.agri_fisheries.Table_6[key1].DlfLosNational[0].los_year_2_pvt">
+                            </td>
+                             <td height="17" width="107" class="right" ng-bind="dlAgriSumNat.agri_fisheries.Table_6[key1].DlfLosNational[0].los_year_2_pvt">
 
-                        </td>
-                        <td height="17" width="63" class="right" ng-bind="dlAgriSumNat.agri_fisheries.Table_6[key1].DlfLosPubNational[0].dmg_pub + dlAgriSumNat.agri_fisheries.Table_6[key1].DlfLosNational[0].los_year_1_pub + dlAgriSumNat.agri_fisheries.Table_6[key1].DlfLosNational[0].los_year_2_pub">
+                            </td>
+                            <td height="17" width="63" class="right" ng-bind="dlAgriSumNat.agri_fisheries.Table_6[key1].DlfLosPubNational[0].dmg_pub + dlAgriSumNat.agri_fisheries.Table_6[key1].DlfLosNational[0].los_year_1_pub + dlAgriSumNat.agri_fisheries.Table_6[key1].DlfLosNational[0].los_year_2_pub">
 
-                        </td>
-                        <td height="17" width="63" class="right" ng-bind="dlAgriSumNat.agri_fisheries.Table_6[key1].DlfLosPvtNational[0].dmg_pvt + dlAgriSumNat.agri_fisheries.Table_6[key1].DlfLosNational[0].los_year_1_pvt + dlAgriSumNat.agri_fisheries.Table_6[key1].DlfLosNational[0].los_year_2_pvt">
+                            </td>
+                            <td height="17" width="63" class="right" ng-bind="dlAgriSumNat.agri_fisheries.Table_6[key1].DlfLosPvtNational[0].dmg_pvt + dlAgriSumNat.agri_fisheries.Table_6[key1].DlfLosNational[0].los_year_1_pvt + dlAgriSumNat.agri_fisheries.Table_6[key1].DlfLosNational[0].los_year_2_pvt">
 
-                        </td>
-                    </tr>
-                    <tr height="17">
-                        <td class="tdpa" height="17" width="213">
-                            Irrigation
-                        </td>
-                        <td height="17" width="107" class="right" ng-bind="dlAgriSumNat.agri_irrigation.Table_6[key1].DlIrrigatnDmgNational[0].damages">
-
-                        </td>
-                        <td class="tdpa" height="17" width="63">
-                        </td>
-                        <td height="17" width="107" class="right" ng-bind="dlAgriSumNat.agri_irrigation.Table_6[key1].DlLosOtherNational[0].total_los">
-
-                        </td>
-                        <td class="tdpa" height="17" width="63">
-                        </td>
-                        <td class="tdpa" height="17" width="63">
-                        </td>
-                        <td class="tdpa" height="17" width="63">
-                        </td>
-                        <td height="17" width="63" class="right" ng-bind="dlAgriSumNat.agri_irrigation.Table_6[key1].DlIrrigatnDmgNational[0].damages +dlAgriSumNat.agri_irrigation.Table_6[key1].DlLosOtherNational[0].total_los ">
-
-                        </td>
-                        <td class="tdpa" height="17" width="63">
-                        </td>
-                    </tr>
-                    <tr height="17">
-                        <td class="tdpa" height="17" width="213">
-                            Total
-                        </td>
-
-                        <td class="right" width="63" height="17" ng-bind="value1.DsorDmgPubNational[0].sum +
-                        dlAgriSumNat.agri_livestock.Table_6[key1].DlpNdaPubNational[0].damages +
-                        dlAgriSumNat.agri_fisheries.Table_6[key1].DlfLosPubNational[0].dmg_pub +
-                        dlAgriSumNat.agri_irrigation.Table_6[key1].DlIrrigatnDmgNational[0].damages">
-                        </td>
-                        <td class="right" width="63" height="17" ng-bind="value1.DsorDmgPvtNational[0].sum +
-                        dlAgriSumNat.agri_livestock.Table_6[key1].DlpNdaPvtNational[0].damages +
-                        dlAgriSumNat.agri_fisheries.Table_6[key1].DlfLosPvtNational[0].dmg_pvt">
-                        </td>
-                        <td class="right" width="63" height="17" ng-bind="value1.DsorLosYear1National[0].dmg_los_pub+
-                        dlAgriSumNat.agri_livestock.Table_6[key1].DlpLosPubNational[0].los_year_1 +
-                        dlAgriSumNat.agri_irrigation.Table_6[key1].DlLosOtherNational[0].total_los +
-                        dlAgriSumNat.agri_fisheries.Table_6[key1].DlfLosNational[0].los_year_1_pub ">
-                        </td>
-                        <td class="right" width="63" height="17" ng-bind="value1.DsorLosYear1National[0].dmg_los_pvt+
-                        dlAgriSumNat.agri_livestock.Table_6[key1].DlpLosPvtNational[0].los_year_1 +
-                        dlAgriSumNat.agri_fisheries.Table_6[key1].DlfLosNational[0].los_year_1_pvt">
-                        </td>
-                         <td class="right" width="63" height="17" ng-bind="value1.DsorLosYear2National[0].dmg_los_pub+
-                        dlAgriSumNat.agri_livestock.Table_6[key1].DlpLosPubNational[0].los_year_2 +
-                        dlAgriSumNat.agri_fisheries.Table_6[key1].DlfLosNational[0].los_year_2_pub">
-                        </td>
-                        <td class="right" width="63" height="17" ng-bind="value1.DsorLosYear2National[0].dmg_los_pvt +
-                        dlAgriSumNat.agri_livestock.Table_6[key1].DlpLosPvtNational[0].los_year_2 +
-                        dlAgriSumNat.agri_fisheries.Table_6[key1].DlfLosNational[0].los_year_2_pvt">
-                        </td>
-                        <td class="right" width="63" height="17" ng-bind="value1.DsorDmgPubNational[0].sum +
-                        dlAgriSumNat.agri_livestock.Table_6[key1].DlpNdaPubNational[0].damages +
-                        dlAgriSumNat.agri_fisheries.Table_6[key1].DlfLosPubNational[0].dmg_pub +
-                        dlAgriSumNat.agri_irrigation.Table_6[key1].DlIrrigatnDmgNational[0].damages +
-                        value1.DsorLosYear1National[0].dmg_los_pub+
-                        dlAgriSumNat.agri_livestock.Table_6[key1].DlpLosPubNational[0].los_year_1 +
-                        dlAgriSumNat.agri_irrigation.Table_6[key1].DlLosOtherNational[0].total_los +
-                        dlAgriSumNat.agri_fisheries.Table_6[key1].DlfLosNational[0].los_year_1_pub  +
-                        value1.DsorLosYear2National[0].dmg_los_pub+
-                        dlAgriSumNat.agri_livestock.Table_6[key1].DlpLosPubNational[0].los_year_2 +
-                        dlAgriSumNat.agri_fisheries.Table_6[key1].DlfLosNational[0].los_year_2_pub">
-                        </td>
-                        <td class="right" width="63" height="17" ng-bind="value1.DsorDmgPvtNational[0].sum +
-                        dlAgriSumNat.agri_livestock.Table_6[key1].DlpNdaPvtNational[0].damages +
-                        dlAgriSumNat.agri_fisheries.Table_6[key1].DlfLosPvtNational[0].dmg_pvt +
-                        value1.DsorLosYear1National[0].dmg_los_pvt+
-                        dlAgriSumNat.agri_livestock.Table_6[key1].DlpLosPvtNational[0].los_year_1 +
-                        dlAgriSumNat.agri_fisheries.Table_6[key1].DlfLosNational[0].los_year_1_pvt+
-                        value1.DsorLosYear2National[0].dmg_los_pvt +
-                        dlAgriSumNat.agri_livestock.Table_6[key1].DlpLosPvtNational[0].los_year_2 +
-                        dlAgriSumNat.agri_fisheries.Table_6[key1].DlfLosNational[0].los_year_2_pvt">
-                        </td>
-                    </tr>
+                            </td>
+                        </tr>
+                        <tr height="17">
+                            <td class="tdpa" height="17" width="213">
+                                Irrigation
+                            </td>
+                            <td height="17" width="107" class="right"
+                                ng-bind="dlAgriSumNat.agri_irrigation.Table_6[key1].DlIrrigatnDmgNational[0].damages">
+                            </td>
+                            <td class="tdpa" height="17" width="63">
+                            </td>
+                            <td height="17" width="107" class="right"
+                                ng-bind="dlAgriSumNat.agri_irrigation.Table_6[key1].DlLosPubNational[0].total_los">
+                            </td>
+                            <td class="tdpa" height="17" width="63">
+                            </td>
+                            <td class="tdpa" height="17" width="63">
+                            </td>
+                            <td class="tdpa" height="17" width="63">
+                            </td>
+                            <td height="17" width="63" class="right"
+                                ng-bind="dlAgriSumNat.agri_irrigation.Table_6[key1].DlIrrigatnDmgNational[0].damages +
+                                dlAgriSumNat.agri_irrigation.Table_6[key1].DlLosPubNational[0].total_los">
+                            </td>
+                            <td class="tdpa" height="17" width="63">
+                            </td>
+                        </tr>
+                        <tr height="17">
+                            <td class="tdpa" height="17" width="213">
+                                Total
+                            </td>
+                            <td class="right" width="63" height="17" ng-bind="value1.DsorDmgPubNational[0].sum +
+                                dlAgriSumNat.agri_livestock.Table_6[key1].DlpNdaPubNational[0].damages +
+                                dlAgriSumNat.agri_fisheries.Table_6[key1].DlfLosPubNational[0].dmg_pub +
+                                dlAgriSumNat.agri_irrigation.Table_6[key1].DlIrrigatnDmgNational[0].damages">
+                            </td>
+                            <td class="right" width="63" height="17" ng-bind="value1.DsorDmgPvtNational[0].sum +
+                                dlAgriSumNat.agri_livestock.Table_6[key1].DlpNdaPvtNational[0].damages +
+                                dlAgriSumNat.agri_fisheries.Table_6[key1].DlfLosPvtNational[0].dmg_pvt">
+                            </td>
+                            <td class="right" width="63" height="17" ng-bind="value1.DsorLosYear1National[0].dmg_los_pub+
+                                dlAgriSumNat.agri_livestock.Table_6[key1].DlpLosPubNational[0].los_year_1 +
+                                dlAgriSumNat.agri_irrigation.Table_6[key1].DlLosPubNational[0].total_los +
+                                dlAgriSumNat.agri_fisheries.Table_6[key1].DlfLosNational[0].los_year_1_pub ">
+                            </td>
+                            <td class="right" width="63" height="17" ng-bind="value1.DsorLosYear1National[0].dmg_los_pvt+
+                                dlAgriSumNat.agri_livestock.Table_6[key1].DlpLosPvtNational[0].los_year_1 +
+                                dlAgriSumNat.agri_fisheries.Table_6[key1].DlfLosNational[0].los_year_1_pvt">
+                            </td>
+                             <td class="right" width="63" height="17" ng-bind="value1.DsorLosYear2National[0].dmg_los_pub+
+                                dlAgriSumNat.agri_livestock.Table_6[key1].DlpLosPubNational[0].los_year_2 +
+                                dlAgriSumNat.agri_fisheries.Table_6[key1].DlfLosNational[0].los_year_2_pub">
+                            </td>
+                            <td class="right" width="63" height="17" ng-bind="value1.DsorLosYear2National[0].dmg_los_pvt +
+                                dlAgriSumNat.agri_livestock.Table_6[key1].DlpLosPvtNational[0].los_year_2 +
+                                dlAgriSumNat.agri_fisheries.Table_6[key1].DlfLosNational[0].los_year_2_pvt">
+                            </td>
+                            <td class="right" width="63" height="17" ng-bind="value1.DsorDmgPubNational[0].sum +
+                                dlAgriSumNat.agri_livestock.Table_6[key1].DlpNdaPubNational[0].damages +
+                                dlAgriSumNat.agri_fisheries.Table_6[key1].DlfLosPubNational[0].dmg_pub +
+                                dlAgriSumNat.agri_irrigation.Table_6[key1].DlIrrigatnDmgNational[0].damages +
+                                value1.DsorLosYear1National[0].dmg_los_pub+
+                                dlAgriSumNat.agri_livestock.Table_6[key1].DlpLosPubNational[0].los_year_1 +
+                                dlAgriSumNat.agri_irrigation.Table_6[key1].DlLosPubNational[0].total_los +
+                                dlAgriSumNat.agri_fisheries.Table_6[key1].DlfLosNational[0].los_year_1_pub  +
+                                value1.DsorLosYear2National[0].dmg_los_pub+
+                                dlAgriSumNat.agri_livestock.Table_6[key1].DlpLosPubNational[0].los_year_2 +
+                                dlAgriSumNat.agri_fisheries.Table_6[key1].DlfLosNational[0].los_year_2_pub">
+                            </td>
+                            <td class="right" width="63" height="17" ng-bind="value1.DsorDmgPvtNational[0].sum +
+                                dlAgriSumNat.agri_livestock.Table_6[key1].DlpNdaPvtNational[0].damages +
+                                dlAgriSumNat.agri_fisheries.Table_6[key1].DlfLosPvtNational[0].dmg_pvt +
+                                value1.DsorLosYear1National[0].dmg_los_pvt+
+                                dlAgriSumNat.agri_livestock.Table_6[key1].DlpLosPvtNational[0].los_year_1 +
+                                dlAgriSumNat.agri_fisheries.Table_6[key1].DlfLosNational[0].los_year_1_pvt+
+                                value1.DsorLosYear2National[0].dmg_los_pvt +
+                                dlAgriSumNat.agri_livestock.Table_6[key1].DlpLosPvtNational[0].los_year_2 +
+                                dlAgriSumNat.agri_fisheries.Table_6[key1].DlfLosNational[0].los_year_2_pvt">
+                            </td>
+                        </tr>
                     </tbody>
                  </table>
                 <table class="table table-bordered" ng-if="!checkIfNull()">
@@ -353,54 +361,54 @@ td {
                         <col width="63"/>
                     </colgroup>
                     <tbody>
-                    <tr height="17">
-                        <td class="tdpa" height="17" width="213">
-                            GRAND TOTAL
-                        </td>
-                        <td class="right"  width="63" height="17" ng-bind="grndtotaldpub">
-                        </td>
-                        <td class="right" height="17" width="63" ng-bind="grndtotaldpvt">
-                        </td>
-                        <td class="right" height="17" width="63" ng-bind="grndtotalyear1pub">
-                        </td>
-                        <td class="right" height="17" width="63" ng-bind="grndtotalyear1pvt">
-                        </td>
-                        <td class="right" height="17" width="63" ng-bind="grndtotalyear2pub">
-                        </td>
-                        <td class="right" height="17" width="63" ng-bind="grndtotalyear2pvt">
-                        </td>
-                        <td class="right" height="17" width="63" ng-bind="grndfinaltotalpublic">
-                        </td>
-                        <td class="right" height="17" width="63" ng-bind="grndfinaltotalprivate">
-                        </td>
-                    </tr>
-                    <tr class="tdpa" height="17">
-                        <td rowspan="2" height="34" width="213">
-                            NATIONAL SUMMARY
-                        </td>
-                        <td colspan="2" height="17" width="214">
-                            Damages
-                        </td>
-                        <td colspan="2" height="17" width="126">
-                            Losses Year 1
-                        </td>
-                        <td colspan="2" height="17" width="126">
-                            Losses Year 2
-                        </td>
-                        <td colspan="2" height="17" width="126">
-                            Total (LKR)
-                        </td>
-                    </tr>
-                    <tr height="17">
-                        <td colspan="2"  class="right" height="17" width="214" ng-bind="summaryDamages">
-                        </td>
-                        <td colspan="2"  class="right" height="17" width="126" ng-bind="summaryLossYear1">
-                        </td>
-                        <td colspan="2"  class="right" height="17" width="126" ng-bind="summaryLossYear2">
-                        </td>
-                        <td colspan="2"  class="right" height="17" width="126" ng-bind="summaryTotal">
-                        </td>
-                    </tr>
+                        <tr height="17">
+                            <td class="tdpa" height="17" width="213">
+                                GRAND TOTAL
+                            </td>
+                            <td class="right"  width="63" height="17" ng-bind="grndtotaldpub">
+                            </td>
+                            <td class="right" height="17" width="63" ng-bind="grndtotaldpvt">
+                            </td>
+                            <td class="right" height="17" width="63" ng-bind="grndtotalyear1pub">
+                            </td>
+                            <td class="right" height="17" width="63" ng-bind="grndtotalyear1pvt">
+                            </td>
+                            <td class="right" height="17" width="63" ng-bind="grndtotalyear2pub">
+                            </td>
+                            <td class="right" height="17" width="63" ng-bind="grndtotalyear2pvt">
+                            </td>
+                            <td class="right" height="17" width="63" ng-bind="grndfinaltotalpublic">
+                            </td>
+                            <td class="right" height="17" width="63" ng-bind="grndfinaltotalprivate">
+                            </td>
+                        </tr>
+                        <tr class="tdpa" height="17">
+                            <td rowspan="2" height="34" width="213">
+                                NATIONAL SUMMARY
+                            </td>
+                            <td colspan="2" height="17" width="214">
+                                Damages
+                            </td>
+                            <td colspan="2" height="17" width="126">
+                                Losses Year 1
+                            </td>
+                            <td colspan="2" height="17" width="126">
+                                Losses Year 2
+                            </td>
+                            <td colspan="2" height="17" width="126">
+                                Total (LKR)
+                            </td>
+                        </tr>
+                        <tr height="17">
+                            <td colspan="2"  class="right" height="17" width="214" ng-bind="summaryDamages">
+                            </td>
+                            <td colspan="2"  class="right" height="17" width="126" ng-bind="summaryLossYear1">
+                            </td>
+                            <td colspan="2"  class="right" height="17" width="126" ng-bind="summaryLossYear2">
+                            </td>
+                            <td colspan="2"  class="right" height="17" width="126" ng-bind="summaryTotal">
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
                 <br>
@@ -432,7 +440,6 @@ td {
                     </div>
                     <br><br>
                     <div class="modal-footer">
-
                         <button type="button" class="btn btn-default" data-dismiss="modal">
                             Close
                         </button>

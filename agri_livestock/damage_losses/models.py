@@ -415,7 +415,6 @@ class DlpLosOtherPvtDistrict(models.Model):
 
 # Views Table 5
 class DlpNdaPubProvince(models.Model):
-
     damages = models.FloatField(blank=True, null=True)
     district = models.ForeignKey(District, db_column='district', blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
@@ -426,7 +425,6 @@ class DlpNdaPubProvince(models.Model):
 
 
 class DlpNdaPvtProvince(models.Model):
-
     damages = models.FloatField(blank=True, null=True)
     district = models.ForeignKey(District, db_column='district', blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
@@ -437,7 +435,6 @@ class DlpNdaPvtProvince(models.Model):
 
 
 class DlpLosPubProvince(models.Model):
-
     los_year_1 = models.FloatField(blank=True, null=True)
     los_year_2 = models.FloatField(blank=True, null=True)
     district = models.ForeignKey(District, db_column='district', blank=True, null=True)
@@ -449,7 +446,6 @@ class DlpLosPubProvince(models.Model):
 
 
 class DlpLosPvtProvince(models.Model):
-
     los_year_1 = models.FloatField(blank=True, null=True)
     los_year_2 = models.FloatField(blank=True, null=True)
     district = models.ForeignKey(District, db_column='district', blank=True, null=True)
@@ -463,7 +459,6 @@ class DlpLosPvtProvince(models.Model):
 
 
 class DlpNdaPubNational(models.Model):
-
     damages = models.FloatField(blank=True, null=True)
     province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
@@ -485,7 +480,6 @@ class DlpNdaPvtNational(models.Model):
 
 
 class DlpLosPubNational(models.Model):
-
     los_year_1 = models.FloatField(blank=True, null=True)
     los_year_2 = models.FloatField(blank=True, null=True)
     province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
@@ -497,7 +491,6 @@ class DlpLosPubNational(models.Model):
 
 
 class DlpLosPvtNational(models.Model):
-
     los_year_1 = models.FloatField(blank=True, null=True)
     los_year_2 = models.FloatField(blank=True, null=True)
     province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
@@ -506,3 +499,4 @@ class DlpLosPvtNational(models.Model):
     class Meta:
         managed = False
         db_table= 'agri_livestock\".\"dlp_los_pvt_national'
+

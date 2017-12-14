@@ -151,7 +151,6 @@
                                 Land Transportation
                             </td>
                             <td class="right" width="63" height="17" ng-bind="value1.DlGacPubNational[0].damages">
-
                             </td>
                             <td class="right" width="63" height="17" ng-bind="value1.DlGacPvtNational[0].tot_damages_pvt">
                             </td>
@@ -314,21 +313,21 @@
                         <td class="boldash tdpa" width="197" height="17">
                             GRAND TOTAL
                         </td>
-                        <td class="right" width="63" height="17" ng-bind="grndtotaldpub">
+                        <td class="right" width="63" height="17" ng-bind="grndTotDmgPub()">
                         </td>
-                        <td class="right" width="63" height="17" ng-bind="grndtotaldpvt">
+                        <td class="right" width="63" height="17" ng-bind="grndTotDmgPvt()">
                         </td>
-                        <td class="right" width="63" height="17" ng-bind="grndtotalyear1pub">
+                        <td class="right" width="63" height="17" ng-bind="grndTotLosY1Pub()">
                         </td>
-                        <td class="right" width="63" height="17" ng-bind="grndtotalyear1pvt">
+                        <td class="right" width="63" height="17" ng-bind="grndTotLosY1Pvt()">
                         </td>
-                        <td class="right" width="63" height="17" ng-bind="grndtotalyear2pub">
+                        <td class="right" width="63" height="17" ng-bind="grndTotLosY2Pub()">
                         </td>
-                        <td class="right" width="63" height="17" ng-bind="grndtotalyear2pvt">
+                        <td class="right" width="63" height="17" ng-bind="grndTotLosY2Pvt()">
                         </td>
-                        <td class="right" width="63" height="17" ng-bind="grndfinaltotalpublic">
+                        <td class="right" width="63" height="17" ng-bind="grndTotDmgPub() + grndTotLosY1Pub() + grndTotLosY2Pub()">
                         </td>
-                        <td class="right" width="63" height="17" ng-bind="grndfinaltotalprivate">
+                        <td class="right" width="63" height="17" ng-bind="grndTotDmgPvt() + grndTotLosY1Pvt() + grndTotLosY2Pvt()">
                         </td>
                     </tr>
                     <tr class="trheadc1" height="17">
@@ -349,13 +348,15 @@
                         </td>
                     </tr>
                     <tr height="17">
-                        <td class="right" colspan="2" width="126" height="17" ng-bind="summaryDamages">
+                        <td class="right" colspan="2" width="126" height="17" ng-bind="grndTotDmgPub() + grndTotDmgPvt()">
                         </td>
-                        <td class="right" colspan="2" width="126" height="17" ng-bind="summaryLossYear1">
+                        <td class="right" colspan="2" width="126" height="17" ng-bind="grndTotLosY1Pub() + grndTotLosY1Pvt()">
                         </td>
-                        <td class="right" colspan="2" width="126" height="17" ng-bind="summaryLossYear2">
+                        <td class="right" colspan="2" width="126" height="17" ng-bind="grndTotLosY2Pub() + grndTotLosY2Pvt()">
                         </td>
-                        <td class="right" colspan="2" width="126" height="17" ng-bind="summaryTotal">
+                        <td class="right" colspan="2" width="126" height="17"
+                            ng-bind="grndTotDmgPub() + grndTotLosY1Pub() + grndTotLosY2Pub() + grndTotDmgPvt() +
+                            grndTotLosY1Pvt() + grndTotLosY2Pvt()">
                         </td>
                     </tr>
                 </table>

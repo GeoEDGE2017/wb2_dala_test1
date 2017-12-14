@@ -47,15 +47,305 @@ app.controller("DlSummeryTSNatController", function ($scope,$http,$parse, _) {
             method: "POST",
             url: '/dl_fetch_summary_disagtn',
             data: angular.toJson({
-            'table_name':  ['Table_9','Table_5','Table_5','Table_4'],
-            'sector': ['transport_land','transport_air','transport_water','transport_rail'],
-            'com_data': {
+                'table_name':  ['Table_9', 'Table_5', 'Table_5', 'Table_4'],
+                'sector': ['transport_land', 'transport_air', 'transport_water', 'transport_rail'],
+                'com_data': {
                     'incident': $scope.incident,
-                  },
-                   }),
-            }).success(function(data) {
+                },
+            }),
+        }).success(function(data) {
             $scope.dlTransSumNat = data;
+            console.log($scope.dlTransSumNat);
         })
+    }
+
+    $scope.grndTotDmgPub = function() {
+        var tot_damages_lnd = 0;
+        var tot_damages_air = 0;
+        var tot_damages_wat = 0;
+        var tot_damages_ral = 0;
+        if(!angular.isUndefined($scope.dlTransSumNat)) {
+            angular.forEach($scope.dlTransSumNat, function(secter, key) {
+                if(key == 'transport_land') {
+                    angular.forEach(secter.Table_9, function(district) {
+                        angular.forEach(district, function(db_table, db_table_key) {
+                            if(db_table_key == 'DlGacPubNational') {
+                                angular.forEach(db_table, function(row) {
+                                    tot_damages_lnd = tot_damages_lnd + row.damages;
+                                })
+                            }
+                        })
+                    })
+                }
+                else if(key == 'transport_air') {
+                    angular.forEach(secter.Table_5, function(district) {
+                        angular.forEach(district, function(db_table, db_table_key) {
+                            if(db_table_key == 'DlAirDmgPubNational') {
+                                angular.forEach(db_table, function(row) {
+                                    tot_damages_air = tot_damages_air + row.tot_destroyed_pub;
+                                })
+                            }
+                        })
+                    })
+                }
+                else if(key == 'transport_water') {
+                    angular.forEach(secter.Table_5, function(district) {
+                        angular.forEach(district, function(db_table, db_table_key) {
+                            if(db_table_key == 'DlWaterDmgPubNational') {
+                                angular.forEach(db_table, function(row) {
+                                    tot_damages_wat = tot_damages_wat + row.tot_dmg_public;
+                                })
+                            }
+                        })
+                    })
+                }
+                else if(key == 'transport_rail') {
+                    angular.forEach(secter.Table_4, function(district) {
+                        angular.forEach(district, function(db_table, db_table_key) {
+                            if(db_table_key == 'TotDmgNational') {
+                                angular.forEach(db_table, function(row) {
+                                    tot_damages_ral = tot_damages_ral + row.tot_damages;
+                                })
+                            }
+                        })
+                    })
+                }
+            })
+        }
+//        console.log(tot_damages_lnd, tot_damages_air, tot_damages_wat, tot_damages_ral);
+        return tot_damages_lnd + tot_damages_air + tot_damages_wat + tot_damages_ral;
+    }
+
+    $scope.grndTotDmgPvt = function() {
+        var tot_damages_lnd = 0;
+        var tot_damages_air = 0;
+        var tot_damages_wat = 0;
+        if(!angular.isUndefined($scope.dlTransSumNat)) {
+            angular.forEach($scope.dlTransSumNat, function(secter, key) {
+                if(key == 'transport_land') {
+                    angular.forEach(secter.Table_9, function(district) {
+                        angular.forEach(district, function(db_table, db_table_key) {
+                            if(db_table_key == 'DlGacPvtNational') {
+                                angular.forEach(db_table, function(row) {
+                                    tot_damages_lnd = tot_damages_lnd + parseFloat(row.tot_damages_pvt);
+                                     console.log(row.tot_damages_pvt);
+                                })
+                            }
+                        })
+                    })
+                }
+                else if(key == 'transport_air') {
+                    angular.forEach(secter.Table_5, function(district) {
+                        angular.forEach(district, function(db_table, db_table_key) {
+                            if(db_table_key == 'DlAirDmgPvtNational') {
+                                angular.forEach(db_table, function(row) {
+                                    tot_damages_air = tot_damages_air + row.tot_destroyed_pvt;
+                                })
+                            }
+                        })
+                    })
+                }
+                else if(key == 'transport_water') {
+                    angular.forEach(secter.Table_5, function(district) {
+                        angular.forEach(district, function(db_table, db_table_key) {
+                            if(db_table_key == 'DlWaterDmgPvtNational') {
+                                angular.forEach(db_table, function(row) {
+                                    tot_damages_wat = tot_damages_wat + row.tot_dmg_private;
+                                })
+                            }
+                        })
+                    })
+                }
+            })
+        }
+        console.log(tot_damages_lnd, tot_damages_air, tot_damages_wat);
+        return tot_damages_lnd + tot_damages_air + tot_damages_wat;
+    }
+
+    $scope.grndTotLosY1Pub = function() {
+        var tot_damages_lnd = 0;
+        var tot_damages_air = 0;
+        var tot_damages_wat = 0;
+        var tot_damages_ral = 0;
+        if(!angular.isUndefined($scope.dlTransSumNat)) {
+            angular.forEach($scope.dlTransSumNat, function(secter, key) {
+                if(key == 'transport_land') {
+                    angular.forEach(secter.Table_9, function(district) {
+                        angular.forEach(district, function(db_table, db_table_key) {
+                            if(db_table_key == 'DlYearsPubNational') {
+                                angular.forEach(db_table, function(row) {
+                                    tot_damages_lnd = tot_damages_lnd + row.year_1;
+                                })
+                            }
+                        })
+                    })
+                }
+                else if(key == 'transport_air') {
+                    angular.forEach(secter.Table_5, function(district) {
+                        angular.forEach(district, function(db_table, db_table_key) {
+                            if(db_table_key == 'DlAirLosNational') {
+                                angular.forEach(db_table, function(row) {
+                                    tot_damages_air = tot_damages_air + row.year_1_pub;
+                                })
+                            }
+                        })
+                    })
+                }
+                else if(key == 'transport_water') {
+                    angular.forEach(secter.Table_5, function(district) {
+                        angular.forEach(district, function(db_table, db_table_key) {
+                            if(db_table_key == 'DlWaterLosNational') {
+                                angular.forEach(db_table, function(row) {
+                                    tot_damages_wat = tot_damages_wat + row.year_1_pub;
+                                })
+                            }
+                        })
+                    })
+                }
+            })
+        }
+//        console.log(tot_damages_lnd, tot_damages_air, tot_damages_wat, tot_damages_ral);
+        return tot_damages_lnd + tot_damages_air + tot_damages_wat + tot_damages_ral;
+    }
+
+    $scope.grndTotLosY1Pvt = function() {
+        var tot_damages_lnd = 0;
+        var tot_damages_air = 0;
+        var tot_damages_wat = 0;
+        var tot_damages_ral = 0;
+        if(!angular.isUndefined($scope.dlTransSumNat)) {
+            angular.forEach($scope.dlTransSumNat, function(secter, key) {
+                if(key == 'transport_land') {
+                    angular.forEach(secter.Table_9, function(district) {
+                        angular.forEach(district, function(db_table, db_table_key) {
+                            if(db_table_key == 'DlOtherLosPvtNational') {
+                                angular.forEach(db_table, function(row) {
+                                    tot_damages_lnd = tot_damages_lnd + parseFloat(row.year_1_pvt);
+                                     console.log(row.tot_damages_pvt);
+                                })
+                            }
+                        })
+                    })
+                }
+                else if(key == 'transport_air') {
+                    angular.forEach(secter.Table_5, function(district) {
+                        angular.forEach(district, function(db_table, db_table_key) {
+                            if(db_table_key == 'DlAirLosNational') {
+                                angular.forEach(db_table, function(row) {
+                                    tot_damages_air = tot_damages_air + row.year_1_pvt;
+                                })
+                            }
+                        })
+                    })
+                }
+                else if(key == 'transport_water') {
+                    angular.forEach(secter.Table_5, function(district) {
+                        angular.forEach(district, function(db_table, db_table_key) {
+                            if(db_table_key == 'DlWaterLosNational') {
+                                angular.forEach(db_table, function(row) {
+                                    tot_damages_wat = tot_damages_wat + row.year_1_pvt;
+                                })
+                            }
+                        })
+                    })
+                }
+            })
+        }
+        console.log(tot_damages_lnd, tot_damages_air, tot_damages_wat);
+        return tot_damages_lnd + tot_damages_air + tot_damages_wat;
+    }
+
+    $scope.grndTotLosY2Pub = function() {
+        var tot_damages_lnd = 0;
+        var tot_damages_air = 0;
+        var tot_damages_wat = 0;
+        var tot_damages_ral = 0;
+        if(!angular.isUndefined($scope.dlTransSumNat)) {
+            angular.forEach($scope.dlTransSumNat, function(secter, key) {
+                if(key == 'transport_land') {
+                    angular.forEach(secter.Table_9, function(district) {
+                        angular.forEach(district, function(db_table, db_table_key) {
+                            if(db_table_key == 'DlYearsPubNational') {
+                                angular.forEach(db_table, function(row) {
+                                    tot_damages_lnd = tot_damages_lnd + row.year_2;
+                                })
+                            }
+                        })
+                    })
+                }
+                else if(key == 'transport_air') {
+                    angular.forEach(secter.Table_5, function(district) {
+                        angular.forEach(district, function(db_table, db_table_key) {
+                            if(db_table_key == 'DlAirLosNational') {
+                                angular.forEach(db_table, function(row) {
+                                    tot_damages_air = tot_damages_air + row.year_2_pub;
+                                })
+                            }
+                        })
+                    })
+                }
+                else if(key == 'transport_water') {
+                    angular.forEach(secter.Table_5, function(district) {
+                        angular.forEach(district, function(db_table, db_table_key) {
+                            if(db_table_key == 'DlWaterLosNational') {
+                                angular.forEach(db_table, function(row) {
+                                    tot_damages_wat = tot_damages_wat + row.year_2_pub;
+                                })
+                            }
+                        })
+                    })
+                }
+            })
+        }
+//        console.log(tot_damages_lnd, tot_damages_air, tot_damages_wat, tot_damages_ral);
+        return tot_damages_lnd + tot_damages_air + tot_damages_wat + tot_damages_ral;
+    }
+
+    $scope.grndTotLosY2Pvt = function() {
+        var tot_damages_lnd = 0;
+        var tot_damages_air = 0;
+        var tot_damages_wat = 0;
+        var tot_damages_ral = 0;
+        if(!angular.isUndefined($scope.dlTransSumNat)) {
+            angular.forEach($scope.dlTransSumNat, function(secter, key) {
+                if(key == 'transport_land') {
+                    angular.forEach(secter.Table_9, function(district) {
+                        angular.forEach(district, function(db_table, db_table_key) {
+                            if(db_table_key == 'DlOtherLosPvtNational') {
+                                angular.forEach(db_table, function(row) {
+                                    tot_damages_lnd = tot_damages_lnd + parseFloat(row.year_2_pub);
+                                     console.log(row.year_2_pub);
+                                })
+                            }
+                        })
+                    })
+                }
+                else if(key == 'transport_air') {
+                    angular.forEach(secter.Table_5, function(district) {
+                        angular.forEach(district, function(db_table, db_table_key) {
+                            if(db_table_key == 'DlAirLosNational') {
+                                angular.forEach(db_table, function(row) {
+                                    tot_damages_air = tot_damages_air + row.year_2_pvt;
+                                })
+                            }
+                        })
+                    })
+                }
+                else if(key == 'transport_water') {
+                    angular.forEach(secter.Table_5, function(district) {
+                        angular.forEach(district, function(db_table, db_table_key) {
+                            if(db_table_key == 'DlWaterLosNational') {
+                                angular.forEach(db_table, function(row) {
+                                    tot_damages_wat = tot_damages_wat + row.year_2_pvt;
+                                })
+                            }
+                        })
+                    })
+                }
+            })
+        }
+        console.log(tot_damages_lnd, tot_damages_air, tot_damages_wat);
+        return tot_damages_lnd + tot_damages_air + tot_damages_wat;
     }
 
     $scope.convertToInt = function(val1,val2,val3) {

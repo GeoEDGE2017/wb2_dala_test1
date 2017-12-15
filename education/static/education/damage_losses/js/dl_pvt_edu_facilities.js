@@ -29,6 +29,12 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
 	$scope.is_submit = false;
 	$scope.check_search = false;
 
+	$scope.new_preSchool;
+	$scope.new_prmSchool;
+	$scope.new_secSchool;
+	$scope.new_unv;
+	$scope.new_techInst;
+
 	$scope.new_school = {
 		'PreSchools': {
 			id: null,
@@ -613,6 +619,52 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
 			$scope.new_school[$scope.schoolType] = null;
 			$scope.is_edit_model = false;
 		})
+	}
+
+	//edit schools
+	$scope.editPreSchool = function() {
+	    console.log('editPreSchool');
+	    if($scope.new_preSchool != null) {
+	        console.log($scope.new_preSchool);
+	        $http({
+                method: "POST",
+                url: "/edit_school",
+                data: angular.toJson({
+                    'model_fields': $scope.new_preSchool,
+                    'model': 'PreSchools',
+                    'sector': 'education'
+                }),
+            }).success(function(data) {
+                location.reload();
+            })
+	    }
+	    else {
+//	        console.log('else');
+//	        alert('***');
+	    }
+	}
+
+	//edit schools
+	$scope.editPrimarySchool = function() {
+	    console.log('editPrisSchool');
+	    if($scope.new_prmSchool != null) {
+	        console.log($scope.new_preSchool);
+	        $http({
+                method: "POST",
+                url: "/edit_school",
+                data: angular.toJson({
+                    'model_fields': $scope.new_prmSchool,
+                    'model': 'PrimarySchools',
+                    'sector': 'education'
+                }),
+            }).success(function(data) {
+                location.reload();
+            })
+	    }
+	    else {
+//	        console.log('else');
+//	        alert('***');
+	    }
 	}
 
 	$scope.fetchSchools = function() {

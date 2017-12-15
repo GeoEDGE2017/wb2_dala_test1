@@ -158,7 +158,8 @@ $(document).ready(function() {
                             <td colspan="2" width="272" height="21"> Male </td>
                             <td colspan="2" width="272"> Female </td>
                         </tr>
-                        <tr ng-repeat="dpefNaf in dlPvtEduFacilities.education.Table_4.DpefNaf" ng-if="dpefNaf.edu_facilities != 'TOTAL'" sheight="21">
+                        <tr ng-repeat="dpefNaf in dlPvtEduFacilities.education.Table_4.DpefNaf"
+                            ng-if="dpefNaf.edu_facilities != 'TOTAL'" sheight="21">
                             <td ng-bind="dpefNaf.edu_facilities" class="tdpa" width="280" height="21"> </td>
                             <td colspan="2" width="272">
                                 <input ng-model="dpefNaf.num_edu_facilities" id="textinput" name="textinput" type="number"
@@ -238,7 +239,7 @@ $(document).ready(function() {
                             </td>
                             <td width="136">
                                 <a id="edit_preschool" ng-click="is_edit_model=true; schoolType='PreSchools'"
-                                    href="#modal-container-218029" role="button" data-toggle="modal" data-id="Edit Pre-school"
+                                    href="#modal-container-318021" role="button" data-toggle="modal" data-id="Edit Pre-school"
                                     class="btn btn-sm btn-block btn-primary btn-warning">
                                     Edit
                                 </a>
@@ -250,22 +251,33 @@ $(document).ready(function() {
                             <tr height="21" class="tdpa">
                                 <td height="20" align="left" class="tdpa" > Pre-school Name </td>
                                 <td class="trsub" colspan="2" width="136">
-                                    <select ng-options="school as school.name for school in schools.PreSchools track by school.id" name="district" id="ccyear" ng-model="preSchool[$index]" class="form-control" required>
+                                    <select ng-options="school as school.name for school in schools.PreSchools track by school.id"
+                                            name="district" id="ccyear" ng-model="preSchool[$index]" class="form-control" required>
                                         <option value="" selected>Select pre-school name</option>
                                     </select>
                                 </td>
                                 <td  colspan="5"> </td>
                             </tr>
                             <tr height="21" ng-repeat="row in dpefBefPreSchool" ng-if="row.asset != 'Total'">
-                                <td ng-bind="row.asset" class="tdpa" width="280" height="21"> </td>
+                                <td ng-bind="row.asset" class="tdpa" width="280" height="21">
+                                </td>
                                 <td width="136">
-                                    <input ng-model="row.est_rep_cost" type="number" placeholder="" class="form-control input-md"> </td>
+                                    <input ng-model="row.est_rep_cost" type="number"
+                                           placeholder="" class="form-control input-md">
+                                </td>
                                 <td width="136">
-                                    <input ng-model="row.est_repair_cost" type="number" placeholder="" class="form-control input-md"> </td>
-                                <td width="136" class="right" ng-bind="row.tot_damages" ng-value="row.tot_damages = row.est_rep_cost + row.est_repair_cost"> </td>
-                                <td width="136" class="tdpa"> </td>
-                                <td width="136" class="tdpa"> </td>
-                                <td width="136" class="tdpa"> </td>
+                                    <input ng-model="row.est_repair_cost" type="number"
+                                           placeholder="" class="form-control input-md">
+                                </td>
+                                <td width="136" class="right" ng-bind="row.tot_damages"
+                                    ng-value="row.tot_damages = row.est_rep_cost + row.est_repair_cost">
+                                </td>
+                                <td width="136" class="tdpa">
+                                </td>
+                                <td width="136" class="tdpa">
+                                </td>
+                                <td width="136" class="tdpa">
+                                </td>
                             </tr>
                             <tr height="21" ng-repeat="row in dpefBefPreSchool" ng-if="row.asset == 'Total'">
                                 <td ng-bind="row.asset" class="tdpa" width="280" height="21"> </td>
@@ -308,21 +320,33 @@ $(document).ready(function() {
                         <tr class="trheadc" height="21">
                             <td width="280" height="21"> Primary School </td>
                             <td width="136"  colspan="8"> </td>
-                           
                         </tr>
                         <tr class="trsub" height="21" >
                             <td class="trhead" width="280" height="21"> Primary School Name
-                                <button ng-click="addPrmSchoolObject()" class="btn btn-sm btn-info btn-circle" id="insert"> <span class="fa fa-plus"></span> </button>
+                                <button ng-click="addPrmSchoolObject()" class="btn btn-sm btn-info btn-circle" id="insert">
+                                    <span class="fa fa-plus"></span>
+                                </button>
                             </td>
-                            <td width="136"> <a id="add_primary" href="#modal-container-218029" ng-click="schoolType='PrimarySchools'" role="button" data-toggle="modal" data-id="Add Primary School" class="open-modal-container-218029 btn btn-sm btn-block btn-primary btn-info">Add</a> </td>
-                            <td width="136"> <a id="edit_primary" href="#modal-container-218029" ng-click="is_edit_model=true; schoolType='PrimarySchools'" role="button" data-toggle="modal" data-id="Edit Primary School" class="btn btn-sm btn-block btn-primary btn-warning">Edit</a> </td>
-                            <td  colspan="5"> </td>
+                            <td width="136">
+                                <a id="add_primary" href="#modal-container-218029" ng-click="schoolType='PrimarySchools'"
+                                   role="button" data-toggle="modal" data-id="Add Primary School"
+                                   class="open-modal-container-218029 btn btn-sm btn-block btn-primary btn-info">Add</a>
+                            </td>
+                            <td width="136">
+                                <a id="edit_primary" href="#modal-container-318022"
+                                   ng-click="is_edit_model=true; schoolType='PrimarySchools'"
+                                   role="button" data-toggle="modal" data-id="Edit Primary School"
+                                   class="btn btn-sm btn-block btn-primary btn-warning">Edit</a>
+                            </td>
+                            <td  colspan="5">
+                            </td>
                         </tr>
                         <tbody ng-repeat="dpefBefPrmSchool in dlPvtEduFacilities.education.Table_4.DpefBefPrmSchool">
                             <tr height="21">
                                 <td height="20" class="tdpa" align="left" valign="middle"> Primary School Name </td>
                                 <td class="trsub" colspan="2" width="136">
-                                    <select ng-options="school as school.name for school in schools.PrimarySchools track by school.id" name="district" id="ccyear" class="form-control" ng-model="prmSchool[$index]" required>
+                                    <select ng-options="school as school.name for school in schools.PrimarySchools track by school.id"
+                                            name="district" id="ccyear" class="form-control" ng-model="prmSchool[$index]" required>
                                         <option value="" selected>Select primary school name</option>
                                     </select>
                                 </td>
@@ -331,19 +355,29 @@ $(document).ready(function() {
                             <tr height="21" ng-repeat="row in dpefBefPrmSchool" ng-if="row.asset != 'Total'">
                                 <td ng-bind="row.asset" class="tdpa" width="280" height="21"> </td>
                                 <td width="136">
-                                    <input ng-model="row.est_rep_cost" type="number" placeholder="" class="form-control input-md"> </td>
+                                    <input ng-model="row.est_rep_cost" type="number" placeholder="" class="form-control input-md">
+                                </td>
                                 <td width="136">
-                                    <input ng-model="row.est_repair_cost" type="number" placeholder="" class="form-control input-md"> </td>
-                                <td class="right" ng-bind="row.tot_damages" ng-value="row.tot_damages = row.est_rep_cost + row.est_repair_cost" width="136"> </td>
+                                    <input ng-model="row.est_repair_cost" type="number" placeholder="" class="form-control input-md">
+                                </td>
+                                <td class="right" ng-bind="row.tot_damages" ng-value="row.tot_damages = row.est_rep_cost + row.est_repair_cost"
+                                    width="136">
+                                </td>
                                 <td width="136" class="tdpa"> </td>
                                 <td width="136" class="tdpa"> </td>
                                 <td width="136" class="tdpa"> </td>
                             </tr>
                             <tr height="21" ng-repeat="row in dpefBefPrmSchool" ng-if="row.asset == 'Total'">
                                 <td ng-bind="row.asset" class="tdpa" width="280" height="21"> </td>
-                                <td class="right" width="136" ng-bind="row.est_rep_cost" ng-value="row.est_rep_cost=dpefBefPrmSchool[0].est_rep_cost + dpefBefPrmSchool[1].est_rep_cost + dpefBefPrmSchool[2].est_rep_cost"> </td>
-                                <td class="right" width="136" ng-bind="row.est_repair_cost" ng-value="row.est_repair_cost=dpefBefPrmSchool[0].est_repair_cost + dpefBefPrmSchool[1].est_repair_cost + dpefBefPrmSchool[2].est_repair_cost"> </td>
-                                <td class="right" width="136" ng-bind="row.tot_damages" ng-value="row.tot_damages=dpefBefPrmSchool[0].tot_damages + dpefBefPrmSchool[1].tot_damages + dpefBefPrmSchool[2].tot_damages"> </td>
+                                <td class="right" width="136" ng-bind="row.est_rep_cost"
+                                    ng-value="row.est_rep_cost=dpefBefPrmSchool[0].est_rep_cost + dpefBefPrmSchool[1].est_rep_cost + dpefBefPrmSchool[2].est_rep_cost">
+                                </td>
+                                <td class="right" width="136" ng-bind="row.est_repair_cost"
+                                    ng-value="row.est_repair_cost=dpefBefPrmSchool[0].est_repair_cost + dpefBefPrmSchool[1].est_repair_cost + dpefBefPrmSchool[2].est_repair_cost">
+                                </td>
+                                <td class="right" width="136" ng-bind="row.tot_damages"
+                                    ng-value="row.tot_damages=dpefBefPrmSchool[0].tot_damages + dpefBefPrmSchool[1].tot_damages + dpefBefPrmSchool[2].tot_damages">
+                                </td>
                                 <td width="136">
                                     <input ng-model="row.est_los_year_1" type="number" placeholder="" class="form-control input-md">
                                     <!--ng-bind="row.est_los_year_1" ng-value="row.est_los_year_1=dpefBefPrmSchool[0].est_los_year_1 + dpefBefPrmSchool[1].est_los_year_1 + dpefBefPrmSchool[2].est_los_year_1"-->
@@ -793,6 +827,92 @@ $(document).ready(function() {
                             Close
                         </button>
                         <button ng-click="addSchool()" type="button" class="btn btn-primary">
+                            Save changes
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="modal fade" id="modal-container-318021" role="dialog" style="width:50%;margin:0 auto;" aria-hidden="true">
+            <div class="modal-dialog" style="width:50%;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> × </button>
+                        <h5 class="modal-title">
+                            <span id="bookId"> </span>
+                        </h5>
+                    </div>
+                    <div class="form-group">
+						<label class="col-md-4 control-label" for="textinput">Select Pre School</label>
+						<div class="col-md-8">
+                            <select ng-options="school as school.name for school in schools.PreSchools track by school.id"
+                                    name="district" id="ccyear" ng-model="new_preSchool" class="form-control" required>
+                                <option value="" selected>Select pre-school name</option>
+                            </select>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="textinput">Name</label>
+                            <div class="col-md-10">
+                                <input ng-model="new_preSchool.name" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            Close
+                        </button>
+                        <button ng-click="editPreSchool()" type="button" class="btn btn-primary">
+                            Save changes
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="modal fade" id="modal-container-318022" role="dialog" style="width:50%;margin:0 auto;" aria-hidden="true">
+            <div class="modal-dialog" style="width:50%;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> × </button>
+                        <h5 class="modal-title">
+                            <span id="bookId"> </span>
+                        </h5>
+                    </div>
+                    <div class="form-group">
+						<label class="col-md-4 control-label" for="textinput">Select Primary School</label>
+						<div class="col-md-8">
+                            <select ng-options="school as school.name for school in schools.PrimarySchools track by school.id"
+                                    name="district" id="ccyear" class="form-control" ng-model="new_prmSchool" required>
+                                <option value="" selected>Select primary school name</option>
+                            </select>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="textinput">Name</label>
+                            <div class="col-md-10">
+                                <input ng-model="new_prmSchool.name" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            Close
+                        </button>
+                        <button ng-click="editPrimarySchool()" type="button" class="btn btn-primary">
                             Save changes
                         </button>
                     </div>

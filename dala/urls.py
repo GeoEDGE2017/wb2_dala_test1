@@ -51,6 +51,7 @@ urlpatterns = [
     url(r'^bs_save_data_with_organization', views.bs_save_data_with_organization, name='bs_save_data_with_organization'),
 
     url(r'^fetch_trans_rail_losses', views.fetch_trans_rail_losses, name='fetch_trans_rail_losses'),
+    url(r'^edit_school', views.edit_school, name='edit_school'),
 
     # add_entity_with_district
     url(r'^add_entity_with_district$', views.add_entity_with_district, name='add_entity_with_district'),

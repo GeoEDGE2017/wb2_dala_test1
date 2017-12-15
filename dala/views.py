@@ -2540,7 +2540,7 @@ def get_user_id_from_username(username):
     print '*******', username, result
 
 
-# this method is only use for transport summary national should move to it's view
+# this method is only use for transport summary national should move to it's view.py
 @csrf_exempt
 def fetch_trans_rail_losses(request):
     print 'fetch_trans_rail_losses-------'
@@ -2563,3 +2563,26 @@ def fetch_trans_rail_losses(request):
         json.dumps(list(fetched_data)),
         content_type='application/javascript; charset=utf8'
     )
+
+
+# this method is only use for education, this should move to it's view.py
+@csrf_exempt
+def edit_school(request):
+    data = (yaml.safe_load(request.body))
+    model_fields = data['model_fields']
+    model_name = data['model']
+    sector = data['sector']
+
+    sub_app_name = sector + '.base_line'
+
+    model_class = apps.get_model(sub_app_name, model_name)
+
+    print 'update'
+    object_id = model_fields['id']
+    modified_model = model_class.objects.filter(pk=object_id)
+    modified_model.update(**model_fields)
+    print object_id
+    return HttpResponse(object_id)
+
+
+

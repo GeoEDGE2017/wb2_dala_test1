@@ -667,6 +667,52 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
 	    }
 	}
 
+	//edit schools
+	$scope.editUniversity = function() {
+	    console.log('editUniversity');
+	    if($scope.new_unv != null) {
+	        console.log($scope.new_unv);
+	        $http({
+                method: "POST",
+                url: "/edit_school",
+                data: angular.toJson({
+                    'model_fields': $scope.new_unv,
+                    'model': 'Universities',
+                    'sector': 'education'
+                }),
+            }).success(function(data) {
+                location.reload();
+            })
+	    }
+	    else {
+//	        console.log('else');
+//	        alert('***');
+	    }
+	}
+
+	//edit schools
+	$scope.editTechInstitutes = function() {
+	    console.log('editTechInstitutes');
+	    if($scope.new_techInst != null) {
+	        console.log($scope.new_techInst);
+	        $http({
+                method: "POST",
+                url: "/edit_school",
+                data: angular.toJson({
+                    'model_fields': $scope.new_techInst,
+                    'model': 'TechInstitutes',
+                    'sector': 'education'
+                }),
+            }).success(function(data) {
+                location.reload();
+            })
+	    }
+	    else {
+//	        console.log('else');
+//	        alert('***');
+	    }
+	}
+
 	$scope.fetchSchools = function() {
 		angular.forEach($scope.new_school, function(value, key) {
 			value.district_id = $scope.district;

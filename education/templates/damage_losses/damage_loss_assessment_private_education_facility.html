@@ -418,7 +418,6 @@ $(document).ready(function() {
                         <tr class="trheadc" height="21">
                             <td width="280" height="21"> Secondary School </td>
                             <td width="136"  colspan="8"> </td>
-
                         </tr>
                         <tr class="trsub" height="21">
                             <td class="trhead" width="280" height="21">
@@ -434,7 +433,7 @@ $(document).ready(function() {
                             </td>
                             <td width="136">
                                 <a id="edit_secondary" ng-click="is_edit_model=true; schoolType='SecondarySchools'"
-                                   href="#modal-container-218029" role="button" data-toggle="modal" data-id="Edit Secondary School"
+                                   href="#modal-container-318023" role="button" data-toggle="modal" data-id="Edit Secondary School"
                                    class="btn btn-sm btn-block btn-primary btn-warning">Edit</a>
                             </td>
                             <td colspan="5"></td>
@@ -523,7 +522,7 @@ $(document).ready(function() {
                             </td>
                             <td width="136">
                                 <a id="edit_university" ng-click="is_edit_model=true; schoolType='Universities'"
-                                   href="#modal-container-218029" role="button" data-toggle="modal" data-id="Edit University"
+                                   href="#modal-container-318024" role="button" data-toggle="modal" data-id="Edit University"
                                    class="btn btn-sm btn-block btn-primary btn-warning">Edit</a>
                             </td>
                             <td width="136"  colspan="5"></td>
@@ -615,7 +614,7 @@ $(document).ready(function() {
                             </td>
                             <td width="136">
                                 <a id="edit_technical" ng-click="is_edit_model=true; schoolType='TechInstitutes'"
-                                   href="#modal-container-218029" role="button" data-toggle="modal"
+                                   href="#modal-container-318025" role="button" data-toggle="modal"
                                    data-id="Edit Technical Institutes" class="btn btn-sm btn-block btn-primary btn-warning">Edit</a>
                             </td>
                             <td width="136"  colspan="5">
@@ -913,6 +912,136 @@ $(document).ready(function() {
                             Close
                         </button>
                         <button ng-click="editPrimarySchool()" type="button" class="btn btn-primary">
+                            Save changes
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="modal fade" id="modal-container-318023" role="dialog" style="width:50%;margin:0 auto;" aria-hidden="true">
+            <div class="modal-dialog" style="width:50%;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> × </button>
+                        <h5 class="modal-title">
+                            <span id="bookId"> </span>
+                        </h5>
+                    </div>
+                    <div class="form-group">
+						<label class="col-md-4 control-label" for="textinput">Select Secondary School</label>
+						<div class="col-md-8">
+                            <select ng-options="school as school.name for school in schools.SecondarySchools track by school.id"
+                                    name="district" id="ccyear" ng-model="new_secSchool" class="form-control" required>
+                                <option value="" selected>Select Secondary School Name</option>
+                            </select>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="textinput">Name</label>
+                            <div class="col-md-10">
+                                <input ng-model="new_secSchool.name" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            Close
+                        </button>
+                        <button ng-click="editSecondarySchool()" type="button" class="btn btn-primary">
+                            Save changes
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="modal fade" id="modal-container-318024" role="dialog" style="width:50%;margin:0 auto;" aria-hidden="true">
+            <div class="modal-dialog" style="width:50%;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> × </button>
+                        <h5 class="modal-title">
+                            <span id="bookId"> </span>
+                        </h5>
+                    </div>
+                    <div class="form-group">
+						<label class="col-md-4 control-label" for="textinput">Select Secondary School</label>
+						<div class="col-md-8">
+                            <select ng-options="school as school.name for school in schools.Universities track by school.id"
+                                    name="district" id="ccyear" ng-model="new_unv" class="form-control" required>
+                                <option value="" selected>Select University Name</option>
+                            </select>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="textinput">Name</label>
+                            <div class="col-md-10">
+                                <input ng-model="new_unv.name" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            Close
+                        </button>
+                        <button ng-click="editUniversity()" type="button" class="btn btn-primary">
+                            Save changes
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="modal fade" id="modal-container-318025" role="dialog" style="width:50%;margin:0 auto;" aria-hidden="true">
+            <div class="modal-dialog" style="width:50%;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> × </button>
+                        <h5 class="modal-title">
+                            <span id="bookId"> </span>
+                        </h5>
+                    </div>
+                    <div class="form-group">
+						<label class="col-md-4 control-label" for="textinput">Select Secondary School</label>
+						<div class="col-md-8">
+                            <select ng-options="school as school.name for school in schools.TechInstitutes track by school.id"
+                                    name="district" id="ccyear" ng-model="new_techInst" class="form-control" required>
+                                <option value="" selected>Select Technical Institute Name</option>
+                            </select>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="textinput">Name</label>
+                            <div class="col-md-10">
+                                <input ng-model="new_techInst.name" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            Close
+                        </button>
+                        <button ng-click="editTechInstitutes()" type="button" class="btn btn-primary">
                             Save changes
                         </button>
                     </div>

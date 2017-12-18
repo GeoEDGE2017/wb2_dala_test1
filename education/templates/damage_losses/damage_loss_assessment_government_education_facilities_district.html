@@ -33,7 +33,9 @@ $(document).ready(function() {
             <span style="margin-left:15px;color:#000;" ng-bind="currentBaselineDate"></span>
         </li>
         <li style="float:right;">
-            <a href="{% static 'dashboard/doc/Education.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a>
+            <a href="{% static 'dashboard/doc/Education.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info"
+               data-toggle="tooltip" title="Veiw Document">
+            </a>
         </li>
     </ol>
     <div class="container-fluid">
@@ -57,7 +59,6 @@ $(document).ready(function() {
             </ul>
             <div id="myTabContent" class="tab-content" ng-form name="form_govn_edu_facility_dist_dl">
                 <div class="tab-pane active" id="step1">
-                 
                     <table class="table table-bordered">
                         <colgroup>
                             <col width="280"/>
@@ -108,13 +109,21 @@ $(document).ready(function() {
                                     <option value="" selected>Select District</option>
                                 </select>
                             </td>
-                             <td style="width:100px;"> <span ng-if="!check_search">
-                                    <button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
-                                    </span> <span ng-if="check_search">
-                                    <button ng-click="searchDlData(form_govn_edu_facility_dist_dl)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
-                                    </span>
-                                    <button ng-click="clear()" ng-if="is_search" class="btn btn-warning"><span class="fa fa-times" aria-hidden="true"></span></button>
-                                </td>
+                            <td style="width:100px;">
+                                <span ng-if="!check_search">
+                                    <button ng-if="!is_search" class="btn btn-info" disabled>
+                                        <span class="fa fa-search"></span>
+                                    </button>
+                                </span>
+                                <span ng-if="check_search">
+                                    <button ng-click="searchDlData(form_govn_edu_facility_dist_dl)" ng-if="!is_search" class="btn btn-info">
+                                        <span class="fa fa-search"></span>
+                                    </button>
+                                </span>
+                                <button ng-click="clear()" ng-if="is_search" class="btn btn-warning">
+                                    <span class="fa fa-times" aria-hidden="true"></span>
+                                </button>
+                            </td>
                             <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
                         </tr>
                         <tr class="trheadc1" height="17">

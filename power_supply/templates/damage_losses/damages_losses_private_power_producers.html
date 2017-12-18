@@ -34,7 +34,6 @@
         </ul>
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1" ng-form name="form_dl_pow_supp_pri">
-                       
                 <table class="table table-bordered">
                     <colgroup>
                         <col width="244"/>
@@ -44,65 +43,71 @@
                         <col width="107"/>
                     </colgroup>
                     <tbody>
-                    <tr style="background:#fff;border:1px solid #fff;text-align:center;">
-                        <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
-                        </td>
-                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <span class="arrow_box" ng-show="submitted && form_dl_pow_supp_pri.incident.$error.required">
-                                Please Select Incident
-                            </span>
-                        </td>
-                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-                        </td>
-                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <span class="arrow_box" ng-show="submitted && form_dl_pow_supp_pri.district.$error.required">
-                                Please Select District
-                            </span>
-                        </td>
-                    </tr>
-                    <tr class="trhead1" height="19">
-                        <td width="103" style="text-align: center;">
-                            Incident
-                        </td>
-                        <td width="207" colspan="3">
-                            <select id="selectbasic" name="incident" ng-model="incident"
-                                    class="form-control" ng-change="changedValue(true)"
-                                    style="width:100%;font-weight:400;" required>
-                                <option value="" selected="true">Select an Incident</option>
-                                {% for incident in incidents %}
-                                <option value={{incident.id}}>
-                                    <!--{{incident.disaster_type.name}}-->
-                                    <!--{{incident.reported_date_time}}-->
-                                    {{incident.incident_name}}
-                                </option>
-                                {% endfor %}
-                            </select>
-                        </td>
-                        <td height="19" width="100" style="text-align: center;">
-                            District
-                        </td>
-                        <td width="328">
-                            <select ng-options="district as district.district__name for district in districts track by district.district__id"
-                                    name="district" id="ccyear" ng-model="district" ng-value="district.district__id"
-                                    class="form-control" ng-change="changedValue(false);" required>
-                                <!--fetchFirms();-->
-                                <option value="" selected>Select District</option>
-                            </select>
-                        </td>
-
-                         <td style="width:100px;"> <span ng-if="!check_search">
-                                    <button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
-                                    </span> <span ng-if="check_search">
-                                    <button ng-click="searchDlData(form_dl_pow_supp_pri)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
-                                    </span>
-                                    <button ng-click="clear()" ng-if="is_search" class="btn btn-warning"><span class="fa fa-times" aria-hidden="true"></span></button>
-                                </td>
-
-                        <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
-                    </tr>
+                        <tr style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            </td>
+                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                                <span class="arrow_box" ng-show="submitted && form_dl_pow_supp_pri.incident.$error.required">
+                                    Please Select Incident
+                                </span>
+                            </td>
+                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            </td>
+                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                                <span class="arrow_box" ng-show="submitted && form_dl_pow_supp_pri.district.$error.required">
+                                    Please Select District
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="trhead1" height="19">
+                            <td width="103" style="text-align: center;">
+                                Incident
+                            </td>
+                            <td width="207" colspan="3">
+                                <select id="selectbasic" name="incident" ng-model="incident"
+                                        class="form-control" ng-change="changedValue(true)"
+                                        style="width:100%;font-weight:400;" required>
+                                    <option value="" selected="true">Select an Incident</option>
+                                    {% for incident in incidents %}
+                                    <option value={{incident.id}}>
+                                        <!--{{incident.disaster_type.name}}-->
+                                        <!--{{incident.reported_date_time}}-->
+                                        {{incident.incident_name}}
+                                    </option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                            <td height="19" width="100" style="text-align: center;">
+                                District
+                            </td>
+                            <td width="328">
+                                <select ng-options="district as district.district__name for district in districts track by district.district__id"
+                                        name="district" id="ccyear" ng-model="district" ng-value="district.district__id"
+                                        class="form-control" ng-change="changedValue(false);" required>
+                                    <!--fetchFirms();-->
+                                    <option value="" selected>Select District</option>
+                                </select>
+                            </td>
+                            <td style="width:100px;">
+                                <span ng-if="!check_search">
+                                    <button ng-if="!is_search" class="btn btn-info" disabled>
+                                        <span class="fa fa-search"></span>
+                                    </button>
+                                </span>
+                                <span ng-if="check_search">
+                                    <button ng-click="searchDlData(form_dl_pow_supp_pri)" ng-if="!is_search" class="btn btn-info">
+                                        <span class="fa fa-search"></span>
+                                    </button>
+                                </span>
+                                <button ng-click="clear()" ng-if="is_search" class="btn btn-warning">
+                                    <span class="fa fa-times" aria-hidden="true"></span>
+                                </button>
+                            </td>
+                            <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
+                        </tr>
                     </tbody>
-                    </table>
-                     <table class="table table-bordered">
+                </table>
+                <table class="table table-bordered">
                     <colgroup>
                         <col width="244"/>
                         <col width="112"/>
@@ -111,127 +116,129 @@
                         <col width="107"/>
                     </colgroup>
                     <tbody>
-                    <tr class="trheadc1" height="19">
-                        <td height="19" width="244">
-                            Private power producers Type
-                        </td>
-                        <td colspan="5" width="328">
-                            <select ng-options="pvtPwProducerType as pvtPwProducerType.name for pvtPwProducerType in
-                            pvtPwProducerTypes | filter:{ name : '!CEB' }"
-                                    name="district" id="ccyear" ng-model="pvtPwProducerType"
-                                    ng-value="pvtPwProducerType"
-                                    class="form-control" required>
-                                <option value="" selected>Select Power Producer Type</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <!--pvtPwProducers-->
-                    <tr height="34">
-                        <td class="trhead1" height="34" width="244" style="text-align: center;">
-                            Name of IPP or SPP
-                        </td>
-                        <td colspan="6" width="400">
-                            <select ng-options="pvtPwProducer as pvtPwProducer.assets for pvtPwProducer in
-                            pvtPwProducers | filter:{ ownership : pvtPwProducerType.name } "
-                                    name="district" id="ccyear" ng-model="selectedProducer" ng-value="pvtPwProducer"
-                                    class="form-control" required>
-                                <option value="" selected>Select Power Producer</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr class="trheadc1" height="19">
-                        <td rowspan="2" height="38" width="244">
-                            Number of Employees
-                        </td>
-                        <td colspan="2" width="220">
-                            Male
-                        </td>
-                        <td colspan="3" width="318">
-                            Female
-                        </td>
-                    </tr>
-                    <tr height="19" ng-repeat="row in data.power_supply.Table_3.PvtNumEmp" ng-if="row.assets != 'Total'">
-                        <td colspan="2" height="19">
-                            <input id="textinput" name="textinput" type="number" ng-model="row.num_male" placeholder=""
-                                   class="form-control input-md" style="text-align: center;">
-                        </td>
-                        <td colspan="3">
-                            <input id="textinput" name="textinput" type="text" ng-model="row.num_female" placeholder=""
-                                   class="form-control input-md" style="text-align: center;">
-                        </td>
-                        <td colspan="0" ng-bind="row.tot_emp = row.num_male + row.num_female" ng-if="false">
-                        </td>
-                    </tr>
-                    <tr class="trheadc1" height="19">
-                        <td rowspan="2" height="70" width="244">
-                            Assets
-                        </td>
-                        <td colspan="5" width="538">
-                            Damages
-                        </td>
-                    </tr>
-                    <tr class="trsubc" height="51">
-                        <td height="51" width="112" style="width:10%;">
-                            Number of Totally Destroyed Assets
-                        </td>
-                        <td width="108" style="width:15%;">
-                            Total Replacement Cost (LKR)
-                        </td>
-                        <td width="108" style="width:15%;">
-                            Number of Partially Damaged Assets
-                        </td>
-                        <td width="103" style="width:15%;">
-                            Total Repair Costs (LKR)
-                        </td>
-                        <td width="107" style="width:15%;">
-                            Total Damages (LKR)
-                        </td>
-                    </tr>
-                    <tr height="19" ng-repeat="row in data.power_supply.Table_3.PvtDmgAst" ng-if="row.assets != 'Total'">
-                        <td class="tdpa" height="19" width="244" ng-bind="row.assets">
-                            Power generation equipment
-                        </td>
-                        <td width="112" style="width:15%;">
-                            <input id="textinput" name="textinput" type="number"
-                                   ng-model="row.num_dst_ast" placeholder="" class="form-control input-md">
-                        </td>
-                        <td width="108" style="width:15%;">
-                            <input id="textinput" name="textinput"
-                                   ng-model="row.tot_replace_cost" type="number" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="108" style="width:15%;">
-                            <input id="textinput" name="textinput" type="number"
-                                   ng-model="row.num_pdmg_ast" placeholder="" class="form-control input-md">
-                        </td>
-                        <td width="103" style="width:15%;">
-                            <input id="textinput" name="textinput" type="number"
-                                   ng-model="row.tot_repair_cost" placeholder="" class="form-control input-md">
-                        </td>
-                        <td class="right" width="107"
-                            ng-bind="row.tot_damaged_cost = getSum2(row.tot_replace_cost , row.tot_repair_cost)" style="width:15%;">
-                        </td>
-                    </tr>
-                    <tr height="19" ng-repeat="row in data.power_supply.Table_3.PvtDmgAst" ng-if="row.assets == 'Total'">
-                        <td class="tdpa" height="19" width="244">
-                            Total
-                        </td>
-                        <td class="tdpa" width="112">
-                        </td>
-                        <td class="right" width="108" ng-bind="row.tot_replace_cost = getTotalCol('PvtDmgAst','tot_replace_cost', row)">
-                        </td>
-                        <td class="tdpa" width="108">
-                        </td>
-                        <td class="right" width="103" ng-bind="row.tot_repair_cost = getTotalCol('PvtDmgAst','tot_repair_cost', row)">
-                        </td>
-                        <td class="right" width="107" ng-bind="row.tot_damaged_cost = getTotalCol('PvtDmgAst','tot_damaged_cost', row)">
-                        </td>
-                    </tr>
+                        <tr class="trheadc1" height="19">
+                            <td height="19" width="244">
+                                Private power producers Type
+                            </td>
+                            <td colspan="5" width="328">
+                                <select ng-options="pvtPwProducerType as pvtPwProducerType.name for pvtPwProducerType in
+                                pvtPwProducerTypes | filter:{ name : '!CEB' }"
+                                        name="district" id="ccyear" ng-model="pvtPwProducerType"
+                                        ng-value="pvtPwProducerType"
+                                        class="form-control" required>
+                                    <option value="" selected>Select Power Producer Type</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <!--pvtPwProducers-->
+                        <tr height="34">
+                            <td class="trhead1" height="34" width="244" style="text-align: center;">
+                                Name of IPP or SPP
+                            </td>
+                            <td colspan="6" width="400">
+                                <select ng-options="pvtPwProducer as pvtPwProducer.assets for pvtPwProducer in
+                                pvtPwProducers | filter:{ ownership : pvtPwProducerType.name } "
+                                        name="district" id="ccyear" ng-model="selectedProducer" ng-value="pvtPwProducer"
+                                        class="form-control" required>
+                                    <option value="" selected>Select Power Producer</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr class="trheadc1" height="19">
+                            <td rowspan="2" height="38" width="244">
+                                Number of Employees
+                            </td>
+                            <td colspan="2" width="220">
+                                Male
+                            </td>
+                            <td colspan="3" width="318">
+                                Female
+                            </td>
+                        </tr>
+                        <tr height="19" ng-repeat="row in data.power_supply.Table_3.PvtNumEmp" ng-if="row.assets != 'Total'">
+                            <td colspan="2" height="19">
+                                <input id="textinput" name="textinput" type="number" ng-model="row.num_male" placeholder=""
+                                       class="form-control input-md" style="text-align: center;">
+                            </td>
+                            <td colspan="3">
+                                <input id="textinput" name="textinput" type="text" ng-model="row.num_female" placeholder=""
+                                       class="form-control input-md" style="text-align: center;">
+                            </td>
+                            <td colspan="0" ng-bind="row.tot_emp = row.num_male + row.num_female" ng-if="false">
+                            </td>
+                        </tr>
+                        <tr class="trheadc1" height="19">
+                            <td rowspan="2" height="70" width="244">
+                                Assets
+                            </td>
+                            <td colspan="5" width="538">
+                                Damages
+                            </td>
+                        </tr>
+                        <tr class="trsubc" height="51">
+                            <td height="51" width="112" style="width:10%;">
+                                Number of Totally Destroyed Assets
+                            </td>
+                            <td width="108" style="width:15%;">
+                                Total Replacement Cost (LKR)
+                            </td>
+                            <td width="108" style="width:15%;">
+                                Number of Partially Damaged Assets
+                            </td>
+                            <td width="103" style="width:15%;">
+                                Total Repair Costs (LKR)
+                            </td>
+                            <td width="107" style="width:15%;">
+                                Total Damages (LKR)
+                            </td>
+                        </tr>
+                        <tr height="19" ng-repeat="row in data.power_supply.Table_3.PvtDmgAst" ng-if="row.assets != 'Total'">
+                            <td class="tdpa" height="19" width="244" ng-bind="row.assets">
+                                Power generation equipment
+                            </td>
+                            <td width="112" style="width:15%;">
+                                <input id="textinput" name="textinput" type="number"
+                                       ng-model="row.num_dst_ast" placeholder="" class="form-control input-md">
+                            </td>
+                            <td width="108" style="width:15%;">
+                                <input id="textinput" name="textinput"
+                                       ng-model="row.tot_replace_cost" type="number" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="108" style="width:15%;">
+                                <input id="textinput" name="textinput" type="number"
+                                       ng-model="row.num_pdmg_ast" placeholder="" class="form-control input-md">
+                            </td>
+                            <td width="103" style="width:15%;">
+                                <input id="textinput" name="textinput" type="number"
+                                       ng-model="row.tot_repair_cost" placeholder="" class="form-control input-md">
+                            </td>
+                            <td class="right" width="107"
+                                ng-bind="row.tot_damaged_cost = getSum2(row.tot_replace_cost , row.tot_repair_cost)" style="width:15%;">
+                            </td>
+                        </tr>
+                        <tr height="19" ng-repeat="row in data.power_supply.Table_3.PvtDmgAst" ng-if="row.assets == 'Total'">
+                            <td class="tdpa" height="19" width="244">
+                                Total
+                            </td>
+                            <td class="tdpa" width="112">
+                            </td>
+                            <td class="right" width="108" ng-bind="row.tot_replace_cost = getTotalCol('PvtDmgAst','tot_replace_cost', row)">
+                            </td>
+                            <td class="tdpa" width="108">
+                            </td>
+                            <td class="right" width="103" ng-bind="row.tot_repair_cost = getTotalCol('PvtDmgAst','tot_repair_cost', row)">
+                            </td>
+                            <td class="right" width="107" ng-bind="row.tot_damaged_cost = getTotalCol('PvtDmgAst','tot_damaged_cost', row)">
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
                 <br>
-                <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
-                        class="glyphicon glyphicon-arrow-right"></span> Fill Losses Informations</a>
+                <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab">
+                    <span class="glyphicon glyphicon-arrow-right"></span>
+                    Fill Losses Informations
+                </a>
                 <br>
             </div>
             <div class="tab-pane fade" id="step2">
@@ -244,49 +251,47 @@
                         <col width="107"/>
                     </colgroup>
                     <tbody>
-                    <tr class="trheadc1" height="19">
-                        <td height="19" width="244">
-                            Types of Losses
-                        </td>
-                        <td colspan="2" width="220" style="width:20%;">
-                            Year 1 (LKR)
-                        </td>
-                        <td colspan="2" width="211" style="width:20%;">
-                            Year 2 (LKR)
-                        </td>
-                        <td width="107" style="width:20%;">
-                            Total Losses (LKR)
-                        </td>
-                    </tr>
-                    <tr height="19" ng-repeat="row in data.power_supply.Table_3.PvtDmgLosses" ng-if="row.losses_type != 'Total'">
-                        <td class="tdpa" height="19" width="244" ng-bind="row.losses_type">
-
-                        </td>
-                        <td colspan="2">
-                            <input id="textinput" name="textinput" type="number" ng-model="row.los_year1"
-                                   placeholder="" class="form-control input-md">
-                        </td>
-                        <td colspan="2">
-                            <input id="textinput" name="textinput" type="number" ng-model="row.los_year2"
-                                   placeholder="" class="form-control input-md">
-                        </td>
-                        <td class="right" width="107" ng-model="lossTotals[$index].tot" ng-bind="lossTotals[$index].tot = getSum2(row.los_year1, row.los_year2)">
-                        </td>
-                    </tr>
-                    <tr height="19" ng-repeat="row in data.power_supply.Table_3.PvtDmgLosses" ng-if="row.losses_type == 'Total'">
-                        <td class="tdpa" height="19" width="244" ng-bind="row.losses_type ">
-
-                        </td>
-                        <td class="right" colspan="2" width="220" ng-model="row.los_year1"
-                            ng-bind="row.los_year1 = getTotalCol('PvtDmgLosses','los_year1',row)">
-                        </td>
-                        <td class="right" colspan="2" width="211" ng-model="row.los_year2"
-                            ng-bind="row.los_year2 = getTotalCol('PvtDmgLosses','los_year2',row)">
-                        </td>
-                        <td class="right" width="107" ng-model="lossTotals[$index].tot"
-                            ng-bind="lossTotals[$index].tot = lossTotals[1].tot +lossTotals[2].tot  + lossTotals[3].tot + lossTotals[4].tot ">
-                        </td>
-                    </tr>
+                        <tr class="trheadc1" height="19">
+                            <td height="19" width="244">
+                                Types of Losses
+                            </td>
+                            <td colspan="2" width="220" style="width:20%;">
+                                Year 1 (LKR)
+                            </td>
+                            <td colspan="2" width="211" style="width:20%;">
+                                Year 2 (LKR)
+                            </td>
+                            <td width="107" style="width:20%;">
+                                Total Losses (LKR)
+                            </td>
+                        </tr>
+                        <tr height="19" ng-repeat="row in data.power_supply.Table_3.PvtDmgLosses" ng-if="row.losses_type != 'Total'">
+                            <td class="tdpa" height="19" width="244" ng-bind="row.losses_type">
+                            </td>
+                            <td colspan="2">
+                                <input id="textinput" name="textinput" type="number" ng-model="row.los_year1"
+                                       placeholder="" class="form-control input-md">
+                            </td>
+                            <td colspan="2">
+                                <input id="textinput" name="textinput" type="number" ng-model="row.los_year2"
+                                       placeholder="" class="form-control input-md">
+                            </td>
+                            <td class="right" width="107" ng-model="lossTotals[$index].tot" ng-bind="lossTotals[$index].tot = getSum2(row.los_year1, row.los_year2)">
+                            </td>
+                        </tr>
+                        <tr height="19" ng-repeat="row in data.power_supply.Table_3.PvtDmgLosses" ng-if="row.losses_type == 'Total'">
+                            <td class="tdpa" height="19" width="244" ng-bind="row.losses_type ">
+                            </td>
+                            <td class="right" colspan="2" width="220" ng-model="row.los_year1"
+                                ng-bind="row.los_year1 = getTotalCol('PvtDmgLosses','los_year1',row)">
+                            </td>
+                            <td class="right" colspan="2" width="211" ng-model="row.los_year2"
+                                ng-bind="row.los_year2 = getTotalCol('PvtDmgLosses','los_year2',row)">
+                            </td>
+                            <td class="right" width="107" ng-model="lossTotals[$index].tot"
+                                ng-bind="lossTotals[$index].tot = lossTotals[1].tot +lossTotals[2].tot  + lossTotals[3].tot + lossTotals[4].tot ">
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
                 <br>

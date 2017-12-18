@@ -32,24 +32,31 @@ td {
             </span>
         </li>
         <li style="float:right;">
-            <a href="{% static 'dashboard/doc/Education.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document"></a>
+            <a href="{% static 'dashboard/doc/Education.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;"
+                class="icon-info" data-toggle="tooltip" title="Veiw Document">
+            </a>
         </li>
     </ol>
     <div class="container-fluid">
         <ul class='nav nav-wizard'>
             <li id="li1" class="active">
-                <a href='#step1' data-toggle="tab">1 - Public Sector</a>
+                <a href='#step1' data-toggle="tab">
+                    1 - Public Sector
+                </a>
             </li>
             <li id="li2">
-                <a href='#step2' data-toggle="tab">2 - Private Sector</a>
+                <a href='#step2' data-toggle="tab">
+                    2 - Private Sector
+                </a>
             </li>
             <li id="li3">
-                <a href='#step3' data-toggle="tab">3 - Total Damages and Losses</a>
+                <a href='#step3' data-toggle="tab">
+                    3 - Total Damages and Losses
+                </a>
             </li>
         </ul>
         <div id="myTabContent" class="tab-content" ng-form name="form_damagelost_edu_province">
             <div class="tab-pane active" id="step1">
-             
                 <table class="table table-bordered">
                     <colgroup>
                         <col width="296"/>
@@ -91,7 +98,6 @@ td {
                             </select>
                         </td>
                         <td style="padding-left:5px;"> Province</td>
-
                         <td colspan="3" style="">
                             <select name="province" ng-change="loadData();" ng-model="province"
                                     class="form-control"
@@ -139,7 +145,6 @@ td {
                         </td>
                     </tr>
                     </tbody>
-
                         <tbody ng-repeat="(key, value) in dlEduProvince.education.Table_6" id="boxscroll1" style="max-height:800px;overflow:auto;">
                             <tr height="20" class="trheadc">
                                 <td ng-bind="key" width="202" height="20">
@@ -365,7 +370,7 @@ td {
             </div>
             <div class="tab-pane fade" id="step2">
                 <table class="table table-bordered">
-                 <colgroup>
+                    <colgroup>
                         <col width="296"/>
                         <col width="91" />
                     </colgroup>
@@ -405,10 +410,10 @@ td {
                             </td>
                         </tr>
                         <table ng-repeat="(key, value) in dlEduProvince.education.Table_6" class="table table-bordered">
-                         <colgroup>
-                        <col width="296"/>
-                        <col width="91" />
-                    </colgroup>
+                            <colgroup>
+                                <col width="296"/>
+                                <col width="91" />
+                            </colgroup>
                             <tbody>
                                 <tr height="20" class="trheadc">
                                     <td ng-bind="key" width="202" height="20">
@@ -576,7 +581,6 @@ td {
                                     </td>
                                 </tr>
                             </tbody>
-
                         </table>
                         <table class="table table-bordered">
                             <tr class="boldash">

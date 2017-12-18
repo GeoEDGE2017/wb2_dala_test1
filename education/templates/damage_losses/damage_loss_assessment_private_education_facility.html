@@ -77,7 +77,9 @@ $(document).ready(function() {
             </span>
         </li>
         <li style="float:right;">
-            <a href="{% static 'dashboard/doc/Education.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document"></a>
+            <a href="{% static 'dashboard/doc/Education.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info"
+               data-toggle="tooltip" title="Veiw Document">
+            </a>
         </li>
     </ol>
     <div class="container-fluid">
@@ -117,7 +119,8 @@ $(document).ready(function() {
                         <tr class="trhead1">
                             <td style="padding-left:5px;">Incident</td>
                             <td colspan="2" style="background:#EFEFEF;">
-                                <select id="selectbasic" name="incident" ng-model="incident" class="form-control" ng-change="changedValue(true);" style="width:100%;font-weight:400;" required>
+                                <select id="selectbasic" name="incident" ng-model="incident" class="form-control"
+                                        ng-change="changedValue(true);" style="width:100%;font-weight:400;" required>
                                     <option value="" selected="true">Select an Incident</option> {% for incident in incidents %}
                                     <option value={{incident.id}}> {{incident.incident_name}}
                                         <!--{{incident.incident_name}}-->
@@ -128,7 +131,9 @@ $(document).ready(function() {
                                 Name of District
                             </td>
                             <td colspan="2" style="background:#EFEFEF;">
-                                <select ng-change="fetchSchools();changedValue(false);" ng-options="district as district.district__name for district in districts track by district.district__id" name="district" id="ccyear" style="font-weight:400;" ng-model="district" class="form-control" required>
+                                <select ng-change="fetchSchools();changedValue(false);"
+                                        ng-options="district as district.district__name for district in districts track by district.district__id"
+                                        name="district" id="ccyear" style="font-weight:400;" ng-model="district" class="form-control" required>
                                     <option value="" selected>Select District</option>
                                 </select>
                             </td> 
@@ -201,7 +206,8 @@ $(document).ready(function() {
                 <table class="table table-bordered">
                     <colgroup>
                         <col width="280" />
-                        <col width="136" span="6" /> </colgroup>
+                        <col width="136" span="6" />
+                    </colgroup>
                     <tbody>
                         <tr class="trheadc1" height="28">
                             <td rowspan="2" width="280" height="49"> Type of Schools and Assets </td>
@@ -223,7 +229,6 @@ $(document).ready(function() {
                         <tr class="trheadc" height="21">
                             <td width="280" height="21"  style="text-align: left:padding-left:5px;"> Pre-school </td>
                             <td colspan="8"></td>
-                            
                         </tr>
                         <tr class="trsub" height="21">
                             <td class="trhead"  width="280" height="21">
@@ -256,7 +261,7 @@ $(document).ready(function() {
                                         <option value="" selected>Select pre-school name</option>
                                     </select>
                                 </td>
-                                <td  colspan="5"> </td>
+                                <td colspan="5"></td>
                             </tr>
                             <tr height="21" ng-repeat="row in dpefBefPreSchool" ng-if="row.asset != 'Total'">
                                 <td ng-bind="row.asset" class="tdpa" width="280" height="21">
@@ -282,16 +287,22 @@ $(document).ready(function() {
                             <tr height="21" ng-repeat="row in dpefBefPreSchool" ng-if="row.asset == 'Total'">
                                 <td ng-bind="row.asset" class="tdpa" width="280" height="21"> </td>
                                 <td class="right" width="136" ng-bind="row.est_rep_cost"
-                                    ng-value="row.est_rep_cost=dpefBefPreSchool[0].est_rep_cost + dpefBefPreSchool[1].est_rep_cost + dpefBefPreSchool[2].est_rep_cost"> </td>
+                                    ng-value="row.est_rep_cost=dpefBefPreSchool[0].est_rep_cost + dpefBefPreSchool[1].est_rep_cost + dpefBefPreSchool[2].est_rep_cost">
+                                </td>
                                 <td class="right" width="136" ng-bind="row.est_repair_cost"
-                                    ng-value="row.est_repair_cost=dpefBefPreSchool[0].est_repair_cost + dpefBefPreSchool[1].est_repair_cost + dpefBefPreSchool[2].est_repair_cost"> </td>
+                                    ng-value="row.est_repair_cost=dpefBefPreSchool[0].est_repair_cost + dpefBefPreSchool[1].est_repair_cost + dpefBefPreSchool[2].est_repair_cost">
+                                </td>
                                 <td class="right" ng-bind="row.tot_damages"
-                                    ng-value="row.tot_damages=dpefBefPreSchool[0].tot_damages + dpefBefPreSchool[1].tot_damages + dpefBefPreSchool[2].tot_damages" width="136"> </td>
+                                    ng-value="row.tot_damages=dpefBefPreSchool[0].tot_damages + dpefBefPreSchool[1].tot_damages + dpefBefPreSchool[2].tot_damages" width="136">
+                                </td>
                                 <td width="136" class="right">
-                                    <input ng-model="row.est_los_year_1" type="number" placeholder="" class="form-control input-md"> </td>
+                                    <input ng-model="row.est_los_year_1" type="number" placeholder="" class="form-control input-md">
+                                </td>
                                 <td width="136" class="right">
-                                    <input ng-model="row.est_los_year_2" type="number" placeholder="" class="form-control input-md"> </td>
-                                <td class="right" width="136" ng-bind="row.tot_los" ng-value="row.tot_los = row.est_los_year_1 + row.est_los_year_2"> </td>
+                                    <input ng-model="row.est_los_year_2" type="number" placeholder="" class="form-control input-md">
+                                </td>
+                                <td class="right" width="136" ng-bind="row.tot_los" ng-value="row.tot_los = row.est_los_year_1 + row.est_los_year_2">
+                                </td>
                             </tr>
                             <tr height="21">
                                 <td class="tdpa" width="280" height="21">
@@ -598,7 +609,6 @@ $(document).ready(function() {
                         <tr class="trheadc" height="21">
                             <td width="280" height="21"> Technical Institutes </td>
                             <td width="136"  colspan="8"> </td>
-                           
                         </tr>
                         <tr class="trsub" height="21">
                             <td class="trhead" width="280" height="21">
@@ -619,7 +629,6 @@ $(document).ready(function() {
                             </td>
                             <td width="136"  colspan="5">
                             </td>
-                            
                         </tr>
                         <tbody ng-repeat="dpefBefTechInst in dlPvtEduFacilities.education.Table_4.DpefBefTechInst">
                             <tr height="21">
@@ -745,7 +754,8 @@ $(document).ready(function() {
                                                 dlPvtEduFacilities.education.Table_4.DpefBefOtherSchool[1].est_repair_cost + dlPvtEduFacilities.education.Table_4.DpefBefOtherSchool[2].est_repair_cost"> </td>
                             <td class='right' width="136" ng-bind="dpefBefOtherSchool.tot_damages" ng-value="dpefBefOtherSchool.tot_damages = dlPvtEduFacilities.education.Table_4.DpefBefOtherSchool[0].tot_damages +
                                                 dlPvtEduFacilities.education.Table_4.DpefBefOtherSchool[1].tot_damages +
-                                                dlPvtEduFacilities.education.Table_4.DpefBefOtherSchool[2].tot_damages"> </td>
+                                                dlPvtEduFacilities.education.Table_4.DpefBefOtherSchool[2].tot_damages">
+                            </td>
                             <td width="136">
                                 <input ng-model="dpefBefOtherSchool.est_los_year_1" type="number" placeholder="" class="form-control input-md">
                                 <!--ng-bind="row.est_los_year_1"-->
@@ -962,7 +972,6 @@ $(document).ready(function() {
             </div>
         </div>
     </div>
-
     <div class="col-md-12">
         <div class="modal fade" id="modal-container-318024" role="dialog" style="width:50%;margin:0 auto;" aria-hidden="true">
             <div class="modal-dialog" style="width:50%;">

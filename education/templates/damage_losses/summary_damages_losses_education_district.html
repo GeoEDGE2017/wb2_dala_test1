@@ -14,10 +14,14 @@
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
-            <a href="{% url 'dashboard:index' %}">Dashboard</a>
+            <a href="{% url 'dashboard:index' %}">
+                Dashboard
+            </a>
         </li>
         <li class="breadcrumb-item">
-            <a href="{% url 'dashboard:education_main' %}">Education Sector</a>
+            <a href="{% url 'dashboard:education_main' %}">
+                Education Sector
+            </a>
         </li>
         <li class="breadcrumb-item active">
             <span class="label label-success" style="font-size:14px;">
@@ -25,19 +29,27 @@
             </span>
         </li>
         <li style="float:right;">
-            <a href="{% static 'dashboard/doc/Education.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a>
+            <a href="{% static 'dashboard/doc/Education.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;"
+                class="icon-info" data-toggle="tooltip" title="Veiw Document">
+            </a>
         </li>
     </ol>
     <div class="container-fluid">
         <ul class='nav nav-wizard'>
             <li id="li1" class="active">
-                <a href='#step1' data-toggle="tab">1 - Public Sector</a>
+                <a href='#step1' data-toggle="tab">
+                    1 - Public Sector
+                </a>
             </li>
             <li id="li2">
-                <a href='#step2' data-toggle="tab">2 - Private Sector</a>
+                <a href='#step2' data-toggle="tab">
+                    2 - Private Sector
+                </a>
             </li>
             <li id="li3">
-                <a href='#step3' data-toggle="tab">3 - Total Damages and Losses</a>
+                <a href='#step3' data-toggle="tab">
+                    3 - Total Damages and Losses
+                </a>
             </li>
         </ul>
         <div id="myTabContent" class="tab-content">
@@ -49,7 +61,9 @@
                     </colgroup>
                     <tbody>
                         <tr class="trhead1">
-                             <td style="padding-left:5px;"> Incident</td>
+                            <td style="padding-left:5px;">
+                                 Incident
+                            </td>
                             <td colspan="2" style="">
                                 <select id="selectbasic" name="incident" ng-model="incident"
                                     class="form-control" ng-change="changedValue(true);loadData(district, incident);" style="width:100%;font-weight:400;" required>
@@ -109,7 +123,6 @@
                                 Year 2
                             </td>
                         </tr>
-                        
                         <tr height="17" ng-repeat="dugDfDistrict in data.education.Table_5.DugDfDistrict">
                             <td class="tdpa" width="307" height="17">
                                 1AB, 1C
@@ -263,73 +276,73 @@
                             </td>
                         </tr>
                         <tr height="17" ng-repeat="dugDfDistrict in data.education.Table_5.DugDfDistrict">
-                        <td class="tdpa" width="307" height="17">
-                            Total
-                        </td>
-                        <td class="right"  width="110" ng-bind="sumFunc8(data.education.Table_5.DugDfDistrict[0].ab1_1c,
-                             data.education.Table_5.DugDfDistrict[0].type_2,
-                             data.education.Table_5.DugDfDistrict[0].type_3,
-                             data.education.Table_5.DugDfDistrict[0].pirivena,
-                             data.education.Table_5.DugDfDistrict[0].training_institutes,
-                             data.education.Table_5.DugDfDistrict[0].training_colleges,
-                             data.education.Table_5.DugDfDistrict[0].tc_crc_resc,
-                             data.education.Table_5.DugDfDistrict[0].min_pzd_offices)">
-                        </td>
-                        <td class="right" width="110" ng-bind="sumFunc8(data.education.Table_5.DugNsaDistrict[1].ab1_1c,
-                             data.education.Table_5.DugNsaDistrict[1].type_2,
-                             data.education.Table_5.DugNsaDistrict[1].type_3,
-                             data.education.Table_5.DugNsaDistrict[1].pirivena,
-                             data.education.Table_5.DugNsaDistrict[1].training_institutes,
-                             data.education.Table_5.DugNsaDistrict[1].training_colleges,
-                             data.education.Table_5.DugNsaDistrict[1].tc_crc_resc,
-                             data.education.Table_5.DugNsaDistrict[1].min_pzd_offices)">
-                        </td>
-                        <td class="right" width="110" ng-bind="sumFunc8(data.education.Table_5.DugNsaDistrict[0].ab1_1c,
-                             data.education.Table_5.DugNsaDistrict[0].type_2,
-                             data.education.Table_5.DugNsaDistrict[0].type_3,
-                             data.education.Table_5.DugNsaDistrict[0].pirivena,
-                             data.education.Table_5.DugNsaDistrict[0].training_institutes,
-                             data.education.Table_5.DugNsaDistrict[0].training_colleges,
-                             data.education.Table_5.DugNsaDistrict[0].tc_crc_resc,
-                             data.education.Table_5.DugNsaDistrict[0].min_pzd_offices)">
-                        </td>
-                        <td class="right" width="110" ng-bind="sumFunc8(data.education.Table_5.DugNdafDistrict[0].ab1_1c +
-                             data.education.Table_5.DugNdafDistrict[0].type_2 +
-                             data.education.Table_5.DugNdafDistrict[0].type_3 +
-                             data.education.Table_5.DugNdafDistrict[0].pirivena +
-                             data.education.Table_5.DugNdafDistrict[0].training_institutes +
-                             data.education.Table_5.DugNdafDistrict[0].training_colleges +
-                             data.education.Table_5.DugNdafDistrict[0].tc_crc_resc +
-                             data.education.Table_5.DugNdafDistrict[0].min_pzd_offices)">
-                        </td>
-                        <td class="right" width="110" ng-bind="sumFunc8(data.education.Table_5.DpefBefDistrict[0].ab1_1c,
-                             data.education.Table_5.DpefBefDistrict[0].type_2,
-                             data.education.Table_5.DpefBefDistrict[0].type_3,
-                             data.education.Table_5.DpefBefDistrict[0].pirivena,
-                             data.education.Table_5.DpefBefDistrict[0].training_institutes,
-                             data.education.Table_5.DpefBefDistrict[0].training_colleges,
-                             data.education.Table_5.DpefBefDistrict[0].tc_crc_resc,
-                             data.education.Table_5.DpefBefDistrict[0].min_pzd_offices)">
-                        </td>
-                        <td class="right" width="110" ng-bind="sumFunc8(data.education.Table_5.DpefBefDistrict[2].ab1_1c,
-                             data.education.Table_5.DpefBefDistrict[2].type_2,
-                             data.education.Table_5.DpefBefDistrict[2].type_3,
-                             data.education.Table_5.DpefBefDistrict[2].pirivena,
-                             data.education.Table_5.DpefBefDistrict[2].training_institutes,
-                             data.education.Table_5.DpefBefDistrict[2].training_colleges,
-                             data.education.Table_5.DpefBefDistrict[2].tc_crc_resc,
-                             data.education.Table_5.DpefBefDistrict[2].min_pzd_offices)">
-                        </td>
-                        <td class="right" width="110" ng-bind="sumFunc8(data.education.Table_5.DpefBefDistrict[1].ab1_1c,
-                             data.education.Table_5.DpefBefDistrict[1].type_2,
-                             data.education.Table_5.DpefBefDistrict[1].type_3,
-                             data.education.Table_5.DpefBefDistrict[1].pirivena,
-                             data.education.Table_5.DpefBefDistrict[1].training_institutes,
-                             data.education.Table_5.DpefBefDistrict[1].training_colleges,
-                             data.education.Table_5.DpefBefDistrict[1].tc_crc_resc,
-                             data.education.Table_5.DpefBefDistrict[1].min_pzd_offices)">
-                        </td>
-                    </tr>
+                            <td class="tdpa" width="307" height="17">
+                                Total
+                            </td>
+                            <td class="right"  width="110" ng-bind="sumFunc8(data.education.Table_5.DugDfDistrict[0].ab1_1c,
+                                 data.education.Table_5.DugDfDistrict[0].type_2,
+                                 data.education.Table_5.DugDfDistrict[0].type_3,
+                                 data.education.Table_5.DugDfDistrict[0].pirivena,
+                                 data.education.Table_5.DugDfDistrict[0].training_institutes,
+                                 data.education.Table_5.DugDfDistrict[0].training_colleges,
+                                 data.education.Table_5.DugDfDistrict[0].tc_crc_resc,
+                                 data.education.Table_5.DugDfDistrict[0].min_pzd_offices)">
+                            </td>
+                            <td class="right" width="110" ng-bind="sumFunc8(data.education.Table_5.DugNsaDistrict[1].ab1_1c,
+                                 data.education.Table_5.DugNsaDistrict[1].type_2,
+                                 data.education.Table_5.DugNsaDistrict[1].type_3,
+                                 data.education.Table_5.DugNsaDistrict[1].pirivena,
+                                 data.education.Table_5.DugNsaDistrict[1].training_institutes,
+                                 data.education.Table_5.DugNsaDistrict[1].training_colleges,
+                                 data.education.Table_5.DugNsaDistrict[1].tc_crc_resc,
+                                 data.education.Table_5.DugNsaDistrict[1].min_pzd_offices)">
+                            </td>
+                            <td class="right" width="110" ng-bind="sumFunc8(data.education.Table_5.DugNsaDistrict[0].ab1_1c,
+                                 data.education.Table_5.DugNsaDistrict[0].type_2,
+                                 data.education.Table_5.DugNsaDistrict[0].type_3,
+                                 data.education.Table_5.DugNsaDistrict[0].pirivena,
+                                 data.education.Table_5.DugNsaDistrict[0].training_institutes,
+                                 data.education.Table_5.DugNsaDistrict[0].training_colleges,
+                                 data.education.Table_5.DugNsaDistrict[0].tc_crc_resc,
+                                 data.education.Table_5.DugNsaDistrict[0].min_pzd_offices)">
+                            </td>
+                            <td class="right" width="110" ng-bind="sumFunc8(data.education.Table_5.DugNdafDistrict[0].ab1_1c +
+                                 data.education.Table_5.DugNdafDistrict[0].type_2 +
+                                 data.education.Table_5.DugNdafDistrict[0].type_3 +
+                                 data.education.Table_5.DugNdafDistrict[0].pirivena +
+                                 data.education.Table_5.DugNdafDistrict[0].training_institutes +
+                                 data.education.Table_5.DugNdafDistrict[0].training_colleges +
+                                 data.education.Table_5.DugNdafDistrict[0].tc_crc_resc +
+                                 data.education.Table_5.DugNdafDistrict[0].min_pzd_offices)">
+                            </td>
+                            <td class="right" width="110" ng-bind="sumFunc8(data.education.Table_5.DpefBefDistrict[0].ab1_1c,
+                                 data.education.Table_5.DpefBefDistrict[0].type_2,
+                                 data.education.Table_5.DpefBefDistrict[0].type_3,
+                                 data.education.Table_5.DpefBefDistrict[0].pirivena,
+                                 data.education.Table_5.DpefBefDistrict[0].training_institutes,
+                                 data.education.Table_5.DpefBefDistrict[0].training_colleges,
+                                 data.education.Table_5.DpefBefDistrict[0].tc_crc_resc,
+                                 data.education.Table_5.DpefBefDistrict[0].min_pzd_offices)">
+                            </td>
+                            <td class="right" width="110" ng-bind="sumFunc8(data.education.Table_5.DpefBefDistrict[2].ab1_1c,
+                                 data.education.Table_5.DpefBefDistrict[2].type_2,
+                                 data.education.Table_5.DpefBefDistrict[2].type_3,
+                                 data.education.Table_5.DpefBefDistrict[2].pirivena,
+                                 data.education.Table_5.DpefBefDistrict[2].training_institutes,
+                                 data.education.Table_5.DpefBefDistrict[2].training_colleges,
+                                 data.education.Table_5.DpefBefDistrict[2].tc_crc_resc,
+                                 data.education.Table_5.DpefBefDistrict[2].min_pzd_offices)">
+                            </td>
+                            <td class="right" width="110" ng-bind="sumFunc8(data.education.Table_5.DpefBefDistrict[1].ab1_1c,
+                                 data.education.Table_5.DpefBefDistrict[1].type_2,
+                                 data.education.Table_5.DpefBefDistrict[1].type_3,
+                                 data.education.Table_5.DpefBefDistrict[1].pirivena,
+                                 data.education.Table_5.DpefBefDistrict[1].training_institutes,
+                                 data.education.Table_5.DpefBefDistrict[1].training_colleges,
+                                 data.education.Table_5.DpefBefDistrict[1].tc_crc_resc,
+                                 data.education.Table_5.DpefBefDistrict[1].min_pzd_offices)">
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
                 <br>
@@ -397,7 +410,7 @@
                             <td class="right" width="110" ng-bind="data.education.Table_5.DpefBefPreDistrict[0].est_los_year_2">
                             </td>
                             <td class="right"  width="110" ng-bind="data.education.Table_5.DpefBefPreDistrict[0].est_los_year_1 +
-                                    data.education.Table_5.DpefBefPreDistrict[0].est_los_year_2">
+                                data.education.Table_5.DpefBefPreDistrict[0].est_los_year_2">
                             </td>
                         </tr>
                         <tr height="17" ng-repeat="dpefNaf in data.education.Table_5.DpefNaf" ng-if="dpefNaf.edu_facilities == 'Primary School'">
@@ -417,7 +430,7 @@
                             <td class="right" width="110" ng-bind="data.education.Table_5.DpefBefPrimaryDistrict[0].est_los_year_2">
                             </td>
                             <td class="right" width="110" ng-bind="data.education.Table_5.DpefBefPrimaryDistrict[0].est_los_year_1 +
-                                    data.education.Table_5.DpefBefPrimaryDistrict[0].est_los_year_2">
+                                data.education.Table_5.DpefBefPrimaryDistrict[0].est_los_year_2">
                             </td>
                         </tr>
                         <tr height="17" ng-repeat="dpefNaf in data.education.Table_5.DpefNaf" ng-if="dpefNaf.edu_facilities == 'Secondary School'">
@@ -437,7 +450,7 @@
                             <td class="right" width="110" ng-bind="data.education.Table_5.DpefBefSecondaryDistrict[0].est_los_year_2">
                             </td>
                             <td class="right" width="110" ng-bind="data.education.Table_5.DpefBefSecondaryDistrict[0].est_los_year_1 +
-                                    data.education.Table_5.DpefBefSecondaryDistrict[0].est_los_year_2">
+                                data.education.Table_5.DpefBefSecondaryDistrict[0].est_los_year_2">
                             </td>
                         </tr>
                         <tr  height="17" ng-repeat="dpefNaf in data.education.Table_5.DpefNaf" ng-if="dpefNaf.edu_facilities == 'University'">
@@ -690,97 +703,97 @@
                             </td>
                         </tr>
                         <tr  height="17">
-                        <td class="tdpa" width="307" height="17">
-                            Total
-                        </td>
-                        <td class="right" width="110" colspan="2" ng-bind="sumFunc8(data.education.Table_5.DugNdafDistrict[0].ab1_1c +
-                            data.education.Table_5.DugNdafDistrict[0].type_2 +
-                            data.education.Table_5.DugNdafDistrict[0].type_3 +
-                            data.education.Table_5.DugNdafDistrict[0].pirivena +
-                            data.education.Table_5.DugNdafDistrict[0].training_institutes +
-                            data.education.Table_5.DugNdafDistrict[0].training_colleges +
-                            data.education.Table_5.DugNdafDistrict[0].tc_crc_resc +
-                            data.education.Table_5.DugNdafDistrict[0].min_pzd_offices) +
-                            data.education.Table_5.DpefBefPreDistrict[0].tot_damages +
-                            data.education.Table_5.DpefBefPrimaryDistrict[0].tot_damages +
-                            data.education.Table_5.DpefBefSecondaryDistrict[0].tot_damages +
-                            data.education.Table_5.DpefBefUnvDistrict[0].tot_damages +
-                            data.education.Table_5.DpefBefTechDistrict[0].tot_damages +
-                            data.education.Table_5.DpefBefOtherDistrict[0].tot_damages">
-                        </td>
-                        <td class="right" width="110" colspan="2" ng-bind="sumFunc8(data.education.Table_5.DpefBefDistrict[0].ab1_1c,
-                            data.education.Table_5.DpefBefDistrict[0].type_2,
-                            data.education.Table_5.DpefBefDistrict[0].type_3,
-                            data.education.Table_5.DpefBefDistrict[0].pirivena,
-                            data.education.Table_5.DpefBefDistrict[0].training_institutes,
-                            data.education.Table_5.DpefBefDistrict[0].training_colleges,
-                            data.education.Table_5.DpefBefDistrict[0].tc_crc_resc,
-                            data.education.Table_5.DpefBefDistrict[0].min_pzd_offices) +
-                            (data.education.Table_5.DpefBefPreDistrict[0].est_los_year_1 +
-                            data.education.Table_5.DpefBefPrimaryDistrict[0].est_los_year_1 +
-                            data.education.Table_5.DpefBefSecondaryDistrict[0].est_los_year_1 +
-                            data.education.Table_5.DpefBefUnvDistrict[0].est_los_year_1 +
-                            data.education.Table_5.DpefBefTechDistrict[0].est_los_year_1 +
-                            data.education.Table_5.DpefBefOtherDistrict[0].est_los_year_1)">
-                        </td>
-                        <td class="right" width="110" colspan="2" ng-bind="sumFunc8(data.education.Table_5.DpefBefDistrict[2].ab1_1c,
-                            data.education.Table_5.DpefBefDistrict[2].type_2,
-                            data.education.Table_5.DpefBefDistrict[2].type_3,
-                            data.education.Table_5.DpefBefDistrict[2].pirivena,
-                            data.education.Table_5.DpefBefDistrict[2].training_institutes,
-                            data.education.Table_5.DpefBefDistrict[2].training_colleges,
-                            data.education.Table_5.DpefBefDistrict[2].tc_crc_resc,
-                            data.education.Table_5.DpefBefDistrict[2].min_pzd_offices) +
-                            (data.education.Table_5.DpefBefPreDistrict[0].est_los_year_2 +
-                            data.education.Table_5.DpefBefPrimaryDistrict[0].est_los_year_2 +
-                            data.education.Table_5.DpefBefSecondaryDistrict[0].est_los_year_2 +
-                            data.education.Table_5.DpefBefUnvDistrict[0].est_los_year_2 +
-                            data.education.Table_5.DpefBefTechDistrict[0].est_los_year_2 +
-                            data.education.Table_5.DpefBefOtherDistrict[0].est_los_year_2)">
-                        </td>
-                        <td class="right" width="110" ng-bind="sumFunc8(data.education.Table_5.DugNdafDistrict[0].ab1_1c +
-                            data.education.Table_5.DugNdafDistrict[0].type_2 +
-                            data.education.Table_5.DugNdafDistrict[0].type_3 +
-                            data.education.Table_5.DugNdafDistrict[0].pirivena +
-                            data.education.Table_5.DugNdafDistrict[0].training_institutes +
-                            data.education.Table_5.DugNdafDistrict[0].training_colleges +
-                            data.education.Table_5.DugNdafDistrict[0].tc_crc_resc +
-                            data.education.Table_5.DugNdafDistrict[0].min_pzd_offices) +
-                            sumFunc8(data.education.Table_5.DpefBefDistrict[0].ab1_1c,
-                            data.education.Table_5.DpefBefDistrict[0].type_2,
-                            data.education.Table_5.DpefBefDistrict[0].type_3,
-                            data.education.Table_5.DpefBefDistrict[0].pirivena,
-                            data.education.Table_5.DpefBefDistrict[0].training_institutes,
-                            data.education.Table_5.DpefBefDistrict[0].training_colleges,
-                            data.education.Table_5.DpefBefDistrict[0].tc_crc_resc,
-                            data.education.Table_5.DpefBefDistrict[0].min_pzd_offices) +
-                            sumFunc8(data.education.Table_5.DpefBefDistrict[2].ab1_1c,
-                            data.education.Table_5.DpefBefDistrict[2].type_2,
-                            data.education.Table_5.DpefBefDistrict[2].type_3,
-                            data.education.Table_5.DpefBefDistrict[2].pirivena,
-                            data.education.Table_5.DpefBefDistrict[2].training_institutes,
-                            data.education.Table_5.DpefBefDistrict[2].training_colleges,
-                            data.education.Table_5.DpefBefDistrict[2].tc_crc_resc,
-                            data.education.Table_5.DpefBefDistrict[2].min_pzd_offices) + (data.education.Table_5.DpefBefPreDistrict[0].tot_damages +
-                            data.education.Table_5.DpefBefPrimaryDistrict[0].tot_damages +
-                            data.education.Table_5.DpefBefSecondaryDistrict[0].tot_damages +
-                            data.education.Table_5.DpefBefUnvDistrict[0].tot_damages +
-                            data.education.Table_5.DpefBefTechDistrict[0].tot_damages +
-                            data.education.Table_5.DpefBefOtherDistrict[0].tot_damages) +
-                            (data.education.Table_5.DpefBefPreDistrict[0].est_los_year_1 +
-                            data.education.Table_5.DpefBefPrimaryDistrict[0].est_los_year_1 +
-                            data.education.Table_5.DpefBefSecondaryDistrict[0].est_los_year_1 +
-                            data.education.Table_5.DpefBefUnvDistrict[0].est_los_year_1 +
-                            data.education.Table_5.DpefBefTechDistrict[0].est_los_year_1 +
-                            data.education.Table_5.DpefBefOtherDistrict[0].est_los_year_1) +
-                            (data.education.Table_5.DpefBefPreDistrict[0].est_los_year_2 +
-                            data.education.Table_5.DpefBefPrimaryDistrict[0].est_los_year_2 +
-                            data.education.Table_5.DpefBefSecondaryDistrict[0].est_los_year_2 +
-                            data.education.Table_5.DpefBefUnvDistrict[0].est_los_year_2 +
-                            data.education.Table_5.DpefBefTechDistrict[0].est_los_year_2 +
-                            data.education.Table_5.DpefBefOtherDistrict[0].est_los_year_2)">
-                        </td>
-                    </tr>
+                            <td class="tdpa" width="307" height="17">
+                                Total
+                            </td>
+                            <td class="right" width="110" colspan="2" ng-bind="sumFunc8(data.education.Table_5.DugNdafDistrict[0].ab1_1c +
+                                data.education.Table_5.DugNdafDistrict[0].type_2 +
+                                data.education.Table_5.DugNdafDistrict[0].type_3 +
+                                data.education.Table_5.DugNdafDistrict[0].pirivena +
+                                data.education.Table_5.DugNdafDistrict[0].training_institutes +
+                                data.education.Table_5.DugNdafDistrict[0].training_colleges +
+                                data.education.Table_5.DugNdafDistrict[0].tc_crc_resc +
+                                data.education.Table_5.DugNdafDistrict[0].min_pzd_offices) +
+                                data.education.Table_5.DpefBefPreDistrict[0].tot_damages +
+                                data.education.Table_5.DpefBefPrimaryDistrict[0].tot_damages +
+                                data.education.Table_5.DpefBefSecondaryDistrict[0].tot_damages +
+                                data.education.Table_5.DpefBefUnvDistrict[0].tot_damages +
+                                data.education.Table_5.DpefBefTechDistrict[0].tot_damages +
+                                data.education.Table_5.DpefBefOtherDistrict[0].tot_damages">
+                            </td>
+                            <td class="right" width="110" colspan="2" ng-bind="sumFunc8(data.education.Table_5.DpefBefDistrict[0].ab1_1c,
+                                data.education.Table_5.DpefBefDistrict[0].type_2,
+                                data.education.Table_5.DpefBefDistrict[0].type_3,
+                                data.education.Table_5.DpefBefDistrict[0].pirivena,
+                                data.education.Table_5.DpefBefDistrict[0].training_institutes,
+                                data.education.Table_5.DpefBefDistrict[0].training_colleges,
+                                data.education.Table_5.DpefBefDistrict[0].tc_crc_resc,
+                                data.education.Table_5.DpefBefDistrict[0].min_pzd_offices) +
+                                (data.education.Table_5.DpefBefPreDistrict[0].est_los_year_1 +
+                                data.education.Table_5.DpefBefPrimaryDistrict[0].est_los_year_1 +
+                                data.education.Table_5.DpefBefSecondaryDistrict[0].est_los_year_1 +
+                                data.education.Table_5.DpefBefUnvDistrict[0].est_los_year_1 +
+                                data.education.Table_5.DpefBefTechDistrict[0].est_los_year_1 +
+                                data.education.Table_5.DpefBefOtherDistrict[0].est_los_year_1)">
+                            </td>
+                            <td class="right" width="110" colspan="2" ng-bind="sumFunc8(data.education.Table_5.DpefBefDistrict[2].ab1_1c,
+                                data.education.Table_5.DpefBefDistrict[2].type_2,
+                                data.education.Table_5.DpefBefDistrict[2].type_3,
+                                data.education.Table_5.DpefBefDistrict[2].pirivena,
+                                data.education.Table_5.DpefBefDistrict[2].training_institutes,
+                                data.education.Table_5.DpefBefDistrict[2].training_colleges,
+                                data.education.Table_5.DpefBefDistrict[2].tc_crc_resc,
+                                data.education.Table_5.DpefBefDistrict[2].min_pzd_offices) +
+                                (data.education.Table_5.DpefBefPreDistrict[0].est_los_year_2 +
+                                data.education.Table_5.DpefBefPrimaryDistrict[0].est_los_year_2 +
+                                data.education.Table_5.DpefBefSecondaryDistrict[0].est_los_year_2 +
+                                data.education.Table_5.DpefBefUnvDistrict[0].est_los_year_2 +
+                                data.education.Table_5.DpefBefTechDistrict[0].est_los_year_2 +
+                                data.education.Table_5.DpefBefOtherDistrict[0].est_los_year_2)">
+                            </td>
+                            <td class="right" width="110" ng-bind="sumFunc8(data.education.Table_5.DugNdafDistrict[0].ab1_1c +
+                                data.education.Table_5.DugNdafDistrict[0].type_2 +
+                                data.education.Table_5.DugNdafDistrict[0].type_3 +
+                                data.education.Table_5.DugNdafDistrict[0].pirivena +
+                                data.education.Table_5.DugNdafDistrict[0].training_institutes +
+                                data.education.Table_5.DugNdafDistrict[0].training_colleges +
+                                data.education.Table_5.DugNdafDistrict[0].tc_crc_resc +
+                                data.education.Table_5.DugNdafDistrict[0].min_pzd_offices) +
+                                sumFunc8(data.education.Table_5.DpefBefDistrict[0].ab1_1c,
+                                data.education.Table_5.DpefBefDistrict[0].type_2,
+                                data.education.Table_5.DpefBefDistrict[0].type_3,
+                                data.education.Table_5.DpefBefDistrict[0].pirivena,
+                                data.education.Table_5.DpefBefDistrict[0].training_institutes,
+                                data.education.Table_5.DpefBefDistrict[0].training_colleges,
+                                data.education.Table_5.DpefBefDistrict[0].tc_crc_resc,
+                                data.education.Table_5.DpefBefDistrict[0].min_pzd_offices) +
+                                sumFunc8(data.education.Table_5.DpefBefDistrict[2].ab1_1c,
+                                data.education.Table_5.DpefBefDistrict[2].type_2,
+                                data.education.Table_5.DpefBefDistrict[2].type_3,
+                                data.education.Table_5.DpefBefDistrict[2].pirivena,
+                                data.education.Table_5.DpefBefDistrict[2].training_institutes,
+                                data.education.Table_5.DpefBefDistrict[2].training_colleges,
+                                data.education.Table_5.DpefBefDistrict[2].tc_crc_resc,
+                                data.education.Table_5.DpefBefDistrict[2].min_pzd_offices) + (data.education.Table_5.DpefBefPreDistrict[0].tot_damages +
+                                data.education.Table_5.DpefBefPrimaryDistrict[0].tot_damages +
+                                data.education.Table_5.DpefBefSecondaryDistrict[0].tot_damages +
+                                data.education.Table_5.DpefBefUnvDistrict[0].tot_damages +
+                                data.education.Table_5.DpefBefTechDistrict[0].tot_damages +
+                                data.education.Table_5.DpefBefOtherDistrict[0].tot_damages) +
+                                (data.education.Table_5.DpefBefPreDistrict[0].est_los_year_1 +
+                                data.education.Table_5.DpefBefPrimaryDistrict[0].est_los_year_1 +
+                                data.education.Table_5.DpefBefSecondaryDistrict[0].est_los_year_1 +
+                                data.education.Table_5.DpefBefUnvDistrict[0].est_los_year_1 +
+                                data.education.Table_5.DpefBefTechDistrict[0].est_los_year_1 +
+                                data.education.Table_5.DpefBefOtherDistrict[0].est_los_year_1) +
+                                (data.education.Table_5.DpefBefPreDistrict[0].est_los_year_2 +
+                                data.education.Table_5.DpefBefPrimaryDistrict[0].est_los_year_2 +
+                                data.education.Table_5.DpefBefSecondaryDistrict[0].est_los_year_2 +
+                                data.education.Table_5.DpefBefUnvDistrict[0].est_los_year_2 +
+                                data.education.Table_5.DpefBefTechDistrict[0].est_los_year_2 +
+                                data.education.Table_5.DpefBefOtherDistrict[0].est_los_year_2)">
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
                 <br>

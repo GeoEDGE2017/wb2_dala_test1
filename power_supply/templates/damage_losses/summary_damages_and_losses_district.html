@@ -11,30 +11,33 @@ td {
 }
 </style>
 <main class="main" ng-app="dlSumPowsupDisApp" ng-controller="dlSumPowsupDisController">
-
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:index' %}">
+                Dashboard
+            </a>
         </li>
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:power_supply_main' %}">Power Supply Sector</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:power_supply_main' %}">
+                Power Supply Sector
+            </a>
         </li>
-
         <li class="breadcrumb-item active">
             <span class="label label-success" style="font-size:14px;">
                 Table 4. Summary of damages and losses in the district
             </span>
         </li>
-        <li style="float:right;"><a href="{% static 'dashboard/doc/2-Power Supply-24Jan17.pdf' %}" target="_blank"
-                                    style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info"
-                                    data-toggle="tooltip" title="Veiw Document"></a></li>
+        <li style="float:right;">
+            <a href="{% static 'dashboard/doc/2-Power Supply-24Jan17.pdf' %}" target="_blank"
+               style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document">
+            </a>
+        </li>
     </ol>
     <div class="container-fluid">
         <div id="myTabContent" class="tab-content" ng-form name="form_dl_sum_powsup_dis">
             <div class="tab-pane active" id="step1">
-
                 <table class="table table-bordered">
-
                     <colgroup>
                         <col width="244"/>
                         <col width="112"/>
@@ -43,39 +46,39 @@ td {
                         <col width="107"/>
                     </colgroup>
                     <tbody>
-                    <tr class="trhead1" height="19">
-                        <td class="trhead1" width="218" height="19">
-                            Incident:
-                        </td>
-                        <td colspan="2" width="567" height="19">
-                            <select id="selectbasic" name="incident" ng-model="incident"
-                                    class="form-control" ng-change="changedValue(true);LoadData(form_dl_sum_powsup_dis);"
-                                    style="width:100%;font-weight:400;" required>
-                                <option value="" selected="true">Select an Incident</option>
-                                {% for incident in incidents %}
-                                <option value={{incident.id}}>
-                                    <!--{{incident.disaster_type.name}}-->
-                                    <!--{{incident.reported_date_time}}-->
-                                    {{incident.incident_name}}
-                                </option>
-                                {% endfor %}
-                            </select>
-                        </td>
-                        <td class="trhead1" colspan="2">
-                            Name of District:
-                        </td>
-                        <td colspan="">
-                            <select ng-options="district as district.district__name for district in districts track by district.district__id"
-                                    name="district" id="ccyear" ng-model="district" ng-change="LoadData(form_dl_sum_powsup_dis);" ng-value="district.district__id"
-                                    class="form-control" style="font-weight:normal;" required>
-                                <option value="" selected>Select District</option>
-                            </select>
-                        </td>
-                        <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
-                    </tr>
+                        <tr class="trhead1" height="19">
+                            <td class="trhead1" width="218" height="19">
+                                Incident:
+                            </td>
+                            <td colspan="2" width="567" height="19">
+                                <select id="selectbasic" name="incident" ng-model="incident"
+                                        class="form-control" ng-change="changedValue(true);LoadData(form_dl_sum_powsup_dis);"
+                                        style="width:100%;font-weight:400;" required>
+                                    <option value="" selected="true">Select an Incident</option>
+                                    {% for incident in incidents %}
+                                    <option value={{incident.id}}>
+                                        <!--{{incident.disaster_type.name}}-->
+                                        <!--{{incident.reported_date_time}}-->
+                                        {{incident.incident_name}}
+                                    </option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                            <td class="trhead1" colspan="2">
+                                Name of District:
+                            </td>
+                            <td colspan="">
+                                <select ng-options="district as district.district__name for district in districts track by district.district__id"
+                                        name="district" id="ccyear" ng-model="district" ng-change="LoadData(form_dl_sum_powsup_dis);" ng-value="district.district__id"
+                                        class="form-control" style="font-weight:normal;" required>
+                                    <option value="" selected>Select District</option>
+                                </select>
+                            </td>
+                            <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
+                        </tr>
                     </tbody>
-                    </table>
- <table class="table table-bordered" ng-if="!checkIfNull()">
+                </table>
+                <table class="table table-bordered" ng-if="!checkIfNull()">
                     <tr class="trheadc1" height="19">
                         <td rowspan="2" height="38" width="244">
                             Number of Customers Affected
@@ -96,8 +99,6 @@ td {
                             Total
                         </td>
                     </tr>
-
-
                     <tr height="19">
                         <td class="right" height="19" width="112" ng-bind="data.power_supply.Table_4.DlNumAffDistrict[0].domestic">
                         </td>
@@ -108,204 +109,169 @@ td {
                         <td class="right" width="103" ng-bind="data.power_supply.Table_4.DlNumAffDistrict[0].other">
                         </td>
                         <td class="right" class="right" width="107" ng-bind="convertTotal(
-                        data.power_supply.Table_4.DlNumAffDistrict[0].domestic ,
-                        data.power_supply.Table_4.DlNumAffDistrict[0].industrial ,
-                        data.power_supply.Table_4.DlNumAffDistrict[0].commercial ,
-                        data.power_supply.Table_4.DlNumAffDistrict[0].other)">
-
+                            data.power_supply.Table_4.DlNumAffDistrict[0].domestic ,
+                            data.power_supply.Table_4.DlNumAffDistrict[0].industrial ,
+                            data.power_supply.Table_4.DlNumAffDistrict[0].commercial ,
+                            data.power_supply.Table_4.DlNumAffDistrict[0].other)">
                         </td>
                     </tr>
-                    </tbody>
-                    </table>
+                </table>
                 <table class="table table-bordered" ng-if="!checkIfNull()">
                     <tbody>
-                    <tr class="trheadc1" height="19">
-                        <td rowspan="2" height="38" width="244">
-                            Name of Firm
-                        </td>
-                        <td colspan="2" rowspan="2" width="220" style="width:20%;">
-                            Damages (LKR)
-                        </td>
-                        <td colspan="2" width="211">
-                            Losses (LKR)
-                        </td>
-                        <td rowspan="2" width="107">
-                            Total (LKR)
-                        </td>
-                    </tr>
-                    <tr class="trsubc" height="19">
-                        <td height="19" width="108">
-                            Year 1
-                        </td>
-                        <td width="103">
-                            Year 2
-                        </td>
-                    </tr>
-                    <tr height="19">
-                        <td class="tdpa" height="19" width="244">
-                            CEB
-                        </td>
-                        <td class="right" colspan="2" width="220"
-                            ng-bind="data.power_supply.Table_4.TotDmgCebDistrictNew[0].tot_dmg">
+                        <tr class="trheadc1" height="19">
+                            <td rowspan="2" height="38" width="244">
+                                Name of Firm
+                            </td>
+                            <td colspan="2" rowspan="2" width="220" style="width:20%;">
+                                Damages (LKR)
+                            </td>
+                            <td colspan="2" width="211">
+                                Losses (LKR)
+                            </td>
+                            <td rowspan="2" width="107">
+                                Total (LKR)
+                            </td>
+                        </tr>
+                        <tr class="trsubc" height="19">
+                            <td height="19" width="108">
+                                Year 1
+                            </td>
+                            <td width="103">
+                                Year 2
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" height="19" width="244">
+                                CEB
+                            </td>
+                            <td class="right" colspan="2" width="220"
+                                ng-bind="data.power_supply.Table_4.TotDmgCebDistrictNew[0].tot_dmg">
 
-                        </td>
-                        <td class="right" width="108"
-                            ng-bind="data.power_supply.Table_4.TotLosCebDistrict[0].losses_y1">
+                            </td>
+                            <td class="right" width="108"
+                                ng-bind="data.power_supply.Table_4.TotLosCebDistrict[0].losses_y1">
 
-                        </td>
-                        <td class="right" width="103"
-                            ng-bind="data.power_supply.Table_4.TotLosCebDistrict[0].losses_y2">
+                            </td>
+                            <td class="right" width="103"
+                                ng-bind="data.power_supply.Table_4.TotLosCebDistrict[0].losses_y2">
 
-                        </td>
-                        <td class="right" width="107"
-                            ng-bind="(data.power_supply.Table_4.TotDmgCebDistrictNew[0].tot_dmg) +
-                            (data.power_supply.Table_4.TotLosCebDistrict[0].losses_y1) +
-                            (data.power_supply.Table_4.TotLosCebDistrict[0].losses_y2)">
+                            </td>
+                            <td class="right" width="107"
+                                ng-bind="(data.power_supply.Table_4.TotDmgCebDistrictNew[0].tot_dmg) +
+                                (data.power_supply.Table_4.TotLosCebDistrict[0].losses_y1) +
+                                (data.power_supply.Table_4.TotLosCebDistrict[0].losses_y2)">
 
-                        </td>
-                    </tr>
-                    <tr class="trheadc" height="19">
-                        <td height="19" width="244">
-                            IPPs
-                        </td>
-                        <td colspan="2">
-                        </td>
-                        <td width="108">
-                        </td>
-                        <td width="103">
-                        </td>
-                        <td width="107">
-                        </td>
-
-                    <tr height="19" ng-repeat="totDmgPvtDistrict in data.power_supply.Table_4.TotDmgPvtDistrict" ng-if="totDmgPvtDistrict.ownership =='IPP'" >
-                        <td class="tdpa" height="19" width="244" ng-bind="totDmgPvtDistrict.assets">
-
-                        </td>
-                        <td class="right" colspan="2" width="220"
-                            ng-bind="totDmgPvtDistrict.tot_replace_cost">
-
-                        </td>
-                        <td class="right"  width="108"  ng-bind="$parent.data.power_supply.Table_4.TotLossesPvtDistrict[0].los_year1">
-
-                        </td>
-                        <td class="right" width="103" ng-bind="$parent.data.power_supply.Table_4.TotLossesPvtDistrict[0].los_year2">
-
-                        </td>
-                        <td class="right" class="right" width="107"
-                            ng-bind="totDmgPvtDistrict.tot_replace_cost + data.power_supply.Table_4.TotLossesPvtDistrict[0].los_year1+
-                            data.power_supply.Table_4.TotLossesPvtDistrict[0].los_year2">
-
-                        </td>
-                    </tr>
-                    <tr height="19">
-                        <td class="tdpa" height="19" width="244">
-                            Total
-                        </td>
-                        <td class="right" colspan="2" width="220" ng-bind="totDmg()">
-
-                        </td>
-                        <td class="right"  width="108" ng-bind="totLosY1()">
-
-                        </td>
-                        <td class="right" width="103" ng-bind="totLosY2()">
-
-                        </td>
-                        <td class="right" class="right" width="107"
-                            ng-bind="totDmg() + totLosY1() + totLosY2()">
-
-                        </td>
-                    </tr>
-
-                    <tr class="trheadc" height="19">
-                        <td height="19" width="244">
-                            SPPs
-                        </td>
-                        <td class="right" colspan="2" width="220">
-
-                        </td>
-                        <td class="right" width="108">
-                        </td>
-                        <td class="right" width="103">
-                        </td>
-                        <td class="right" width="107">
-                        </td>
-                    </tr>
-                    <tr height="19" ng-repeat="totDmgPvtDistrict in data.power_supply.Table_4.TotDmgPvtDistrict" ng-if="totDmgPvtDistrict.ownership =='SPPA'" >
-                        <td class="tdpa" height="19" width="244" ng-bind="totDmgPvtDistrict.assets">
-
-                        </td>
-                        <td class="right" colspan="2" width="220"
-                            ng-bind="totDmgPvtDistrict.tot_replace_cost">
-
-                        </td>
-                        <td class="right"  width="108"  ng-bind="$parent.data.power_supply.Table_4.TotLossesPvtDistrict[1].los_year1">
-
-                        </td>
-                        <td class="right" width="103" ng-bind="$parent.data.power_supply.Table_4.TotLossesPvtDistrict[1].los_year2">
-
-                        </td>
-                        <td class="right" class="right" width="107"
-                            ng-bind="totDmgPvtDistrict.tot_replace_cost + data.power_supply.Table_4.TotLossesPvtDistrict[1].los_year1+
-                            data.power_supply.Table_4.TotLossesPvtDistrict[1].los_year2">
-
-                        </td>
-                    </tr>
-                    <tr height="19">
-                        <td class="tdpa" height="19" width="244">
-                            Total
-                        </td>
-                        <td class="right" colspan="2" width="220" ng-bind="totDmgTwo()">
-
-                        </td>
-                        <td class="right"  width="108" ng-bind="totLosY1Two()">
-
-                        </td>
-                        <td class="right" width="103" ng-bind="totLosY2Two()">
-
-                        </td>
-                        <td class="right" class="right" width="107"
-                            ng-bind="totDmgTwo() + totLosY1Two() + totLosY2Two()">
-
-                        </td>
-                    </tr>
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="19">
+                            <td height="19" width="244">
+                                IPPs
+                            </td>
+                            <td colspan="2">
+                            </td>
+                            <td width="108">
+                            </td>
+                            <td width="103">
+                            </td>
+                            <td width="107">
+                            </td>
+                        </tr>
+                        <tr height="19" ng-repeat="totDmgPvtDistrict in data.power_supply.Table_4.TotDmgPvtDistrict"
+                            ng-if="totDmgPvtDistrict.ownership =='IPP'" >
+                            <td class="tdpa" height="19" width="244" ng-bind="totDmgPvtDistrict.assets">
+                            </td>
+                            <td class="right" colspan="2" width="220"
+                                ng-bind="totDmgPvtDistrict.tot_replace_cost">
+                            </td>
+                            <td class="right"  width="108"  ng-bind="$parent.data.power_supply.Table_4.TotLossesPvtDistrict[0].los_year1">
+                            </td>
+                            <td class="right" width="103" ng-bind="$parent.data.power_supply.Table_4.TotLossesPvtDistrict[0].los_year2">
+                            </td>
+                            <td class="right" class="right" width="107"
+                                ng-bind="totDmgPvtDistrict.tot_replace_cost + data.power_supply.Table_4.TotLossesPvtDistrict[0].los_year1+
+                                data.power_supply.Table_4.TotLossesPvtDistrict[0].los_year2">
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" height="19" width="244">
+                                Total
+                            </td>
+                            <td class="right" colspan="2" width="220" ng-bind="totDmg()">
+                            </td>
+                            <td class="right"  width="108" ng-bind="totLosY1()">
+                            </td>
+                            <td class="right" width="103" ng-bind="totLosY2()">
+                            </td>
+                            <td class="right" class="right" width="107" ng-bind="totDmg() + totLosY1() + totLosY2()">
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="19">
+                            <td height="19" width="244">
+                                SPPs
+                            </td>
+                            <td class="right" colspan="2" width="220">
+                            </td>
+                            <td class="right" width="108">
+                            </td>
+                            <td class="right" width="103">
+                            </td>
+                            <td class="right" width="107">
+                            </td>
+                        </tr>
+                        <tr height="19" ng-repeat="totDmgPvtDistrict in data.power_supply.Table_4.TotDmgPvtDistrict"
+                            ng-if="totDmgPvtDistrict.ownership =='SPPA'" >
+                            <td class="tdpa" height="19" width="244" ng-bind="totDmgPvtDistrict.assets">
+                            </td>
+                            <td class="right" colspan="2" width="220" ng-bind="totDmgPvtDistrict.tot_replace_cost">
+                            </td>
+                            <td class="right"  width="108"  ng-bind="$parent.data.power_supply.Table_4.TotLossesPvtDistrict[1].los_year1">
+                            </td>
+                            <td class="right" width="103" ng-bind="$parent.data.power_supply.Table_4.TotLossesPvtDistrict[1].los_year2">
+                            </td>
+                            <td class="right" class="right" width="107"
+                                ng-bind="totDmgPvtDistrict.tot_replace_cost + data.power_supply.Table_4.TotLossesPvtDistrict[1].los_year1+
+                                data.power_supply.Table_4.TotLossesPvtDistrict[1].los_year2">
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" height="19" width="244">
+                                Total
+                            </td>
+                            <td class="right" colspan="2" width="220" ng-bind="totDmgTwo()">
+                            </td>
+                            <td class="right"  width="108" ng-bind="totLosY1Two()">
+                            </td>
+                            <td class="right" width="103" ng-bind="totLosY2Two()">
+                            </td>
+                            <td class="right" class="right" width="107" ng-bind="totDmgTwo() + totLosY1Two() + totLosY2Two()">
+                            </td>
+                        </tr>
                     </tbody>
-                  
-                      <tbody ng-if="!checkIfNull()">
-                    <tr height="19">
-                        <td class="tdpa" height="19" width="244">
-                            GRAND TOTAL
-                        </td>
-                        <td class="right" colspan="2" width="220"
-                            ng-bind="totDmgTwo() + totDmg() + data.power_supply.Table_4.TotDmgCebDistrictNew[0].tot_dmg">
-
-                        </td>
-                        <td class="right" width="108" ng-bind="totLosY1Two() + totLosY1() + data.power_supply.Table_4.TotLosCebDistrict[0].losses_y1">
-
-                        </td>
-                        <td class="right" width="103" ng-bind="totLosY2Two() + totLosY2() + data.power_supply.Table_4.TotLosCebDistrict[0].losses_y2">
-
-                        </td>
-                        <td class="right" width="107" ng-bind="
-                        totDmgTwo() + totDmg() + data.power_supply.Table_4.TotDmgCebDistrictNew[0].tot_dmg +
-                        totLosY1Two() + totLosY1() + data.power_supply.Table_4.TotLosCebDistrict[0].losses_y1 +
-                        totLosY2Two() + totLosY2() + data.power_supply.Table_4.TotLosCebDistrict[0].losses_y2">
-                        </td>
-                    </tr>
+                    <tbody ng-if="!checkIfNull()">
+                        <tr height="19">
+                            <td class="tdpa" height="19" width="244">
+                                GRAND TOTAL
+                            </td>
+                            <td class="right" colspan="2" width="220"
+                                ng-bind="totDmgTwo() + totDmg() + data.power_supply.Table_4.TotDmgCebDistrictNew[0].tot_dmg">
+                            </td>
+                            <td class="right" width="108" ng-bind="totLosY1Two() + totLosY1() + data.power_supply.Table_4.TotLosCebDistrict[0].losses_y1">
+                            </td>
+                            <td class="right" width="103" ng-bind="totLosY2Two() + totLosY2() + data.power_supply.Table_4.TotLosCebDistrict[0].losses_y2">
+                            </td>
+                            <td class="right" width="107" ng-bind="
+                            totDmgTwo() + totDmg() + data.power_supply.Table_4.TotDmgCebDistrictNew[0].tot_dmg +
+                            totLosY1Two() + totLosY1() + data.power_supply.Table_4.TotLosCebDistrict[0].losses_y1 +
+                            totLosY2Two() + totLosY2() + data.power_supply.Table_4.TotLosCebDistrict[0].losses_y2">
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
                 <br>
-
                 <br>
             </div>
-
         </div>
-
     </div>
-    </div>
-
-
     <!-- /.conainer-fluid -->
 </main>
-
-
 {% endblock content %}

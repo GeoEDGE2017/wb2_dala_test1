@@ -14,10 +14,14 @@ $(document).ready(function() {
 	<!-- Breadcrumb -->
 	<ol class="breadcrumb">
 		<li class="breadcrumb-item">
-			<a href="{% url 'dashboard:index' %}">Dashboard</a>
+			<a href="{% url 'dashboard:index' %}">
+				Dashboard
+			</a>
 		</li>
 		<li class="breadcrumb-item">
-			<a href="{% url 'dashboard:othergov_main' %}">Other Government Sector</a>
+			<a href="{% url 'dashboard:othergov_main' %}">
+				Other Government Sector
+			</a>
 		</li>
 		<li class="breadcrumb-item active">
 			<span class="label label-success" style="font-size:14px;">
@@ -39,7 +43,6 @@ $(document).ready(function() {
 				<span style="color:red" ng-show="!is_valid_data">
                     This request can't be proceed, there is data-set available for this selection.
                 </span>
-				
 				<table class="table table-bordered">
 					<colgroup>
 						<col width="241"/>
@@ -66,8 +69,10 @@ $(document).ready(function() {
 							<td colspan="1" height="19" style="font-weight:normal;" width="427">
 								<select id="selectbasic" name="selectbasic" class="form-control" ng-change="changeDis()"
 										ng-model="district" style="width:100%;font-weight:400;" required>
-									<option value="" selected="true">Select a District</option> {% for district in districts %}
-									<option value={{ district.id }}>{{ district.name }}</option> {% endfor %}
+									<option value="" selected="true">Select a District</option>
+									{% for district in districts %}
+									<option value={{ district.id }}>{{ district.name }}</option>
+									{% endfor %}
 								</select>
 							</td>
 							<td style="padding-left:5px;" height="19" width="171"> Year/Month </td>
@@ -76,35 +81,49 @@ $(document).ready(function() {
 									   ng-model="baselineDate" class="form-control input-md" required>
 							</td>
 							<td style="width:100px;">
-					<span ng-if="!check_search">
-						<button ng-if="!is_search" class="btn btn-info" disabled>
-							<span class="fa fa-search"></span>
-						</button>
-					</span>
-					<span ng-if="check_search">
-						<button ng-click="searchBsData(form_other_services_bs_assets_district)" ng-if="!is_search"
-								class="btn btn-info">
-							<span class="fa fa-search"></span>
-						</button>
-					</span>
-					<button ng-click="clear()" ng-if="is_search" class="btn btn-warning">
-						<span class="fa fa-times" aria-hidden="true"></span>
-					</button>
-				</td>
+								<span ng-if="!check_search">
+									<button ng-if="!is_search" class="btn btn-info" disabled>
+										<span class="fa fa-search"></span>
+									</button>
+								</span>
+								<span ng-if="check_search">
+									<button ng-click="searchBsData(form_other_services_bs_assets_district)" ng-if="!is_search"
+											class="btn btn-info">
+										<span class="fa fa-search"></span>
+									</button>
+								</span>
+								<button ng-click="clear()" ng-if="is_search" class="btn btn-warning">
+									<span class="fa fa-times" aria-hidden="true"></span>
+								</button>
+							</td>
 							<span ng-bind="user_id={{user.id}}" style="display:none;"></span>
 						</tr>
 						<tr class="trheadc1" height="30">
-							<td rowspan="2" width="241" height="50"> Asset </td>
-							<td rowspan="2" width="124"> Average Replacement Cost (LKR/sqm) </td>
-							<td colspan="3" width="300"> Average Repair Cost (LKR/sqm) </td>
+							<td rowspan="2" width="241" height="50">
+								Asset
+							</td>
+							<td rowspan="2" width="124">
+								Average Replacement Cost (LKR/sqm)
+							</td>
+							<td colspan="3" width="300">
+								Average Repair Cost (LKR/sqm)
+							</td>
 						</tr>
 						<tr class="trsubc" height="20">
-							<td width="100" height="20" style="width:10%;"> Roof </td>
-							<td width="100" style="width:10%;"> Wall </td>
-							<td width="100" style="width:10%;"> Flooring </td>
+							<td width="100" height="20" style="width:10%;">
+								Roof
+							</td>
+							<td width="100" style="width:10%;">
+								Wall
+							</td>
+							<td width="100" style="width:10%;">
+								Flooring
+							</td>
 						</tr>
 						<tr class="trheadc" height="20">
-							<td width="241" height="20"> Structure </td>
+							<td width="241" height="20">
+								Structure
+							</td>
 							<td width="124"></td>
 							<td width="100"></td>
 							<td width="100"></td>
@@ -168,14 +187,26 @@ $(document).ready(function() {
 							<td colspan="3" width="300"> </td>
 						</tr>
 						<tr height="20" ng-repeat="bcsMachinery in bsCostsOfAssetsOnTheDistrict.other_govn_services.Table_1.BcsMachinery">
-							<td ng-bind="bcsMachinery.asset" ng-if="$index < 3" height="20" width="264" class="tdpa"> </td>
+							<td ng-bind="bcsMachinery.asset" ng-if="$index < 3" height="20" width="264" class="tdpa">
+							</td>
 							<td width="98" ng-if="$index > 2"> {% verbatim %}
-								<button id="delete" ng-click="removeItem('BcsMachinery', $index)" class="btn btn-sm btn-danger btn-circle"> <i class="fa fa-minus"></i> </button>
-								<input style="width:80%;float:right;" name="comDisease_{{$index}}" ng-model="bcsMachinery.asset" popover="This field is required" popover-toggle="form_pop_lat_census['comDisease_' + $index].$dirty && !form_pop_lat_census['comDisease_' + $index].$valid" popover-placement="top" required type="text" class="form-control input-md"> {% endverbatim %} </td>
+								<button id="delete" ng-click="removeItem('BcsMachinery', $index)" class="btn btn-sm btn-danger btn-circle">
+									<i class="fa fa-minus"></i>
+								</button>
+								<input style="width:80%;float:right;" name="comDisease_{{$index}}" ng-model="bcsMachinery.asset"
+									   popover="This field is required"
+									   popover-toggle="form_pop_lat_census['comDisease_' + $index].$dirty && !form_pop_lat_census['comDisease_' + $index].$valid"
+									   popover-placement="top" required type="text" class="form-control input-md">
+								{% endverbatim %}
+							</td>
 							<td width="98">
-								<input ng-model="bcsMachinery.avg_rep_cost" id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<input ng-model="bcsMachinery.avg_rep_cost" id="textinput" name="textinput" type="number"
+									   placeholder="" class="form-control input-md">
+							</td>
 							<td colspan="3" width="98">
-								<input ng-model="bcsMachinery.avg_repair_cost" id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<input ng-model="bcsMachinery.avg_repair_cost" id="textinput" name="textinput" type="number"
+									   placeholder="" class="form-control input-md">
+							</td>
 						</tr>
 						<tr class="tdpa" height="20">
 							<td width="241" height="20"> Others

@@ -89,7 +89,7 @@ app.controller('dlSummTouBusiFaciNatController', function($scope, $http, $parse,
         else{
             console.log("data null");
         }
-   }
+    }
 
     $scope.getSum3 = function(val1, val2, val3){
         var final_val = 0;

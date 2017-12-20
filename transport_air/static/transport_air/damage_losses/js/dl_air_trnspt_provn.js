@@ -28,8 +28,6 @@ app.controller("DlSummeryTAProController", ['$scope','$http',function ($scope,$h
         }
     }
 
-
-
     //fetch provinces
     function fetchProvinces() {
         $http({
@@ -109,12 +107,12 @@ app.controller("DlSummeryTAProController", ['$scope','$http',function ($scope,$h
         if(!angular.isUndefined($scope.dlAirTransSumPro)) {
             var totPublicDmg = 0;
             angular.forEach($scope.dlAirTransSumPro.transport_air.Table_4, function(value, index) {
-            angular.forEach(value, function(value_in, key) {
+                angular.forEach(value, function(value_in, key) {
                     if(key == 'DlAirDmgPubProvince') {
                           totPublicDmg = totPublicDmg + value_in[0].tot_destroyed_pub;
                     }
-                    })
                 })
+            })
             return totPublicDmg;
         }
     }
@@ -123,12 +121,12 @@ app.controller("DlSummeryTAProController", ['$scope','$http',function ($scope,$h
         if(!angular.isUndefined($scope.dlAirTransSumPro)) {
             var totPrivateDmg = 0;
             angular.forEach($scope.dlAirTransSumPro.transport_air.Table_4, function(value, index) {
-            angular.forEach(value, function(value_in, key) {
+                angular.forEach(value, function(value_in, key) {
                     if(key == 'DlAirDmgPvtProvince') {
                           totPrivateDmg = totPrivateDmg + value_in[0].tot_destroyed_pvt;
                     }
-                    })
                 })
+            })
             return totPrivateDmg;
         }
     }
@@ -137,12 +135,12 @@ app.controller("DlSummeryTAProController", ['$scope','$http',function ($scope,$h
         if(!angular.isUndefined($scope.dlAirTransSumPro)) {
             var totPublicLossesY1 = 0;
             angular.forEach($scope.dlAirTransSumPro.transport_air.Table_4, function(value, index) {
-            angular.forEach(value, function(value_in, key) {
+                angular.forEach(value, function(value_in, key) {
                     if(key == 'DlAirLosProvince') {
                           totPublicLossesY1 = totPublicLossesY1 + value_in[0].year_1_pub;
                     }
-                    })
                 })
+            })
             return totPublicLossesY1;
         }
     }
@@ -151,12 +149,12 @@ app.controller("DlSummeryTAProController", ['$scope','$http',function ($scope,$h
         if(!angular.isUndefined($scope.dlAirTransSumPro)) {
             var totPrivateLossesY1 = 0;
             angular.forEach($scope.dlAirTransSumPro.transport_air.Table_4, function(value, index) {
-            angular.forEach(value, function(value_in, key) {
+                angular.forEach(value, function(value_in, key) {
                     if(key == 'DlAirLosProvince') {
                           totPrivateLossesY1 = totPrivateLossesY1 + value_in[0].year_1_pvt;
                     }
-                    })
                 })
+            })
             return totPrivateLossesY1;
         }
     }
@@ -165,30 +163,29 @@ app.controller("DlSummeryTAProController", ['$scope','$http',function ($scope,$h
         if(!angular.isUndefined($scope.dlAirTransSumPro)) {
             var totPublicLossesY2 = 0;
             angular.forEach($scope.dlAirTransSumPro.transport_air.Table_4, function(value, index) {
-            angular.forEach(value, function(value_in, key) {
+                angular.forEach(value, function(value_in, key) {
                     if(key == 'DlAirLosProvince') {
                           totPublicLossesY2 = totPublicLossesY2 + value_in[0].year_2_pub;
                     }
-                    })
                 })
+            })
             return totPublicLossesY2;
         }
-        }
+    }
 
     $scope.totLossesPrivateY2 = function() {
         if(!angular.isUndefined($scope.dlAirTransSumPro)) {
             var totPrivateLossesY2 = 0;
             angular.forEach($scope.dlAirTransSumPro.transport_air.Table_4, function(value, index) {
-            angular.forEach(value, function(value_in, key) {
+                angular.forEach(value, function(value_in, key) {
                     if(key == 'DlAirLosProvince') {
                           totPrivateLossesY2 = totPrivateLossesY2 + value_in[0].year_2_pvt;
                     }
-                    })
                 })
+            })
             return totPrivateLossesY2;
         }
     }
-
  }])
 
 

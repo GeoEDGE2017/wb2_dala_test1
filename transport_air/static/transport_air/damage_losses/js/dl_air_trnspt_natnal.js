@@ -47,37 +47,99 @@ app.controller("DlSummeryTANatController", ['$scope','$http',function ($scope,$h
         return isNull;
     }
 
-    //get total function
-    $scope.getTotal = function($index,key) {
-        $scope.finaltotalprivate = 0;
+    $scope.totDmgPub = function() {
+        if(!angular.isUndefined($scope.dlAirTransSumNat)) {
+            var tot_dmg_pub = 0;
+            angular.forEach($scope.dlAirTransSumNat.transport_air.Table_5, function(value, key, index) {
+                angular.forEach(value, function(value_in, key_in) {
+                    if(key_in == 'DlAirDmgPubNational') {
+                        angular.forEach(value_in, function(row) {
+                            tot_dmg_pub = tot_dmg_pub + row.tot_destroyed_pub;
+                        })
+                    }
+                })
+            })
+            return tot_dmg_pub;
+        }
+    }
 
-        $scope.totaldpub = $scope.totaldpub + (
-            $scope.dlAirTransSumNat.transport_air.Table_5[key].DlAirDmgPubNational[0].tot_destroyed_pub ?
-            $scope.dlAirTransSumNat.transport_air.Table_5[key].DlAirDmgPubNational[0].tot_destroyed_pub : 0 );
+    $scope.totDmgPvt = function() {
+        if(!angular.isUndefined($scope.dlAirTransSumNat)) {
+            var tot_dmg_pvt = 0;
+            angular.forEach($scope.dlAirTransSumNat.transport_air.Table_5, function(value, key, index) {
+                angular.forEach(value, function(value_in, key_in) {
+                    if(key_in == 'DlAirDmgPvtNational') {
+                        angular.forEach(value_in, function(row) {
+                            tot_dmg_pvt = tot_dmg_pvt + row.tot_destroyed_pvt;
+                        })
+                    }
+                })
+            })
+            return tot_dmg_pvt;
+        }
+    }
 
-        $scope.totaldpvt = $scope.totaldpvt +(
-            $scope.dlAirTransSumNat.transport_air.Table_5[key].DlAirDmgPvtNational[0].tot_destroyed_pvt ?
-            $scope.dlAirTransSumNat.transport_air.Table_5[key].DlAirDmgPvtNational[0].tot_destroyed_pvt : 0  );
+    $scope.totLosY1Pub = function() {
+        if(!angular.isUndefined($scope.dlAirTransSumNat)) {
+            var tot_y1_pub = 0;
+            angular.forEach($scope.dlAirTransSumNat.transport_air.Table_5, function(value, key, index) {
+                angular.forEach(value, function(value_in, key_in) {
+                    if(key_in == 'DlAirLosNational') {
+                        angular.forEach(value_in, function(row) {
+                            tot_y1_pub = tot_y1_pub + row.year_1_pub;
+                        })
+                    }
+                })
+            })
+            return tot_y1_pub;
+        }
+    }
 
-        $scope.totalyear1pub = $scope.totalyear1pub +(
-            $scope.dlAirTransSumNat.transport_air.Table_5[key].DlAirLosNational[0].year_1_pub ?
-            $scope.dlAirTransSumNat.transport_air.Table_5[key].DlAirLosNational[0].year_1_pub : 0  );
+    $scope.totLosY1Pvt = function() {
+        if(!angular.isUndefined($scope.dlAirTransSumNat)) {
+            var tot_y1_pvt = 0;
+            angular.forEach($scope.dlAirTransSumNat.transport_air.Table_5, function(value, key, index) {
+                angular.forEach(value, function(value_in, key_in) {
+                    if(key_in == 'DlAirLosNational') {
+                        angular.forEach(value_in, function(row) {
+                            tot_y1_pvt = tot_y1_pvt + row.year_1_pvt;
+                        })
+                    }
+                })
+            })
+            return tot_y1_pvt;
+        }
+    }
 
-        $scope.totalyear1pvt = $scope.totalyear1pvt +(
-            $scope.dlAirTransSumNat.transport_air.Table_5[key].DlAirLosNational[0].year_1_pvt ?
-            $scope.dlAirTransSumNat.transport_air.Table_5[key].DlAirLosNational[0].year_1_pvt : 0  );
+    $scope.totLosY2Pub = function() {
+        if(!angular.isUndefined($scope.dlAirTransSumNat)) {
+            var tot_y2_pub = 0;
+            angular.forEach($scope.dlAirTransSumNat.transport_air.Table_5, function(value, key, index) {
+                angular.forEach(value, function(value_in, key_in) {
+                    if(key_in == 'DlAirLosNational') {
+                        angular.forEach(value_in, function(row) {
+                            tot_y2_pub = tot_y2_pub + row.year_2_pub;
+                        })
+                    }
+                })
+            })
+            return tot_y2_pub;
+        }
+    }
 
-        $scope.totalyear2pub = $scope.totalyear2pub +(
-            $scope.dlAirTransSumNat.transport_air.Table_5[key].DlAirLosNational[0].year_2_pub ?
-            $scope.dlAirTransSumNat.transport_air.Table_5[key].DlAirLosNational[0].year_2_pub : 0  );
-
-        $scope.totalyear2pvt = $scope.totalyear2pvt +(
-            $scope.dlAirTransSumNat.transport_air.Table_5[key].DlAirLosNational[0].year_2_pvt ?
-            $scope.dlAirTransSumNat.transport_air.Table_5[key].DlAirLosNational[0].year_2_pvt : 0  );
-
-        $scope.finaltotalpublic = $scope.totaldpub + $scope.totalyear1pub + $scope.totalyear2pub;
-
-        $scope.finaltotalprivate  = $scope.totaldpvt+ $scope.totalyear1pvt + $scope.totalyear2pvt;
-
+    $scope.totLosY2Pvt = function() {
+        if(!angular.isUndefined($scope.dlAirTransSumNat)) {
+            var tot_y2_pvt = 0;
+            angular.forEach($scope.dlAirTransSumNat.transport_air.Table_5, function(value, key, index) {
+                angular.forEach(value, function(value_in, key_in) {
+                    if(key_in == 'DlAirLosNational') {
+                        angular.forEach(value_in, function(row) {
+                            tot_y2_pvt = tot_y2_pvt + row.year_2_pvt;
+                        })
+                    }
+                })
+            })
+            return tot_y2_pvt;
+        }
     }
  }])

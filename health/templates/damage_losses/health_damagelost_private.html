@@ -14,86 +14,123 @@ $(document).ready(function() {
 <main class="main" ng-app="dlHealthDamagelostPrivateApp" ng-controller="dlHealthDamagelostPrivateAppController">
 	<!-- Breadcrumb -->
 	<ol class="breadcrumb">
-		<li class="breadcrumb-item"> <a href="{% url 'dashboard:index' %}">Dashboard</a> </li>
-		<li class="breadcrumb-item"> <a href="{% url 'dashboard:health_main' %}">Health Sector</a> </li>
-		<li class="breadcrumb-item active"> <span class="label label-success" style="font-size:14px;">
+		<li class="breadcrumb-item">
+			<a href="{% url 'dashboard:index' %}">
+				Dashboard
+			</a>
+		</li>
+		<li class="breadcrumb-item">
+			<a href="{% url 'dashboard:health_main' %}">
+				Health Sector
+			</a>
+		</li>
+		<li class="breadcrumb-item active">
+			<span class="label label-success" style="font-size:14px;">
                 Table 7: Damage and Loss Assessment of Private Health Facilities
-            </span> <span style="margin-left:15px;color:#000;" ng-bind="currentBaselineDate"></span> </li>
+            </span>
+			<span style="margin-left:15px;color:#000;" ng-bind="currentBaselineDate"></span>
+		</li>
 		<li style="float:right;">
-			<a href="{% static 'dashboard/doc/Health.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document"> </a>
+			<a href="{% static 'dashboard/doc/Health.pdf' %}"
+		   		target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info"
+			   	data-toggle="tooltip" title="Veiw Document">
+			</a>
 		</li>
 	</ol>
 	<div class="container-fluid">
 		<div>
 			<ul class='nav nav-wizard'>
-				<li id="li1" class="active"> <a href='#step1' data-toggle="tab">1 Number of Affected Patients</a> </li>
-				<li id="li2"> <a href='#step2' data-toggle="tab">2 Breakdown by Type of Health Facility</a> </li>
-				<li id="li3"> <a href='#step3' data-toggle="tab">3 Breakdown by Other Health Facility</a> </li>
+				<li id="li1" class="active">
+					<a href='#step1' data-toggle="tab">
+						1 Number of Affected Patients
+					</a>
+				</li>
+				<li id="li2">
+					<a href='#step2' data-toggle="tab">
+						2 Breakdown by Type of Health Facility
+					</a>
+				</li>
+				<li id="li3">
+					<a href='#step3' data-toggle="tab">
+						3 Breakdown by Other Health Facility
+					</a>
+				</li>
 			</ul>
 			<div id="myTabContent" class="tab-content">
-				<div class="tab-pane active" id="step1" ng-form name="form_health_damagelost_private"> <span style="color:red" ng-show="submitted && form_health_damagelost_private.$error.required">
+				<div class="tab-pane active" id="step1" ng-form name="form_health_damagelost_private">
+					<span style="color:red" ng-show="submitted && form_health_damagelost_private.$error.required">
                         Please fill all required fields
-                    </span> <span style="color:red" ng-show="!is_valid_data">
+                    </span>
+					<span style="color:red" ng-show="!is_valid_data">
                         This request can't be proceed, there is data-set available for this selection.
                     </span>
-                   
 					<table class="table table-bordered" style="width:100%;background:#E4E5E6;">
 						<colgroup>
 							<col width="264" />
-							<col width="98"  /> </colgroup>
+							<col width="98"  />
+						</colgroup>
 						<tbody>
 							<tr style="background:#fff;border:1px solid #fff;text-align:center;">
-								<td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;"> </td>
-								<td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;"> <span class="arrow_box" ng-show="submitted && form_health_damagelost_private.incident.$error.required">
-                                    Please select Incident
-                                </span> </td>
-								<td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;"> </td>
-								<td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;"> <span class="arrow_box" ng-show="submitted && form_health_damagelost_private.district.$error.required">
-                                    Please select District
-                                </span> </td>
+								<td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;"></td>
+								<td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+									<span class="arrow_box" ng-show="submitted && form_health_damagelost_private.incident.$error.required">
+										Please select Incident
+									</span>
+								</td>
+								<td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;"></td>
+								<td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+									<span class="arrow_box" ng-show="submitted && form_health_damagelost_private.district.$error.required">
+										Please select District
+									</span>
+								</td>
 							</tr>
 							<tr class="trhead1">
 								<td style="padding-left:5px;"> Incident </td>
 								<td colspan="2" style="">
 									<select id="selectbasic" name="incident" ng-model="incident" class="form-control" ng-change="changeIncident(true)" style="width:100%;font-weight:400;" required>
-										<option value="" selected="true">Select an Incident</option> {% for incident in incidents %}
-										<option value={{incident.id}}>
-											{{incident.incident_name}} </option> {% endfor %} </select>
+										<option value="" selected="true">Select an Incident</option>
+										{% for incident in incidents %}
+										<option value={{incident.id}}> {{incident.incident_name}} </option>
+										{% endfor %}
+									</select>
 								</td>
-								<td colspan="" style="padding-left:5px;"> Name of District</td>
+								<td colspan="" style="padding-left:5px;">
+									Name of District
+								</td>
 								<td colspan="2" style="">
 									<select style="font-weight:normal;" ng-options="district as district.district__name for district in districts track by district.district__id" name="district" id="ccyear" ng-model="district" ng-value="district.district__id" class="form-control" ng-change="fetchPrivateClinics();" required>
 										<option value="" selected>Select District</option>
 									</select>
 								</td>
-								 <td style="width:100px;"> <span ng-if="!check_search">
+							 	<td style="width:100px;"> <span ng-if="!check_search">
 									<button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
 									</span> <span ng-if="check_search">
 									<button ng-click="searchDlData(form_health_damagelost_private)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
 									</span>
 									<button ng-click="clear()" ng-if="is_search" class="btn btn-warning"><span class="fa fa-times" aria-hidden="true"></span></button>
 								</td> 
-								 <span ng-bind="user_id={{user.id}}" style="display:none;"></span> </tr>
-								 </tbody>
-								 </table>
-								 <table class="table table-bordered">
-								 <colgroup>
-							<col width="264" />
-							<col width="98"  /> </colgroup>
-								 <tbody>
-							<tr height="20" class="trheadc1">
-								<td width="264" height="20" style="text-align:left;padding-left:5px;"> Types of Medical Facility </td>
-								<td colspan="2"  rowspan="2" width="196"> Number of Affected Facilities </td>
-								<td colspan="4" width="392"> Number of Affected Patients </td>
-							</tr>
-							<tr height="20">
-								<td width="264" height="20" class="trheadc"> </td>
-								<td colspan="2" width="196" class="trsubc"> Male </td>
-								<td colspan="2"  width="196" class="trsubc"> Female </td>
-							</tr>
-						</tbody>
-					</table>
-					<div style="height:400px;overflow:auto;">
+							 	<span ng-bind="user_id={{user.id}}" style="display:none;"></span> </tr>
+							 	</tbody>
+							 	</table>
+							 	<table class="table table-bordered">
+							 	<colgroup>
+									<col width="264"/>
+									<col width="98"/>
+								</colgroup>
+							 	<tbody>
+									<tr height="20" class="trheadc1">
+										<td width="264" height="20" style="text-align:left;padding-left:5px;"> Types of Medical Facility </td>
+										<td colspan="2"  rowspan="2" width="196"> Number of Affected Facilities </td>
+										<td colspan="4" width="392"> Number of Affected Patients </td>
+									</tr>
+									<tr height="20">
+										<td width="264" height="20" class="trheadc"> </td>
+										<td colspan="2" width="196" class="trsubc"> Male </td>
+										<td colspan="2"  width="196" class="trsubc"> Female </td>
+									</tr>
+								</tbody>
+							</table>
+						<div style="height:400px;overflow:auto;">
 						<table class="table table-bordered">
 							<tr height="20" class="" ng-if="dapNapTmf.type_med_fac != 'Total'" ng-repeat="dapNapTmf in dlHealthDamagelostPrivateSys.health.Table_7.DapNapTmf">
 								<td width="264" ng-bind="dapNapTmf.type_med_fac" height="20" class="tdpa"> </td>

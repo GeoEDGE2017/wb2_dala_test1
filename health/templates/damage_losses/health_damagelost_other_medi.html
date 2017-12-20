@@ -31,10 +31,14 @@ td {
 	<!-- Breadcrumb -->
 	<ol class="breadcrumb">
 		<li class="breadcrumb-item">
-			<a href="{% url 'dashboard:index' %}">Dashboard</a>
+			<a href="{% url 'dashboard:index' %}">
+				Dashboard
+			</a>
 		</li>
 		<li class="breadcrumb-item">
-			<a href="{% url 'dashboard:health_main' %}">Health Sector</a>
+			<a href="{% url 'dashboard:health_main' %}">
+				Health Sector
+			</a>
 		</li>
 		<li class="breadcrumb-item active">
 			<span class="label label-success" style="font-size:14px;">
@@ -43,8 +47,8 @@ td {
 			<span style="margin-left:15px;color:#000;" ng-bind="currentBaselineDate"></span>
 		</li>
 		<li style="float:right;">
-			<a href="{% static 'dashboard/doc/Health.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info"
-			   data-toggle="tooltip" title="Veiw Document">
+			<a href="{% static 'dashboard/doc/Health.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;"
+			   class="icon-info" data-toggle="tooltip" title="Veiw Document">
 			</a>
 		</li>
 	</ol>
@@ -52,22 +56,33 @@ td {
 		<div>
 			<ul class='nav nav-wizard'>
 				<li id="li1" class="active">
-					<a href='#step1' data-toggle="tab">1 Destroyed Facilities</a>
+					<a href='#step1' data-toggle="tab">
+						1 Destroyed Facilities
+					</a>
 				</li>
 				<li id="li2">
-					<a href='#step2' data-toggle="tab">2 Partially Damaged Facilities</a>
+					<a href='#step2' data-toggle="tab">
+						2 Partially Damaged Facilities
+					</a>
 				</li>
 				<li id="li3">
-					<a href='#step3' data-toggle="tab">3 No of Destroyed Assets</a>
+					<a href='#step3' data-toggle="tab">
+						3 No of Destroyed Assets
+					</a>
 				</li>
 				<li id="li4">
-					<a href='#step4' data-toggle="tab">4 No of Partially Damaged Assets</a>
+					<a href='#step4' data-toggle="tab">
+						4 No of Partially Damaged Assets
+					</a>
 				</li>
 				<li id="li5">
-					<a href='#step5' data-toggle="tab">5 Losses</a>
+					<a href='#step5' data-toggle="tab">
+						5 Losses
+					</a>
 				</li>
 			</ul>
-			<div id="myTabContent" class="tab-content" ng-form name="form_damagelost_other_medi">
+			<div id="myTabContent" class="tab-content"
+				 ng-form name="form_damagelost_other_medi">
 				<div class="tab-pane active" id="step1">
 					<span style="color:red" ng-show="submitted && form_damagelost_other_medi.$error.required">
                         Please fill all required fields
@@ -75,7 +90,6 @@ td {
 					<span style="color:red" ng-show="!is_valid_data">
                         This request can't be proceed, there is data-set available for this selection.
                     </span>
-                   
 					<table class="table table-bordered" style="">
 						<colgroup>
 							<col width="264"/>
@@ -116,29 +130,35 @@ td {
 										<option value="" selected>Select District</option>
 									</select>
 								</td>
-								 <td style="width:100px;">
-						<span ng-if="!check_search">
-							<button ng-if="!is_search" class="btn btn-info" disabled>
-								<span class="fa fa-search"></span>
-							</button>
-						</span>
-						<span ng-if="check_search">
-							<button ng-click="searchDlData(form_damagelost_other_medi)" ng-if="!is_search" class="btn btn btn-info">
-								<span class="fa fa-search"></span>
-							</button>
-						</span>
-						<button ng-click="clear()" ng-if="is_search" class="btn btn-warning">
-								<span class="fa fa-times" aria-hidden="true"></span>
-						</button>
-					</td>
-								 <span ng-bind="user_id={{user.id}}" style="display:none;"></span> </tr>
+							 	<td style="width:100px;">
+									<span ng-if="!check_search">
+										<button ng-if="!is_search" class="btn btn-info" disabled>
+											<span class="fa fa-search"></span>
+										</button>
+									</span>
+									<span ng-if="check_search">
+										<button ng-click="searchDlData(form_damagelost_other_medi)" ng-if="!is_search" class="btn btn btn-info">
+											<span class="fa fa-search"></span>
+										</button>
+									</span>
+									<button ng-click="clear()" ng-if="is_search" class="btn btn-warning">
+										<span class="fa fa-times" aria-hidden="true"></span>
+									</button>
+								</td>
+							 	<span ng-bind="user_id={{user.id}}" style="display:none;"></span>
+							</tr>
 							<tr height="20" class="trheadc1">
-								<td width="287" height="20"> </td>
-								<td colspan="7" width="686" style="text-align:center;"> Type of Facility </td>
-								<td width="98"> </td>
+								<td width="287" height="20">
+								</td>
+								<td colspan="7" width="686" style="text-align:center;">
+									Type of Facility
+								</td>
+								<td width="98">
+								</td>
 							</tr>
 							<tr height="34" class="trsubc1">
-								<td width="264" height="34" class="trheadc" > </td>
+								<td width="264" height="34" class="trheadc">
+								</td>
 								<td width="98"> Base Hospital </td>
 								<td width="98"> Divisional Hospital </td>
 								<td width="98"> Rural Hospital </td>
@@ -153,10 +173,10 @@ td {
 					<!--tab 1-->
 					<div style="height:auto;overflow:auto;">
 						<table class="table table-bordered">
-						<colgroup>
-							<col width="264"/>
-							<col width="98" />
-						</colgroup>
+							<colgroup>
+								<col width="264"/>
+								<col width="98" />
+							</colgroup>
 							<tbody>
 								<!--Table 6:Tab one :Table one-->
 								<tr height="20">
@@ -541,7 +561,8 @@ td {
 									<td class="right" width="98" ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[3].total" ng-bind="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[3].total=
                                         dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[0].total+
                                         dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[1].total+
-                                        dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[2].total"> </td>
+                                        dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[2].total">
+									</td>
 								</tr>
 								<tr height="20" class="trheadc">
 									<td width="264" height="20"> Set of Supplies </td>
@@ -2150,7 +2171,8 @@ dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[4].tot
 					</div>
 				</div>
 			</div>
-			<br> </div>
+			<br>
+		</div>
 	</div>
 	<!-- /.conainer-fluid -->
 	<!-- please update the baseline tables -->

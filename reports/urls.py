@@ -34,16 +34,16 @@ urlpatterns = [
     #transport air
     url(r'^transport_air_summary$', views.transport_air_summary, name='transport_air_summary'),
 
-     #water_supply
+    #water_supply
     url(r'^water_supply_summary$', views.water_supply_summary, name='water_supply_summary'),
 
-     #power_supply
+    #power_supply
     url(r'^power_supply_summary$', views.power_supply_summary, name='power_supply_summary'),
 
     #industry_services
     url(r'^industry_services_summary$', views.industry_services_summary, name='industry_services_summary'),
 
-     #Agri_agrarian
+    #Agri_agrarian
     url(r'^agri_agrarian_summary$', views.agri_agrarian_summary, name='agri_agrarian_summary'),
 
     #Agri_fisheries
@@ -55,10 +55,10 @@ urlpatterns = [
     #Agri_irrigation
     url(r'^agri_irrigation_summary$', views.agri_irrigation_summary, name='agri_irrigation_summary'),
 
-     #Housing
+    #Housing
     url(r'^housing_summary$', views.housing_summary, name='housing_summary'),
 
-     #Telecom
+    #Telecom
     url(r'^telecom_summary$', views.telecom_summary, name='telecom_summary'),
 
     #tourism
@@ -66,5 +66,8 @@ urlpatterns = [
 
     #all
     url(r'^report_summary$', views.report_summary, name='report_summary'),
+
+    #all
+    url(r'^summary_of_damages_and_losses_by_sector$', views.summary_of_damages_and_losses_by_sector, name='summary_of_damages_and_losses_by_sector'),
 
 ]

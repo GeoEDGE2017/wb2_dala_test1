@@ -57,8 +57,4 @@ app.controller('dlSumAgriDstrController', function($scope, $http) {
             })
         }
     }
-
-
-
-
 })

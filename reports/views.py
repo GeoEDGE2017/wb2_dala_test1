@@ -151,6 +151,7 @@ def agri_agrarian_summary(request):
     }
     return render(request, 'reports/report_agri_agrarian.html', context)
 
+
 def agri_fisheries_summary(request):
     incidents = IncidentReport.objects.all()
     context = {
@@ -158,6 +159,7 @@ def agri_fisheries_summary(request):
         'module': 'reports'
     }
     return render(request, 'reports/report_agri_fisheries.html', context)
+
 
 def agri_livestock_summary(request):
     incidents = IncidentReport.objects.all()
@@ -175,6 +177,7 @@ def agri_irrigation_summary(request):
     }
     return render(request, 'reports/report_agri_irrigation.html', context)
 
+
 def housing_summary(request):
     incidents = IncidentReport.objects.all()
     context = {
@@ -182,6 +185,7 @@ def housing_summary(request):
         'module': 'reports'
     }
     return render(request, 'reports/report_housing.html', context)
+
 
 def telecom_summary(request):
     incidents = IncidentReport.objects.all()
@@ -191,6 +195,7 @@ def telecom_summary(request):
     }
     return render(request, 'reports/report_telecom.html', context)
 
+
 def tourism_summary(request):
     incidents = IncidentReport.objects.all()
     context = {
@@ -199,6 +204,7 @@ def tourism_summary(request):
     }
     return render(request, 'reports/report_tourism.html', context)
 
+
 def report_summary(request):
     incidents = IncidentReport.objects.all()
     context = {
@@ -206,6 +212,15 @@ def report_summary(request):
         'module': 'reports'
     }
     return render(request, 'reports/report_all.html', context)
+
+
+def summary_of_damages_and_losses_by_sector(request):
+    incidents = IncidentReport.objects.all()
+    context = {
+        'incidents': incidents,
+        'module': 'reports'
+    }
+    return render(request, 'reports/summary_of_damages_and_losses_by_sector.html', context)
 
 
 @csrf_exempt

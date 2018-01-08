@@ -1,100 +1,88 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
-
-<main class="main" ng-app="bsTelcomCmpnysApp" ng-controller="bsTelcomCmpnysController">
+<main class="main" ng-app="sumOfDamagesAndLossesByProvincesApp" ng-controller="sumOfDamagesAndLossesByProvincesController">
+<!--<main class="main">-->
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
-            <a href="{% url 'dashboard:index' %}">
-                Dashboard
-            </a>
+            <a href="{% url 'admin:index' %}">Admin</a>
         </li>
         <li class="breadcrumb-item">
-            <a href="{% url 'dashboard:telecom_main' %}">
-                Telecommunication Sector
-            </a>
+            <a href="index_report">Reports</a>
         </li>
         <li class="breadcrumb-item active">
             <span class="label label-success" style="font-size:14px;">
-                Table 1. Baseline Information on Telecommunication Companies
+                Table 2. Summary of damages and losses by provinces in Sri Lankan Rupee
             </span>
-        </li>
-        <li style="float:right;">
-            <a href="{% static 'dashboard/doc/Telecommunications.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info"
-                data-toggle="tooltip" title="Veiw Document" >
-            </a>
         </li>
     </ol>
     <div class="container-fluid" ng-form name="">
-
-<table class="table table-bordered">
-    <colgroup>
-        <col width="222"/>
-        <col width="138" span="5"/>
-    </colgroup>
-    <tbody>
-        <tr height="20" class="trheadc1">
-            <td rowspan="2" height="40" width="222">
-                Province
-            </td>
-            <td colspan="3" width="414">
-                Disaster Effects
-            </td>
-            <td colspan="2" width="276">
-                Ownership
-            </td>
-        </tr>
-        <tr height="20" class="trsubc">
-            <td height="20">
-                Damage
-            </td>
-            <td>
-                Losses
-            </td>
-            <td>
-                Total
-            </td>
-            <td>
-                Public
-            </td>
-            <td>
-                Private
-            </td>
-        </tr>
-        <tr height="20">
-            <td height="20" class="tdpa">
-                Province 1
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-        </tr>
-
-        <tr height="20">
-            <td height="20" class="tdpa">
-                TOTAL
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-        </tr>
-    </tbody>
-</table>
-
-</div>
-    </main>
+        <table class="table table-bordered">
+            <colgroup>
+                <col width="222"/>
+                <col width="138" span="5"/>
+            </colgroup>
+            <tbody>
+                <tr height="20" class="trheadc1">
+                    <td rowspan="2" height="40" width="222">
+                        Province
+                    </td>
+                    <td colspan="3" width="414">
+                        Disaster Effects
+                    </td>
+                    <td colspan="2" width="276">
+                        Ownership
+                    </td>
+                </tr>
+                <tr height="20" class="trsubc">
+                    <td height="20">
+                        Damage
+                    </td>
+                    <td>
+                        Losses
+                    </td>
+                    <td>
+                        Total
+                    </td>
+                    <td>
+                        Public
+                    </td>
+                    <td>
+                        Private
+                    </td>
+                </tr>
+                <tr height="20">
+                    <td height="20" class="tdpa">
+                        Province 1
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr height="20">
+                    <td height="20" class="tdpa">
+                        TOTAL
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
 {% endblock content %}

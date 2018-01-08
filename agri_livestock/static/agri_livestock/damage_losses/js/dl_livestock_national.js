@@ -27,7 +27,7 @@ app.controller("DlAgriLivestocknNatController", ['$scope','$http',function ($sco
                 method: "POST",
                 url: '/dl_fetch_summary_disagtn',
                 data: angular.toJson({
-                    'table_name':  ['Table_6'],
+                    'table_name': ['Table_6'],
                     'sector': ['agri_livestock'],
                     'com_data': {
                         'incident': $scope.incident,

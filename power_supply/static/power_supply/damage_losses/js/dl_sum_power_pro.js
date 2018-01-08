@@ -45,16 +45,14 @@ app.controller("DlpowSupplyProController", function ($scope,$http,$parse, _) {
     }
 
     $scope.fetchDlData = function(form) {
-
         if($scope.incident && $scope.province) {
             $scope.is_edit = true;
             $scope.submitted = true;
-
             $http({
                 method: "POST",
                 url: '/dl_fetch_district_disagtn',
                 data: angular.toJson({
-                    'table_name':  'Table_5',
+                    'table_name': 'Table_5',
                     'sector': 'power_supply',
                     'com_data': {
                         'province': $scope.province,
@@ -71,23 +69,24 @@ app.controller("DlpowSupplyProController", function ($scope,$http,$parse, _) {
 
 
     $scope.convertTotal = function(val1,val2,val3,val4){
-            var sum = 0;
-            sum = parseInt(val1) + parseInt(val2) + parseInt(val3) + parseInt(val4) ;
-            return sum;
-        }
+        var sum = 0;
+        sum = parseInt(val1) + parseInt(val2) + parseInt(val3) + parseInt(val4) ;
+        return sum;
+    }
+
     $scope.checkIfNull = function() {
         var isNull = $scope.dlPowerSupplyPro ? angular.equals({}, $scope.dlPowerSupplyPro.power_supply.Table_5) : true;
         return isNull;
     }
 
-     $scope.totDmg = function() {
+    $scope.totDmg = function() {
         if(!angular.isUndefined($scope.data)) {
             var totDmg = 0;
             var totDmgOne = 0;
             var totDmgTwo = 0;
             var totDmgThree = 0;
             angular.forEach($scope.data.power_supply.Table_5, function(value, index) {
-              angular.forEach(value,function(value_in, key) {
+                angular.forEach(value,function(value_in, key) {
                    console.log('print',key);
                     if(key == 'TotDmgCebProvince') {
                           totDmgOne = totDmgOne + value_in[0].tot_dmg;
@@ -98,20 +97,21 @@ app.controller("DlpowSupplyProController", function ($scope,$http,$parse, _) {
                     if(key == 'TotDmgPvtProvince') {
                           totDmgThree = totDmgThree + value_in[0].tot_dmg;
                     }
-                totDmg = totDmgOne + totDmgTwo + totDmgThree;
+                    totDmg = totDmgOne + totDmgTwo + totDmgThree;
                 })
-                })
+            })
             return totDmg;
         }
     }
-     $scope.totLossY1 = function() {
+
+    $scope.totLossY1 = function() {
         if(!angular.isUndefined($scope.data)) {
             var totLoss = 0;
             var totLossOne = 0;
             var totLossTwo = 0;
             var totLossThree = 0;
             angular.forEach($scope.data.power_supply.Table_5, function(value, index) {
-              angular.forEach(value,function(value_in, key) {
+                angular.forEach(value,function(value_in, key) {
                    console.log('print',key);
                     if(key == 'TotLosCebProvince') {
                           totLossOne = totLossOne + value_in[0].losses_y1;
@@ -124,19 +124,20 @@ app.controller("DlpowSupplyProController", function ($scope,$http,$parse, _) {
                     }
                 totLoss = totLossOne + totLossTwo + totLossThree;
                 })
-                })
+            })
             return totLoss;
         }
-        }
-     $scope.totLossY2= function() {
+    }
+
+    $scope.totLossY2= function() {
         if(!angular.isUndefined($scope.data)) {
             var totLoss = 0;
             var totLossOne = 0;
             var totLossTwo = 0;
             var totLossThree = 0;
             angular.forEach($scope.data.power_supply.Table_5, function(value, index) {
-              angular.forEach(value,function(value_in, key) {
-                   console.log('print',key);
+                angular.forEach(value,function(value_in, key) {
+                    console.log('print',key);
                     if(key == 'TotLosCebProvince') {
                           totLossOne = totLossOne + value_in[0].losses_y2;
                     }
@@ -146,11 +147,10 @@ app.controller("DlpowSupplyProController", function ($scope,$http,$parse, _) {
                     if(key == 'TotLossesPvtProvince') {
                           totLossThree = totLossThree + value_in[0].los_year2;
                     }
-                totLoss = totLossOne + totLossTwo + totLossThree;
+                    totLoss = totLossOne + totLossTwo + totLossThree;
                 })
-                })
+            })
             return totLoss;
         }
     }
-
  })

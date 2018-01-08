@@ -161,7 +161,7 @@ DATABASES = {
         #     'options': '-c search_path=industry_services'
         # },
 
-        'NAME': 'dala_12_21',
+        'NAME': 'dala_new',
         #'NAME': 'dala_2017_12_14',
         'USER': 'postgres',
     },
@@ -2203,90 +2203,41 @@ TABLE_PROPERTY_MAPPER = {
 
         },
         'Table_8': {
-            'DsorDmgPubStrusturesDistrict':
-                ['damages', 'incident', 'district'],
-            'DsorDmgPvtStrusturesDistrict':
-                ['damages', 'incident', 'district'],
-            'DsorDmgPvtOequipmentDistrict':
-                ['dmg_pub', 'dmg_pvt', 'incident', 'district'],
-            'DsorDmgPvtMachineryDistrict':
-                ['dmg_pub', 'dmg_pvt', 'incident', 'district'],
-            'DcpfFarmEquipmentDistrict':
-                ['dmg_pub', 'dmg_pvt', 'incident', 'district'],
-            'DcpfStocksDistrict':
-                ['dmg_pub', 'dmg_pvt', 'incident', 'district'],
-
-            'DcpfSeasonalCropsDistrict':
-                ['dmg_pub', 'dmg_pvt', 'incident', 'district'],
-            'DcpfPlantnCropsDistrict':
-                ['dmg_pub', 'dmg_pvt', 'incident', 'district'],
-            'DcpfExportCropsDistrict':
-                ['dmg_pub', 'dmg_pvt', 'incident', 'district'],
-            'DcpfRrePlantnDistrict':
-                ['dmg_pub', 'dmg_pvt', 'incident', 'district'],
-            'DcpfForestryDistrict':
-                ['dmg_pub', 'dmg_pvt', 'incident', 'district'],
-            'DcpfOtherDistrict':
-                ['dmg_pub', 'dmg_pvt', 'incident', 'district'],
-
-            'DildSeasonalCropsDistrict':
-                ['invest_los_pub', 'invest_los_pvt', 'incident', 'district'],
-            'PldySeasonalCropsDistrict':
-                ['prod_year_1_pub', 'prod_year_1_pvt', 'prod_year_2_pub', 'prod_year_2_pvt', 'incident', 'district'],
-            'DildPlantnCropsDistrict':
-                ['invest_los_pub', 'invest_los_pvt', 'incident', 'district'],
-            'PldyPlantnCropsDistrict':
-                ['prod_year_1_pub', 'prod_year_1_pvt', 'prod_year_2_pub', 'prod_year_2_pvt', 'incident', 'district'],
-            'DildExportCropsDistrict':
-                ['invest_los_pub', 'invest_los_pvt', 'incident', 'district'],
-            'PldyExportCropsDistrict':
-                ['prod_year_1_pub', 'prod_year_1_pvt', 'prod_year_2_pub', 'prod_year_2_pvt', 'incident', 'district'],
-            'DildForestryDistrict':
-                ['invest_los_pub', 'invest_los_pvt', 'incident', 'district'],
-            'PldyForestryDistrict':
-                ['prod_year_1_pub', 'prod_year_1_pvt', 'prod_year_2_pub', 'prod_year_2_pvt', 'incident', 'district'],
-            'PldyOtherDistrict':
-                ['prod_year_1_pub', 'prod_year_1_pvt', 'prod_year_2_pub', 'prod_year_2_pvt', 'incident', 'district'],
-
-            'PldyOtherLosDistrict':
-                ['year_1_pub', 'year_1_pvt', 'year_2_pub', 'year_2_pvt', 'incident', 'district'],
+            'DsorDmgPubStrusturesDistrict': ['damages', 'incident', 'district'],
+            'DsorDmgPvtStrusturesDistrict': ['damages', 'incident', 'district'],
+            'DsorDmgPvtOequipmentDistrict': ['dmg_pub', 'dmg_pvt', 'incident', 'district'],
+            'DsorDmgPvtMachineryDistrict': ['dmg_pub', 'dmg_pvt', 'incident', 'district'],
+            'DcpfFarmEquipmentDistrict': ['dmg_pub', 'dmg_pvt', 'incident', 'district'],
+            'DcpfStocksDistrict': ['dmg_pub', 'dmg_pvt', 'incident', 'district'],
+            'DcpfSeasonalCropsDistrict': ['dmg_pub', 'dmg_pvt', 'incident', 'district'],
+            'DcpfPlantnCropsDistrict': ['dmg_pub', 'dmg_pvt', 'incident', 'district'],
+            'DcpfExportCropsDistrict': ['dmg_pub', 'dmg_pvt', 'incident', 'district'],
+            'DcpfRrePlantnDistrict': ['dmg_pub', 'dmg_pvt', 'incident', 'district'],
+            'DcpfForestryDistrict': ['dmg_pub', 'dmg_pvt', 'incident', 'district'],
+            'DcpfOtherDistrict': ['dmg_pub', 'dmg_pvt', 'incident', 'district'],
+            'DildSeasonalCropsDistrict': ['invest_los_pub', 'invest_los_pvt', 'incident', 'district'],
+            'PldySeasonalCropsDistrict': ['prod_year_1_pub', 'prod_year_1_pvt', 'prod_year_2_pub', 'prod_year_2_pvt', 'incident', 'district'],
+            'DildPlantnCropsDistrict': ['invest_los_pub', 'invest_los_pvt', 'incident', 'district'],
+            'PldyPlantnCropsDistrict': ['prod_year_1_pub', 'prod_year_1_pvt', 'prod_year_2_pub', 'prod_year_2_pvt', 'incident', 'district'],
+            'DildExportCropsDistrict': ['invest_los_pub', 'invest_los_pvt', 'incident', 'district'],
+            'PldyExportCropsDistrict': ['prod_year_1_pub', 'prod_year_1_pvt', 'prod_year_2_pub', 'prod_year_2_pvt', 'incident', 'district'],
+            'DildForestryDistrict': ['invest_los_pub', 'invest_los_pvt', 'incident', 'district'],
+            'PldyForestryDistrict': ['prod_year_1_pub', 'prod_year_1_pvt', 'prod_year_2_pub', 'prod_year_2_pvt', 'incident', 'district'],
+            'PldyOtherDistrict': ['prod_year_1_pub', 'prod_year_1_pvt', 'prod_year_2_pub', 'prod_year_2_pvt', 'incident', 'district'],
+            'PldyOtherLosDistrict': ['year_1_pub', 'year_1_pvt', 'year_2_pub', 'year_2_pvt', 'incident', 'district'],
         },
         'Table_9': {
-            'DsorDmgLosProvince':
-                ['dmg_los_pub',
-                 'dmg_los_pvt',
-                 ],
-            'DsorLosYear1Province':
-                ['dmg_los_pub',
-                 'dmg_los_pvt',
-                 ],
-            'DsorLosYear2Province':
-                ['dmg_los_pub',
-                 'dmg_los_pvt',
-                 ],
-            'DsorDmgPubProvince':
-                ['damages'
-                 ],
-            'DsorDmgPvtProvince':
-                ['damages'
-                 ]
-
+            'DsorDmgLosProvince': ['dmg_los_pub', 'dmg_los_pvt'],
+            'DsorLosYear1Province': ['dmg_los_pub', 'dmg_los_pvt'],
+            'DsorLosYear2Province': ['dmg_los_pub', 'dmg_los_pvt'],
+            'DsorDmgPubProvince': ['damages'],
+            'DsorDmgPvtProvince': ['damages']
         },
         'Table_10': {
-            'DsorDmgPubNational':
-                ['sum',
-                 ],
-            'DsorDmgPvtNational':
-                ['sum',
-                 ],
-            'DsorLosYear1National':
-                ['dmg_los_pub',
-                 'dmg_los_pvt',
-                 ],
-            'DsorLosYear2National':
-                ['dmg_los_pub',
-                 'dmg_los_pvt',
-                 ]
+            'DsorDmgPubNational': ['sum'],
+            'DsorDmgPvtNational': ['sum'],
+            'DsorLosYear1National': ['dmg_los_pub', 'dmg_los_pvt'],
+            'DsorLosYear2National': ['dmg_los_pub', 'dmg_los_pvt']
         }
     },
     'agri_livestock': {
@@ -2891,75 +2842,6 @@ TABLE_PROPERTY_MAPPER = {
             'DlLosInfNational': ['los_year1_pub', 'los_year1_pvt', 'los_year2_pub', 'los_year2_pvt'],
         }
     },
-    'industry_services': {
-        'Table_1': {
-            'BsFrmNumBusIndustry': ['industry', 'num_male', 'num_female', 'num_large', 'num_medium', 'num_micro',
-                                    'num_small', 'id'],
-            'BsFrmNumBusServices': ['service', 'num_male', 'num_female', 'num_large', 'num_medium', 'num_micro', 'num_small', 'id'],
-        },
-        'Table_2': {
-            'BsNumBusSector': ['avg_num_emp_female', 'avg_num_emp_male', 'components', 'num_businesses', 'id'],
-        },
-        'Table_3': {
-            'DmgAstStructures': ['assets', 'replace_val_destroyed', 'repair_val_damaged', 'tot_damaged', 'ownership', 'id'],
-            'DmgAstEquipment': ['assets', 'replace_val_destroyed', 'repair_val_damaged', 'tot_damaged', 'ownership', 'id'],
-            'DmgAstMachinery': ['assets', 'replace_val_destroyed', 'repair_val_damaged', 'tot_damaged', 'ownership', 'id'],
-            'DmgAstVehicles': ['assets', 'replace_val_destroyed', 'repair_val_damaged', 'tot_damaged', 'ownership', 'id'],
-            'DmgAstStocks': ['assets', 'replace_val_destroyed', 'repair_val_damaged', 'tot_damaged', 'ownership', 'id', ],
-            'LosTypeLossses': ['assets', 'avg_val_output_year', 'est_val_output_year1', 'est_val_output_year2',
-                               'los_year1', 'los_year2', 'tot_losses', 'ownership', 'id'],
-        },
-        'Table_4': {
-            'DlInfDmgTypBusiness': ['assets', 'repair_val_ast_damaged', 'replace_val_ast_destroyed', 'tot_damages',
-                                    'tot_num_bus_affected', 'id'],
-            'DlInfLosTypFood': ['assets', 'avg_val_output_year', 'est_val_output_year1', 'est_val_output_year2',
-                                'los_year1', 'los_year2', 'tot_losses', 'id'],
-            'DlInfLosTypOther': ['assets', 'avg_val_output_year', 'est_val_output_year1', 'est_val_output_year2',
-                                 'los_year1', 'los_year2', 'tot_losses', 'id'],
-            'DlInfLosTypServices': ['assets', 'avg_val_output_year', 'est_val_output_year1', 'est_val_output_year2',
-                                    'los_year1', 'los_year2', 'tot_losses', 'id'],
-            'DlInfLosTypTrading': ['assets', 'avg_val_output_year', 'est_val_output_year1', 'est_val_output_year2',
-                                   'los_year1', 'los_year2', 'tot_losses', 'id'],
-        },
-        'Table_5': {
-            'DlNuAffBisIndDistrict': ['sector', 'count_no_pub', 'count_no_pvt', 'firm_type'],
-            'DlNuAffBisSerDistrict': ['sector', 'count_no_pub', 'count_no_pvt', 'firm_type'],
-            'DmgFrmYear1IndDistrict': ['firm_type', 'sector', 'tot_dmg_pub', 'tot_dmg_pvt'],
-            'DmgFrmYear1SerDistrict': ['firm_type', 'sector', 'tot_dmg_pub', 'tot_dmg_pvt'],
-            'LosFrmYear1IndDistrict': ['sector', 'firm_type_name', 'los_year1_pub', 'los_year1_pvt'],
-            'LosFrmYear1SerDistrict': ['sector', 'firm_type_name', 'los_year1_pub', 'los_year1_pvt'],
-            'LosFrmYear2IndDistrict': ['sector', 'firm_type_name', 'los_year2_pub', 'los_year2_pvt'],
-            'LosFrmYear2SerDistrict': ['sector', 'firm_type_name', 'los_year2_pub', 'los_year2_pvt'],
-            'DlInfNumBusDistrict': ['assets', 'tot_num_bus_affected'],
-            'DlInfDmgDistrict': ['assets', 'tot_damages'],
-            'DlInfTotLosFoodY1District': ['tot_los_year1'],
-            'DlInfTotLosFoodY2District': ['tot_los_year2'],
-            'DlInfTotLosOthY1District': ['tot_los_year1'],
-            'DlInfTotLosOthY2District': ['tot_los_year2'],
-            'DlInfTotLosSerY1District': ['tot_los_year1'],
-            'DlInfTotLosSerY2District': ['tot_los_year2'],
-            'DlInfTotLosTrdY1District': ['tot_los_year1'],
-            'DlInfTotLosTrdY2District': ['tot_los_year2'],
-            'DmgFrmIndYear1TotDis': ['firm_type_name', 'tot_damages_pub', 'tot_damages_pvt'],
-            'DmgFrmSerYear1TotDis': ['firm_type_name', 'tot_damages_pub', 'tot_damages_pvt'],
-            'LosFrmIndTotDis': ['firm_type_name', 'los_year1_pub', 'los_year1_pvt', 'los_year2_pub', 'los_year2_pvt'],
-            'LosFrmSerTotDis': ['firm_type_name', 'los_year1_pub', 'los_year1_pvt', 'los_year2_pub', 'los_year2_pvt'],
-        },
-        'Table_6': {
-            'DmgTotFrmYear1SumProvince': ['tot_damages_pub', 'tot_damages_pvt'],
-            'LosTotFrmSumProvince': ['los_year1_pub', 'los_year1_pvt', 'los_year2_pub', 'los_year2_pvt'],
-            'DmgTotInfY1SumProvince': ['tot_damages_pvt'],
-            'LosTotInfY1SumProvince': ['tot_los_year1_pvt'],
-            'LosTotInfY2SumProvince': ['tot_los_year2_pvt'],
-        },
-        'Table_7': {
-            'DmgTotFrmYear1SumNational': ['tot_damages_pub', 'tot_damages_pvt'],
-            'DmgTotInfY1SumNational': ['tot_damages_pvt'],
-            'LosTotFrmSumNational': ['los_year1_pub', 'los_year1_pvt', 'los_year2_pub', 'los_year2_pvt'],
-            'LosTotInfY1SumNational': ['tot_los_year1_pvt'],
-            'LosTotInfY2SumNational': ['tot_los_year2_pvt']
-        },
-    },
     'housing': {
         'Table_1': {
             'BhClfPermanent': ['components', 'tot_num_house', 'tot_num_house_rent', 'avg_rent_mont',
@@ -3202,6 +3084,41 @@ TABLE_PROPERTY_MAPPER = {
                 ],
         }
     },
+    'telecommunication': {
+        'Table_1': {
+            'BsTelCompany': ['fixed_voice', 'fixed_tv', 'fixed_data', 'mobile_voice', 'mobile_data', 'ownership',
+                             'company', 'company_name', 'id'],
+        },
+        'Table_2': {
+            'DlNumEmpDistrict': ['num_emp_male', 'mun_emp_female', 'tot_emp', 'num_clients', 'id'],
+            'DmgAstTelStructure': ['assets', 'dmg_val_replace', 'pdmg_val_repair', 'tot_dmg', 'id'],
+            'DmgAstTelEquipment': ['assets', 'dmg_val_replace', 'pdmg_val_repair', 'tot_dmg', 'id'],
+            'DmgAstTelMachinery': ['assets', 'dmg_val_replace', 'pdmg_val_repair', 'tot_dmg', 'id'],
+            'DmgAstTelVehicles': ['assets', 'dmg_val_replace', 'pdmg_val_repair', 'tot_dmg', 'id'],
+            'DmgAstTelOthers': ['assets', 'dmg_val_replace', 'pdmg_val_repair', 'tot_dmg', 'id'],
+            'DlLosses': ['assets', 'year1_los', 'year2_los', 'tot_losses', 'id'],
+        },
+        'Table_3': {
+            'DlDmgFirmDistrict': ['tot_damages', 'incident', 'district', 'firm', 'ownership', 'company_name'],
+            'LosFirmYear1District': ['year1_los', 'incident', 'district', 'firm', 'ownership'],
+            'LosFirmYear2District': ['year2_los', 'incident', 'district', 'firm', 'ownership'],
+        },
+        'Table_4': {
+            'DlDmgFirmDistrict': ['tot_damages', 'incident', 'district', 'firm', 'ownership', 'company_name'],
+            'LosFirmYear1District': ['year1_los', 'incident', 'district', 'firm', 'ownership'],
+            'LosFirmYear2District': ['year2_los', 'incident', 'district', 'firm', 'ownership'],
+        },
+        'Table_5': {
+            'DlDmgBusTotNational': ['tot_damages', 'incident', 'ownership', 'province', 'company_name'],
+            'DlDmgBusTotGroupNational': ['tot_damages', 'incident', 'ownership', 'province', 'company_name'],
+            'DlDmgFirmNational': ['tot_damages', 'incident', 'firm', 'ownership', 'province', 'company_name'],
+            'DlDmgFirmGroupNational': ['tot_damages', 'incident', 'ownership', 'province', 'company_name'],
+            'LosFirmYear1National': ['year1_los', 'incident', 'firm', 'ownership', 'province'],
+            'LosFirmYear1GroupsNational': ['year1_los', 'incident', 'ownership', 'province'],
+            'LosFirmYear2National': ['year2_los', 'incident', 'firm', 'ownership', 'province'],
+            'LosFirmYear2GroupsNational': ['year2_los', 'incident', 'ownership', 'province'],
+        },
+    },
     'power_supply': {
         'Table_1': {
             'BsPwGenFirm':
@@ -3316,39 +3233,178 @@ TABLE_PROPERTY_MAPPER = {
             'TotLossesPvtNational': ['los_year1', 'los_year2', 'ownership'],
         },
     },
-    'telecommunication': {
+    'industry_services': {
         'Table_1': {
-            'BsTelCompany': ['fixed_voice', 'fixed_tv', 'fixed_data', 'mobile_voice', 'mobile_data', 'ownership',
-                             'company', 'company_name', 'id'],
+            'BsFrmNumBusIndustry': ['industry', 'num_male', 'num_female', 'num_large', 'num_medium', 'num_micro',
+                                    'num_small', 'id'],
+            'BsFrmNumBusServices': ['service', 'num_male', 'num_female', 'num_large', 'num_medium', 'num_micro', 'num_small', 'id'],
         },
         'Table_2': {
-            'DlNumEmpDistrict': ['num_emp_male', 'mun_emp_female', 'tot_emp', 'num_clients', 'id'],
-            'DmgAstTelStructure': ['assets', 'dmg_val_replace', 'pdmg_val_repair', 'tot_dmg', 'id'],
-            'DmgAstTelEquipment': ['assets', 'dmg_val_replace', 'pdmg_val_repair', 'tot_dmg', 'id'],
-            'DmgAstTelMachinery': ['assets', 'dmg_val_replace', 'pdmg_val_repair', 'tot_dmg', 'id'],
-            'DmgAstTelVehicles': ['assets', 'dmg_val_replace', 'pdmg_val_repair', 'tot_dmg', 'id'],
-            'DmgAstTelOthers': ['assets', 'dmg_val_replace', 'pdmg_val_repair', 'tot_dmg', 'id'],
-            'DlLosses': ['assets', 'year1_los', 'year2_los', 'tot_losses', 'id'],
+            'BsNumBusSector': ['avg_num_emp_female', 'avg_num_emp_male', 'components', 'num_businesses', 'id'],
         },
         'Table_3': {
-            'DlDmgFirmDistrict': ['tot_damages', 'incident', 'district', 'firm', 'ownership', 'company_name'],
-            'LosFirmYear1District': ['year1_los', 'incident', 'district', 'firm', 'ownership'],
-            'LosFirmYear2District': ['year2_los', 'incident', 'district', 'firm', 'ownership'],
+            'DmgAstStructures': ['assets', 'replace_val_destroyed', 'repair_val_damaged', 'tot_damaged', 'ownership', 'id'],
+            'DmgAstEquipment': ['assets', 'replace_val_destroyed', 'repair_val_damaged', 'tot_damaged', 'ownership', 'id'],
+            'DmgAstMachinery': ['assets', 'replace_val_destroyed', 'repair_val_damaged', 'tot_damaged', 'ownership', 'id'],
+            'DmgAstVehicles': ['assets', 'replace_val_destroyed', 'repair_val_damaged', 'tot_damaged', 'ownership', 'id'],
+            'DmgAstStocks': ['assets', 'replace_val_destroyed', 'repair_val_damaged', 'tot_damaged', 'ownership', 'id', ],
+            'LosTypeLossses': ['assets', 'avg_val_output_year', 'est_val_output_year1', 'est_val_output_year2',
+                               'los_year1', 'los_year2', 'tot_losses', 'ownership', 'id'],
         },
         'Table_4': {
-            'DlDmgFirmDistrict': ['tot_damages', 'incident', 'district', 'firm', 'ownership', 'company_name'],
-            'LosFirmYear1District': ['year1_los', 'incident', 'district', 'firm', 'ownership'],
-            'LosFirmYear2District': ['year2_los', 'incident', 'district', 'firm', 'ownership'],
+            'DlInfDmgTypBusiness': ['assets', 'repair_val_ast_damaged', 'replace_val_ast_destroyed', 'tot_damages',
+                                    'tot_num_bus_affected', 'id'],
+            'DlInfLosTypFood': ['assets', 'avg_val_output_year', 'est_val_output_year1', 'est_val_output_year2',
+                                'los_year1', 'los_year2', 'tot_losses', 'id'],
+            'DlInfLosTypOther': ['assets', 'avg_val_output_year', 'est_val_output_year1', 'est_val_output_year2',
+                                 'los_year1', 'los_year2', 'tot_losses', 'id'],
+            'DlInfLosTypServices': ['assets', 'avg_val_output_year', 'est_val_output_year1', 'est_val_output_year2',
+                                    'los_year1', 'los_year2', 'tot_losses', 'id'],
+            'DlInfLosTypTrading': ['assets', 'avg_val_output_year', 'est_val_output_year1', 'est_val_output_year2',
+                                   'los_year1', 'los_year2', 'tot_losses', 'id'],
         },
         'Table_5': {
-            'DlDmgBusTotNational': ['tot_damages', 'incident', 'ownership', 'province', 'company_name'],
-            'DlDmgBusTotGroupNational': ['tot_damages', 'incident', 'ownership', 'province', 'company_name'],
-            'DlDmgFirmNational': ['tot_damages', 'incident', 'firm', 'ownership', 'province', 'company_name'],
-            'DlDmgFirmGroupNational': ['tot_damages', 'incident', 'ownership', 'province', 'company_name'],
-            'LosFirmYear1National': ['year1_los', 'incident', 'firm', 'ownership', 'province'],
-            'LosFirmYear1GroupsNational': ['year1_los', 'incident', 'ownership', 'province'],
-            'LosFirmYear2National': ['year2_los', 'incident', 'firm', 'ownership', 'province'],
-            'LosFirmYear2GroupsNational': ['year2_los', 'incident', 'ownership', 'province'],
+            'DlNuAffBisIndDistrict': ['sector', 'count_no_pub', 'count_no_pvt', 'firm_type'],
+            'DlNuAffBisSerDistrict': ['sector', 'count_no_pub', 'count_no_pvt', 'firm_type'],
+            'DmgFrmYear1IndDistrict': ['firm_type', 'sector', 'tot_dmg_pub', 'tot_dmg_pvt'],
+            'DmgFrmYear1SerDistrict': ['firm_type', 'sector', 'tot_dmg_pub', 'tot_dmg_pvt'],
+            'LosFrmYear1IndDistrict': ['sector', 'firm_type_name', 'los_year1_pub', 'los_year1_pvt'],
+            'LosFrmYear1SerDistrict': ['sector', 'firm_type_name', 'los_year1_pub', 'los_year1_pvt'],
+            'LosFrmYear2IndDistrict': ['sector', 'firm_type_name', 'los_year2_pub', 'los_year2_pvt'],
+            'LosFrmYear2SerDistrict': ['sector', 'firm_type_name', 'los_year2_pub', 'los_year2_pvt'],
+            'DlInfNumBusDistrict': ['assets', 'tot_num_bus_affected'],
+            'DlInfDmgDistrict': ['assets', 'tot_damages'],
+            'DlInfTotLosFoodY1District': ['tot_los_year1'],
+            'DlInfTotLosFoodY2District': ['tot_los_year2'],
+            'DlInfTotLosOthY1District': ['tot_los_year1'],
+            'DlInfTotLosOthY2District': ['tot_los_year2'],
+            'DlInfTotLosSerY1District': ['tot_los_year1'],
+            'DlInfTotLosSerY2District': ['tot_los_year2'],
+            'DlInfTotLosTrdY1District': ['tot_los_year1'],
+            'DlInfTotLosTrdY2District': ['tot_los_year2'],
+            'DmgFrmIndYear1TotDis': ['firm_type_name', 'tot_damages_pub', 'tot_damages_pvt'],
+            'DmgFrmSerYear1TotDis': ['firm_type_name', 'tot_damages_pub', 'tot_damages_pvt'],
+            'LosFrmIndTotDis': ['firm_type_name', 'los_year1_pub', 'los_year1_pvt', 'los_year2_pub', 'los_year2_pvt'],
+            'LosFrmSerTotDis': ['firm_type_name', 'los_year1_pub', 'los_year1_pvt', 'los_year2_pub', 'los_year2_pvt'],
+        },
+        'Table_6': {
+            'DmgTotFrmYear1SumProvince': ['tot_damages_pub', 'tot_damages_pvt'],
+            'LosTotFrmSumProvince': ['los_year1_pub', 'los_year1_pvt', 'los_year2_pub', 'los_year2_pvt'],
+            'DmgTotInfY1SumProvince': ['tot_damages_pvt'],
+            'LosTotInfY1SumProvince': ['tot_los_year1_pvt'],
+            'LosTotInfY2SumProvince': ['tot_los_year2_pvt'],
+        },
+        'Table_7': {
+            'DmgTotFrmYear1SumNational': ['tot_damages_pub', 'tot_damages_pvt'],
+            'DmgTotInfY1SumNational': ['tot_damages_pvt'],
+            'LosTotFrmSumNational': ['los_year1_pub', 'los_year1_pvt', 'los_year2_pub', 'los_year2_pvt'],
+            'LosTotInfY1SumNational': ['tot_los_year1_pvt'],
+            'LosTotInfY2SumNational': ['tot_los_year2_pvt']
+        },
+    },
+    'reports': {
+        'health': {
+            'DmgHealthTot': ['tot_dmg'],
+            'HealthTotPub': ['tot_pub'],
+            'HealthTotPvt': ['tot_pvt'],
+            'LosHealthTot': ['tot_loss'],
+        },
+        'education': {
+            'DmgEducationTot': ['tot_dmg'],
+            'EducationTotPub': ['tot_pub'],
+            'EducationTotPvt': ['tot_pvt'],
+            'LosEducationTot': ['tot_dmg'],
+        },
+        'mining': {
+            'DmgMiningTot': ['tot_dmg'],
+            'LosMiningTot': ['tot_loss'],
+            'MiningTotPub': ['tot_pub'],
+            'MiningTotPvt': ['tot_pvt'],
+        },
+        'other_government': {
+            'DmgOthGovSerTot': ['tot_dmg'],
+            'LosOthGovSerTot': ['tot_loss'],
+            'OthGovSerTotPub': ['tot_pub'],
+        },
+        'transport_air': {
+            'AirTransportationTotPub': ['tot_destroyed'],
+            'AirTransportationTotPvt': ['tot_destroyed'],
+            'DmgAirTransportationTot': ['tot_destroyed'],
+            'LosAirTransportationTot': ['tot_los'],
+        },
+        'transport_land': {
+            'DmgLandTransportationTot': ['damages'],
+            'LandTransportationTotPub': ['damages'],
+            'LandTransportationTotPvt': ['tot_damages_pvt'],
+            'LosLandTransportationTot': ['loss'],
+        },
+        'transport_rail': {
+            'DmgRailTransportationTot': ['tot_damages'],
+            'LosRailTransportationTot': ['tot_los'],
+            'RailTransportationTotPub': ['dmg_tot_pub'],
+        },
+        'transport_water': {
+            'DmgWaterTransportationTot': ['tot_destroyed'],
+            'LosWaterTransportationTot': ['tot_los'],
+            'WaterTransportationTotPub': ['tot_destroyed'],
+            'WaterTransportationTotPvt': ['tot_destroyed'],
+        },
+        'agri_agrarian': {
+            'AgrarianTotPub': ['tot_damages_pub'],
+            'AgrarianTotPvt': ['tot_damages_pub'],
+            'DmgAgrarianTot': ['tot_damages'],
+            'LosAgrarianTot': ['tot_damages']
+        },
+        'agri_fisheries': {
+            'DmgFisheriesTot': ['tot_damages_pvt'],
+            'FisheriesTotPub': ['tot_damages_pub'],
+            'FisheriesTotPvt': ['tot_damages_pvt'],
+            'LosFisheriesTot': ['los_year_2_pvt']
+        },
+        'agri_irrigation': {
+            'DmgIrrigationTot': ['damages'],
+            'IrrigationTotPub': ['tot_damages_pub'],
+            'LosIrrigationTot': ['total_los']
+        },
+        'agri_livestock': {
+            'DmgLivestockTot': ['tot_damages_pub'],
+            'LivestockTotPub': ['tot_damages_pub'],
+            'LivestockTotPvt': ['tot_damages_pvt'],
+            'LosLivestockTot': ['tot_damages_pub']
+        },
+        'housing': {
+            'DmgHousingTot': ['tot_dmg'],
+            'LosHousingTot': ['tot_loss'],
+            'HousingTotPvt': ['tot_pvt'],
+        },
+        'industry_services': {
+            'DmgIndustryServicesTot': ['tot_damages_pub'],
+            'IndustryServicesTotPub': ['tot_damages_pub'],
+            'IndustryServicesTotPvt': ['tot_damages_pvt'],
+            'LosIndustryServicesTot': ['tot_damages_pub'],
+        },
+        'power_supply': {
+            'DmgPowerSupplyTot': ['tot_destroyed'],
+            'LosPowerSupplyTot': ['tot_los'],
+            'PowerSupplyTotPub': ['dmg_tot_pub'],
+            'PowerSupplyTotPvt': ['dmg_tot_pvt'],
+        },
+        'telecommunication': {
+            'CommunicationTotPub': ['tot_damages_pub'],
+            'CommunicationTotPvt': ['tot_damages_pvt'],
+            'DmgCommunicationTot': ['tot_damages'],
+            'LosCommunicationTot': ['tot_los'],
+        },
+        'tourism': {
+            'DmgTourismTot': ['tot_damages'],
+            'LosTourismTot': ['tot_loss'],
+            'TourismTotPub': ['tot_pub'],
+            'TourismTotPvt': ['tot_pvt'],
+        },
+        'water_supply': {
+            'DmgWaterSupplyTot': ['dmg_tot_pub'],
+            'LosWaterSupplyTot': ['tot_los'],
+            'WaterSupplyTotPub': ['tot_dmg_pub'],
         },
     }
 }

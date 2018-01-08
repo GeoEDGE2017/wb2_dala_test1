@@ -69,5 +69,7 @@ urlpatterns = [
 
     #all
     url(r'^summary_of_damages_and_losses_by_sector$', views.summary_of_damages_and_losses_by_sector, name='summary_of_damages_and_losses_by_sector'),
+    url(r'^summary_of_damages_and_losses_by_province$', views.summary_of_damages_and_losses_by_province, name='summary_of_damages_and_losses_by_province'),
 
+    # url(r'^fetch_dashboard_data$', views.fetch_dashboard_data, name='fetch_dashboard_data'),
 ]

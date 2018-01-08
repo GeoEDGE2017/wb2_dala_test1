@@ -16,7 +16,6 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
     $scope.is_search = false;
     $scope.bsCreatedeDate;
 
-
     $scope.newPvtPwProducer = {
         'name':null,
     }
@@ -154,20 +153,14 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
                 dataType: 'json',
             }).then(function successCallback(response) {
                 var data = response.data;
-                console.log('*', response);
-//
-//                    angular.forEach(data, function(value, key) {
-//                    //$scope.bs_data[key] = JSON.parse(value);
-//                   console.log('**', $scope.bs_data[key]);
-//                });
-
-
                 var is_null = false;
+
                 angular.forEach($scope.bs_data, function(value, index) {
                     if(value == null) {
                         is_null = true;
                     }
                 })
+
                 if(is_null == true) {
                     $("#modal-container-239458").modal('show');
                     console.log('baseline table or tables are empty');
@@ -216,10 +209,7 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
         $scope.is_edit = false;
         $scope.data = angular.copy(init_data);
         $scope.is_search=false;
-
     }
-
-
 
     //Load Data IPP_SPP
     $scope.loadIPP_SPP = function(){
@@ -340,12 +330,12 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
                 $scope.clear();
                 $scope.is_edit = false;
                 if(data == 'False') {
-                        $scope.is_valid_data = false;
-                        $("#modal-container-239454").modal('show');
-                    }
-                    else {
-                        $("#modal-container-239453").modal('show');
-                    }
+                    $scope.is_valid_data = false;
+                    $("#modal-container-239454").modal('show');
+                }
+                else {
+                    $("#modal-container-239453").modal('show');
+                }
             })
         }
     }
@@ -367,7 +357,6 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
                             'district': $scope.district.district__id,
                             'incident': $scope.incident,
                             'pw_gen_firm' : $scope.selectedProducer.id,
-    //                        'pvt_pw_producer': $scope.selectedProducer.id,
                         }
                     }),
                 }).success(function(data) {
@@ -432,7 +421,6 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
     $scope.cancelEdit = function(){
         $scope.is_edit = false;
         $scope.clear();
-
     }
 
     //Call Functions

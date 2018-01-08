@@ -49,6 +49,7 @@ urlpatterns = [
     url(r'^is_enum_used_in_dl', views.is_enum_used_in_dl, name='is_enum_used_in_dl'),
     url(r'^bs_save_data_with_firm', views.bs_save_data_with_firm, name='bs_save_data_with_firm'),
     url(r'^bs_save_data_with_organization', views.bs_save_data_with_organization, name='bs_save_data_with_organization'),
+    url(r'^get_summary_data_by_sector', views.get_summary_data_by_sector, name='get_summary_data_by_sector'),
 
     url(r'^fetch_trans_rail_losses', views.fetch_trans_rail_losses, name='fetch_trans_rail_losses'),
     url(r'^edit_school', views.edit_school, name='edit_school'),

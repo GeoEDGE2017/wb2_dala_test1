@@ -26,7 +26,7 @@ bsHealthStatusApp.controller('DlEduNationController', function DlEduProvinceCont
                 method: "POST",
                 url: '/dl_fetch_district_disagtn',
                 data: angular.toJson({
-                    'table_name':  'Table_7',
+                    'table_name': 'Table_7',
                     'sector': 'education',
                     'com_data': {
                         'incident': $scope.incident,

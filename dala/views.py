@@ -14,6 +14,7 @@ from django.http import HttpResponse
 from mining.base_line.models import Firm
 from agri_livestock.base_line.models import Organization
 from health.base_line.models import PrivateClinic
+import reports.models
 from education.base_line.models import PreSchools, PrimarySchools, SecondarySchools, TechInstitutes, Universities
 from users.models import UserDistrict
 import smtplib
@@ -2100,7 +2101,10 @@ def dl_fetch_district_disagtn(request):
 
     print 'tables', tables
     dl_mtable_data = {sector: {}}
+    print '*******', type(dl_mtable_data)
+
     dl_mtable_data[sector][table_name] = {}
+    print '*******', type(dl_mtable_data)
 
     filter_fields = {}
     sub_app_name = sector + '.damage_losses'
@@ -2585,4 +2589,47 @@ def edit_school(request):
     return HttpResponse(object_id)
 
 
+@csrf_exempt
+def get_summary_data_by_sector(request):
+    print "--------- get_summary_data_by_sector"
+    data = (yaml.safe_load(request.body))
+    com_data = data['com_data']
+    incident = com_data['incident']
+    sectors = data['sectors']
 
+    sector_summary = {'report': {}}
+
+    tables = settings.TABLE_PROPERTY_MAPPER['reports']
+
+    for sector in sectors:
+        print sector, type(sector)
+        for key, views in sector.iteritems():
+            sector_summary['report'][key] = {}
+
+            for view in views:
+                sector_summary['report'][key][view] = {}
+                dl_session_model = apps.get_model('reports', view)
+                # should be checking against table name as well
+
+                try:
+                    filterd_fields = tables[key][view]
+                    sector_summary['report'][key][view] = list(dl_session_model.objects.filter(incident=incident).values(*filterd_fields))
+
+                    print sector_summary['report'][key][view]
+                except Exception as e:
+                    print 'error', e
+
+    print '========'
+    print sector_summary
+
+    return HttpResponse(
+        json.dumps((sector_summary), cls=DjangoJSONEncoder),
+        content_type='application/javascript; charset=utf8'
+    )
+    #
+    # print 'update'
+    # object_id = model_fields['id']
+    # modified_model = model_class.objects.filter(pk=object_id)
+    # modified_model.update(**model_fields)
+    # print object_id
+    # return HttpResponse(object_id)

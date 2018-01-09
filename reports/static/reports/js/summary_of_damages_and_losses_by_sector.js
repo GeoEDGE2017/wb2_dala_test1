@@ -2,32 +2,50 @@
 var app = angular.module('sumOfDamagesAndLossesBySectorApp', ['underscore', 'ui.bootstrap', 'popoverToggle', 'ngPrint']);
 
 app.controller("sumOfDamagesAndLossesBySectorController", function ($scope,$http,$parse) {
-    $scope.incident = 20;
-    console.log('***');
-    $scope.loadData = function() {
+    $scope.incident;
+
+    $scope.fetchSummaryData = function() {
         alert('loadData');
         console.log('loadData');
-        $http({
-            method: "POST",
-            url: '/get_summary_data_by_sector',
-            data: angular.toJson({
-                'com_data': {
-                    'incident': $scope.incident,
-                },
-                'sectors': [
-                    {'health': ['DmgHealthTot', 'LosHealthTot', 'HealthTotPub', 'HealthTotPvt']},
-                    {'education': ['DmgEducationTot', 'EducationTotPub', 'EducationTotPvt', 'LosEducationTot']}
-                ]
-            }),
-        }).success(function(data) {
-            console.log('load ', data);
-            $scope.data = data;
-            $scope.dlWaterSupplySumNat = data;
+        if($scope.incident) {
+            $http({
+                method: "POST",
+                url: '/get_summary_data_by_sector',
+                data: angular.toJson({
+                    'com_data': {
+                        'incident': $scope.incident,
+                    },
+                    'sectors': [
+                        {'transport_land': ['DmgLandTransportationTot', 'LosLandTransportationTot', 'LandTransportationTotPub', 'LandTransportationTotPvt']},
+                        {'transport_air': ['DmgAirTransportationTot', 'LosAirTransportationTot', 'AirTransportationTotPub', 'AirTransportationTotPvt']},
+                        {'transport_water': ['DmgWaterTransportationTot', 'LosWaterTransportationTot', 'WaterTransportationTotPub', 'WaterTransportationTotPvt']},
+                        {'transport_rail': ['DmgRailTransportationTot', 'LosRailTransportationTot', 'RailTransportationTotPub']},
+                        {'power_supply': ['DmgPowerSupplyTot', 'LosPowerSupplyTot', 'PowerSupplyTotPub']},
+                        {'water_supply': ['DmgWaterSupplyTot', 'LosWaterSupplyTot', 'WaterSupplyTotPub']},
+                        {'telecommunication': ['DmgCommunicationTot', 'LosCommunicationTot', 'CommunicationTotPub','CommunicationTotPvt']},
+                        {'agri_agrarian': ['DmgAgrarianTot', 'LosAgrarianTot', 'AgrarianTotPub', 'AgrarianTotPvt']},
+                        {'agri_livestock': ['DmgLivestockTot', 'LosLivestockTot', 'LivestockTotPub', 'LivestockTotPvt']},
+                        {'agri_fisheries': ['DmgFisheriesTot', 'LosFisheriesTot', 'FisheriesTotPub', 'FisheriesTotPvt']},
+                        {'agri_irrigation': ['DmgIrrigationTot', 'LosIrrigationTot', 'IrrigationTotPub']},
+                        {'industry_services': ['DmgIndustryServicesTot', 'LosIndustryServicesTot', 'IndustryServicesTotPub','IndustryServicesTotPvt']},
+                        {'tourism': ['DmgTourismTot', 'LosTourismTot', 'TourismTotPub','TourismTotPvt']},
+                        {'housing': ['DmgHousingTot', 'LosHousingTot', 'HousingTotPvt']},
+                        {'health': ['DmgHealthTot', 'LosHealthTot', 'HealthTotPub', 'HealthTotPvt']},
+                        {'education': ['DmgEducationTot', 'EducationTotPub', 'EducationTotPvt', 'LosEducationTot']},
+                        {'mining': ['DmgMiningTot', 'LosMiningTot', 'MiningTotPub', 'MiningTotPvt']},
+                        {'other_government': ['DmgOthGovSerTot', 'LosOthGovSerTot', 'OthGovSerTotPub']}
+                    ]
+                }),
+            }).success(function(data) {
+                console.log('load ', data);
+//                $scope.data = data;
+                $scope.dlWaterSupplySumNat = data;
 
-//            if($scope.checkIfNull()) {
-//                $("#modal-container-239456").modal('show');
-//            }
-        })
+    //            if($scope.checkIfNull()) {
+    //                $("#modal-container-239456").modal('show');
+    //            }
+            })
+        }
     }
 
     $scope.checkIfNull = function() {
@@ -35,5 +53,5 @@ app.controller("sumOfDamagesAndLossesBySectorController", function ($scope,$http
         return isNull;
     }
 
-    $scope.loadData();
+    $scope.fetchSummaryData();
 })

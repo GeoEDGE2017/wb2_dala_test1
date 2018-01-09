@@ -20,7 +20,7 @@ from users.models import UserDistrict
 import smtplib
 from django.db import connection
 import collections
-import dateutil.parser
+# import dateutil.parser
 
 @csrf_exempt
 def send_email(request):

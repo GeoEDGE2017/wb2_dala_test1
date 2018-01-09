@@ -3349,6 +3349,7 @@ TABLE_PROPERTY_MAPPER = {
             'WaterTransportationTotPub': ['tot_destroyed'],
             'WaterTransportationTotPvt': ['tot_destroyed'],
         },
+
         'agri_agrarian': {
             'AgrarianTotPub': ['tot_damages_pub'],
             'AgrarianTotPvt': ['tot_damages_pub'],

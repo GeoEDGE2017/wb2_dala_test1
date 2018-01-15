@@ -2593,13 +2593,14 @@ def edit_school(request):
 def get_summary_data_by_sector(request):
     print "--------- get_summary_data_by_sector"
     data = (yaml.safe_load(request.body))
+    table_name = 'Table_1'
     com_data = data['com_data']
     incident = com_data['incident']
     sectors = data['sectors']
 
     sector_summary = {'report': {}}
 
-    tables = settings.TABLE_PROPERTY_MAPPER['reports']
+    tables = settings.TABLE_PROPERTY_MAPPER['reports'][table_name]
 
     for sector in sectors:
         print sector, type(sector)
@@ -2633,3 +2634,54 @@ def get_summary_data_by_sector(request):
     # modified_model.update(**model_fields)
     # print object_id
     # return HttpResponse(object_id)
+
+
+@csrf_exempt
+def get1_summary_data_by_sector_for_provinces(request):
+    print "--------- get_summary_data_by_sector_for_provinces"
+    data = (yaml.safe_load(request.body))
+    table_name = 'Table_2'
+    com_data = data['com_data']
+    incident = com_data['incident']
+    sectors = data['sectors']
+
+    sector_provinces_summary = {'report': {}}
+
+    tables = settings.TABLE_PROPERTY_MAPPER['reports'][table_name]
+
+    for sector in sectors:
+        print sector, type(sector)
+        for key, views in sector.iteritems():
+
+            for view in views:
+                dl_session_model = apps.get_model('reports', view)
+                # should be checking against table name as well
+                # print dl_session_model
+
+                try:
+                    filterd_fields = tables[key][view]
+                    sector_provinces_summary_row = list(dl_session_model.objects.filter(incident=incident).values(*filterd_fields))
+
+                    for i, l in enumerate(sector_provinces_summary_row):
+                        # print '@', l, type(l), i
+                        province_name = l['name']
+                        province_id = l['province']
+                        sector_provinces_summary['report'][province_name] = {}
+
+                        for key2, views2 in sector.iteritems():
+                            for view2 in views2:
+                                sector_provinces_summary['report'][province_name][view2] = {}
+                                dl_session_model2 = apps.get_model('reports', view2)
+                                filterd_fields2 = tables[key2][view2]
+                                sector_provinces_summary['report'][province_name][view2] = list(dl_session_model2.objects.filter(incident=incident, province=province_id).values(*filterd_fields2))
+                except Exception as e:
+                    print 'error', e
+
+    print '========'
+    print type(sector_provinces_summary)
+    print sector_provinces_summary
+
+    return HttpResponse(
+        json.dumps((sector_provinces_summary), cls=DjangoJSONEncoder),
+        content_type='application/javascript; charset=utf8'
+    )

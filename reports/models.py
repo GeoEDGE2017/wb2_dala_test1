@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 from django.db import models
 from incidents.models import IncidentReport
+from settings.models import Province
 
 
 # health
@@ -622,3 +623,49 @@ class DmgWaterTransportationTot(models.Model):
     class Meta:
         managed = False
         db_table = 'dmg_water_transportation_tot'
+
+
+# Table 2 - Province
+
+class SumProvinceDmg(models.Model):
+    tot_dmg = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', related_name='mn_dl_province123', blank=True, null=True)
+    name = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'sum_province_dmg'
+
+
+class SumProvinceLoss(models.Model):
+    tot_loss = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', related_name='mn_dl_province13', blank=True, null=True)
+    name = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'sum_province_loss'
+
+
+class SumProvincePub(models.Model):
+    tot_pub = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', related_name='mn_dl_province14', blank=True, null=True)
+    name = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'sum_province_pub'
+
+
+class SumProvincePvt(models.Model):
+    tot_pvt = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', related_name='mn_dl_province15', blank=True, null=True)
+    name = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'sum_province_pvt'

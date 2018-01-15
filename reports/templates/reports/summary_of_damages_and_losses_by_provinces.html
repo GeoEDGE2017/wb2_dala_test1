@@ -19,6 +19,39 @@
     <div class="container-fluid" ng-form name="">
         <table class="table table-bordered">
             <colgroup>
+                <col width="293"/>
+                <col width="254"/>
+                <col width="145"/>
+                <col width="221"/>
+                <col width="63"/>
+                <col width="63"/>
+                <col width="63"/>
+                <col width="63"/>
+                <col width="63"/>
+            </colgroup>
+            <tbody>
+            <tr class="trhead1" height="19">
+                <td height="19" width="293">
+                    Incident
+                </td>
+                <td height="19" colspan="8" width="254">
+                    <select id="select" name="incident" ng-model="incident"
+                            class="form-control" style="width:100%;font-weight:400;" ng-change="changedValue(incident);fetchProvinces();
+                            fetchSummaryData()" required>
+                        <option value="" selected="true">Select an Incident</option>
+                        {% for incident in incidents %}
+                        <option value={{incident.id}}>
+                            {{incident.incident_name}}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </td>
+                <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
+            </tr>
+            </tbody>
+        </table>
+        <table class="table table-bordered">
+            <colgroup>
                 <col width="222"/>
                 <col width="138" span="5"/>
             </colgroup>
@@ -51,21 +84,21 @@
                         Private
                     </td>
                 </tr>
-                <tr height="20">
-                    <td height="20" class="tdpa">
-                        Province 1
+                <tr ng-repeat="(province,value) in provinceSumNat.report" height="20">
+                    <td ng-bind="province" height="20" class="tdpa">
                     </td>
-                    <td>
+                    <td class="right" ng-bind="value.SumProvinceDmg[0].tot_dmg | number">
                     </td>
-                    <td>
+                    <td class="right" ng-bind="value.SumProvinceLoss[0].tot_loss | number">
                     </td>
-                    <td>
+                    <td class="right" ng-bind="value.SumProvinceDmg[0].tot_dmg + value.SumProvinceLoss[0].tot_loss | number">
                     </td>
-                    <td>
+                    <td class="right" ng-bind="value.SumProvincePub[0].tot_pub | number">
                     </td>
-                    <td>
+                    <td class="right" ng-bind="value.SumProvincePvt[0].tot_pvt | number">
                     </td>
                 </tr>
+
                 <tr height="20">
                     <td height="20" class="tdpa">
                         TOTAL
